@@ -3,23 +3,12 @@ const path = require("path");
 const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
-
 const port = process.env.PORT || 5000;
 
 server.listen(port);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, "client/build")));
-
-// Put all API endpoints under '/api'
-app.get("/api/", (req, res) => {
-  // Return them as json
-  res.json({
-    text: "hello"
-  });
-
-  console.log(`Sent hello`);
-});
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
@@ -28,12 +17,15 @@ app.get("*", (req, res) => {
 });
 
 const players = {};
+const rooms = {};
 
 io.on("connection", function(socket) {
   players[socket.id] = {
     playerId: socket.id
   };
   // send the players object to the new player
+  socket.emit("currentPlayers", players);
+  // send the rooms object to the new player
   socket.emit("currentPlayers", players);
   // update all other players of the new player
   socket.broadcast.emit("newPlayer", players[socket.id]);
