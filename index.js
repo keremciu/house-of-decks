@@ -25,10 +25,22 @@ io.on("connection", function(socket) {
   };
   // send the players object to the new player
   socket.emit("currentPlayers", players);
-  // send the rooms object to the new player
-  socket.emit("currentPlayers", players);
+  // // send the rooms object to the new player
+  // socket.emit("currentPlayers", players);
   // update all other players of the new player
   socket.broadcast.emit("newPlayer", players[socket.id]);
+
+  // socket.join("some room");
+
+  socket.on("create_room", function(roomId) {
+    rooms[roomId] = {
+      roomId,
+      players: [socket.id]
+    };
+    socket.join(roomId);
+    // socket.broadcast.to(id).emit('my message', msg);
+  });
+
   console.log("a user connected");
   socket.on("disconnect", function() {
     console.log("user disconnected");
