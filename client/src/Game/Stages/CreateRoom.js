@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import { string, object } from "yup";
-import socketClient from "socket.io-client";
 
 // relative
 import { StoreContext } from "Store";
@@ -10,7 +9,6 @@ import validate from "utils/validate";
 
 import Button from "Components/Button";
 import Input from "Components/Input";
-import { useState } from "react";
 
 function create_UUID() {
   let dt = new Date().getTime();
@@ -29,13 +27,8 @@ const initialValues = {
 };
 
 function CreateRoom() {
-  const socket = socketClient();
-  const [message, setMessage] = React.useState()
+  const [message, setMessage] = React.useState();
   const { dispatch } = React.useContext(StoreContext);
-
-  React.useEffect(() => {
-    socket.on("message", data => setMessage(data))
-  })
 
   function onSubmit(values, { setSubmitting, setErrors }) {
     const generatedRoomID = create_UUID();
@@ -44,7 +37,7 @@ function CreateRoom() {
     setSubmitting(false);
   }
 
-  console.log('test', 'test', message)
+  console.log("test", "test", message);
 
   return (
     <>
@@ -82,11 +75,14 @@ function CreateRoomForm(props) {
         type="username"
         onChange={handleChange}
       />
-      <div className="form-field-error" style={{ height: 30, paddingTop: 20, marginBottom: 10 }}>
+      <div
+        className="form-field-error"
+        style={{ height: 30, paddingTop: 20, marginBottom: 10 }}
+      >
         {errors.username}
       </div>
       <Button onClick={handleSubmit}>
-        {isSubmitting ? "Starting a room..." : "Start a room" }
+        {isSubmitting ? "Starting a room..." : "Start a room"}
       </Button>
     </div>
   );

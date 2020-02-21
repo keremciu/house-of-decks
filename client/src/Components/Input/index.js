@@ -10,7 +10,7 @@ const style = css({
   color: "#808080",
   fontSize: 16,
   fontWeight: 500,
-  boxShadow: "inset 10px 10px 20px #cbcaca",
+  boxShadow: "inset 3px 6px 10px #dccfcf",
   padding: 0,
   margin: 0,
   border: "none",
@@ -18,9 +18,9 @@ const style = css({
   outline: "none",
   transition: "all .1s cubic-bezier(0.165, 0.84, 0.44, 1)",
   borderRadius: 100,
-  background: "linear-gradient(145deg, #d7d6d6, #ffffff)",
+  background: "linear-gradient(145deg, #e4dcdc, #efeeee)",
   "&:active,&:focus,&:focus-within": {
-    boxShadow: "inset 5px 5px 10px #cbcaca"
+    boxShadow: "inset 1px 3px 6px #dccfcf"
     // boxShadow:
     //   "10px 15px 30px white, -10px -15px 30px rgba(171, 164, 155, 0.5),1px 2px 0px 0px white, inset 1px 1px 36px rgba(255,255,255,0.3)"
   },

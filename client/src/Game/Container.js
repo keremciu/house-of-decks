@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
+import socketClient from "socket.io-client";
 
 import { StoreContext } from "Store";
 import Frame from "Components/Frame";
@@ -40,6 +41,25 @@ function Game() {
   const {
     state: { game }
   } = React.useContext(StoreContext);
+  const { current: socket } = useRef(socketClient());
+  const [settings, setSettings] = useState(false);
+  useEffect(() => {
+    try {
+      socket.open();
+      socket.emit("load settings");
+      socket.on("message", data => {
+        // we get settings data and can do something with it
+        setSettings(data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    // Return a callback to be run before unmount-ing.
+    return () => {
+      socket.close();
+    };
+  }, []); // Pass in an empty array to only run on mount.
+
   return (
     <Frame>
       <div css={flexStyle}>{renderStage(game.stage)}</div>

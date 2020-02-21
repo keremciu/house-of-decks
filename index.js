@@ -31,15 +31,15 @@ io.on("connection", function(socket) {
   socket.broadcast.emit("newPlayer", players[socket.id]);
 
   // socket.join("some room");
-  console.log('asfasfs')
+  // console.log("asfasfs");
   socket.on("create_room", function(roomId) {
-    console.log(roomId, 'srrssss')
+    console.log("room_created:", roomId);
     rooms[roomId] = {
       roomId,
       players: [socket.id]
     };
     socket.join(roomId);
-    socket.broadcast.to(roomId).emit('message', 'eeeee');
+    socket.broadcast.to(roomId).emit("message", "eeeee");
   });
 
   console.log("a user connected");
