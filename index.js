@@ -29,20 +29,19 @@ io.on("connection", function(socket) {
   // socket.emit("currentPlayers", players);
   // update all other players of the new player
   socket.broadcast.emit("newPlayer", players[socket.id]);
-
-  // socket.join("some room");
-  // console.log("asfasfs");
   socket.on("create_room", function(roomId) {
-    console.log("room_created:", roomId);
     rooms[roomId] = {
       roomId,
       players: [socket.id]
     };
-    socket.join(roomId);
-    socket.broadcast.to(roomId).emit("message", "eeeee");
+    socket.join(roomId, function() {
+      io.to(`${roomId}`).emit("message", "You created a room");
+      // socket.broadcast.in(roomId).emit("message", "eeeee5");
+      console.log(socket.rooms, "list of rooms");
+    });
   });
 
-  console.log("a user connected");
+  console.log("a user connected", socket.id);
   socket.on("disconnect", function() {
     console.log("user disconnected");
     delete players[socket.id];

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Formik } from "formik";
 import { string, object } from "yup";
 
 // relative
+import SocketContext from "SocketContext";
 import { StoreContext } from "Store";
 import { changeStateAction, sendFormAction } from "Game/actions";
 import validate from "utils/validate";
@@ -27,8 +28,9 @@ const initialValues = {
 };
 
 function CreateRoom() {
-  const [message, setMessage] = React.useState();
-  const { dispatch } = React.useContext(StoreContext);
+  const [message, setMessage] = useState();
+  const { dispatch } = useContext(StoreContext);
+  const socket = useContext(SocketContext);
 
   function onSubmit(values, { setSubmitting, setErrors }) {
     const generatedRoomID = create_UUID();
@@ -45,10 +47,11 @@ function CreateRoom() {
         initialValues={initialValues}
         validate={validate(getValidationSchema)}
         onSubmit={onSubmit}
-        render={CreateRoomForm}
-      />
+      >
+        {CreateRoomForm}
+      </Formik>
       {message}
-      <button onClick={() => changeStateAction("join", dispatch)}>
+      <button onClick={() => changeStateAction("join", dispatch)} type="button">
         Go back
       </button>
     </>
@@ -81,7 +84,7 @@ function CreateRoomForm(props) {
       >
         {errors.username}
       </div>
-      <Button onClick={handleSubmit}>
+      <Button onClick={handleSubmit} type="submit">
         {isSubmitting ? "Starting a room..." : "Start a room"}
       </Button>
     </div>

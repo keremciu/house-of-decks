@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import socketClient from "socket.io-client";
+import SocketContext from "SocketContext";
 
 import { StoreContext } from "Store";
 import Frame from "Components/Frame";
@@ -41,13 +41,13 @@ function Game() {
   const {
     state: { game }
   } = React.useContext(StoreContext);
-  const { current: socket } = useRef(socketClient());
+  const socket = useContext(SocketContext);
   const [settings, setSettings] = useState(false);
   useEffect(() => {
     try {
       socket.open();
-      socket.emit("load settings");
       socket.on("message", data => {
+        console.log(data, "container console");
         // we get settings data and can do something with it
         setSettings(data);
       });

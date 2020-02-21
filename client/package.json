@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "cra-build-watch": "^3.2.0",
     "formik": "^2.1.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -16,6 +17,7 @@
     "yup": "^0.28.1"
   },
   "scripts": {
+    "watch": "cra-build-watch",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
