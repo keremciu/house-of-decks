@@ -10,17 +10,19 @@ const style = css({
   color: "#808080",
   fontSize: 16,
   fontWeight: 500,
-  boxShadow: "inset 3px 6px 10px #dccfcf",
+  boxShadow: "inset 3px 6px 10px #dccfcf, inset -3px -3px 7px #efeeee",
   padding: 0,
   margin: 0,
   border: "none",
+  border: "3px solid rgba(255,255,255,0.6)",
   cursor: "pointer",
   outline: "none",
   transition: "all .1s cubic-bezier(0.165, 0.84, 0.44, 1)",
   borderRadius: 100,
   background: "linear-gradient(145deg, #e4dcdc, #efeeee)",
   "&:active,&:focus,&:focus-within": {
-    boxShadow: "inset 1px 3px 6px #dccfcf"
+    boxShadow: "inset 1px 3px 6px #dccfcf",
+    borderColor: "#efeeee"
     // boxShadow:
     //   "10px 15px 30px white, -10px -15px 30px rgba(171, 164, 155, 0.5),1px 2px 0px 0px white, inset 1px 1px 36px rgba(255,255,255,0.3)"
   },
@@ -38,6 +40,9 @@ const style = css({
   "& > span": {
     display: "block",
     padding: "16px 0px 0px 30px"
+  },
+  "& + label": {
+    marginTop: "20px"
   }
 });
 

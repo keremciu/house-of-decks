@@ -29,11 +29,12 @@ io.on("connection", function(socket) {
   // socket.emit("currentPlayers", players);
   // update all other players of the new player
   socket.broadcast.emit("newPlayer", players[socket.id]);
-  socket.on("create_room", function(roomId) {
+  socket.on("create_room", function(nickname, roomId) {
     rooms[roomId] = {
       roomId,
       players: [socket.id]
     };
+    socket.nickname = nickname;
     socket.join(roomId, function() {
       io.to(`${roomId}`).emit("message", "You created a room");
       // socket.broadcast.in(roomId).emit("message", "eeeee5");
@@ -41,9 +42,25 @@ io.on("connection", function(socket) {
     });
   });
 
+  socket.on("join_room", function(nickname, roomId) {
+    rooms[roomId] = {
+      roomId,
+      players: [...(rooms[roomId] ? rooms[roomId].players : []), socket.id]
+    };
+    socket.nickname = nickname;
+    socket.room = roomId;
+    socket.join(roomId, function() {
+      io.to(`${roomId}`).emit("message", "You join the room");
+      // socket.broadcast.in(roomId).emit("message", "eeeee5");
+      console.log(socket.rooms, "list of joined rooms");
+      console.log(rooms);
+    });
+  });
+
   console.log("a user connected", socket.id);
   socket.on("disconnect", function() {
     console.log("user disconnected");
+    socket.leave(socket.room);
     delete players[socket.id];
     io.emit("disconnect", socket.id);
   });

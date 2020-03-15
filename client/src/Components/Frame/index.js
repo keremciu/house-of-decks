@@ -16,13 +16,21 @@ const headerStyle = css({
 const footerStyle = css({
   width: "100%",
   textAlign: "center",
-  fontSize: 14,
-  color: "#808080"
+  fontSize: 15,
+  color: "#908a84",
+  fontFamily: "serif"
 });
 
 const mainStyle = css({
   width: "100%",
   flex: "1 1 auto"
+});
+
+const heroText = css({
+  fontFamily: "serif",
+  color: "#908a84",
+  fontSize: 20,
+  fontWeight: 600
 });
 
 // components
@@ -31,15 +39,15 @@ const Main = ({ children }) => <div css={mainStyle}>{children}</div>;
 const Header = () => (
   <header css={headerStyle}>
     <h1>CARDS AGAINST HUMANITY</h1>
-    <p>a game for horrible people</p>
+    <p css={heroText}>a game for horrible people</p>
   </header>
 );
 const Footer = () => (
   <footer css={footerStyle}>
     <p>
-      © 2020 Kerem Sevencan. Made in Berlin with{" "}
+      Made in Berlin with{" "}
       <span role="img" aria-label="heart">
-        💖
+        🧡
       </span>
     </p>
   </footer>

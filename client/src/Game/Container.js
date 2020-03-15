@@ -45,6 +45,7 @@ function Game() {
   const [settings, setSettings] = useState(false);
   useEffect(() => {
     try {
+      console.count();
       socket.open();
       socket.on("message", data => {
         console.log(data, "container console");
