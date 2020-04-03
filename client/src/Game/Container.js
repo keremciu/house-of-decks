@@ -7,10 +7,12 @@ import { StoreContext } from "Store";
 import Frame from "Components/Frame";
 import Button from "Components/Button";
 import LandingStage from "Game/Stages/Landing";
-import RoomStage from "Game/Stages/Room";
+import ActiveRoomStage from "Game/Stages/ActiveRoom";
 import CreateRoomStage from "Game/Stages/CreateRoom";
 import JoinRoomStage from "Game/Stages/JoinRoom";
 import WaitingRoomStage from "Game/Stages/WaitingRoom";
+
+import { GAME_STAGES } from "./mappings";
 
 const flexStyle = css({
   display: "flex",
@@ -24,14 +26,14 @@ const flexStyle = css({
 
 const renderStage = gameStage => {
   switch (gameStage) {
-    case "create_room":
+    case GAME_STAGES.create:
       return <CreateRoomStage />;
-    case "join_room":
+    case GAME_STAGES.join:
       return <JoinRoomStage />;
-    case "waiting_room":
+    case GAME_STAGES.waiting:
       return <WaitingRoomStage />;
-    case "room":
-      return <RoomStage />;
+    case GAME_STAGES.active:
+      return <ActiveRoomStage />;
     default:
       return <LandingStage />;
   }
@@ -39,18 +41,15 @@ const renderStage = gameStage => {
 
 function Game() {
   const {
-    state: { game }
+    state: { game },
+    dispatch
   } = React.useContext(StoreContext);
   const socket = useContext(SocketContext);
-  const [settings, setSettings] = useState(false);
   useEffect(() => {
     try {
-      console.count();
       socket.open();
-      socket.on("message", data => {
-        console.log(data, "container console");
-        // we get settings data and can do something with it
-        setSettings(data);
+      socket.on("game_action", action => {
+        dispatch(action);
       });
     } catch (error) {
       console.log(error);

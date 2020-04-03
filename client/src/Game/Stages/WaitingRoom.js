@@ -1,6 +1,7 @@
 import React from "react";
 import { StoreContext } from "Store";
-import { changeStateAction } from "Game/actions";
+import { changeStageAction } from "Game/actions";
+import { GAME_STAGES } from "Game/mappings";
 
 import Button from "Components/Button";
 
@@ -10,7 +11,11 @@ function WaitingRoom() {
     <>
       <div>Test</div>
       <div>Your name:</div>
-      <Button onClick={() => changeStateAction("join", dispatch)}>
+      <Button
+        onClick={() =>
+          changeStageAction({ stage: GAME_STAGES.landing }, dispatch)
+        }
+      >
         Go back
       </Button>
     </>

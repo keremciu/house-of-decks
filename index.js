@@ -36,7 +36,12 @@ io.on("connection", function(socket) {
     };
     socket.nickname = nickname;
     socket.join(roomId, function() {
-      io.to(`${roomId}`).emit("message", "You created a room");
+      io.to(`${roomId}`).emit("game_action", {
+        type: "NAH_CHANGE_STAGE",
+        payload: {
+          stage: "waiting_room"
+        }
+      });
       // socket.broadcast.in(roomId).emit("message", "eeeee5");
       console.log(socket.rooms, "list of rooms");
     });
@@ -50,8 +55,12 @@ io.on("connection", function(socket) {
     socket.nickname = nickname;
     socket.room = roomId;
     socket.join(roomId, function() {
-      io.to(`${roomId}`).emit("message", "You join the room");
-      // socket.broadcast.in(roomId).emit("message", "eeeee5");
+      io.to(`${roomId}`).emit("game_action", {
+        type: "NAH_CHANGE_STAGE",
+        payload: {
+          stage: "waiting_room"
+        }
+      });
       console.log(socket.rooms, "list of joined rooms");
       console.log(rooms);
     });

@@ -1,15 +1,16 @@
 import React, { useContext, useState, useRef } from "react";
-import { Formik } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import { string, object } from "yup";
 
 // relative
 import SocketContext from "SocketContext";
 import { StoreContext } from "Store";
-import { changeStateAction, sendFormAction } from "Game/actions";
+import { changeStageAction, sendFormAction } from "Game/actions";
+import { GAME_STAGES } from "Game/mappings";
 import validate from "utils/validate";
 
 import Button from "Components/Button";
-import Input from "Components/Input";
+import Input, { HelpBlock } from "Components/Input";
 
 function create_UUID() {
   let dt = new Date().getTime();
@@ -28,18 +29,18 @@ const initialValues = {
 };
 
 function CreateRoom() {
-  const [message, setMessage] = useState();
   const { dispatch } = useContext(StoreContext);
   const socket = useContext(SocketContext);
 
   function onSubmit(values, { setSubmitting, setErrors }) {
-    const generatedRoomID = create_UUID();
-    socket.emit("create_room", generatedRoomID);
+    const roomID = create_UUID();
+    socket.emit("create_room", {
+      values,
+      roomID
+    });
     sendFormAction(values, dispatch);
     setSubmitting(false);
   }
-
-  console.log("test", "test", message);
 
   return (
     <>
@@ -50,8 +51,12 @@ function CreateRoom() {
       >
         {CreateRoomForm}
       </Formik>
-      {message}
-      <Button small onClick={() => changeStateAction("join", dispatch)}>
+      <Button
+        small
+        onClick={() =>
+          changeStageAction({ stage: GAME_STAGES.landing }, dispatch)
+        }
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1em"
@@ -85,17 +90,14 @@ function CreateRoomForm(props) {
     >
       <Input
         errors={errors.username}
-        label="Your first name"
+        label="Your username"
         name="username"
         type="username"
         onChange={handleChange}
       />
-      <div
-        className="form-field-error"
-        style={{ height: 30, paddingTop: 20, marginBottom: 10 }}
-      >
-        {errors.username}
-      </div>
+      <HelpBlock>
+        <ErrorMessage name="username" />
+      </HelpBlock>
       <Button onClick={handleSubmit} type="submit">
         {isSubmitting ? "Starting a room..." : "Start a room"}
       </Button>

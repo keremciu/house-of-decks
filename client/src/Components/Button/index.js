@@ -64,7 +64,7 @@ const innerStyle = css({
 });
 
 export default ({ children, ...props }) => (
-  <button css={style(props)} {...props}>
+  <button css={style(props)} onClick={props.onClick}>
     <span css={innerStyle}>{children}</span>
   </button>
 );

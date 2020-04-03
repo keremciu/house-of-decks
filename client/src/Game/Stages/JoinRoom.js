@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
-import { Formik } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import { string, object } from "yup";
 
 // relative
 import SocketContext from "SocketContext";
 import { StoreContext } from "Store";
-import { changeStateAction, sendFormAction } from "Game/actions";
+import { changeStageAction, sendFormAction } from "Game/actions";
+import { GAME_STAGES } from "Game/mappings";
 import validate from "utils/validate";
 
 import Button from "Components/Button";
-import Input from "Components/Input";
+import Input, { HelpBlock } from "Components/Input";
 
 const initialValues = {
   username: "",
@@ -33,7 +34,12 @@ function JoinRoom() {
       >
         {JoinRoomForm}
       </Formik>
-      <Button small onClick={() => changeStateAction("join", dispatch)}>
+      <Button
+        small
+        onClick={() =>
+          changeStageAction({ stage: GAME_STAGES.landing }, dispatch)
+        }
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1em"
@@ -67,22 +73,22 @@ function JoinRoomForm(props) {
     >
       <Input
         errors={errors.username}
-        label="Your first name"
+        label="Your username"
         name="username"
         onChange={handleChange}
       />
+      <HelpBlock>
+        <ErrorMessage name="username" />
+      </HelpBlock>
       <Input
-        errors={errors.username}
+        errors={errors.roomID}
         label="Room ID"
         name="roomID"
         onChange={handleChange}
       />
-      <div
-        className="form-field-error"
-        style={{ height: 30, paddingTop: 20, marginBottom: 10 }}
-      >
-        {errors.username}
-      </div>
+      <HelpBlock>
+        <ErrorMessage name="roomID" />
+      </HelpBlock>
       <Button onClick={handleSubmit} type="submit">
         {isSubmitting ? "Joining the room..." : "Join the room"}
       </Button>
@@ -94,7 +100,10 @@ function getValidationSchema(values) {
   return object().shape({
     username: string()
       .min(3, `Username has to be longer than ${3} characters!`)
-      .required("Username is required!")
+      .required("Username is required!"),
+    roomID: string()
+      .min(6, `Room ID has to be longer than ${6} characters!`)
+      .required("Room ID is required!")
   });
 }
 

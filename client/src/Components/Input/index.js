@@ -5,7 +5,7 @@ const style = css({
   boxSizing: "border-box",
   appearance: "none",
   display: "block",
-  height: 80,
+  // height: 80,
   width: 330,
   color: "#808080",
   fontSize: 16,
@@ -14,7 +14,7 @@ const style = css({
   padding: 0,
   margin: 0,
   border: "none",
-  border: "3px solid rgba(255,255,255,0.6)",
+  border: "1px solid rgba(255,255,255,0.6)",
   cursor: "pointer",
   outline: "none",
   transition: "all .1s cubic-bezier(0.165, 0.84, 0.44, 1)",
@@ -51,4 +51,17 @@ export default props => (
     <span>{props.label}</span>
     <input id={props.name} {...props} />
   </label>
+);
+
+const helpBlockStyle = css({
+  height: 30,
+  paddingTop: 20,
+  marginBottom: 10,
+  color: "#ee5e00",
+  fontWeight: "bold",
+  fontFamily: "serif"
+});
+
+export const HelpBlock = ({ children }) => (
+  <div css={helpBlockStyle}>{children}</div>
 );
