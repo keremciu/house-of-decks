@@ -21,8 +21,8 @@ function JoinRoom() {
   const { dispatch } = React.useContext(StoreContext);
   const socket = useContext(SocketContext);
   function onSubmit(values, { setSubmitting, setErrors }) {
-    socket.emit("join_room", values.roomID);
-    sendFormAction(values, dispatch);
+    socket.emit("join_room", values);
+    dispatch(sendFormAction(values));
     setSubmitting(false);
   }
   return (
@@ -36,9 +36,7 @@ function JoinRoom() {
       </Formik>
       <Button
         small
-        onClick={() =>
-          changeStageAction({ stage: GAME_STAGES.landing }, dispatch)
-        }
+        onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

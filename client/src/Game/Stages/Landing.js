@@ -9,17 +9,11 @@ function Join() {
   const { dispatch } = React.useContext(StoreContext);
   return (
     <>
-      <Button
-        onClick={() =>
-          changeStageAction({ stage: GAME_STAGES.create }, dispatch)
-        }
-      >
+      <Button onClick={() => dispatch(changeStageAction(GAME_STAGES.create))}>
         Create a room
       </Button>
       <span>or</span>
-      <Button
-        onClick={() => changeStageAction({ stage: GAME_STAGES.join }, dispatch)}
-      >
+      <Button onClick={() => dispatch(changeStageAction(GAME_STAGES.join))}>
         Join a room
       </Button>
     </>

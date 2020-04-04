@@ -10,11 +10,7 @@ function Room() {
   return (
     <>
       <div>Room Test</div>
-      <Button
-        onClick={() =>
-          changeStageAction({ stage: GAME_STAGES.landing }, dispatch)
-        }
-      >
+      <Button onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}>
         Go back
       </Button>
     </>

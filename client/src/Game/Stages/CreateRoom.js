@@ -35,10 +35,10 @@ function CreateRoom() {
   function onSubmit(values, { setSubmitting, setErrors }) {
     const roomID = create_UUID();
     socket.emit("create_room", {
-      values,
+      username: values.username,
       roomID
     });
-    sendFormAction(values, dispatch);
+    dispatch(sendFormAction(values));
     setSubmitting(false);
   }
 
@@ -53,9 +53,7 @@ function CreateRoom() {
       </Formik>
       <Button
         small
-        onClick={() =>
-          changeStageAction({ stage: GAME_STAGES.landing }, dispatch)
-        }
+        onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

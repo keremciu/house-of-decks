@@ -11,12 +11,8 @@ function WaitingRoom() {
     <>
       <div>Test</div>
       <div>Your name:</div>
-      <Button
-        onClick={() =>
-          changeStageAction({ stage: GAME_STAGES.landing }, dispatch)
-        }
-      >
-        Go back
+      <Button onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}>
+        Exit
       </Button>
     </>
   );

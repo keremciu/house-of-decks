@@ -29,34 +29,42 @@ io.on("connection", function(socket) {
   // socket.emit("currentPlayers", players);
   // update all other players of the new player
   socket.broadcast.emit("newPlayer", players[socket.id]);
-  socket.on("create_room", function(nickname, roomId) {
-    rooms[roomId] = {
-      roomId,
+  socket.on("create_room", function(data) {
+    const { roomID, username } = data;
+    rooms[roomID] = {
+      roomID,
       players: [socket.id]
     };
-    socket.nickname = nickname;
-    socket.join(roomId, function() {
-      io.to(`${roomId}`).emit("game_action", {
-        type: "NAH_CHANGE_STAGE",
+    socket.nickname = username;
+    socket.join(roomID, function() {
+      io.to(`${roomID}`).emit("game_action", {
+        type: "NAH_SERVER_RESPONSE",
         payload: {
           stage: "waiting_room"
         }
       });
-      // socket.broadcast.in(roomId).emit("message", "eeeee5");
+      // socket.broadcast.in(roomID).emit("message", "eeeee5");
       console.log(socket.rooms, "list of rooms");
     });
   });
 
-  socket.on("join_room", function(nickname, roomId) {
-    rooms[roomId] = {
-      roomId,
-      players: [...(rooms[roomId] ? rooms[roomId].players : []), socket.id]
+  socket.on("join_room", function(data) {
+    console.log(data, "amaaan");
+    const { roomID, username } = data;
+    if (!rooms.hasOwnProperty(roomID)) {
+      // there's no room
+      socket.emit("currentPlayers", players);
+    }
+
+    rooms[roomID] = {
+      roomID,
+      players: [...(rooms[roomID] ? rooms[roomID].players : []), socket.id]
     };
-    socket.nickname = nickname;
-    socket.room = roomId;
-    socket.join(roomId, function() {
-      io.to(`${roomId}`).emit("game_action", {
-        type: "NAH_CHANGE_STAGE",
+    socket.nickname = username;
+    socket.room = roomID;
+    socket.join(roomID, function() {
+      io.to(`${roomID}`).emit("game_action", {
+        type: "NAH_SERVER_RESPONSE",
         payload: {
           stage: "waiting_room"
         }

@@ -1,4 +1,4 @@
-import { CHANGE_STAGE, SEND_FORM } from "./actions";
+import { CHANGE_STAGE, SEND_FORM, SERVER_RESPONSE } from "./actions";
 import { GAME_STAGES } from "./mappings";
 
 const initialState = {
@@ -8,6 +8,13 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_STAGE: {
+      return {
+        ...state,
+        stage: action.payload
+      };
+    }
+
+    case SERVER_RESPONSE: {
       return {
         ...state,
         ...action.payload
