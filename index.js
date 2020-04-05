@@ -219,6 +219,7 @@ io.on("connection", function(socket) {
       io.to(`${roomID}`).emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
+          stage: "landing",
           room: rooms[roomID]
         }
       });
