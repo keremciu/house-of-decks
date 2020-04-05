@@ -112,6 +112,7 @@ io.on("connection", function(socket) {
         [player]: filteredWhiteCards.splice(-10, 10)
       };
       rooms[roomID].playedCards = {
+        ...rooms[roomID].playedCards,
         [player]: []
       };
       if (rooms[roomID].czar !== player) {
@@ -140,14 +141,62 @@ io.on("connection", function(socket) {
     };
     const userPlayed =
       rooms[roomID].blackCard.pick === playedCards[player].length;
+    const playersSubmitted = {
+      ...rooms[roomID].playersSubmitted,
+      [player]: userPlayed
+    };
+    const readyToJudge = Object.keys(playersSubmitted).every(
+      p => playersSubmitted[p]
+    );
+    const newCard = filteredWhiteCards.pop();
+    if (newCard) {
+      let index = rooms[roomID].playerCards[player].findIndex(
+        c => c.text === card.text
+      );
+      if (index > -1) {
+        rooms[roomID].playerCards[player][index] = newCard;
+      }
+    }
     rooms[roomID] = {
       ...rooms[roomID],
       playedCards,
-      playersSubmitted: {
-        [player]: userPlayed
-      }
+      playersSubmitted,
+      readyToJudge
     };
+    console.log(rooms[roomID]);
+    io.to(`${roomID}`).emit("game_action", {
+      type: "NAH_SERVER_RESPONSE",
+      payload: {
+        room: rooms[roomID]
+      }
+    });
+  });
 
+  socket.on("submit_winner", function(player) {
+    const roomID = socket.room;
+    const oldCzarIndex = rooms[roomID].players.findIndex(
+      player => player === rooms[roomID].czar
+    );
+    let czarIndex = oldCzarIndex + 1;
+    if (czarIndex >= rooms[roomID].players.length) {
+      czarIndex = 0;
+    }
+    rooms[roomID].czar = rooms[roomID].players[czarIndex];
+    rooms[roomID].playersSubmitted = {};
+    rooms[roomID].players.forEach(player => {
+      rooms[roomID].playedCards = {
+        ...rooms[roomID].playedCards,
+        [player]: []
+      };
+      if (rooms[roomID].czar !== player) {
+        rooms[roomID].playersSubmitted = {
+          ...rooms[roomID].playersSubmitted,
+          [player]: false
+        };
+      }
+    });
+    rooms[roomID].readyToJudge = false;
+    rooms[roomID].blackCard = filteredBlackCards.pop();
     io.to(`${roomID}`).emit("game_action", {
       type: "NAH_SERVER_RESPONSE",
       payload: {

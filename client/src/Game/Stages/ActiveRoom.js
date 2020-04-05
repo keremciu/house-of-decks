@@ -21,30 +21,41 @@ function ActiveRoom() {
   const blackCard = game.room.blackCard;
   const isPlayed = game.room.playersSubmitted[game.username];
 
+  function onSubmitCard(card) {
+    socket.emit("submit_card", card);
+  }
+
+  function onSubmitWinner(player) {
+    socket.emit("submit_winner", player);
+  }
+
   if (isCardCzar || isPlayed) {
     return (
       <SubmittedCards
+        isCardCzar={isCardCzar}
+        onSubmitWinner={onSubmitWinner}
         blackCard={blackCard}
+        readyToJudge={game.room.readyToJudge}
         playedCards={game.room.playedCards}
         playersSubmitted={game.room.playersSubmitted}
       />
     );
   }
 
-  function onSubmitCard(card) {
-    socket.emit("submit_card", card);
-  }
-
   return (
     <>
       <BlackCard>{blackCard.text}</BlackCard>
-      <Cards>
-        {cards.map((card, index) => (
-          <WhiteCard key={index} onClick={() => onSubmitCard(card)}>
-            {card.text}
-          </WhiteCard>
+      {Array(blackCard.pick)
+        .fill(null)
+        .map((blackCard, submissionIndex) => (
+          <Cards key={submissionIndex}>
+            {cards.map((card, index) => (
+              <WhiteCard key={index} onClick={() => onSubmitCard(card)}>
+                {card.text}
+              </WhiteCard>
+            ))}
+          </Cards>
         ))}
-      </Cards>
     </>
   );
 }

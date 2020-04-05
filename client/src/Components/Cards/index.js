@@ -10,18 +10,23 @@ const style = css({
 
 export default ({ children }) => <div css={style}>{children}</div>;
 
-const whiteCardStyle = css({
-  fontWeight: "bold",
-  background: "white",
-  borderRadius: 4,
-  padding: 10,
-  width: "8%",
-  height: 200,
-  cursor: "pointer"
-});
+const whiteCardStyle = props =>
+  css({
+    fontWeight: "bold",
+    background: "white",
+    borderRadius: 4,
+    padding: 10,
+    width: "8%",
+    height: 200,
+    ...(props.onClick
+      ? {
+          cursor: "pointer"
+        }
+      : {})
+  });
 
 export const WhiteCard = ({ children, ...props }) => (
-  <div css={whiteCardStyle} {...props}>
+  <div css={whiteCardStyle(props)} {...props}>
     {children}
   </div>
 );
