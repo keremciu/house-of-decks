@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
+import { GAME_STAGES } from "Game/mappings";
 
 const style = css({
   display: "flex",
@@ -23,7 +24,8 @@ const footerStyle = css({
 
 const mainStyle = css({
   width: "100%",
-  flex: "1 1 auto"
+  flex: "1 1 auto",
+  fontSize: 18
 });
 
 const heroText = css({
@@ -53,9 +55,9 @@ const Footer = () => (
   </footer>
 );
 
-export default ({ children }) => (
+export default ({ stage, children }) => (
   <Wrapper>
-    <Header />
+    {stage !== GAME_STAGES.active && <Header />}
     <Main>{children}</Main>
     <Footer />
   </Wrapper>

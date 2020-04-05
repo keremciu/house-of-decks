@@ -12,18 +12,6 @@ import validate from "utils/validate";
 import Button from "Components/Button";
 import Input, { Form, HelpBlock } from "Components/Input";
 
-function create_UUID() {
-  let dt = new Date().getTime();
-  const uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(
-    c
-  ) {
-    const r = (dt + Math.random() * 16) % 16 | 0;
-    dt = Math.floor(dt / 16);
-    return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
-  });
-  return uuid;
-}
-
 const initialValues = {
   username: ""
 };
@@ -33,10 +21,8 @@ function CreateRoom() {
   const socket = useContext(SocketContext);
 
   function onSubmit(values, { setSubmitting, setErrors }) {
-    const roomID = create_UUID();
     socket.emit("create_room", {
-      username: values.username,
-      roomID
+      username: values.username
     });
     dispatch(sendFormAction(values));
     setSubmitting(false);

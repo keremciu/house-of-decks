@@ -1,7 +1,15 @@
 # node against humanity
 
-This project is made for fun. I like Cards Against Humanity.
+Made for fun! Online version of [Cards Against Humanity](https://cardsagainsthumanity.com/).
 
-I hope this project could be something useful.
+### Credits
 
-I just started with create-react-app and express server. Let's see what happens.
+If you play this game and like it; Please buy [Cards Against Humanity](https://cardsagainsthumanity.com/).
+
+I used [this repository](https://github.com/crhallberg/json-against-humanity) to reach Cards.
+
+### License
+
+This repository is just a clone. Where you can buy it or download
+
+Card Against Humanity is distributed under a Creative Commons Attribution-ShareAlike 4.0 International Public License.

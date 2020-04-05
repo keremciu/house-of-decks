@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import SocketContext from "SocketContext";
 import { StoreContext } from "Store";
 import { changeStageAction } from "Game/actions";
 import { GAME_STAGES } from "Game/mappings";
@@ -10,6 +11,12 @@ function WaitingRoom() {
     state: { game },
     dispatch
   } = React.useContext(StoreContext);
+  const socket = useContext(SocketContext);
+
+  function onStart() {
+    socket.emit("start_game");
+  }
+
   return (
     <>
       <h2>Waiting for other players</h2>
@@ -22,15 +29,10 @@ function WaitingRoom() {
       Joined players:
       <ul>
         {game?.room.players?.map(player => (
-          <li>{player}</li>
+          <li key={player}>{player}</li>
         ))}
       </ul>
-      <Button onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}>
-        Start Game
-      </Button>
-      <Button onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}>
-        End game
-      </Button>
+      <Button onClick={onStart}>Start the Game</Button>
     </>
   );
 }

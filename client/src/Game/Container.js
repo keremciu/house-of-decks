@@ -63,7 +63,7 @@ function Game() {
   }, []); // Pass in an empty array to only run on mount.
 
   return (
-    <Frame>
+    <Frame stage={game.stage}>
       <div css={flexStyle}>
         <HelpBlock>{game.error}</HelpBlock>
         {renderStage(game.stage)}
