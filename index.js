@@ -16,70 +16,111 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
-const players = {};
 const rooms = {};
 
 io.on("connection", function(socket) {
-  players[socket.id] = {
-    playerId: socket.id
-  };
+  // players[socket.id] = {
+  //   playerId: socket.id
+  // };
   // send the players object to the new player
-  socket.emit("currentPlayers", players);
+  // socket.emit("currentPlayers", players);
   // // send the rooms object to the new player
   // socket.emit("currentPlayers", players);
   // update all other players of the new player
-  socket.broadcast.emit("newPlayer", players[socket.id]);
+  // socket.broadcast.emit("newPlayer", players[socket.id]);
   socket.on("create_room", function(data) {
     const { roomID, username } = data;
-    rooms[roomID] = {
-      roomID,
-      players: [socket.id]
-    };
     socket.nickname = username;
+    rooms[roomID] = {
+      id: roomID,
+      players: [socket.nickname]
+    };
     socket.join(roomID, function() {
       io.to(`${roomID}`).emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
-          stage: "waiting_room"
+          error: "",
+          stage: "waiting_room",
+          room: rooms[roomID]
         }
       });
+      socket.room = roomID;
+      // var room = io.sockets.adapter.rooms[roomID];
+      // console.log(room);
+      // room.length;
       // socket.broadcast.in(roomID).emit("message", "eeeee5");
-      console.log(socket.rooms, "list of rooms");
+      // console.log(rooms, "rooms object");
+      // console.log(socket.rooms, "list of rooms");
     });
   });
 
   socket.on("join_room", function(data) {
-    console.log(data, "amaaan");
     const { roomID, username } = data;
     if (!rooms.hasOwnProperty(roomID)) {
-      // there's no room
-      socket.emit("currentPlayers", players);
+      // there's no room error
+      return socket.emit("game_action", {
+        type: "NAH_SERVER_RESPONSE",
+        payload: {
+          error: "There's no room found."
+        }
+      });
+    } else if (rooms[roomID].players.includes(username)) {
+      // username is already in use for this room.
+      return socket.emit("game_action", {
+        type: "NAH_SERVER_RESPONSE",
+        payload: {
+          error: "Username is already in use for this room."
+        }
+      });
     }
-
-    rooms[roomID] = {
-      roomID,
-      players: [...(rooms[roomID] ? rooms[roomID].players : []), socket.id]
-    };
     socket.nickname = username;
-    socket.room = roomID;
+    rooms[roomID] = {
+      id: roomID,
+      players: [
+        ...(rooms[roomID] ? rooms[roomID].players : []),
+        socket.nickname
+      ]
+    };
     socket.join(roomID, function() {
       io.to(`${roomID}`).emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
-          stage: "waiting_room"
+          error: "",
+          stage: "waiting_room",
+          room: rooms[roomID]
         }
       });
-      console.log(socket.rooms, "list of joined rooms");
-      console.log(rooms);
+      socket.room = roomID;
     });
+    // var room = io.sockets.adapter.rooms[roomID];
+    // console.log(room);
+    // console.log(socket.rooms, "list of joined rooms");
+    // console.log(rooms);
   });
 
   console.log("a user connected", socket.id);
   socket.on("disconnect", function() {
     console.log("user disconnected");
-    socket.leave(socket.room);
-    delete players[socket.id];
-    io.emit("disconnect", socket.id);
+    const roomID = socket.room;
+    socket.leave(roomID);
+    console.log(rooms);
+    console.log(roomID, "leaveee");
+    if (rooms.hasOwnProperty(roomID)) {
+      rooms[roomID] = {
+        players: rooms[roomID].players.filter(
+          player => player !== socket.nickname
+        )
+      };
+      console.log(socket.nickname);
+      io.to(`${roomID}`).emit("game_action", {
+        type: "NAH_SERVER_RESPONSE",
+        payload: {
+          room: rooms[roomID]
+        }
+      });
+      console.log(rooms[roomID]);
+    }
+    // io.emit("disconnect", socket.id);
   });
 });
 

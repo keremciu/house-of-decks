@@ -10,7 +10,8 @@ export default function reducer(state = initialState, action) {
     case CHANGE_STAGE: {
       return {
         ...state,
-        stage: action.payload
+        stage: action.payload,
+        error: null
       };
     }
 

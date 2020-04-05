@@ -6,13 +6,30 @@ import { GAME_STAGES } from "Game/mappings";
 import Button from "Components/Button";
 
 function WaitingRoom() {
-  const { dispatch } = React.useContext(StoreContext);
+  const {
+    state: { game },
+    dispatch
+  } = React.useContext(StoreContext);
   return (
     <>
-      <div>Test</div>
-      <div>Your name:</div>
+      <h2>Waiting for other players</h2>
+      <p>
+        Hi, {game.username}!<br />
+        Please ask your friends to enter Room ID:
+        <br />
+        <strong>{game.room.id}</strong>
+      </p>
+      Joined players:
+      <ul>
+        {game?.room.players?.map(player => (
+          <li>{player}</li>
+        ))}
+      </ul>
       <Button onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}>
-        Exit
+        Start Game
+      </Button>
+      <Button onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}>
+        End game
       </Button>
     </>
   );

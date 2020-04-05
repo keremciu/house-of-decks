@@ -32,7 +32,7 @@ const style = css({
     border: 0,
     marginLeft: 30,
     height: 40,
-    width: 160,
+    width: 270,
     outline: 0,
     fontSize: 16,
     fontWeight: 500
@@ -65,3 +65,11 @@ const helpBlockStyle = css({
 export const HelpBlock = ({ children }) => (
   <div css={helpBlockStyle}>{children}</div>
 );
+
+const formStyle = css({
+  display: "flex",
+  alignItems: "center",
+  flexDirection: "column"
+});
+
+export const Form = ({ children }) => <div css={formStyle}>{children}</div>;

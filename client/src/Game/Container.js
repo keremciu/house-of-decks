@@ -12,6 +12,8 @@ import CreateRoomStage from "Game/Stages/CreateRoom";
 import JoinRoomStage from "Game/Stages/JoinRoom";
 import WaitingRoomStage from "Game/Stages/WaitingRoom";
 
+import { HelpBlock } from "Components/Input";
+
 import { GAME_STAGES } from "./mappings";
 
 const flexStyle = css({
@@ -62,7 +64,10 @@ function Game() {
 
   return (
     <Frame>
-      <div css={flexStyle}>{renderStage(game.stage)}</div>
+      <div css={flexStyle}>
+        <HelpBlock>{game.error}</HelpBlock>
+        {renderStage(game.stage)}
+      </div>
     </Frame>
   );
 }

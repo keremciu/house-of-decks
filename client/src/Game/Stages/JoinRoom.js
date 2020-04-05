@@ -10,7 +10,7 @@ import { GAME_STAGES } from "Game/mappings";
 import validate from "utils/validate";
 
 import Button from "Components/Button";
-import Input, { HelpBlock } from "Components/Input";
+import Input, { Form, HelpBlock } from "Components/Input";
 
 const initialValues = {
   username: "",
@@ -60,15 +60,7 @@ function JoinRoomForm(props) {
   const { isSubmitting, errors, handleChange, handleSubmit } = props;
 
   return (
-    <div
-      className="form"
-      style={{
-        marginTop: 20,
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column"
-      }}
-    >
+    <Form>
       <Input
         errors={errors.username}
         label="Your username"
@@ -90,7 +82,7 @@ function JoinRoomForm(props) {
       <Button onClick={handleSubmit} type="submit">
         {isSubmitting ? "Joining the room..." : "Join the room"}
       </Button>
-    </div>
+    </Form>
   );
 }
 
