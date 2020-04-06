@@ -19,62 +19,60 @@ app.get("*", (req, res) => {
 
 const rooms = {};
 const filteredWhiteCards = cards.white
-  .filter(card => card.deck === "Base")
+  .filter((card) => card.deck === "Base")
   .sort(() => Math.random() - 0.5);
 const filteredBlackCards = cards.black
-  .filter(card => card.deck === "Base")
+  .filter((card) => card.deck === "Base")
   .sort(() => Math.random() - 0.5);
 
-io.on("connection", function(socket) {
-  socket.on("create_room", function(data) {
+io.on("connection", function (socket) {
+  socket.on("create_room", function (data) {
     const { username } = data;
-    const roomID = Math.random()
-      .toString(36)
-      .substring(3);
+    const roomID = Math.random().toString(36).substring(3);
     socket.nickname = username;
     rooms[roomID] = {
       id: roomID,
       status: "waiting",
-      players: [socket.nickname]
+      players: [socket.nickname],
     };
-    socket.join(roomID, function() {
+    socket.join(roomID, function () {
       io.to(`${roomID}`).emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
           error: "",
           stage: "waiting_room",
-          room: rooms[roomID]
-        }
+          room: rooms[roomID],
+        },
       });
       socket.room = roomID;
     });
   });
 
-  socket.on("join_room", function(data) {
+  socket.on("join_room", function (data) {
     const { roomID, username } = data;
     if (!rooms.hasOwnProperty(roomID)) {
       // there's no room error
       return socket.emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
-          error: "There's no room found."
-        }
+          error: "There's no room found.",
+        },
       });
     } else if (rooms[roomID].status === "running") {
       // game is already started
       return socket.emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
-          error: "Game is already started in this room."
-        }
+          error: "Game is already started in this room.",
+        },
       });
     } else if (rooms[roomID].players.includes(username)) {
       // username is already in use for this room.
       return socket.emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
-          error: "Username is already in use for this room."
-        }
+          error: "Username is already in use for this room.",
+        },
       });
     }
     socket.nickname = username;
@@ -82,43 +80,52 @@ io.on("connection", function(socket) {
       ...rooms[roomID],
       players: [
         ...(rooms[roomID] ? rooms[roomID].players : []),
-        socket.nickname
-      ]
+        socket.nickname,
+      ],
     };
-    socket.join(roomID, function() {
+    socket.join(roomID, function () {
       io.to(`${roomID}`).emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
           error: "",
           stage: "waiting_room",
-          room: rooms[roomID]
-        }
+          room: rooms[roomID],
+        },
       });
       socket.room = roomID;
     });
   });
 
-  socket.on("start_game", function() {
+  socket.on("start_game", function () {
     const roomID = socket.room;
+    if (rooms[roomID].players.length < 2) {
+      // there's not enough players in the room
+      return socket.emit("game_action", {
+        type: "NAH_SERVER_RESPONSE",
+        payload: {
+          error: "There's not enough players to start.",
+        },
+      });
+    }
     rooms[roomID] = {
       ...rooms[roomID],
-      status: "running"
+      status: "running",
     };
     const czarIndex = Math.floor(Math.random() * rooms[roomID].players.length);
     rooms[roomID].czar = rooms[roomID].players[czarIndex];
-    rooms[roomID].players.forEach(player => {
+    rooms[roomID].players.forEach((player) => {
       rooms[roomID].playerCards = {
         ...rooms[roomID].playerCards,
-        [player]: filteredWhiteCards.splice(-10, 10)
+        [player]: filteredWhiteCards.splice(-10, 10),
       };
       rooms[roomID].playedCards = {
         ...rooms[roomID].playedCards,
-        [player]: []
+        [player]: [],
       };
       if (rooms[roomID].czar !== player) {
         rooms[roomID].playersSubmitted = {
           ...rooms[roomID].playersSubmitted,
-          [player]: false
+          [player]: false,
         };
       }
     });
@@ -126,32 +133,33 @@ io.on("connection", function(socket) {
     io.to(`${roomID}`).emit("game_action", {
       type: "NAH_SERVER_RESPONSE",
       payload: {
+        error: "",
         stage: "active_room",
-        room: rooms[roomID]
-      }
+        room: rooms[roomID],
+      },
     });
   });
 
-  socket.on("submit_card", function(card) {
+  socket.on("submit_card", function (card) {
     const roomID = socket.room;
     const player = socket.nickname;
     const playedCards = {
       ...rooms[roomID].playedCards,
-      [player]: [...rooms[roomID].playedCards[player], card]
+      [player]: [...rooms[roomID].playedCards[player], card],
     };
     const userPlayed =
       rooms[roomID].blackCard.pick === playedCards[player].length;
     const playersSubmitted = {
       ...rooms[roomID].playersSubmitted,
-      [player]: userPlayed
+      [player]: userPlayed,
     };
     const readyToJudge = Object.keys(playersSubmitted).every(
-      p => playersSubmitted[p]
+      (p) => playersSubmitted[p]
     );
     const newCard = filteredWhiteCards.pop();
     if (newCard) {
       let index = rooms[roomID].playerCards[player].findIndex(
-        c => c.text === card.text
+        (c) => c.text === card.text
       );
       if (index > -1) {
         rooms[roomID].playerCards[player][index] = newCard;
@@ -161,21 +169,21 @@ io.on("connection", function(socket) {
       ...rooms[roomID],
       playedCards,
       playersSubmitted,
-      readyToJudge
+      readyToJudge,
     };
     console.log(rooms[roomID]);
     io.to(`${roomID}`).emit("game_action", {
       type: "NAH_SERVER_RESPONSE",
       payload: {
-        room: rooms[roomID]
-      }
+        room: rooms[roomID],
+      },
     });
   });
 
-  socket.on("submit_winner", function(player) {
+  socket.on("submit_winner", function (player) {
     const roomID = socket.room;
     const oldCzarIndex = rooms[roomID].players.findIndex(
-      player => player === rooms[roomID].czar
+      (player) => player === rooms[roomID].czar
     );
     let czarIndex = oldCzarIndex + 1;
     if (czarIndex >= rooms[roomID].players.length) {
@@ -183,15 +191,15 @@ io.on("connection", function(socket) {
     }
     rooms[roomID].czar = rooms[roomID].players[czarIndex];
     rooms[roomID].playersSubmitted = {};
-    rooms[roomID].players.forEach(player => {
+    rooms[roomID].players.forEach((player) => {
       rooms[roomID].playedCards = {
         ...rooms[roomID].playedCards,
-        [player]: []
+        [player]: [],
       };
       if (rooms[roomID].czar !== player) {
         rooms[roomID].playersSubmitted = {
           ...rooms[roomID].playersSubmitted,
-          [player]: false
+          [player]: false,
         };
       }
     });
@@ -200,28 +208,28 @@ io.on("connection", function(socket) {
     io.to(`${roomID}`).emit("game_action", {
       type: "NAH_SERVER_RESPONSE",
       payload: {
-        room: rooms[roomID]
-      }
+        room: rooms[roomID],
+      },
     });
   });
 
   console.log("a user connected", socket.id);
-  socket.on("disconnect", function() {
+  socket.on("disconnect", function () {
     console.log("user disconnected");
     const roomID = socket.room;
     socket.leave(roomID);
     if (rooms.hasOwnProperty(roomID)) {
       rooms[roomID] = {
         players: rooms[roomID].players.filter(
-          player => player !== socket.nickname
-        )
+          (player) => player !== socket.nickname
+        ),
       };
       io.to(`${roomID}`).emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
           ...(rooms[roomID].players.length ? {} : { stage: "landing" }),
-          room: rooms[roomID]
-        }
+          room: rooms[roomID],
+        },
       });
     }
   });
