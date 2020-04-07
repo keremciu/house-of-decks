@@ -12,7 +12,7 @@ import SubmittedCards from "Game/Views/SubmittedCards";
 function ActiveRoom() {
   const {
     state: { game },
-    dispatch
+    dispatch,
   } = React.useContext(StoreContext);
   const socket = useContext(SocketContext);
 
@@ -42,15 +42,41 @@ function ActiveRoom() {
     );
   }
 
+  function animateHere(e) {
+    console.log(e);
+  }
+
   return (
     <>
-      <BlackCard>{blackCard.text}</BlackCard>
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          background: "#333",
+          height: "200",
+        }}
+      >
+        <BlackCard>{blackCard.text}</BlackCard>
+        <div style={{ position: "absolute", bottom: -25, width: "100%" }}>
+          <svg width="1000" height="21" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M0 .041c56.996 12.607 114.661 19.256 172.996 19.947C260.497 21.025 301.458 6.492 398.13 4.76c96.674-1.733 158.794 6.607 331.231 5.256C844.32 9.113 934.533 5.789 1000 .04H0z"
+              fill="#333"
+              fillRule="evenodd"
+            />
+          </svg>
+        </div>
+      </div>
       {Array(blackCard.pick)
         .fill(null)
         .map((blackCard, submissionIndex) => (
           <Cards key={submissionIndex}>
             {cards.map((card, index) => (
-              <WhiteCard key={index} onClick={() => onSubmitCard(card)}>
+              <WhiteCard
+                key={index}
+                onClick={() => onSubmitCard(card)}
+                onMouseEnter={animateHere}
+              >
                 {card.text}
               </WhiteCard>
             ))}

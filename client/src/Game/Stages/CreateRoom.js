@@ -1,6 +1,7 @@
 import React, { useContext, useState, useRef } from "react";
 import { Formik, ErrorMessage } from "formik";
 import { string, object } from "yup";
+import { motion } from "framer-motion";
 
 // relative
 import SocketContext from "SocketContext";
@@ -13,7 +14,7 @@ import Button from "Components/Button";
 import Input, { Form, HelpBlock } from "Components/Input";
 
 const initialValues = {
-  username: ""
+  username: "",
 };
 
 function CreateRoom() {
@@ -22,7 +23,7 @@ function CreateRoom() {
 
   function onSubmit(values, { setSubmitting, setErrors }) {
     socket.emit("create_room", {
-      username: values.username
+      username: values.username,
     });
     dispatch(sendFormAction(values));
     setSubmitting(false);
@@ -85,7 +86,7 @@ function getValidationSchema(values) {
   return object().shape({
     username: string()
       .min(3, `Username has to be longer than ${3} characters!`)
-      .required("Username is required!")
+      .required("Username is required!"),
   });
 }
 

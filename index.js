@@ -67,11 +67,11 @@ io.on("connection", function (socket) {
         },
       });
     } else if (rooms[roomID].players.includes(username)) {
-      // username is already in use for this room.
+      // username is already taken for this room.
       return socket.emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
-          error: "Username is already in use for this room.",
+          error: "Username is already taken for this room.",
         },
       });
     }
