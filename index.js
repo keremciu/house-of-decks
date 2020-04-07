@@ -98,6 +98,16 @@ io.on("connection", function (socket) {
 
   socket.on("start_game", function () {
     const roomID = socket.room;
+    if (!roomID) {
+      // there's no room for the socket
+      return socket.emit("game_action", {
+        type: "NAH_SERVER_RESPONSE",
+        payload: {
+          stage: "landing",
+          error: "Session is expired.",
+        },
+      });
+    }
     if (rooms[roomID].players.length < 2) {
       // there's not enough players in the room
       return socket.emit("game_action", {
