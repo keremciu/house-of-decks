@@ -26,11 +26,10 @@ const style = (props) =>
       },
     },
     "&:active": {
-      background: "#e8e7e7",
       "& > span": {
-        background: "linear-gradient(145deg, #d7d6d6, #ffffff)",
+        background: "rgb(236, 232, 227)",
         boxShadow:
-          "inset 14px 16px 24px rgba(191, 171, 136, 0.48),inset -10px -10px 16px #e8e7e7, inset -3px -3px 20px #FFFFFF, 0px 0px 16px rgba(171, 164, 155, 0)",
+          "inset 0px 6px 4px rgba(191, 171, 136, 0.48),inset 14px 14px 36px rgba(191, 171, 136, 0.48)",
       },
     },
     ...(props.small
@@ -42,6 +41,11 @@ const style = (props) =>
           fontWeight: 500,
           boxShadow:
             "rgb(245,245,245) -10px -10px 20px 0px, rgb(224, 224, 224) 10px 10px 20px 0px",
+          "&:hover": {
+            "& > span": {
+              boxShadow: "none",
+            },
+          },
         }
       : {
           height: 100,
@@ -56,7 +60,6 @@ const innerStyle = css({
   justifyContent: "center",
   width: "100%",
   height: "100%",
-  transition: "all .1s cubic-bezier(0.165, 0.84, 0.44, 1)",
 });
 
 export default ({ children, ...props }) => (

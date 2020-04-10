@@ -32,6 +32,7 @@ function JoinRoom() {
   return (
     <>
       <Formik
+        validateOnChange={false}
         initialValues={initialValues}
         validate={validate(getValidationSchema, setErrors)}
         onSubmit={onSubmit}
@@ -61,12 +62,28 @@ function JoinRoom() {
 }
 
 function JoinRoomForm(props) {
-  const { isSubmitting, errors, handleChange, handleSubmit } = props;
+  const {
+    isSubmitting,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = props;
 
   return (
     <Form>
-      <Input label="Your username" name="username" onChange={handleChange} />
-      <Input label="Room ID" name="roomID" onChange={handleChange} />
+      <Input
+        label="Your username"
+        name="username"
+        onBlur={handleBlur}
+        onChange={handleChange}
+      />
+      <Input
+        label="Room ID"
+        name="roomID"
+        onBlur={handleBlur}
+        onChange={handleChange}
+      />
       <Button onClick={handleSubmit} type="submit">
         {isSubmitting ? "Joining the room..." : "Join the room"}
       </Button>

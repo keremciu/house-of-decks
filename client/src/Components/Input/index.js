@@ -16,7 +16,6 @@ const style = css({
   padding: 0,
   margin: 0,
   border: "none",
-  border: "1px solid rgba(255,255,255,0.6)",
   cursor: "pointer",
   outline: "none",
   borderRadius: 100,
@@ -47,7 +46,6 @@ export default (props) => (
     htmlFor={props.name}
     whileHover={{
       y: "-3",
-      borderColor: "#efeeee",
       boxShadow:
         "rgb(220, 207, 207) 1px 3px 6px 0px inset, rgb(239, 238, 238) 0px 0px 7px 0px inset",
     }}

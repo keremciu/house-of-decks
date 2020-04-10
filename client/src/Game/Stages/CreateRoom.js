@@ -34,6 +34,7 @@ function CreateRoom() {
   return (
     <>
       <Formik
+        validateOnChange={false}
         initialValues={initialValues}
         validate={validate(getValidationSchema, setErrors)}
         onSubmit={onSubmit}
@@ -63,14 +64,20 @@ function CreateRoom() {
 }
 
 function CreateRoomForm(props) {
-  const { isSubmitting, errors, handleChange, handleSubmit } = props;
+  const {
+    isSubmitting,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = props;
 
   return (
     <Form>
       <Input
         label="Your username"
         name="username"
-        type="username"
+        onBlur={handleBlur}
         onChange={handleChange}
       />
       <Button onClick={handleSubmit} type="submit">
