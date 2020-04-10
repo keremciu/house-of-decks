@@ -1,3 +1,7 @@
+:root {
+  --color-gray: #908a84;
+}
+
 body {
   background: #efeeee;
   margin: 0;

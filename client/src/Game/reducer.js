@@ -2,7 +2,8 @@ import { CHANGE_STAGE, SEND_FORM, SERVER_RESPONSE } from "./actions";
 import { GAME_STAGES } from "./mappings";
 
 const initialState = {
-  stage: GAME_STAGES.landing
+  stage: GAME_STAGES.landing,
+  errors: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -11,21 +12,21 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         stage: action.payload,
-        error: null
+        errors: [],
       };
     }
 
     case SERVER_RESPONSE: {
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
       };
     }
 
     case SEND_FORM: {
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
       };
     }
 

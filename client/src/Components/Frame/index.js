@@ -5,34 +5,35 @@ import { GAME_STAGES } from "Game/mappings";
 const style = css({
   display: "flex",
   flexDirection: "column",
-  minHeight: "100vh"
+  minHeight: "100vh",
 });
 
 const headerStyle = css({
   paddingTop: 100,
+  paddingBottom: 40,
   width: "100%",
-  textAlign: "center"
+  textAlign: "center",
 });
 
 const footerStyle = css({
   width: "100%",
   textAlign: "center",
   fontSize: 15,
-  color: "#908a84",
-  fontFamily: "serif"
+  color: "var(--color-gray)",
+  fontFamily: "serif",
 });
 
 const mainStyle = css({
   width: "100%",
   flex: "1 1 auto",
-  fontSize: 18
+  fontSize: 18,
 });
 
 const heroText = css({
   fontFamily: "serif",
-  color: "#908a84",
+  color: "var(--color-gray)",
   fontSize: 20,
-  fontWeight: 600
+  fontWeight: 600,
 });
 
 // components

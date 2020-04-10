@@ -58,9 +58,9 @@ function ActiveRoom() {
       >
         <BlackCard>{blackCard.text}</BlackCard>
         <div style={{ position: "absolute", bottom: -54, width: "100%" }}>
-          <svg width="800" height="50" xmlns="http://www.w3.org/2000/svg">
+          <svg width="800" height="60" xmlns="http://www.w3.org/2000/svg">
             <path
-              d="M 10 5 Q 120 95 200 20 C 395 20 480 20 665 10 A 100 0 0 0 0 800 0 L 5 5 Z"
+              d="M 175 0 Q 255 105 350 15 C 395 20 480 20 665 10 A 100 0 0 0 0 800 0 L 5 0 Z"
               fill="#333"
               fillRule="evenodd"
             />

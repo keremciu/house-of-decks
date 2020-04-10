@@ -71,7 +71,7 @@ function Game() {
     dispatch({
       type: "NAH_SERVER_RESPONSE",
       payload: {
-        error: "",
+        errors: [],
       },
     });
   };
@@ -80,17 +80,17 @@ function Game() {
     <Frame stage={game.stage}>
       <ul css={notificationListStyle}>
         <AnimatePresence initial={false}>
-          {game.error && (
+          {game.errors.map((error, index) => (
             <motion.li
-              key={"test"}
+              key={index}
               positionTransition
               initial={{ opacity: 0, y: 50, scale: 0.3 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
             >
-              <Notification text={game.error} close={onClose} />
+              <Notification text={error} close={onClose} />
             </motion.li>
-          )}
+          ))}
         </AnimatePresence>
       </ul>
       <AnimatePresence exitBeforeEnter initial={false}>

@@ -12,7 +12,6 @@ function Join() {
       <Button onClick={() => dispatch(changeStageAction(GAME_STAGES.create))}>
         Create a room
       </Button>
-      <span>or</span>
       <Button onClick={() => dispatch(changeStageAction(GAME_STAGES.join))}>
         Join a room
       </Button>

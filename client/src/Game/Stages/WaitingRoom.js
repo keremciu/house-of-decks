@@ -21,17 +21,26 @@ function WaitingRoom() {
   return (
     <>
       <motion.h2
-        animate={{ scale: [1, 1.1, 1.1, 1, 1], opacity: [0, 1, 0, 0, 1] }}
+        animate={{
+          opacity: [0, 0, 0.5, 1, 0.5, 0.1],
+        }}
         transition={{
-          duration: 1.5,
+          duration: 3,
           ease: "easeInOut",
           loop: Infinity,
         }}
       >
         Waiting for other players
       </motion.h2>
-      <p style={{ color: "#707070", textAlign: "center" }}>
-        Please ask your friends to enter Room ID:
+      <p
+        style={{
+          color: "#707070",
+          textAlign: "center",
+          marginBottom: 0,
+          fontStyle: "italic",
+        }}
+      >
+        Please ask your friends to enter this Room ID
       </p>
       <h2>{game.room.id}</h2>
       Joined players

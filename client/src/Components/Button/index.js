@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
+import { motion } from "framer-motion";
 
 const style = (props) =>
   css({
@@ -9,43 +10,38 @@ const style = (props) =>
     width: 240,
     fontSize: 20,
     fontWeight: 700,
-    // boxShadow: "-6px -6px 16px white, 6px 6px 16px #cbcaca",
-    boxShadow: "-20px -20px 40px white, 20px 20px 40px #cbcaca",
     padding: 0,
     margin: 0,
+    marginTop: 20,
     border: "none",
     cursor: "pointer",
     outline: "none",
-    transition: "all .1s cubic-bezier(0.165, 0.84, 0.44, 1)",
     borderRadius: 100,
+    boxShadow:
+      "rgb(255,255,255) -20px -20px 40px 0px, #cbcaca 20px 20px 40px 0px",
     background: "linear-gradient(145deg, #ffffff, #d7d6d6)",
-    "&:focus,&:hover": {
-      // transform: "perspective(500px) translate3d(0, 0, 20px)",
-      transform: "scale(1.05)",
-      boxShadow:
-        "-10px -15px 30px white, 10px 15px 30px rgba(171, 164, 155, 0.5),-1px -2px 0px 0px white, inset -1px -1px 36px rgba(255,255,255,0.3)",
+    "&:hover": {
+      "& > span": {
+        boxShadow: "rgb(255,255,255) inset 2px 2px 0px 0px",
+      },
     },
     "&:active": {
       background: "#e8e7e7",
-      transform: "translateY(-3px) scale(0.98)",
-      boxShadow:
-        "1px 1px 2px rgba(255,255,255,0.9), 0px 0px 16px rgba(171, 164, 155, 0)",
       "& > span": {
         background: "linear-gradient(145deg, #d7d6d6, #ffffff)",
-        // boxShadow: "30px 30px 60px #cbcaca, -30px -30px 60px #ffffff"
         boxShadow:
-          "inset 14px 16px 24px rgba(191, 171, 136, 0.48), inset -10px -10px 16px #e8e7e7, inset -3px -3px 18px #FFFFFF, inset -3px -3px 20px #FFFFFF",
+          "inset 14px 16px 24px rgba(191, 171, 136, 0.48),inset -10px -10px 16px #e8e7e7, inset -3px -3px 20px #FFFFFF, 0px 0px 16px rgba(171, 164, 155, 0)",
       },
     },
     ...(props.small
       ? {
-          height: 56,
-          width: 56,
-          background: "linear-gradient(120deg, #d7d6d6, #ffffff)",
-          color: "#908a84",
+          height: 60,
+          width: 60,
+          background: "#efeeee",
+          color: "var(--color-gray)",
           fontWeight: 500,
           boxShadow:
-            "3px 3px 3px rgba(0,0,0,0.05), -8px -8px 16px rgba(255, 255, 255, 1)",
+            "rgb(245,245,245) -10px -10px 20px 0px, rgb(224, 224, 224) 10px 10px 20px 0px",
         }
       : {
           height: 100,
@@ -64,7 +60,25 @@ const innerStyle = css({
 });
 
 export default ({ children, ...props }) => (
-  <button css={style(props)} style={props.style} onClick={props.onClick}>
-    <span css={innerStyle}>{children}</span>
-  </button>
+  <div style={{ padding: 20, borderRadius: 100 }}>
+    <motion.button
+      type="button"
+      css={style(props)}
+      style={props.style}
+      whileHover={{
+        boxShadow:
+          "rgb(255,255,255) -10px -15px 30px 0px, #cbcaca 10px 15px 20px 0px",
+        scale: 1.05,
+      }}
+      whileTap={{
+        y: "-3",
+        scale: 0.9,
+        boxShadow:
+          "rgb(239, 238, 238) -10px -15px 30px 0px, rgb(239, 238, 238) 10px 15px 20px 0px",
+      }}
+      onClick={props.onClick}
+    >
+      <span css={innerStyle}>{children}</span>
+    </motion.button>
+  </div>
 );

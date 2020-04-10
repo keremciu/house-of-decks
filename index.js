@@ -39,7 +39,6 @@ io.on("connection", function (socket) {
       io.to(`${roomID}`).emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
-          error: "",
           stage: "waiting_room",
           room: rooms[roomID],
         },
@@ -55,7 +54,7 @@ io.on("connection", function (socket) {
       return socket.emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
-          error: "There's no room found.",
+          errors: ["There's no room found."],
         },
       });
     } else if (rooms[roomID].status === "running") {
@@ -63,7 +62,7 @@ io.on("connection", function (socket) {
       return socket.emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
-          error: "Game is already started in this room.",
+          errors: ["Game is already started in this room."],
         },
       });
     } else if (rooms[roomID].players.includes(username)) {
@@ -71,7 +70,7 @@ io.on("connection", function (socket) {
       return socket.emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
-          error: "Username is already taken for this room.",
+          errors: ["Username is already taken for this room."],
         },
       });
     }
@@ -87,7 +86,6 @@ io.on("connection", function (socket) {
       io.to(`${roomID}`).emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
-          error: "",
           stage: "waiting_room",
           room: rooms[roomID],
         },
@@ -104,7 +102,7 @@ io.on("connection", function (socket) {
         type: "NAH_SERVER_RESPONSE",
         payload: {
           stage: "landing",
-          error: "Session is expired.",
+          errors: ["Session is expired."],
         },
       });
     }
@@ -113,7 +111,7 @@ io.on("connection", function (socket) {
       return socket.emit("game_action", {
         type: "NAH_SERVER_RESPONSE",
         payload: {
-          error: "There's not enough players to start.",
+          errors: ["There's not enough players to start."],
         },
       });
     }
@@ -143,7 +141,6 @@ io.on("connection", function (socket) {
     io.to(`${roomID}`).emit("game_action", {
       type: "NAH_SERVER_RESPONSE",
       payload: {
-        error: "",
         stage: "active_room",
         room: rooms[roomID],
       },

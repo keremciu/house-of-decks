@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef } from "react";
-import { Formik, ErrorMessage } from "formik";
+import { Formik } from "formik";
 import { string, object } from "yup";
 import { motion } from "framer-motion";
 
@@ -11,7 +11,7 @@ import { GAME_STAGES } from "Game/mappings";
 import validate from "utils/validate";
 
 import Button from "Components/Button";
-import Input, { Form, HelpBlock } from "Components/Input";
+import Input, { Form } from "Components/Input";
 
 const initialValues = {
   username: "",
@@ -20,20 +20,22 @@ const initialValues = {
 function CreateRoom() {
   const { dispatch } = useContext(StoreContext);
   const socket = useContext(SocketContext);
-
-  function onSubmit(values, { setSubmitting, setErrors }) {
+  function onSubmit(values, test) {
     socket.emit("create_room", {
       username: values.username,
     });
     dispatch(sendFormAction(values));
-    setSubmitting(false);
+  }
+
+  function setErrors(errors) {
+    dispatch(sendFormAction({ errors }));
   }
 
   return (
     <>
       <Formik
         initialValues={initialValues}
-        validate={validate(getValidationSchema)}
+        validate={validate(getValidationSchema, setErrors)}
         onSubmit={onSubmit}
       >
         {CreateRoomForm}
@@ -66,15 +68,11 @@ function CreateRoomForm(props) {
   return (
     <Form>
       <Input
-        errors={errors.username}
         label="Your username"
         name="username"
         type="username"
         onChange={handleChange}
       />
-      <HelpBlock>
-        <ErrorMessage name="username" />
-      </HelpBlock>
       <Button onClick={handleSubmit} type="submit">
         {isSubmitting ? "Starting a room..." : "Start a room"}
       </Button>

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Formik, ErrorMessage } from "formik";
+import { Formik } from "formik";
 import { string, object } from "yup";
 
 // relative
@@ -10,11 +10,11 @@ import { GAME_STAGES } from "Game/mappings";
 import validate from "utils/validate";
 
 import Button from "Components/Button";
-import Input, { Form, HelpBlock } from "Components/Input";
+import Input, { Form } from "Components/Input";
 
 const initialValues = {
   username: "",
-  roomID: ""
+  roomID: "",
 };
 
 function JoinRoom() {
@@ -25,11 +25,15 @@ function JoinRoom() {
     dispatch(sendFormAction(values));
     setSubmitting(false);
   }
+  function setErrors(errors) {
+    dispatch(sendFormAction({ errors }));
+  }
+
   return (
     <>
       <Formik
         initialValues={initialValues}
-        validate={validate(getValidationSchema)}
+        validate={validate(getValidationSchema, setErrors)}
         onSubmit={onSubmit}
       >
         {JoinRoomForm}
@@ -61,24 +65,8 @@ function JoinRoomForm(props) {
 
   return (
     <Form>
-      <Input
-        errors={errors.username}
-        label="Your username"
-        name="username"
-        onChange={handleChange}
-      />
-      <HelpBlock>
-        <ErrorMessage name="username" />
-      </HelpBlock>
-      <Input
-        errors={errors.roomID}
-        label="Room ID"
-        name="roomID"
-        onChange={handleChange}
-      />
-      <HelpBlock>
-        <ErrorMessage name="roomID" />
-      </HelpBlock>
+      <Input label="Your username" name="username" onChange={handleChange} />
+      <Input label="Room ID" name="roomID" onChange={handleChange} />
       <Button onClick={handleSubmit} type="submit">
         {isSubmitting ? "Joining the room..." : "Join the room"}
       </Button>
@@ -93,7 +81,7 @@ function getValidationSchema(values) {
       .required("Username is required!"),
     roomID: string()
       .min(6, `Room ID has to be longer than ${6} characters!`)
-      .required("Room ID is required!")
+      .required("Room ID is required!"),
   });
 }
 
