@@ -5,24 +5,24 @@ const style = css({
   width: "100%",
   marginTop: 40,
   display: "flex",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 });
 
 export default ({ children }) => <div css={style}>{children}</div>;
 
-const whiteCardStyle = props =>
+const whiteCardStyle = (props) =>
   css({
     fontWeight: "bold",
     background: "white",
     borderRadius: 4,
     padding: 10,
     width: "8%",
-    height: 200,
+    height: 260,
     ...(props.onClick
       ? {
-          cursor: "pointer"
+          cursor: "pointer",
         }
-      : {})
+      : {}),
   });
 
 export const WhiteCard = ({ children, ...props }) => (
@@ -38,7 +38,7 @@ const blackCardStyle = css({
   borderRadius: 4,
   padding: 10,
   width: "8%",
-  height: 200
+  height: 260,
 });
 
 export const BlackCard = ({ children }) => (

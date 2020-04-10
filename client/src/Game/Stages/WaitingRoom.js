@@ -22,15 +22,15 @@ function WaitingRoom() {
     <>
       <motion.h2
         animate={{
-          opacity: [0, 1, 1, 0],
+          opacity: [1, 1, 0, 1],
         }}
         transition={{
-          duration: 1.5,
+          duration: 2,
           ease: [0.43, 0.13, 0.23, 0.96],
           loop: Infinity,
         }}
       >
-        Waiting for other players
+        Waiting for other players...
       </motion.h2>
       <p
         style={{

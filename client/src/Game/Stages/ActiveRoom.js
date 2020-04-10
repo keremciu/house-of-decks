@@ -17,6 +17,7 @@ function ActiveRoom() {
   const socket = useContext(SocketContext);
 
   const cards = game.room.playerCards[game.username];
+  const playedCards = game.room.playedCards[game.username];
   const isCardCzar = game.room.czar === game.username;
   const blackCard = game.room.blackCard;
   const isPlayed = game.room.playersSubmitted[game.username];
@@ -27,6 +28,10 @@ function ActiveRoom() {
 
   function onSubmitWinner(player) {
     socket.emit("submit_winner", player);
+  }
+
+  function animateHere(e) {
+    console.log(e);
   }
 
   if (isCardCzar || isPlayed) {
@@ -40,10 +45,6 @@ function ActiveRoom() {
         playersSubmitted={game.room.playersSubmitted}
       />
     );
-  }
-
-  function animateHere(e) {
-    console.log(e);
   }
 
   return (
@@ -71,15 +72,17 @@ function ActiveRoom() {
         .fill(null)
         .map((blackCard, submissionIndex) => (
           <Cards key={submissionIndex}>
-            {cards.map((card, index) => (
-              <WhiteCard
-                key={index}
-                onClick={() => onSubmitCard(card)}
-                onMouseEnter={animateHere}
-              >
-                {card.text}
-              </WhiteCard>
-            ))}
+            {playedCards.length === 1 && submissionIndex === 0
+              ? playedCards.map((card, index) => (
+                  <WhiteCard key={index} onClick={() => onSubmitCard(card)}>
+                    {card.text}
+                  </WhiteCard>
+                ))
+              : cards.map((card, index) => (
+                  <WhiteCard key={index} onClick={() => onSubmitCard(card)}>
+                    {card.text}
+                  </WhiteCard>
+                ))}
           </Cards>
         ))}
     </>
