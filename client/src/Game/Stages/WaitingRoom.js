@@ -22,11 +22,11 @@ function WaitingRoom() {
     <>
       <motion.h2
         animate={{
-          opacity: [0, 0, 0.5, 1, 0.5, 0.1],
+          opacity: [0, 1, 1, 0],
         }}
         transition={{
-          duration: 3,
-          ease: "easeInOut",
+          duration: 1.5,
+          ease: [0.43, 0.13, 0.23, 0.96],
           loop: Infinity,
         }}
       >

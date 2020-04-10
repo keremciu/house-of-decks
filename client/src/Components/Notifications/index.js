@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
@@ -13,8 +13,26 @@ const Path = (props) => (
   />
 );
 
-export default Notification = ({ text, close }) => (
-  <div css={style}>
+export default ({ errors, onClose }) => (
+  <ul css={notificationListStyle}>
+    <AnimatePresence initial={false}>
+      {errors.map((error, index) => (
+        <motion.li
+          key={index}
+          positionTransition
+          initial={{ opacity: 0, y: 50, scale: 0.3 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
+        >
+          <Notification text={error} close={onClose} />
+        </motion.li>
+      ))}
+    </AnimatePresence>
+  </ul>
+);
+
+const Notification = ({ text, close }) => (
+  <div css={notificationStyle}>
     {text}
     <button css={buttonStyle} onClick={close}>
       <svg width="23" height="23" viewBox="0 0 23 23">
@@ -25,7 +43,7 @@ export default Notification = ({ text, close }) => (
   </div>
 );
 
-const style = css({
+const notificationStyle = css({
   display: "flex",
   alignItems: "center",
   padding: "24px",
@@ -50,7 +68,7 @@ const buttonStyle = css({
   },
 });
 
-export const notificationListStyle = css({
+const notificationListStyle = css({
   position: "fixed",
   bottom: 0,
   right: 0,

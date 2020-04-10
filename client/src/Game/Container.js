@@ -8,13 +8,14 @@ import { jsx, css } from "@emotion/core";
 import { StoreContext } from "Store";
 import Frame from "Components/Frame";
 import Button from "Components/Button";
-import Notification, { notificationListStyle } from "Components/Notification";
+import Notifications from "Components/Notifications";
 import LandingStage from "Game/Stages/Landing";
 import ActiveRoomStage from "Game/Stages/ActiveRoom";
 import CreateRoomStage from "Game/Stages/CreateRoom";
 import JoinRoomStage from "Game/Stages/JoinRoom";
 import WaitingRoomStage from "Game/Stages/WaitingRoom";
 
+import ErrorBoundary from "./ErrorBoundary";
 import { GAME_STAGES } from "./mappings";
 
 const renderStage = (gameStage) => {
@@ -26,7 +27,7 @@ const renderStage = (gameStage) => {
       animate="enter"
       exit="exit"
     >
-      <motion.div variants={formVariants} css={flexStyle}>
+      <motion.div variants={stageVariants} css={flexStyle}>
         {children}
       </motion.div>
     </motion.div>
@@ -78,24 +79,12 @@ function Game() {
 
   return (
     <Frame stage={game.stage}>
-      <ul css={notificationListStyle}>
-        <AnimatePresence initial={false}>
-          {game.errors.map((error, index) => (
-            <motion.li
-              key={index}
-              positionTransition
-              initial={{ opacity: 0, y: 50, scale: 0.3 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
-            >
-              <Notification text={error} close={onClose} />
-            </motion.li>
-          ))}
+      <Notifications errors={game.errors} onClose={onClose} />
+      <ErrorBoundary dispatch={dispatch}>
+        <AnimatePresence exitBeforeEnter initial={false}>
+          {renderStage(game.stage)}
         </AnimatePresence>
-      </ul>
-      <AnimatePresence exitBeforeEnter initial={false}>
-        {renderStage(game.stage)}
-      </AnimatePresence>
+      </ErrorBoundary>
     </Frame>
   );
 }
@@ -107,7 +96,7 @@ const transition = {
   ease: [0.43, 0.13, 0.23, 0.96],
 };
 
-const formVariants = {
+const stageVariants = {
   exit: { y: "10%", opacity: 0, transition },
   enter: {
     y: "0%",
