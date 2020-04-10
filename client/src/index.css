@@ -1,5 +1,6 @@
 :root {
   --color-gray: #908a84;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {

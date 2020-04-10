@@ -54,7 +54,7 @@ export const notificationListStyle = css({
   position: "fixed",
   bottom: 0,
   right: 0,
-  top: 0,
+  zIndex: 5,
   display: "flex",
   flexDirection: "column",
   listStyle: "none",
