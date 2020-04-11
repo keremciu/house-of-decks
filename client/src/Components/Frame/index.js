@@ -56,10 +56,12 @@ const Footer = () => (
   </footer>
 );
 
+const noHeaderAndFooter = [GAME_STAGES.active, GAME_STAGES.waiting];
+
 export default ({ stage, children }) => (
   <Wrapper>
-    {stage !== GAME_STAGES.active && <Header />}
+    {!noHeaderAndFooter.includes(stage) && <Header />}
     <Main>{children}</Main>
-    <Footer />
+    {!noHeaderAndFooter.includes(stage) && <Footer />}
   </Wrapper>
 );

@@ -106,6 +106,19 @@ io.on("connection", function (socket) {
         },
       });
     }
+    if (
+      rooms[roomID].players.length > io.sockets.adapter.rooms[roomID].length
+    ) {
+      console.log(io.sockets.adapter.rooms[roomID]);
+      console.log(rooms[roomID].players);
+      // there's not enough players in the room
+      return socket.emit("game_action", {
+        type: "NAH_SERVER_RESPONSE",
+        payload: {
+          errors: ["Some players left"],
+        },
+      });
+    }
     if (rooms[roomID].players.length < 2) {
       // there's not enough players in the room
       return socket.emit("game_action", {
@@ -220,9 +233,7 @@ io.on("connection", function (socket) {
     });
   });
 
-  console.log("a user connected", socket.id);
-  socket.on("disconnect", function () {
-    console.log("user disconnected");
+  function handleLeave() {
     const roomID = socket.room;
     socket.leave(roomID);
     if (rooms.hasOwnProperty(roomID)) {
@@ -239,6 +250,15 @@ io.on("connection", function (socket) {
         },
       });
     }
+  }
+
+  socket.on("leave_game", handleLeave);
+
+  // user disconnected transport close
+  console.log("a user connected", socket.id);
+  socket.on("disconnect", function (reason) {
+    handleLeave();
+    console.log("user disconnected", reason);
   });
 });
 

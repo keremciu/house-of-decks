@@ -2,6 +2,7 @@ import React from "react";
 import { default as GameReducer } from "Game/reducer";
 
 export const StoreContext = React.createContext();
+export const localStorageKey = "app_state";
 
 function getInitialState(reducerDict) {
   return Object.keys(reducerDict).reduce((acc, curr) => {
@@ -12,7 +13,7 @@ function getInitialState(reducerDict) {
 
 export function combineReducers(reducerDict) {
   const _initialState = getInitialState(reducerDict);
-  return function(state = _initialState, action) {
+  return function (state = _initialState, action) {
     return Object.keys(reducerDict).reduce((acc, curr) => {
       let slice = reducerDict[curr](state[curr], action);
       return { ...acc, [curr]: slice };
@@ -21,19 +22,19 @@ export function combineReducers(reducerDict) {
 }
 
 const rootReducer = combineReducers({
-  game: GameReducer
+  game: GameReducer,
 });
 
-function usePersistedReducer([state, dispatch], key = "app_state") {
+function usePersistedReducer([state, dispatch], key = localStorageKey) {
   React.useEffect(() => localStorage.setItem(key, JSON.stringify(state)), [
     key,
-    state
+    state,
   ]);
   return [state, dispatch];
 }
 
 export function StoreProvider(props) {
-  const persistedState = localStorage.getItem("app_state");
+  const persistedState = localStorage.getItem(localStorageKey);
   const initialState = persistedState
     ? JSON.parse(persistedState)
     : rootReducer(undefined, { type: undefined });

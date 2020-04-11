@@ -79,8 +79,8 @@ function Game() {
 
   return (
     <Frame stage={game.stage}>
-      <Notifications errors={game.errors} onClose={onClose} />
       <ErrorBoundary dispatch={dispatch}>
+        <Notifications errors={game.errors} onClose={onClose} />
         <AnimatePresence exitBeforeEnter initial={false}>
           {renderStage(game.stage)}
         </AnimatePresence>
