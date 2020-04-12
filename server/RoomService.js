@@ -1,5 +1,6 @@
 import Room from "./Room.js";
 import Player from "./Player.js";
+import { GAME_STAGES } from "../client/src/Game/mappings.js";
 
 class RoomService {
   constructor(io) {
@@ -53,7 +54,7 @@ class RoomService {
       return this.sendAction({
         errors: ["There's no room found."],
       });
-    } else if (this._rooms.get(roomID).status === "running") {
+    } else if (this._rooms.get(roomID).stage === GAME_STAGES.active) {
       // game is already started
       return this.sendAction({
         errors: ["Game is already started in this room."],

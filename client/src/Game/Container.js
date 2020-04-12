@@ -78,11 +78,11 @@ function Game() {
   };
 
   return (
-    <Frame stage={game.stage}>
+    <Frame stage={game.room.stage}>
       <ErrorBoundary dispatch={dispatch}>
         <Notifications errors={game.errors} onClose={onClose} />
         <AnimatePresence exitBeforeEnter initial={false}>
-          {renderStage(game.stage)}
+          {renderStage(game.room.stage)}
         </AnimatePresence>
       </ErrorBoundary>
     </Frame>

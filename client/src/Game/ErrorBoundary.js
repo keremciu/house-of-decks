@@ -13,7 +13,9 @@ export default class ErrorBoundary extends React.Component {
     this.props.dispatch({
       type: "NAH_SERVER_RESPONSE",
       payload: {
-        stage: GAME_STAGES.landing,
+        room: {
+          stage: GAME_STAGES.landing,
+        },
         errors: ["Something went wrong"],
       },
     });

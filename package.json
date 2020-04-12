@@ -6,10 +6,9 @@
   "engines": {
     "node": "12.16.x"
   },
-  "type": "module",
   "scripts": {
-    "start": "node --experimental-modules --experimental-json-modules server/index.js",
-    "dev": "nodemon -- --experimental-modules --experimental-json-modules server/index.js & (cd client && npm run watch)",
+    "start": "node -r esm server/index.js",
+    "dev": "nodemon -r esm server/index.js & (cd client && npm run watch)",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd client && yarn && yarn run build"
   },
@@ -24,6 +23,7 @@
   },
   "homepage": "https://github.com/keremciu/node-against-humanity#readme",
   "dependencies": {
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "socket.io": "^2.3.0"
   },

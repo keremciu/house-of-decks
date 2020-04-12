@@ -1,18 +1,19 @@
+import { GAME_STAGES } from "../client/src/Game/mappings.js";
+
 class Room {
   constructor(service, roomID, host) {
     this.service = service;
     this.id = roomID;
-    this.status = "waiting";
+    this.stage = GAME_STAGES.waiting;
     this.players = [host];
     this.updateClients();
   }
 
   updateClients = () => {
     this.service.sendActionToRoom({
-      stage: "waiting_room",
       room: {
         id: this.id,
-        status: this.status,
+        stage: this.stage,
         players: this.players,
       },
     });
@@ -27,6 +28,7 @@ class Room {
     const czarIndex = Math.floor(Math.random() * this.players.length);
     this.czar = this.players[czarIndex];
     this.status = "running";
+    this.blackCard = filteredBlackCards.pop();
   };
 
   check = () => {};
