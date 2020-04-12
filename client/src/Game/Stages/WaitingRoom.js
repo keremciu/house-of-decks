@@ -5,7 +5,7 @@ import { changeStageAction } from "Game/actions";
 import { GAME_STAGES } from "Game/mappings";
 import { motion } from "framer-motion";
 
-import Button from "Components/Button";
+import Button, { BackIcon } from "Components/Button";
 
 function WaitingRoom() {
   const {
@@ -20,6 +20,7 @@ function WaitingRoom() {
 
   return (
     <>
+      <div style={{ height: 260 }} />
       <motion.h2
         animate={{
           opacity: [1, 1, 0, 1],
@@ -45,7 +46,7 @@ function WaitingRoom() {
       <h2>{game.room.id}</h2>
       Joined players
       <ul>
-        {game?.room.players?.map((player, index) => (
+        {game.room.players?.map((player, index) => (
           <li key={index}>
             {player.username} {player.username === game.username && "(You)"}
           </li>
@@ -57,19 +58,7 @@ function WaitingRoom() {
         small
         onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="1em"
-          height="1em"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
+        {BackIcon}
       </Button>
     </>
   );

@@ -10,7 +10,7 @@ import { changeStageAction, sendFormAction } from "Game/actions";
 import { GAME_STAGES } from "Game/mappings";
 import validate from "utils/validate";
 
-import Button from "Components/Button";
+import Button, { BackIcon } from "Components/Button";
 import Input, { Form } from "Components/Input";
 
 const initialValues = {
@@ -50,19 +50,7 @@ function CreateRoom() {
         small
         onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="1em"
-          height="1em"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
+        {BackIcon}
       </Button>
     </>
   );

@@ -18,34 +18,6 @@ import WaitingRoomStage from "Game/Stages/WaitingRoom";
 import ErrorBoundary from "./ErrorBoundary";
 import { GAME_STAGES } from "./mappings";
 
-const renderStage = (gameStage) => {
-  const wrap = (children) => (
-    <motion.div
-      key={gameStage}
-      className="single"
-      initial="exit"
-      animate="enter"
-      exit="exit"
-    >
-      <motion.div variants={stageVariants} css={flexStyle}>
-        {children}
-      </motion.div>
-    </motion.div>
-  );
-  switch (gameStage) {
-    case GAME_STAGES.create:
-      return wrap(<CreateRoomStage />);
-    case GAME_STAGES.join:
-      return wrap(<JoinRoomStage />);
-    case GAME_STAGES.waiting:
-      return wrap(<WaitingRoomStage />);
-    case GAME_STAGES.active:
-      return wrap(<ActiveRoomStage />);
-    default:
-      return wrap(<LandingStage />);
-  }
-};
-
 function Game() {
   const {
     state: { game },
@@ -106,7 +78,33 @@ const StageRenderer = ({ stage, errors, dispatch }) => {
   );
 };
 
-export default Game;
+const renderStage = (gameStage) => {
+  const wrap = (stageContent) => (
+    <motion.div
+      key={gameStage}
+      className="single"
+      initial="exit"
+      animate="enter"
+      exit="exit"
+    >
+      <motion.div variants={stageVariants} css={flexStyle}>
+        {stageContent}
+      </motion.div>
+    </motion.div>
+  );
+  switch (gameStage) {
+    case GAME_STAGES.create:
+      return wrap(<CreateRoomStage />);
+    case GAME_STAGES.join:
+      return wrap(<JoinRoomStage />);
+    case GAME_STAGES.waiting:
+      return wrap(<WaitingRoomStage />);
+    case GAME_STAGES.active:
+      return wrap(<ActiveRoomStage />);
+    default:
+      return wrap(<LandingStage />);
+  }
+};
 
 const transition = {
   duration: 0.3,
@@ -131,3 +129,5 @@ const flexStyle = css({
     margin: "50px 0",
   },
 });
+
+export default Game;

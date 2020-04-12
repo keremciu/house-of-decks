@@ -9,6 +9,8 @@ class Player {
     this.username = username;
     this.score = 0;
     this.cards = filteredWhiteCards.splice(-10, 10);
+    this.submittedCards = [];
+    this.hasSubmitted = false;
   }
 }
 

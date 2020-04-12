@@ -5,22 +5,24 @@ import { changeStageAction } from "Game/actions";
 import { GAME_STAGES } from "Game/mappings";
 
 import Cards, { WhiteCard, BlackCard } from "Components/Cards";
-import Button from "Components/Button";
+import Button, { BackIcon } from "Components/Button";
 
-import SubmittedCards from "Game/Views/SubmittedCards";
+import JudgeView from "Game/Views/JudgeView";
 
 function ActiveRoom() {
   const {
-    state: { game },
+    state: {
+      game: { room, username },
+    },
     dispatch,
   } = React.useContext(StoreContext);
   const socket = useContext(SocketContext);
 
-  const cards = game.room.playerCards[game.username];
-  const playedCards = game.room.playedCards[game.username];
-  const isCardCzar = game.room.czar === game.username;
-  const blackCard = game.room.blackCard;
-  const isPlayed = game.room.playersSubmitted[game.username];
+  const { cards, submittedCards, hasSubmitted } = room.players.find(
+    (p) => p.username === username
+  );
+  const isCardCzar = room.czar === username;
+  const blackCard = room.blackCard;
 
   function onSubmitCard(card) {
     socket.emit("submit_card", card);
@@ -30,61 +32,48 @@ function ActiveRoom() {
     socket.emit("submit_winner", player);
   }
 
-  function animateHere(e) {
-    console.log(e);
-  }
+  let renderContent = () =>
+    Array(blackCard.pick)
+      .fill(null)
+      .map((blackCard, submissionIndex) => (
+        <Cards key={submissionIndex}>
+          {submittedCards.length === 1 && submissionIndex === 0
+            ? submittedCards.map((card, index) => (
+                <WhiteCard key={index}>{card.text}</WhiteCard>
+              ))
+            : cards.map((card, index) => (
+                <WhiteCard key={index} onClick={() => onSubmitCard(card)}>
+                  {card.text}
+                </WhiteCard>
+              ))}
+        </Cards>
+      ));
 
-  if (isCardCzar || isPlayed) {
-    return (
-      <SubmittedCards
+  if (isCardCzar || hasSubmitted) {
+    renderContent = () => (
+      <JudgeView
         isCardCzar={isCardCzar}
-        onSubmitWinner={onSubmitWinner}
+        isReadyToJudge={room.isReadyToJudge}
         blackCard={blackCard}
-        readyToJudge={game.room.readyToJudge}
-        playedCards={game.room.playedCards}
-        playersSubmitted={game.room.playersSubmitted}
+        players={room.players}
+        onSubmitWinner={onSubmitWinner}
       />
     );
   }
 
+  // remove back button and put leave
   return (
     <>
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          background: "#333",
-          height: "200",
-        }}
+      <div style={{ height: 160 }} />
+      <BlackCard>{blackCard.text}</BlackCard>
+      {renderContent()}
+      <Button
+        style={{ margin: "0 auto" }}
+        small
+        onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
       >
-        <BlackCard>{blackCard.text}</BlackCard>
-        <div style={{ position: "absolute", bottom: -54, width: "100%" }}>
-          <svg width="800" height="60" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M 175 0 Q 255 105 350 15 C 395 20 480 20 665 10 A 100 0 0 0 0 800 0 L 5 0 Z"
-              fill="#333"
-              fillRule="evenodd"
-            />
-          </svg>
-        </div>
-      </div>
-      {Array(blackCard.pick)
-        .fill(null)
-        .map((blackCard, submissionIndex) => (
-          <Cards key={submissionIndex}>
-            {playedCards.length === 1 && submissionIndex === 0
-              ? playedCards.map((card, index) => (
-                  <WhiteCard key={index} onClick={() => onSubmitCard(card)}>
-                    {card.text}
-                  </WhiteCard>
-                ))
-              : cards.map((card, index) => (
-                  <WhiteCard key={index} onClick={() => onSubmitCard(card)}>
-                    {card.text}
-                  </WhiteCard>
-                ))}
-          </Cards>
-        ))}
+        {BackIcon}
+      </Button>
     </>
   );
 }
