@@ -23,7 +23,7 @@ const footerStyle = css({
   fontFamily: "serif",
 });
 
-const mainStyle = css({
+const bodyStyle = css({
   width: "100%",
   flex: "1 1 auto",
   fontSize: 18,
@@ -38,7 +38,7 @@ const heroText = css({
 
 // components
 const Wrapper = ({ children }) => <div css={style}>{children}</div>;
-const Main = ({ children }) => <div css={mainStyle}>{children}</div>;
+const Body = ({ children }) => <div css={bodyStyle}>{children}</div>;
 const Header = () => (
   <header css={headerStyle}>
     <h1>CARDS AGAINST HUMANITY</h1>
@@ -56,12 +56,15 @@ const Footer = () => (
   </footer>
 );
 
-const noHeaderAndFooter = [GAME_STAGES.active, GAME_STAGES.waiting];
+const Frame = (props) => <Wrapper {...props} />;
 
-export default ({ stage, children }) => (
-  <Wrapper>
-    {!noHeaderAndFooter.includes(stage) && <Header />}
-    <Main>{children}</Main>
-    {!noHeaderAndFooter.includes(stage) && <Footer />}
-  </Wrapper>
-);
+Frame.Header = Header;
+Frame.Header.displayName = "FrameHeader";
+
+Frame.Body = Body;
+Frame.Body.displayName = "FrameBody";
+
+Frame.Footer = Footer;
+Frame.Footer.displayName = "FrameFooter";
+
+export default Frame;

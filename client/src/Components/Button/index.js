@@ -20,8 +20,8 @@ const style = (props) =>
     boxShadow:
       "rgb(255,255,255) -20px -20px 40px 0px, #cbcaca 20px 20px 40px 0px",
     background: "linear-gradient(145deg, #ffffff, #d7d6d6)",
-    "&:hover": {
-      "& > span": {
+    "@media (hover: hover)": {
+      "&:hover > span": {
         boxShadow: "rgb(255,255,255) inset 2px 2px 0px 0px",
       },
     },
@@ -41,8 +41,8 @@ const style = (props) =>
           fontWeight: 500,
           boxShadow:
             "rgb(245,245,245) -10px -10px 20px 0px, rgb(224, 224, 224) 10px 10px 20px 0px",
-          "&:hover": {
-            "& > span": {
+          "@media (hover: hover)": {
+            "&:hover > span ": {
               boxShadow: "none",
             },
           },

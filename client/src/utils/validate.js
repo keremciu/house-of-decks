@@ -1,9 +1,9 @@
-export default function validate(getValidationSchema, setErrors) {
+export default function validate(getValidationSchema, errors, setErrors) {
   return (values) => {
     const validationSchema = getValidationSchema(values);
     try {
       validationSchema.validateSync(values, { abortEarly: false });
-      setErrors([]);
+      if (errors.length) setErrors([]);
       return {};
     } catch (error) {
       const aggregatedErrors = getErrorsFromValidationError(error);

@@ -18,7 +18,12 @@ const initialValues = {
 };
 
 function CreateRoom() {
-  const { dispatch } = useContext(StoreContext);
+  const {
+    state: {
+      game: { errors },
+    },
+    dispatch,
+  } = useContext(StoreContext);
   const socket = useContext(SocketContext);
   function onSubmit(values, test) {
     socket.emit("create_room", {
@@ -36,7 +41,7 @@ function CreateRoom() {
       <Formik
         validateOnChange={false}
         initialValues={initialValues}
-        validate={validate(getValidationSchema, setErrors)}
+        validate={validate(getValidationSchema, errors, setErrors)}
         onSubmit={onSubmit}
       >
         {CreateRoomForm}

@@ -18,7 +18,12 @@ const initialValues = {
 };
 
 function JoinRoom() {
-  const { dispatch } = React.useContext(StoreContext);
+  const {
+    state: {
+      game: { errors },
+    },
+    dispatch,
+  } = React.useContext(StoreContext);
   const socket = useContext(SocketContext);
   function onSubmit(values, { setSubmitting, setErrors }) {
     socket.emit("join_room", values);
@@ -34,7 +39,7 @@ function JoinRoom() {
       <Formik
         validateOnChange={false}
         initialValues={initialValues}
-        validate={validate(getValidationSchema, setErrors)}
+        validate={validate(getValidationSchema, errors, setErrors)}
         onSubmit={onSubmit}
       >
         {JoinRoomForm}

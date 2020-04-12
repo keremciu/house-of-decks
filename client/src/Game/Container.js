@@ -50,7 +50,7 @@ function Game() {
   const {
     state: { game },
     dispatch,
-  } = React.useContext(StoreContext);
+  } = useContext(StoreContext);
   const socket = useContext(SocketContext);
 
   useEffect(() => {
@@ -68,6 +68,19 @@ function Game() {
     };
   }, []); // Pass in an empty array to only run on mount.
 
+  return (
+    <StageRenderer
+      stage={game.room.stage}
+      errors={game.errors}
+      dispatch={dispatch}
+    />
+  );
+}
+
+const StageRenderer = ({ stage, errors, dispatch }) => {
+  const stagesWithOnlyBody = [GAME_STAGES.active, GAME_STAGES.waiting];
+  const showHeaderAndFooter = !stagesWithOnlyBody.includes(stage);
+
   const onClose = () => {
     dispatch({
       type: "NAH_SERVER_RESPONSE",
@@ -78,16 +91,20 @@ function Game() {
   };
 
   return (
-    <Frame stage={game.room.stage}>
-      <ErrorBoundary dispatch={dispatch}>
-        <Notifications errors={game.errors} onClose={onClose} />
-        <AnimatePresence exitBeforeEnter initial={false}>
-          {renderStage(game.room.stage)}
-        </AnimatePresence>
-      </ErrorBoundary>
+    <Frame>
+      {showHeaderAndFooter && <Frame.Header />}
+      <Frame.Body>
+        <ErrorBoundary dispatch={dispatch}>
+          <Notifications errors={errors} onClose={onClose} />
+          <AnimatePresence exitBeforeEnter initial={false}>
+            {renderStage(stage)}
+          </AnimatePresence>
+        </ErrorBoundary>
+      </Frame.Body>
+      {showHeaderAndFooter && <Frame.Footer />}
     </Frame>
   );
-}
+};
 
 export default Game;
 

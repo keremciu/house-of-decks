@@ -14,6 +14,7 @@ class Room {
       room: {
         id: this.id,
         stage: this.stage,
+        blackCard: this.blackCard,
         players: this.players,
       },
     });
@@ -27,8 +28,9 @@ class Room {
   start = () => {
     const czarIndex = Math.floor(Math.random() * this.players.length);
     this.czar = this.players[czarIndex];
-    this.status = "running";
+    this.stage = GAME_STAGES.active;
     this.blackCard = filteredBlackCards.pop();
+    this.updateClients();
   };
 
   check = () => {};
