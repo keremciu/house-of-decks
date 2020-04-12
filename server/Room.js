@@ -1,85 +1,35 @@
 class Room {
-  constructor(roomID) {
-    this.roomID = roomID;
-    this._players = new Map();
+  constructor(service, roomID, host) {
+    this.service = service;
+    this.id = roomID;
+    this.status = "waiting";
+    this.players = [host];
+    this.updateClients();
   }
 
-  registerPlayer = (username) => {};
-
-  registerListener = (io) => {
-    io.on("connection", (socket) => {
-      this.socket = socket;
-      socket.on("create_room", this.createRoom);
-      socket.on("join_room", this.joinRoom);
-      socket.on("disconnect", function () {
-        console.log("client disconnected");
-      });
+  updateClients = () => {
+    this.service.sendActionToRoom({
+      stage: "waiting_room",
+      room: {
+        id: this.id,
+        status: this.status,
+        players: this.players,
+      },
     });
   };
 
-  sendActionToRoom = (payload) => {
-    this.io.to(this.socket.room).emit("game_action", {
-      type: "NAH_SERVER_RESPONSE",
-      payload,
-    });
+  registerPlayer = (player) => {
+    this.players.push(player);
+    this.updateClients();
   };
 
-  sendAction = (payload) => {
-    this.socket.emit("game_action", {
-      type: "NAH_SERVER_RESPONSE",
-      payload,
-    });
+  start = () => {
+    const czarIndex = Math.floor(Math.random() * this.players.length);
+    this.czar = this.players[czarIndex];
+    this.status = "running";
   };
 
-  createRoom = (data) => {
-    const { username } = data;
-    const roomID = Math.random().toString(36).substring(3);
-    this.socket.nickname = username;
-    this.socket.join(roomID, () => {
-      this.socket.room = roomID;
-      this._rooms.set(roomID, {
-        id: roomID,
-        status: "waiting",
-        players: [this.socket.nickname],
-      });
-      this.sendActionToRoom({
-        stage: "waiting_room",
-        room: this._rooms.get(roomID),
-      });
-    });
-  };
-
-  joinRoom = (data) => {
-    const { username, roomID } = data;
-    if (!this._rooms.has(roomID)) {
-      // there's no room error
-      return this.sendAction({
-        errors: ["There's no room found."],
-      });
-    } else if (this._rooms.get(roomID).status === "running") {
-      // game is already started
-      return this.sendAction({
-        errors: ["Game is already started in this room."],
-      });
-    } else if (this._rooms.get(roomID).players.includes(username)) {
-      // username is already taken for this room.
-      return this.sendAction({
-        errors: ["Username is already taken for this room."],
-      });
-    }
-
-    this.socket.nickname = username;
-    this.socket.join(roomID, () => {
-      this.socket.room = roomID;
-      this._rooms.set(roomID, {
-        players: [this.socket.nickname],
-      });
-      this.sendActionToRoom({
-        stage: "waiting_room",
-        room: this._rooms.get(roomID),
-      });
-    });
-  };
+  check = () => {};
 }
 
-export default RoomService;
+export default Room;

@@ -45,9 +45,9 @@ function WaitingRoom() {
       <h2>{game.room.id}</h2>
       Joined players
       <ul>
-        {game?.room.players?.map((player) => (
-          <li key={player}>
-            {player} {player === game.username && "(You)"}
+        {game?.room.players?.map((player, index) => (
+          <li key={index}>
+            {player.username} {player.username === game.username && "(You)"}
           </li>
         ))}
       </ul>

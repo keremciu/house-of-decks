@@ -8,8 +8,8 @@
   },
   "type": "module",
   "scripts": {
-    "start": "node --experimental-modules server/index.js",
-    "dev": "nodemon -- --experimental-modules server/index.js && (cd client && npm run watch)",
+    "start": "node --experimental-modules --experimental-json-modules server/index.js",
+    "dev": "nodemon -- --experimental-modules --experimental-json-modules server/index.js & (cd client && npm run watch)",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd client && yarn && yarn run build"
   },
