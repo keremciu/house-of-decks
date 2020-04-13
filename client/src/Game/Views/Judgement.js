@@ -20,7 +20,7 @@ function Judgement({
               .map((player, index) => (
                 <WhiteCard
                   key={index}
-                  {...(isCardCzar
+                  {...(isCardCzar && isReadyToJudge
                     ? { onClick: () => onSubmitWinner(player.username) }
                     : {})}
                 >

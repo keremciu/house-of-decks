@@ -3,7 +3,8 @@ import { jsx, css } from "@emotion/core";
 
 const style = css({
   width: "100%",
-  marginBottom: 40,
+  marginTop: 10,
+  marginBottom: 20,
   display: "flex",
   justifyContent: "space-around",
 });
