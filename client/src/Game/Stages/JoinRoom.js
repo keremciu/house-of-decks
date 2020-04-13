@@ -64,7 +64,7 @@ function JoinRoomForm(props) {
   } = props;
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Input
         label="Your username"
         name="username"

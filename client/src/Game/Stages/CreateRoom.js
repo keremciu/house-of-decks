@@ -66,7 +66,7 @@ function CreateRoomForm(props) {
   } = props;
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Input
         label="Your username"
         name="username"

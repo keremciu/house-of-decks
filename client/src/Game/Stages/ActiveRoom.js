@@ -7,7 +7,8 @@ import { GAME_STAGES } from "Game/mappings";
 import Cards, { WhiteCard, BlackCard } from "Components/Cards";
 import Button, { BackIcon } from "Components/Button";
 
-import JudgeView from "Game/Views/JudgeView";
+import Judgement from "Game/Views/Judgement";
+import Scoreboard from "Game/Views/Scoreboard";
 
 function ActiveRoom() {
   const {
@@ -51,11 +52,11 @@ function ActiveRoom() {
 
   if (isCardCzar || hasSubmitted) {
     renderContent = () => (
-      <JudgeView
+      <Judgement
         isCardCzar={isCardCzar}
         isReadyToJudge={room.isReadyToJudge}
         blackCard={blackCard}
-        players={room.players}
+        submitters={room.submitters}
         onSubmitWinner={onSubmitWinner}
       />
     );
@@ -64,6 +65,7 @@ function ActiveRoom() {
   // remove back button and put leave
   return (
     <>
+      <Scoreboard czar={room.czar} players={room.players} />
       <div style={{ height: 160 }} />
       <BlackCard>{blackCard.text}</BlackCard>
       {renderContent()}

@@ -2,6 +2,10 @@
 
 Made for fun! Online version of [Cards Against Humanity](https://cardsagainsthumanity.com/).
 
+### Commands
+
+I used `yarn` for this project.
+
 ### Credits
 
 If you play this game and like it; Please buy [Cards Against Humanity](https://cardsagainsthumanity.com/).

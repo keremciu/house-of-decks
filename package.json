@@ -10,7 +10,8 @@
     "start": "node -r esm server/index.js",
     "dev": "nodemon -r esm server/index.js & (cd client && npm run watch)",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "cd client && yarn && yarn run build"
+    "heroku-postbuild": "cd client && yarn && yarn run build",
+    "lint": "eslint server/*.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
     "nodemon": "^2.0.2"
   }
 }

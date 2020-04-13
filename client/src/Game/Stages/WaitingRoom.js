@@ -6,10 +6,13 @@ import { GAME_STAGES } from "Game/mappings";
 import { motion } from "framer-motion";
 
 import Button, { BackIcon } from "Components/Button";
+import Scoreboard from "Game/Views/Scoreboard";
 
 function WaitingRoom() {
   const {
-    state: { game },
+    state: {
+      game: { username, room },
+    },
     dispatch,
   } = React.useContext(StoreContext);
   const socket = useContext(SocketContext);
@@ -20,6 +23,7 @@ function WaitingRoom() {
 
   return (
     <>
+      <Scoreboard username={username} players={room.players} />
       <div style={{ height: 260 }} />
       <motion.h2
         animate={{
@@ -43,15 +47,7 @@ function WaitingRoom() {
       >
         Please ask your friends to enter this Room ID
       </p>
-      <h2>{game.room.id}</h2>
-      Joined players
-      <ul>
-        {game.room.players?.map((player, index) => (
-          <li key={index}>
-            {player.username} {player.username === game.username && "(You)"}
-          </li>
-        ))}
-      </ul>
+      <h2>{room.id}</h2>
       <Button onClick={onStart}>Start the Game</Button>
       <Button
         style={{ margin: "0 auto" }}

@@ -1,22 +1,24 @@
-import Room from "./Room.js";
+import Game from "./Game.js";
 import Player from "./Player.js";
 import { GAME_STAGES } from "../client/src/Game/mappings.js";
 
 class RoomService {
-  constructor(io) {
-    this.io = io;
-    this.registerListeners(io);
-    this._rooms = new Map();
+  constructor() {
+    this._games = new Map();
   }
 
   registerListeners = (io) => {
+    this.io = io;
     io.on("connection", (socket) => {
       this.socket = socket;
+      console.log("a user connected", socket.id);
       socket.on("create_room", this.createRoom);
       socket.on("join_room", this.joinRoom);
-      socket.on("start_game", this.startGame);
-      socket.on("disconnect", function () {
-        console.log("client disconnected");
+      socket.on("start_game", this.handleStartGame);
+      socket.on("submit_card", this.handleSubmitCard);
+      socket.on("submit_winner", this.handleSubmitWinner);
+      socket.on("disconnect", function (reason) {
+        console.log("client disconnected", reason);
       });
     });
   };
@@ -28,70 +30,67 @@ class RoomService {
     });
   };
 
-  sendAction = (payload) => {
+  sendError = (error, payload = {}) => {
     this.socket.emit("game_action", {
       type: "NAH_SERVER_RESPONSE",
-      payload,
+      payload: {
+        errors: [error],
+        ...payload,
+      },
     });
   };
 
   createRoom = (data) => {
     // note: we can move room id generation into client not sure about security
     const roomID = Math.random().toString(36).substring(3);
+    this.socket.room = roomID;
     this.socket.join(roomID, () => {
       this.socket.nickname = data.username;
-      this.socket.room = roomID;
       const host = new Player(this.socket.nickname);
-      const room = new Room(this, roomID, host);
-      this._rooms.set(roomID, room);
+      const game = new Game(this, roomID, host);
+      this._games.set(roomID, game);
     });
   };
 
   joinRoom = (data) => {
     const { username, roomID } = data;
-    if (!this._rooms.has(roomID)) {
-      // there's no room error
-      return this.sendAction({
-        errors: ["There's no room found."],
-      });
-    } else if (this._rooms.get(roomID).stage === GAME_STAGES.active) {
-      // game is already started
-      return this.sendAction({
-        errors: ["Game is already started in this room."],
-      });
-    } else if (
-      this._rooms.get(roomID).players.find((p) => p.username === username)
-    ) {
-      // username is already taken for this room.
-      return this.sendAction({
-        errors: ["Username is already taken for this room."],
-      });
+    if (!this._games.has(roomID)) {
+      return this.sendError("There's no room found.");
+    } else if (this.findGame(roomID).stage === GAME_STAGES.active) {
+      return this.sendError("Game is already started in this room.");
+    } else if (this.findGame(roomID).findPlayer(username)) {
+      return this.sendError("Username is already taken for this room.");
     }
-
+    this.socket.room = roomID;
     this.socket.join(roomID, () => {
       this.socket.nickname = username;
-      this.socket.room = roomID;
       const player = new Player(this.socket.nickname);
-      this._rooms.get(roomID).registerPlayer(player);
+      this.findGame(roomID).registerPlayer(player);
     });
   };
 
-  startGame = () => {
-    const roomID = this.socket.room;
-    if (!roomID) {
-      // there's no room for the socket
-      return this.sendAction({
-        stage: "landing",
-        errors: ["Session is expired."],
+  findGame = (roomID) => this._games.get(roomID);
+
+  handleStartGame = () => {
+    const { room } = this.socket;
+    if (!room) {
+      return this.sendError("Session is expired.", {
+        room: { stage: GAME_STAGES.landing },
       });
+    } else if (this.findGame(room).players.length < 2) {
+      return this.sendError("There's not enough players to start.");
     }
-    if (this._rooms.get(roomID).players.length < 2) {
-      // there's not enough players in the room
-      return this.sendAction({
-        errors: ["There's not enough players to start."],
-      });
-    }
-    this._rooms.get(roomID).start();
+    this.findGame(room).start();
+  };
+
+  handleSubmitCard = (card) => {
+    const { nickname, room } = this.socket;
+    this.findGame(room).submitCard(nickname, card);
+  };
+
+  handleSubmitWinner = (winner) => {
+    const { room } = this.socket;
+    this.findGame(room).submitWinner(winner);
   };
 }
 

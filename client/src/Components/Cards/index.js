@@ -3,9 +3,9 @@ import { jsx, css } from "@emotion/core";
 
 const style = css({
   width: "100%",
-  marginTop: 40,
+  marginBottom: 40,
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "space-around",
 });
 
 export default ({ children }) => <div css={style}>{children}</div>;

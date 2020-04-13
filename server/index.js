@@ -11,6 +11,7 @@ const port = process.env.PORT || 5000;
 server.listen(port);
 const io = socketio(server);
 
+// eslint-disable-next-line no-console
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Serve static files from the React app
@@ -22,6 +23,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "../client/build/index.html"));
 });
 
-new RoomService(io);
+const Service = new RoomService();
+Service.registerListeners(io);
 
 console.log(`Server listening on ${port}`);

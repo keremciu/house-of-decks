@@ -51,7 +51,7 @@ export default (props) => (
     }}
   >
     <span>{props.label}</span>
-    <input id={props.name} {...props} />
+    <input id={props.name} {...props.field} {...props} />
   </motion.label>
 );
 
@@ -61,4 +61,8 @@ const formStyle = css({
   flexDirection: "column",
 });
 
-export const Form = ({ children }) => <div css={formStyle}>{children}</div>;
+export const Form = ({ children, onSubmit }) => (
+  <form onSubmit={onSubmit} css={formStyle}>
+    {children}
+  </form>
+);

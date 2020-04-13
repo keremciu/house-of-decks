@@ -65,7 +65,7 @@ const innerStyle = css({
 export default ({ children, ...props }) => (
   <div style={{ padding: 20, borderRadius: 100 }}>
     <motion.button
-      type="button"
+      type="submit"
       css={style(props)}
       style={props.style}
       whileHover={{

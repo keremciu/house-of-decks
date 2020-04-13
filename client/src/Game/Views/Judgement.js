@@ -1,11 +1,11 @@
 import React from "react";
 import Cards, { WhiteCard, BlackCard } from "Components/Cards";
 
-function JudgeView({
+function Judgement({
   isReadyToJudge,
   isCardCzar,
   blackCard,
-  players,
+  submitters,
   onSubmitWinner,
 }) {
   return (
@@ -15,17 +15,17 @@ function JudgeView({
         .fill(null)
         .map((blackCard, submissionIndex) => (
           <Cards key={submissionIndex}>
-            {players
+            {submitters
               .sort(() => Math.random() - 0.5)
               .map((player, index) => (
                 <WhiteCard
                   key={index}
                   {...(isCardCzar
-                    ? { onClick: () => onSubmitWinner(player) }
+                    ? { onClick: () => onSubmitWinner(player.username) }
                     : {})}
                 >
                   {isReadyToJudge
-                    ? players.submittedCards[submissionIndex].text
+                    ? player.submittedCards[submissionIndex].text
                     : "Waiting to play"}
                 </WhiteCard>
               ))}
@@ -35,4 +35,4 @@ function JudgeView({
   );
 }
 
-export default JudgeView;
+export default Judgement;

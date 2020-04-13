@@ -44,7 +44,7 @@ const Body = ({ children }) => <div css={bodyStyle}>{children}</div>;
 const Header = () => (
   <header css={headerStyle}>
     <h1>CARDS AGAINST HUMANITY</h1>
-    <p css={heroText}>a game for horrible people</p>
+    <p css={heroText}>a party game for horrible people.</p>
   </header>
 );
 const Footer = () => (
