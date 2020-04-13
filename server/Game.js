@@ -69,9 +69,7 @@ class Game {
     player.submittedCards.push(card);
     player.hasSubmitted = this.blackCard.pick === player.submittedCards.length;
     player.cards = player.cards.filter((c) => c.text === card.text);
-    if (index > -1) {
-      rooms[roomID].playerCards[player][index] = newCard;
-    }
+
     // check game state
     this.isReadyToJudge = this.submitters.every((p) => p.hasSubmitted);
     this.updateClients();
