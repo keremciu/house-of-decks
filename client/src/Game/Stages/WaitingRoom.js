@@ -21,6 +21,11 @@ function WaitingRoom() {
     socket.emit("start_game");
   }
 
+  function onLeave() {
+    dispatch(changeStageAction(GAME_STAGES.landing));
+    socket.emit("leave_room");
+  }
+
   return (
     <>
       <Scoreboard username={username} players={room.players} />
@@ -49,11 +54,7 @@ function WaitingRoom() {
       </p>
       <h2>{room.id}</h2>
       <Button onClick={onStart}>Start the Game</Button>
-      <Button
-        style={{ margin: "0 auto" }}
-        small
-        onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
-      >
+      <Button style={{ margin: "0 auto" }} small onClick={onLeave}>
         {BackIcon}
       </Button>
     </>

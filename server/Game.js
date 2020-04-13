@@ -28,6 +28,11 @@ class Game {
     this.updateClients();
   };
 
+  removePlayer = (username) => {
+    this.players = this.players.filter((p) => p.username !== username);
+    this.updateClients();
+  };
+
   findPlayer = (username) => this.players.find((p) => p.username === username);
 
   start = () => {

@@ -17,9 +17,8 @@ class RoomService {
       socket.on("start_game", this.handleStartGame);
       socket.on("submit_card", this.handleSubmitCard);
       socket.on("submit_winner", this.handleSubmitWinner);
-      socket.on("disconnect", function (reason) {
-        console.log("client disconnected", reason);
-      });
+      socket.on("leave_room", this.leaveRoom);
+      socket.on("disconnect", this.leaveRoom);
     });
   };
 
@@ -91,6 +90,15 @@ class RoomService {
   handleSubmitWinner = (winner) => {
     const { room } = this.socket;
     this.findGame(room).submitWinner(winner);
+  };
+
+  leaveRoom = (reason) => {
+    console.log(reason);
+    const roomID = this.socket.room;
+    this.socket.leave(roomID);
+    if (this._games.has(roomID)) {
+      this.findGame(roomID).removePlayer(this.socket.nickname);
+    }
   };
 }
 
