@@ -1,3 +1,4 @@
+import React, { Fragment } from "react";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { motion } from "framer-motion";
@@ -57,19 +58,32 @@ const blackCardStyle = css({
   },
 });
 
-export const BlackCard = ({ text, submittedCards = [] }) => {
+export const BlackCard = ({ text, submittedCards = [], ...props }) => {
   let aggregatedText = text.replace(/_/g, "______");
   if (submittedCards.length) {
-    if (text.indexOf(/_/g) > -1) {
-      let index = 0;
-      aggregatedText = text.replace(/_/g, function (match) {
-        return submittedCards[index++].text;
+    if (text.indexOf("_") > -1) {
+      const parts = text.split("_");
+      aggregatedText = parts.map((part, index) => {
+        return (
+          <Fragment key={index}>
+            {part}
+            <span>{submittedCards[index]?.text.replace(/\./g, "")}</span>
+          </Fragment>
+        );
       });
     } else {
-      aggregatedText = text.replace(/\?/g, function (match) {
-        return match + submittedCards[0].text;
-      });
+      aggregatedText = (
+        <Fragment>
+          {text}
+          <br />
+          <span>{submittedCards[0].text}</span>
+        </Fragment>
+      );
     }
   }
-  return <div css={blackCardStyle}>{aggregatedText}</div>;
+  return (
+    <div css={blackCardStyle} {...props}>
+      {aggregatedText}
+    </div>
+  );
 };
