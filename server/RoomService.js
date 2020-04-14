@@ -3,12 +3,13 @@ import Player from "./Player.js";
 import { GAME_STAGES } from "../client/src/Game/mappings.js";
 
 class RoomService {
-  constructor() {
+  constructor(io) {
+    this.io = io;
+    this.registerListeners(io);
     this._games = new Map();
   }
 
   registerListeners = (io) => {
-    this.io = io;
     io.on("connection", (socket) => {
       this.socket = socket;
       console.log("a user connected", socket.id);

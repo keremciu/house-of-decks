@@ -6,10 +6,9 @@ import socketio from "socket.io";
 import RoomService from "./RoomService.js";
 
 const app = express();
-const server = http.Server(app);
-const port = process.env.PORT || 5000;
-server.listen(port);
+const server = http.createServer(app);
 const io = socketio(server);
+const port = process.env.PORT || 5000;
 
 // eslint-disable-next-line no-console
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -23,7 +22,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "../client/build/index.html"));
 });
 
-const Service = new RoomService();
-Service.registerListeners(io);
-
-console.log(`Server listening on ${port}`);
+server.listen(port, () => {
+  new RoomService(io);
+  console.log("Server listening at port %d", port);
+});
