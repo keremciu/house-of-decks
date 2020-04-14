@@ -7,7 +7,7 @@ const filteredWhiteCards = cards.white
 class Player {
   constructor(username) {
     this.username = username;
-    this.cards = filteredWhiteCards.splice(-10, 10);
+    this.cards = filteredWhiteCards.splice(-8, 8);
     this.submittedCards = [];
     this.hasSubmitted = false;
     this.score = 0;

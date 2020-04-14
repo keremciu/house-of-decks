@@ -9,6 +9,9 @@ const style = css({
   marginBottom: 20,
   display: "flex",
   justifyContent: "space-around",
+  "@media only screen and (max-width: 600px)": {
+    flexWrap: "wrap",
+  },
 });
 
 export default ({ children }) => <div css={style}>{children}</div>;
@@ -19,7 +22,11 @@ const whiteCardStyle = (props) =>
     background: "white",
     borderRadius: 4,
     padding: 10,
-    width: "8%",
+    width: "10%",
+    "@media only screen and (max-width: 600px)": {
+      width: "25%",
+      marginBottom: 10,
+    },
     height: 260,
     ...(props.onClick
       ? {
@@ -52,7 +59,11 @@ const blackCardStyle = (props) =>
     color: "white",
     borderRadius: 4,
     padding: 10,
-    width: "8%",
+    width: "10%",
+    "@media only screen and (max-width: 600px)": {
+      width: "25%",
+      marginBottom: 10,
+    },
     height: 260,
     ...(props.onClick
       ? {
