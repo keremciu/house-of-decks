@@ -92,6 +92,11 @@ class Game {
 
   submitWinner = (winner) => {
     const player = this.findPlayer(winner);
+    this.lastWinner = {
+      blackCard: this.blackCard,
+      player,
+      submittedCards: player.submittedCards,
+    };
     player.score++;
 
     this.startNewRound();

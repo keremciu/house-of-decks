@@ -9,6 +9,7 @@ import Button, { BackIcon } from "Components/Button";
 
 import Judgement from "Game/Views/Judgement";
 import Scoreboard from "Game/Views/Scoreboard";
+import LastWinnerCard from "Game/Views/LastWinnerCard";
 
 function ActiveRoom() {
   const {
@@ -74,6 +75,7 @@ function ActiveRoom() {
   return (
     <>
       <Scoreboard username={username} czar={room.czar} players={room.players} />
+      {room.lastWinner && <LastWinnerCard lastWinner={room.lastWinner} />}
       <div style={{ height: 160 }} />
       {renderContent()}
       <Button
