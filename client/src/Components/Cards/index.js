@@ -45,18 +45,24 @@ export const WhiteCard = ({ children, ...props }) => (
   </motion.div>
 );
 
-const blackCardStyle = css({
-  fontWeight: "bold",
-  background: "black",
-  color: "white",
-  borderRadius: 4,
-  padding: 10,
-  width: "8%",
-  height: 260,
-  "& span": {
-    textDecoration: "underline",
-  },
-});
+const blackCardStyle = (props) =>
+  css({
+    fontWeight: "bold",
+    background: "black",
+    color: "white",
+    borderRadius: 4,
+    padding: 10,
+    width: "8%",
+    height: 260,
+    ...(props.onClick
+      ? {
+          cursor: "pointer",
+        }
+      : {}),
+    "& span": {
+      textDecoration: "underline",
+    },
+  });
 
 export const BlackCard = ({ text, submittedCards = [], ...props }) => {
   let aggregatedText = text.replace(/_/g, "______");
@@ -82,7 +88,7 @@ export const BlackCard = ({ text, submittedCards = [], ...props }) => {
     }
   }
   return (
-    <div css={blackCardStyle} {...props}>
+    <div css={blackCardStyle(props)} {...props}>
       {aggregatedText}
     </div>
   );

@@ -23,6 +23,10 @@ app.get("*", (req, res) => {
 });
 
 server.listen(port, () => {
-  new RoomService(io);
+  const games = new Map();
+  io.on("connect", (socket) => {
+    console.log("a user connected", socket.id);
+    new RoomService(io, socket, games);
+  });
   console.log("Server listening at port %d", port);
 });

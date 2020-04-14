@@ -64,8 +64,8 @@ class Game {
     this.isReadyToJudge = false;
   };
 
-  submitCard = (nickname, card) => {
-    const player = this.findPlayer(nickname);
+  submitCard = (username, card) => {
+    const player = this.findPlayer(username);
     player.submittedCards.push(card);
     player.hasSubmitted = this.blackCard.pick === player.submittedCards.length;
     // remove card

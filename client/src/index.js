@@ -7,7 +7,7 @@ import { StoreProvider } from "./Store";
 import SocketContext from "./SocketContext";
 import { Container as GameContainer } from "./Game";
 
-const socket = io();
+const socket = io({ transports: ["websocket"], upgrade: false });
 
 ReactDOM.render(
   <SocketContext.Provider value={socket}>

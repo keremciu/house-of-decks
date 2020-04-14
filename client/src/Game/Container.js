@@ -36,7 +36,8 @@ function Game() {
     }
     // Return a callback to be run before unmount-ing.
     return () => {
-      socket.close();
+      // think about reconnecting parts here
+      // socket.close();
     };
   }, []); // Pass in an empty array to only run on mount.
 
