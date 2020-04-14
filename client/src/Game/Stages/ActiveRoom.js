@@ -35,7 +35,11 @@ function ActiveRoom() {
 
   let renderContent = () => (
     <>
-      <BlackCard isReadyToJudge={true} text={blackCard.text} />
+      <BlackCard
+        showAlways={true}
+        isReadyToJudge={true}
+        text={blackCard.text}
+      />
       {Array(blackCard.pick)
         .fill(null)
         .map((blackCard, submissionIndex) => (

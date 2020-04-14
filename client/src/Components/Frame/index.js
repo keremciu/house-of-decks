@@ -15,6 +15,14 @@ const headerStyle = css({
   boxSizing: "border-box",
   width: "100%",
   textAlign: "center",
+  "h1 span": {
+    marginLeft: 10,
+    fontSize: 12,
+    border: "2px solid #808080",
+    padding: "2px 6px",
+    color: "#808080",
+    fontWeight: 700,
+  },
 });
 
 const footerStyle = css({
@@ -43,7 +51,9 @@ const Wrapper = ({ children }) => <div css={style}>{children}</div>;
 const Body = ({ children }) => <div css={bodyStyle}>{children}</div>;
 const Header = () => (
   <header css={headerStyle}>
-    <h1>CARDS AGAINST HUMANITY</h1>
+    <h1>
+      CARDS AGAINST HUMANITY<span>ALPHA</span>
+    </h1>
     <p css={heroText}>a party game for horrible people.</p>
   </header>
 );

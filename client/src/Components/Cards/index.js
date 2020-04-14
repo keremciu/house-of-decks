@@ -24,7 +24,7 @@ const whiteCardStyle = (props) =>
     padding: 10,
     width: "10%",
     "@media only screen and (max-width: 600px)": {
-      width: "25%",
+      width: "40%",
       marginBottom: 10,
     },
     height: 260,
@@ -61,10 +61,19 @@ const blackCardStyle = (props) =>
     padding: 10,
     width: "10%",
     "@media only screen and (max-width: 600px)": {
-      width: "25%",
+      width: "40%",
       marginBottom: 10,
     },
     height: 260,
+    ...(props.showAlways
+      ? {
+          "@media only screen and (max-width: 600px)": {
+            position: "sticky",
+            top: 0,
+            width: "40%",
+          },
+        }
+      : {}),
     ...(props.onClick
       ? {
           cursor: "pointer",
