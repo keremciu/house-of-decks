@@ -68,22 +68,29 @@ class RoomService {
 
   findGame = (roomID) => this._games.get(roomID);
 
-  handleStartGame = () => {
-    if (!this.room) {
+  checkSession = () => {
+    if (!this.socket.adapter.rooms.hasOwnProperty(this.room)) {
       return this.sendError("Session is expired.", {
         room: { stage: GAME_STAGES.landing },
       });
-    } else if (this.findGame(this.room).players.length < 2) {
+    }
+  };
+
+  handleStartGame = () => {
+    this.checkSession();
+    if (this.findGame(this.room).players.length < 2) {
       return this.sendError("There's not enough players to start.");
     }
     this.findGame(this.room).start();
   };
 
   handleSubmitCard = (card) => {
+    this.checkSession();
     this.findGame(this.room).submitCard(this.username, card);
   };
 
   handleSubmitWinner = (winner) => {
+    this.checkSession();
     this.findGame(this.room).submitWinner(winner);
   };
 

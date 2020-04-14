@@ -88,8 +88,19 @@ export const BlackCard = ({ text, submittedCards = [], ...props }) => {
     }
   }
   return (
-    <div css={blackCardStyle(props)} {...props}>
+    <motion.div
+      css={blackCardStyle(props)}
+      {...props}
+      {...(props.onClick
+        ? {
+            whileHover: {
+              scale: 1.05,
+            },
+            whileTap: { scale: 1.12 },
+          }
+        : {})}
+    >
       {aggregatedText}
-    </div>
+    </motion.div>
   );
 };
