@@ -68,7 +68,10 @@ class Game {
     const player = this.findPlayer(nickname);
     player.submittedCards.push(card);
     player.hasSubmitted = this.blackCard.pick === player.submittedCards.length;
-    player.cards = player.cards.filter((c) => c.text === card.text);
+    // remove card
+    player.cards = player.cards.filter((c) => c.text !== card.text);
+
+    console.log(player.submittedCards);
 
     // check game state
     this.isReadyToJudge = this.submitters.every((p) => p.hasSubmitted);

@@ -11,26 +11,20 @@ function Judgement({
   return (
     <>
       <h4>Submissions:</h4>
-      {Array(blackCard.pick)
-        .fill(null)
-        .map((blackCard, submissionIndex) => (
-          <Cards key={submissionIndex}>
-            {submitters
-              .sort(() => Math.random() - 0.5)
-              .map((player, index) => (
-                <WhiteCard
-                  key={index}
-                  {...(isCardCzar && isReadyToJudge
-                    ? { onClick: () => onSubmitWinner(player.username) }
-                    : {})}
-                >
-                  {isReadyToJudge
-                    ? player.submittedCards[submissionIndex].text
-                    : "Waiting to play"}
-                </WhiteCard>
-              ))}
-          </Cards>
-        ))}
+      <Cards>
+        {submitters
+          .sort(() => Math.random() - 0.5)
+          .map((player, index) => (
+            <BlackCard
+              key={index}
+              text={isReadyToJudge ? blackCard.text : "Waiting to play"}
+              submittedCards={player.submittedCards}
+              {...(isCardCzar && isReadyToJudge
+                ? { onClick: () => onSubmitWinner(player.username) }
+                : {})}
+            />
+          ))}
+      </Cards>
     </>
   );
 }

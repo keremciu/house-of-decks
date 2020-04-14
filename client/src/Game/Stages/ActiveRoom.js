@@ -33,22 +33,26 @@ function ActiveRoom() {
     socket.emit("submit_winner", player);
   }
 
-  let renderContent = () =>
-    Array(blackCard.pick)
-      .fill(null)
-      .map((blackCard, submissionIndex) => (
-        <Cards key={submissionIndex}>
-          {submittedCards.length === 1 && submissionIndex === 0
-            ? submittedCards.map((card, index) => (
-                <WhiteCard key={index}>{card.text}</WhiteCard>
-              ))
-            : cards.map((card, index) => (
-                <WhiteCard key={index} onClick={() => onSubmitCard(card)}>
-                  {card.text}
-                </WhiteCard>
-              ))}
-        </Cards>
-      ));
+  let renderContent = () => (
+    <>
+      <BlackCard text={blackCard.text} />
+      {Array(blackCard.pick)
+        .fill(null)
+        .map((blackCard, submissionIndex) => (
+          <Cards key={submissionIndex}>
+            {submittedCards.length === 1 && submissionIndex === 0
+              ? submittedCards.map((card, index) => (
+                  <WhiteCard key={index}>{card.text}</WhiteCard>
+                ))
+              : cards.map((card, index) => (
+                  <WhiteCard key={index} onClick={() => onSubmitCard(card)}>
+                    {card.text}
+                  </WhiteCard>
+                ))}
+          </Cards>
+        ))}
+    </>
+  );
 
   if (isCardCzar || hasSubmitted) {
     renderContent = () => (
@@ -65,9 +69,8 @@ function ActiveRoom() {
   // remove back button and put leave
   return (
     <>
-      <Scoreboard czar={room.czar} players={room.players} />
+      <Scoreboard username={username} czar={room.czar} players={room.players} />
       <div style={{ height: 160 }} />
-      <BlackCard>{blackCard.text}</BlackCard>
       {renderContent()}
       <Button
         style={{ margin: "0 auto" }}
