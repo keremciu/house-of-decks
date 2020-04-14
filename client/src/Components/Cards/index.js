@@ -71,6 +71,7 @@ const blackCardStyle = (props) =>
             position: "sticky",
             top: 0,
             width: "40%",
+            zIndex: 50,
           },
         }
       : {}),
