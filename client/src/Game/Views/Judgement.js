@@ -11,13 +11,19 @@ function Judgement({
   return (
     <>
       <h4>Submissions:</h4>
+      <p>
+        {isCardCzar &&
+          isReadyToJudge &&
+          "You need to choose the funniest black card"}
+      </p>
       <Cards>
         {submitters
           .sort(() => Math.random() - 0.5)
           .map((player, index) => (
             <BlackCard
               key={index}
-              text={isReadyToJudge ? blackCard.text : "Waiting to play"}
+              text={blackCard.text}
+              isReadyToJudge={isReadyToJudge}
               submittedCards={player.submittedCards}
               {...(isCardCzar && isReadyToJudge
                 ? { onClick: () => onSubmitWinner(player.username) }
