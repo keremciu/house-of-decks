@@ -4,6 +4,9 @@ import cards from "./data.json";
 const filteredBlackCards = cards.black
   .filter((card) => card.deck === "Base")
   .sort(() => Math.random() - 0.5);
+const filteredWhiteCards = cards.white
+  .filter((card) => card.deck === "Base")
+  .sort(() => Math.random() - 0.5);
 
 class Game {
   constructor(service, roomID, host) {
@@ -41,6 +44,9 @@ class Game {
     this.submitters = this.players.filter((p) => p.username !== this.czar);
     this.stage = GAME_STAGES.active;
     this.blackCard = filteredBlackCards.pop();
+    this.players.forEach((player) => {
+      player.cards = filteredWhiteCards.splice(-8, 8);
+    });
     this.updateClients();
   };
 
@@ -49,6 +55,12 @@ class Game {
     this.players.forEach((player) => {
       player.submittedCards = [];
       player.hasSubmitted = false;
+    });
+    this.submitters.forEach((submitter) => {
+      submitter.cards = [
+        ...submitter.cards,
+        ...filteredWhiteCards.splice(-this.blackCard.pick, this.blackCard.pick),
+      ];
     });
     // find new czar and clear game state
     const oldCzarIndex = this.players.findIndex(
