@@ -67,11 +67,7 @@ export const BlackCard = ({ text, submittedCards = [] }) => {
       });
     } else {
       aggregatedText = text.replace(/\?/g, function (match) {
-        return (
-          <span>
-            {match} {submittedCards[0].text}
-          </span>
-        );
+        return match + submittedCards[0].text;
       });
     }
   }
