@@ -23,4 +23,4 @@ I used [this repository](https://github.com/crhallberg/json-against-humanity) to
 
 This repository is just an online clone.
 
-Card Against Humanity is distributed under a Creative Commons Attribution-ShareAlike 4.0 International Public License.
+Cards Against Humanity is distributed under a Creative Commons Attribution-ShareAlike 4.0 International Public License.

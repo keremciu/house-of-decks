@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
 
 const style = css({
   width: "100%",
@@ -35,22 +36,27 @@ const whiteCardStyle = (props) =>
       : {}),
   });
 
-export const WhiteCard = ({ children, ...props }) => (
-  <motion.div
-    css={whiteCardStyle(props)}
-    {...props}
-    {...(props.onClick
-      ? {
-          whileHover: {
-            scale: 1.05,
-          },
-          whileTap: { scale: 1.12 },
-        }
-      : {})}
-  >
-    {children}
-  </motion.div>
-);
+export const WhiteCard = ({ children, ...props }) => {
+  const isDesktopOrLaptop = useMediaQuery({ minDeviceWidth: 1224 });
+  return (
+    <motion.div
+      css={whiteCardStyle(props)}
+      {...props}
+      {...(props.onClick
+        ? {
+            ...(isDesktopOrLaptop && {
+              whileHover: {
+                scale: 1.05,
+              },
+            }: {}),
+            whileTap: { scale: isDesktopOrLaptop ? 1.12 : 1.05 },
+          }
+        : {})}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const blackCardStyle = (props) =>
   css({

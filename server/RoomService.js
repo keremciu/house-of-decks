@@ -69,7 +69,10 @@ class RoomService {
   findGame = (roomID) => this._games.get(roomID);
 
   checkSession = () => {
-    if (!this.socket.adapter.rooms.hasOwnProperty(this.room)) {
+    if (
+      !this.socket.adapter.rooms.hasOwnProperty(this.room) &&
+      !this.findGame(this.room)
+    ) {
       return this.sendError("Session is expired.", {
         room: { stage: GAME_STAGES.landing },
       });

@@ -1,4 +1,5 @@
 :root {
+  --serif-font: "New York Medium", -apple-system-ui-serif, ui-serif, serif;
   --color-gray: #908a84;
   -webkit-tap-highlight-color: transparent;
 }
