@@ -60,7 +60,7 @@ const heroText = css({
   fontFamily: "var(--serif-font)",
   color: "var(--color-gray)",
   fontSize: 20,
-  fontWeight: 600,
+  fontWeight: 500,
 });
 
 // components
