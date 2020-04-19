@@ -11,15 +11,21 @@ function Scoreboard({ czar = "", username, players }) {
         paddingRight: 20,
       }}
     >
-      <h4>Players</h4>
-      {players.map((player, index) => (
-        <div key={index}>
-          {czar === player.username && "🧑‍⚖️"}
-          {player.username}
-          {username === player.username && <small> (You)</small>}:
-          <strong style={{ float: "right" }}>{player.score}</strong>
-        </div>
-      ))}
+      <h4 style={{ margin: 0 }}>Players</h4>
+      <div style={{ display: "grid" }}>
+        {players.map((player, index) => (
+          <React.Fragment key={index}>
+            <div style={{ gridColumn: 1 }}>
+              {czar === player.username && "🧑‍⚖️"}
+              {player.username}
+              {username === player.username && <small> (You)</small>}:
+            </div>
+            <div style={{ gridColumn: 2, fontWeight: "bold" }}>
+              {player.score}
+            </div>
+          </React.Fragment>
+        ))}
+      </div>
     </div>
   );
 }

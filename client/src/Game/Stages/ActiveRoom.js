@@ -79,6 +79,7 @@ function ActiveRoom() {
       <div style={{ height: 160 }} />
       {renderContent()}
       <Button
+        wrapperStyle={{ marginTop: "auto" }}
         style={{ margin: "0 auto" }}
         small
         onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}

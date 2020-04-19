@@ -62,8 +62,8 @@ const innerStyle = css({
   height: "100%",
 });
 
-export default ({ children, ...props }) => (
-  <div style={{ padding: 20, borderRadius: 100 }}>
+export default ({ children, wrapperStyle = {}, ...props }) => (
+  <div style={{ padding: 20, borderRadius: 100, ...wrapperStyle }}>
     <motion.button
       type="submit"
       css={style(props)}

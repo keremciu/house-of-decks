@@ -126,6 +126,7 @@ const flexStyle = css({
   justifyContent: "center",
   flexDirection: "column",
   alignItems: "center",
+  height: "100vh",
   "& > button": {
     margin: "50px 0",
   },

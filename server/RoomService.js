@@ -71,9 +71,9 @@ class RoomService {
   checkSession = () => {
     if (
       !this.socket.adapter.rooms.hasOwnProperty(this.room) &&
-      !this.findGame(this.room)
+      !this._games.has(roomID)
     ) {
-      return this.sendError("Session is expired.", {
+      return this.sendError("Session has expired.", {
         room: { stage: GAME_STAGES.landing },
       });
     }
@@ -81,8 +81,10 @@ class RoomService {
 
   handleStartGame = () => {
     this.checkSession();
-    if (this.findGame(this.room).players.length < 2) {
-      return this.sendError("There's not enough players to start.");
+    if (this.findGame(this.room).players.length < 3) {
+      return this.sendError(
+        "There should be at least 3 players to start game."
+      );
     }
     this.findGame(this.room).start();
   };
@@ -102,6 +104,9 @@ class RoomService {
     this.socket.leave(this.room);
     if (this._games.has(this.room)) {
       this.findGame(this.room).removePlayer(this.username);
+      if (this.findGame(this.room).players.length === 0) {
+        this._games.delete(this.room);
+      }
     }
   };
 }

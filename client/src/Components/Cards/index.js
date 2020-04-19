@@ -26,6 +26,7 @@ const whiteCardStyle = (props) =>
     width: "10%",
     "@media only screen and (max-width: 600px)": {
       width: "40%",
+      height: "auto",
       marginBottom: 10,
     },
     height: 260,
@@ -76,8 +77,9 @@ const blackCardStyle = (props) =>
           "@media only screen and (max-width: 600px)": {
             position: "sticky",
             top: 0,
-            width: "40%",
+            width: "90%",
             zIndex: 50,
+            height: "auto",
           },
         }
       : {}),

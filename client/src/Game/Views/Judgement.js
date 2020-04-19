@@ -1,4 +1,5 @@
 import React from "react";
+import Scoreboard from "Game/Views/Scoreboard";
 import Cards, { WhiteCard, BlackCard } from "Components/Cards";
 
 function Judgement({

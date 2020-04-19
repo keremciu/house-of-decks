@@ -6,22 +6,32 @@ function LastWinnerCard({ lastWinner }) {
     <div
       style={{
         position: "fixed",
-        top: 0,
-        left: 0,
+        top: 4,
+        left: 4,
+        padding: "0px 6px 8px",
         width: 140,
-        border: "1px solid #808080",
         background: "black",
         color: "white",
+        borderRadius: "4px",
       }}
     >
       <h6 style={{ margin: "5px 0px" }}>
-        Last Winner: {lastWinner.player.username} 🥳
+        Last Winner{" "}
+        <strong
+          style={{
+            background: "blueviolet",
+            borderRadius: "5px",
+            padding: "2px 4px",
+          }}
+        >
+          {lastWinner.player.username} 🥳
+        </strong>
       </h6>
       <BlackCard
         style={{
           width: "100%",
           fontSize: 11,
-          height: 140,
+          height: "auto",
           boxSizing: "border-box",
           padding: 0,
         }}
