@@ -28,6 +28,16 @@ const headerStyle = css({
     fontWeight: 700,
     height: "100%",
   },
+  "@media only screen and (max-width: 600px)": {
+    h1: {
+      flexDirection: "column",
+      alignItems: "center",
+      span: {
+        marginTop: 6,
+        width: 36,
+      },
+    },
+  },
 });
 
 const footerStyle = css({
