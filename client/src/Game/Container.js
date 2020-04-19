@@ -69,7 +69,12 @@ const StageRenderer = ({ stage, errors, dispatch }) => {
       <Frame.Body>
         <ErrorBoundary dispatch={dispatch}>
           <Notifications errors={errors} onClose={onClose} />
-          <AnimatePresence exitBeforeEnter initial={false}>
+          <AnimatePresence
+            exitBeforeEnter
+            initial="exit"
+            animate="enter"
+            exit="exit"
+          >
             {renderStage(stage)}
           </AnimatePresence>
         </ErrorBoundary>
@@ -83,10 +88,10 @@ const renderStage = (gameStage) => {
   const wrap = (stageContent) => (
     <motion.div
       key={gameStage}
-      className="single"
       initial="exit"
       animate="enter"
       exit="exit"
+      style={{ display: "contents" }}
     >
       <motion.div variants={stageVariants} css={flexStyle}>
         {stageContent}
@@ -126,7 +131,6 @@ const flexStyle = css({
   justifyContent: "center",
   flexDirection: "column",
   alignItems: "center",
-  height: "100vh",
   "& > button": {
     margin: "50px 0",
   },
