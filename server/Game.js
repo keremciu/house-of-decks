@@ -12,6 +12,7 @@ class Game {
   constructor(service, roomID, host) {
     this.service = service;
     this.id = roomID;
+    this.host = host.username;
     this.stage = GAME_STAGES.waiting;
     this.players = [host];
     this.isReadyToJudge = false;

@@ -53,7 +53,9 @@ function WaitingRoom() {
         Please ask your friends to enter this Room ID
       </p>
       <h2>{room.id}</h2>
-      <Button onClick={onStart}>Start the Game</Button>
+      {room.host === username && (
+        <Button onClick={onStart}>Start the Game</Button>
+      )}
       <Button style={{ margin: "0 auto" }} small onClick={onLeave}>
         {BackIcon}
       </Button>
