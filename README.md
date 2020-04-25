@@ -4,14 +4,11 @@ Made for fun! Online version of [Cards Against Humanity](https://cardsagainsthum
 
 ### Commands
 
-I used `yarn` as package manager for this project.
-
-1. `yarn & (cd client && yarn)`
-2. `yarn start`
+`npm run start`
 
 #### For development
 
-`yarn dev`
+`npm run dev`
 
 ### Credits
 
