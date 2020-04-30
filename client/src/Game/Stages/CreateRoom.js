@@ -40,6 +40,7 @@ function CreateRoom() {
     <>
       <Formik
         validateOnChange={false}
+        validateOnBlur={false}
         initialValues={initialValues}
         validate={validate(getValidationSchema, errors, setErrors)}
         onSubmit={onSubmit}
@@ -84,6 +85,7 @@ function getValidationSchema(values) {
   return object().shape({
     username: string()
       .min(3, `Username has to be longer than ${3} characters!`)
+      .max(10, `Username can't be longer than ${10} characters!`)
       .required("Username is required!"),
   });
 }

@@ -20,11 +20,12 @@ const initialValues = {
 function JoinRoom() {
   const {
     state: {
-      game: { errors },
+      game: { errors, serverValues },
     },
     dispatch,
   } = React.useContext(StoreContext);
   const socket = useContext(SocketContext);
+
   function onSubmit(values, { setSubmitting, setErrors }) {
     socket.emit("join_room", values);
     dispatch(sendFormAction(values));
@@ -38,7 +39,11 @@ function JoinRoom() {
     <>
       <Formik
         validateOnChange={false}
-        initialValues={initialValues}
+        validateOnBlur={false}
+        initialValues={{
+          ...initialValues,
+          ...serverValues,
+        }}
         validate={validate(getValidationSchema, errors, setErrors)}
         onSubmit={onSubmit}
       >
@@ -61,6 +66,7 @@ function JoinRoomForm(props) {
     handleChange,
     handleBlur,
     handleSubmit,
+    values,
   } = props;
 
   return (
@@ -68,12 +74,14 @@ function JoinRoomForm(props) {
       <Input
         label="Your username"
         name="username"
+        value={values.username}
         onBlur={handleBlur}
         onChange={handleChange}
       />
       <Input
         label="Room ID"
         name="roomID"
+        value={values.roomID}
         onBlur={handleBlur}
         onChange={handleChange}
       />
@@ -88,6 +96,7 @@ function getValidationSchema(values) {
   return object().shape({
     username: string()
       .min(3, `Username has to be longer than ${3} characters!`)
+      .max(10, `Username can't be longer than ${10} characters!`)
       .required("Username is required!"),
     roomID: string()
       .min(6, `Room ID has to be longer than ${6} characters!`)

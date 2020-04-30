@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import useClipboard from "react-use-clipboard";
 import SocketContext from "SocketContext";
 import { StoreContext } from "Store";
 import { changeStageAction } from "Game/actions";
@@ -16,6 +17,12 @@ function WaitingRoom() {
     dispatch,
   } = React.useContext(StoreContext);
   const socket = useContext(SocketContext);
+  const [isCopied, setCopied] = useClipboard(
+    `${window.location.origin}/?room=${room.id}`,
+    {
+      successDuration: 1500,
+    }
+  );
 
   function onStart() {
     socket.emit("start_game");
@@ -30,30 +37,40 @@ function WaitingRoom() {
     <>
       <Scoreboard username={username} players={room.players} />
       <div style={{ height: 260 }} />
-      <motion.h2
-        animate={{
-          opacity: [1, 1, 0, 1],
-        }}
-        transition={{
-          duration: 2,
-          ease: [0.43, 0.13, 0.23, 0.96],
-          loop: Infinity,
-        }}
-      >
-        Waiting for other players...
-      </motion.h2>
-      <p
-        style={{
-          color: "#707070",
-          textAlign: "center",
-          marginBottom: 0,
-          fontStyle: "italic",
-        }}
-      >
-        Please ask your friends to enter this Room ID
-      </p>
-      <h2>{room.id}</h2>
-      {room.host === username && (
+      <div>
+        <div
+          onClick={setCopied}
+          style={{
+            cursor: "pointer",
+            textAlign: "center",
+            fontStyle: "italic",
+          }}
+        >
+          <h1>{room.id}</h1>
+          <p
+            style={{
+              color: "#707070",
+              marginBottom: 0,
+            }}
+          >
+            Click to copy link and share with your friends.
+          </p>
+          <div style={{ height: 30 }}>{isCopied ? "Copied 👍" : ""}</div>
+        </div>
+        <motion.h2
+          animate={{
+            opacity: [1, 1, 0, 1],
+          }}
+          transition={{
+            duration: 3,
+            ease: [0.43, 0.13, 0.23, 0.96],
+            loop: Infinity,
+          }}
+        >
+          Waiting for other players...
+        </motion.h2>
+      </div>
+      {room.host === username && room.players.length > 1 && (
         <Button onClick={onStart}>Start the Game</Button>
       )}
       <Button style={{ margin: "0 auto" }} small onClick={onLeave}>

@@ -25,11 +25,25 @@ function Game() {
   } = useContext(StoreContext);
   const socket = useContext(SocketContext);
 
+  const search = window.location.search;
+  const params = new URLSearchParams(search);
+  const roomID = params.get("room");
+
   useEffect(() => {
     try {
       socket.open();
       socket.on("game_action", (action) => {
         dispatch(action);
+        if (
+          game.room.host === game.username &&
+          game.room.players.length === 1
+        ) {
+          window.history.replaceState(
+            "",
+            "",
+            `?room=${action.payload.room.id}`
+          );
+        }
       });
     } catch (error) {
       console.log(error);
@@ -40,6 +54,22 @@ function Game() {
       // socket.close();
     };
   }, []); // Pass in an empty array to only run on mount.
+
+  useEffect(() => {
+    if (!game.roomID && !!roomID) {
+      dispatch({
+        type: "NAH_SERVER_RESPONSE",
+        payload: {
+          room: {
+            stage: GAME_STAGES.join,
+          },
+          serverValues: {
+            roomID,
+          },
+        },
+      });
+    }
+  }, [window.location.search]);
 
   return (
     <StageRenderer
