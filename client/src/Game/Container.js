@@ -36,7 +36,7 @@ function Game() {
         dispatch(action);
         if (
           game.room.host === game.username &&
-          game.room.players.length === 1 &&
+          game.room?.players.length === 1 &&
           action.payload.room
         ) {
           window.history.replaceState(

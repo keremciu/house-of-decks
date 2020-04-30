@@ -77,7 +77,7 @@ function WaitingRoom() {
       <Button
         small
         onClick={onLeave}
-        wrapperStyle={{ marginTop: "auto", marginBottom: 40 }}
+        wrapperStyle={{ marginTop: "auto", marginBottom: 20 }}
       >
         {BackIcon}
       </Button>

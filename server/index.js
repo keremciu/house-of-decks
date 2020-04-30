@@ -8,6 +8,7 @@ import RoomService from "./RoomService.js";
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+io.set("transports", ["websocket"]);
 const port = process.env.PORT || 5000;
 
 // eslint-disable-next-line no-console
