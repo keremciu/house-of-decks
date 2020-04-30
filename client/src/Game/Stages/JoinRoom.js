@@ -52,6 +52,7 @@ function JoinRoom() {
       <Button
         small
         onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
+        wrapperStyle={{ marginTop: "auto", marginBottom: 40 }}
       >
         {BackIcon}
       </Button>
@@ -99,7 +100,7 @@ function getValidationSchema(values) {
       .max(10, `Username can't be longer than ${10} characters!`)
       .required("Username is required!"),
     roomID: string()
-      .min(6, `Room ID has to be longer than ${6} characters!`)
+      .min(3, `Room ID has to be longer than ${3} characters!`)
       .required("Room ID is required!"),
   });
 }

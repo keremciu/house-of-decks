@@ -37,12 +37,11 @@ function WaitingRoom() {
     <>
       <Scoreboard username={username} players={room.players} />
       <div style={{ height: 260 }} />
-      <div>
+      <div style={{ textAlign: "center" }}>
         <div
           onClick={setCopied}
           style={{
             cursor: "pointer",
-            textAlign: "center",
             fontStyle: "italic",
           }}
         >
@@ -67,13 +66,19 @@ function WaitingRoom() {
             loop: Infinity,
           }}
         >
-          Waiting for other players...
+          {room.host === username
+            ? "Waiting for other players..."
+            : "Waiting for host..."}
         </motion.h2>
       </div>
       {room.host === username && room.players.length > 1 && (
         <Button onClick={onStart}>Start the Game</Button>
       )}
-      <Button style={{ margin: "0 auto" }} small onClick={onLeave}>
+      <Button
+        small
+        onClick={onLeave}
+        wrapperStyle={{ marginTop: "auto", marginBottom: 40 }}
+      >
         {BackIcon}
       </Button>
     </>

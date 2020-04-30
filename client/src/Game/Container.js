@@ -36,7 +36,8 @@ function Game() {
         dispatch(action);
         if (
           game.room.host === game.username &&
-          game.room.players.length === 1
+          game.room.players.length === 1 &&
+          action.payload.room
         ) {
           window.history.replaceState(
             "",
@@ -148,7 +149,7 @@ const transition = {
 };
 
 const stageVariants = {
-  exit: { y: "10%", opacity: 0, transition },
+  exit: { y: "-10%", opacity: 0, transition },
   enter: {
     y: "0%",
     opacity: 1,
@@ -158,7 +159,7 @@ const stageVariants = {
 
 const flexStyle = css({
   display: "flex",
-  justifyContent: "center",
+  flex: "1",
   flexDirection: "column",
   alignItems: "center",
   "& > button": {

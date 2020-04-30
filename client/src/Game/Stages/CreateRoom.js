@@ -50,6 +50,7 @@ function CreateRoom() {
       <Button
         small
         onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
+        wrapperStyle={{ marginTop: "auto", marginBottom: 40 }}
       >
         {BackIcon}
       </Button>

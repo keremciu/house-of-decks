@@ -71,9 +71,13 @@ const footerStyle = css({
 });
 
 const bodyStyle = css({
+  height: "100%",
   width: "100%",
+  display: "flex",
   flex: "1 1 auto",
   fontSize: 18,
+  flexDirection: "column",
+  justifyContent: "center",
 });
 
 const heroText = css({
