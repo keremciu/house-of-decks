@@ -2,6 +2,7 @@ import React, { useContext, useState, useRef } from "react";
 import { Formik } from "formik";
 import { string, object } from "yup";
 import { motion } from "framer-motion";
+import usePortal from "react-cool-portal";
 
 // relative
 import SocketContext from "SocketContext";
@@ -75,12 +76,9 @@ function CreateRoomForm(props) {
     handleBlur,
     handleSubmit,
   } = props;
-
-  const [showDeckSelect, setShowDeckSelect] = useState(false);
-
-  function customizeCards() {
-    setShowDeckSelect(true);
-  }
+  const { Portal, show, hide } = usePortal({
+    defaultShow: false,
+  });
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -90,14 +88,10 @@ function CreateRoomForm(props) {
         onBlur={handleBlur}
         onChange={handleChange}
       />
-      {showDeckSelect && (
-        <DeckSelect handleClose={() => setShowDeckSelect(false)} />
-      )}
-      <Button
-        secondary
-        onClick={customizeCards}
-        wrapperStyle={{ paddingBottom: 0 }}
-      >
+      <Portal style={{ width: "100%" }}>
+        <DeckSelect handleClose={hide} />
+      </Portal>
+      <Button secondary onClick={show} wrapperStyle={{ paddingBottom: 0 }}>
         Customize Cards ►
       </Button>
       <Button onClick={handleSubmit} type="submit">

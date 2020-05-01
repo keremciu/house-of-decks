@@ -26,6 +26,7 @@
   "dependencies": {
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "react-cool-portal": "^1.0.6",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {

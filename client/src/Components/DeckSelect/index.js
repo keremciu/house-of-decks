@@ -11,7 +11,7 @@ import decksObject from "./decks.json";
 
 const style = css({
   position: "fixed",
-  top: -260,
+  top: 0,
   left: 0,
   width: "100%",
   height: "100vh",
@@ -20,15 +20,12 @@ const style = css({
   flexDirection: "column",
   alignItems: "center",
   zIndex: 100,
-  "@media only screen and (max-width: 600px)": {
-    top: -300,
-  },
 });
 
 const itemsWrapper = css({
   overflowY: "auto",
   width: "100%",
-  height: "calc(100% - 112px)",
+  height: "calc(100vh - 112px)",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -43,9 +40,13 @@ const itemStyle = css({
   alignItems: "center",
 });
 
-const footer = css({});
+const footer = css({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
 
-const DeckSelect = ({ items = decksObject.decks, handleClose }) => {
+const DeckSelect = ({ items }) => {
   const { playCheck } = useContext(SoundContext);
   const [field, meta, helpers] = useField("decks");
 
@@ -67,22 +68,22 @@ const DeckSelect = ({ items = decksObject.decks, handleClose }) => {
     playCheck();
   }
 
+  return items.map((deck) => (
+    <div css={itemStyle} key={deck.key} onClick={() => toggleDeck(deck.key)}>
+      <Tick
+        isChecked={selectedDecks[deck.key]}
+        setIsChecked={() => toggleDeck(deck.key)}
+      />
+      {deck.title}
+    </div>
+  ));
+};
+
+const DeckSelectField = ({ items = decksObject.decks, handleClose }) => {
   return (
     <div css={style}>
       <div css={itemsWrapper}>
-        {items.map((deck) => (
-          <div
-            css={itemStyle}
-            key={deck.key}
-            onClick={() => toggleDeck(deck.key)}
-          >
-            <Tick
-              isChecked={selectedDecks[deck.key]}
-              setIsChecked={() => toggleDeck(deck.key)}
-            />
-            {deck.title}
-          </div>
-        ))}
+        <DeckSelect items={items} />
       </div>
       <div css={footer}>
         <Button
@@ -97,4 +98,4 @@ const DeckSelect = ({ items = decksObject.decks, handleClose }) => {
   );
 };
 
-export default DeckSelect;
+export default DeckSelectField;
