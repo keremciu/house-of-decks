@@ -1,21 +1,20 @@
 import { GAME_STAGES } from "../client/src/Game/mappings.js";
 import cards from "./data.json";
 
-const filteredBlackCards = cards.black
-  .filter((card) => card.deck === "Base")
-  .sort(() => Math.random() - 0.5);
-const filteredWhiteCards = cards.white
-  .filter((card) => card.deck === "Base")
-  .sort(() => Math.random() - 0.5);
-
 class Game {
-  constructor(service, roomID, host) {
+  constructor(service, roomID, host, selectedDecks) {
     this.service = service;
     this.id = roomID;
     this.host = host.username;
     this.stage = GAME_STAGES.waiting;
     this.players = [host];
     this.isReadyToJudge = false;
+    this.filteredBlackCards = cards.black
+      .filter((card) => selectedDecks.includes(card.deck))
+      .sort(() => Math.random() - 0.5);
+    this.filteredWhiteCards = cards.white
+      .filter((card) => selectedDecks.includes(card.deck))
+      .sort(() => Math.random() - 0.5);
     this.updateClients();
   }
 
@@ -44,9 +43,9 @@ class Game {
     this.czar = this.players[czarIndex].username;
     this.submitters = this.players.filter((p) => p.username !== this.czar);
     this.stage = GAME_STAGES.active;
-    this.blackCard = filteredBlackCards.pop();
+    this.blackCard = this.filteredBlackCards.pop();
     this.players.forEach((player) => {
-      player.cards = filteredWhiteCards.splice(-8, 8);
+      player.cards = this.filteredWhiteCards.splice(-8, 8);
     });
     this.updateClients();
   };
@@ -60,7 +59,10 @@ class Game {
     this.submitters.forEach((submitter) => {
       submitter.cards = [
         ...submitter.cards,
-        ...filteredWhiteCards.splice(-this.blackCard.pick, this.blackCard.pick),
+        ...this.filteredWhiteCards.splice(
+          -this.blackCard.pick,
+          this.blackCard.pick
+        ),
       ];
     });
     // find new czar and clear game state
@@ -73,7 +75,7 @@ class Game {
     }
     this.czar = this.players[czarIndex].username;
     this.submitters = this.players.filter((p) => p.username !== this.czar);
-    this.blackCard = filteredBlackCards.pop();
+    this.blackCard = this.filteredBlackCards.pop();
     this.isReadyToJudge = false;
   };
 

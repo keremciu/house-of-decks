@@ -55,11 +55,7 @@ function JoinRoom() {
       >
         {JoinRoomForm}
       </Formik>
-      <Button
-        small
-        onClick={onLeave}
-        wrapperStyle={{ marginTop: "auto", marginBottom: 20 }}
-      >
+      <Button small onClick={onLeave} wrapperStyle={{ marginTop: "auto" }}>
         {BackIcon}
       </Button>
     </>

@@ -61,6 +61,24 @@ const style = (props) =>
       : {
           height: 100,
         }),
+    ...(props.secondary
+      ? {
+          height: 72,
+          background: "#efeeee",
+          color: "var(--color-gray)",
+          fontSize: 16,
+          boxShadow:
+            "rgb(245,245,245) -10px -10px 20px 0px, rgb(224, 224, 224) 10px 10px 20px 0px",
+          "@media (hover: hover)": {
+            "&:hover": {
+              color: "black",
+            },
+            "&:hover > span ": {
+              boxShadow: "none",
+            },
+          },
+        }
+      : {}),
   });
 
 const innerStyle = css({
@@ -73,12 +91,18 @@ const innerStyle = css({
   height: "100%",
 });
 
-export default ({ children, wrapperStyle = {}, onClick, ...props }) => {
+export default ({
+  children,
+  wrapperStyle = {},
+  onClick,
+  type = "button",
+  ...props
+}) => {
   const { playButton } = useContext(SoundContext);
   return (
     <div style={{ padding: 20, ...wrapperStyle }}>
       <motion.button
-        type="submit"
+        type={type}
         css={style(props)}
         style={props.style}
         title={props.title}

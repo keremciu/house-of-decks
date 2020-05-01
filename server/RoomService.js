@@ -55,7 +55,7 @@ class RoomService {
       this.room = roomID;
       this.username = data.username;
       const host = new Player(this.username);
-      const game = new Game(this, roomID, host);
+      const game = new Game(this, roomID, host, data.decks);
       this._games.set(roomID, game);
     });
   };

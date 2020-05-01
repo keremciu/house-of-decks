@@ -75,11 +75,7 @@ function WaitingRoom() {
       {room.host === username && room.players.length > 1 && (
         <Button onClick={onStart}>Start the Game</Button>
       )}
-      <Button
-        small
-        onClick={onLeave}
-        wrapperStyle={{ marginTop: "auto", marginBottom: 20 }}
-      >
+      <Button small onClick={onLeave} wrapperStyle={{ marginTop: "auto" }}>
         {BackIcon}
       </Button>
     </>

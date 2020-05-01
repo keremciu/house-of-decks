@@ -94,11 +94,7 @@ function ActiveRoom() {
       {room.lastWinner && <LastWinnerCard lastWinner={room.lastWinner} />}
       <div style={{ height: 160 }} />
       {renderContent()}
-      <Button
-        small
-        onClick={onLeave}
-        wrapperStyle={{ marginTop: "auto", marginBottom: 20 }}
-      >
+      <Button small onClick={onLeave} wrapperStyle={{ marginTop: "auto" }}>
         {BackIcon}
       </Button>
     </>

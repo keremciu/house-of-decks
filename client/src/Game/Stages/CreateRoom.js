@@ -12,9 +12,13 @@ import validate from "utils/validate";
 
 import Button, { BackIcon } from "Components/Button";
 import Input, { Form } from "Components/Input";
+import DeckSelect from "Components/DeckSelect";
 
 const initialValues = {
   username: "",
+  decks: {
+    base: true,
+  },
 };
 
 function CreateRoom() {
@@ -25,9 +29,14 @@ function CreateRoom() {
     dispatch,
   } = useContext(StoreContext);
   const socket = useContext(SocketContext);
+
   function onSubmit(values, test) {
+    const decks = Object.keys(values.decks).filter(
+      (deck) => values.decks[deck]
+    );
     socket.emit("create_room", {
       username: values.username,
+      decks,
     });
     dispatch(sendFormAction(values));
   }
@@ -50,7 +59,7 @@ function CreateRoom() {
       <Button
         small
         onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
-        wrapperStyle={{ marginTop: "auto", marginBottom: 20 }}
+        wrapperStyle={{ marginTop: "auto" }}
       >
         {BackIcon}
       </Button>
@@ -67,6 +76,12 @@ function CreateRoomForm(props) {
     handleSubmit,
   } = props;
 
+  const [showDeckSelect, setShowDeckSelect] = useState(false);
+
+  function customizeCards() {
+    setShowDeckSelect(true);
+  }
+
   return (
     <Form onSubmit={handleSubmit}>
       <Input
@@ -75,6 +90,16 @@ function CreateRoomForm(props) {
         onBlur={handleBlur}
         onChange={handleChange}
       />
+      {showDeckSelect && (
+        <DeckSelect handleClose={() => setShowDeckSelect(false)} />
+      )}
+      <Button
+        secondary
+        onClick={customizeCards}
+        wrapperStyle={{ paddingBottom: 0 }}
+      >
+        Customize Cards ►
+      </Button>
       <Button onClick={handleSubmit} type="submit">
         {isSubmitting ? "Starting a room..." : "Start a room"}
       </Button>

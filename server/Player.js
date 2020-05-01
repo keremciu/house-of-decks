@@ -1,5 +1,5 @@
 class Player {
-  constructor(username, filteredWhiteCards) {
+  constructor(username) {
     this.username = username;
     this.submittedCards = [];
     this.hasSubmitted = false;
