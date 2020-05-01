@@ -28,7 +28,7 @@ const style = css({
 const itemsWrapper = css({
   overflowY: "auto",
   width: "100%",
-  height: "calc(100% - 100px)",
+  height: "calc(100% - 112px)",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -85,7 +85,11 @@ const DeckSelect = ({ items = decksObject.decks, handleClose }) => {
         ))}
       </div>
       <div css={footer}>
-        <Button secondary onClick={handleClose}>
+        <Button
+          secondary
+          onClick={handleClose}
+          wrapperStyle={{ paddingTop: 0 }}
+        >
           Save Selection
         </Button>
       </div>

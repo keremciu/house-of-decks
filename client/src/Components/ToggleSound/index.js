@@ -18,6 +18,7 @@ export default () => {
     <div css={style}>
       <Button
         small
+        invertSounds
         onClick={toggleSound}
         wrapperStyle={{ padding: 0 }}
         title="Toggle Sound"

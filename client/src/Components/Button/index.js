@@ -95,10 +95,11 @@ export default ({
   children,
   wrapperStyle = {},
   onClick,
+  invertSounds,
   type = "button",
   ...props
 }) => {
-  const { playButton } = useContext(SoundContext);
+  const { playButton, soundEnabled } = useContext(SoundContext);
   return (
     <div style={{ padding: 20, ...wrapperStyle }}>
       <motion.button
@@ -119,7 +120,15 @@ export default ({
             "rgb(239, 238, 238) -10px -15px 30px 0px, rgb(239, 238, 238) 10px 15px 20px 0px",
         }}
         onClick={(e) => {
-          playButton();
+          if (invertSounds) {
+            if (!soundEnabled) {
+              playButton({
+                forceSoundEnabled: true,
+              });
+            }
+          } else {
+            playButton();
+          }
           onClick(e);
         }}
       >
