@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import SocketContext from "SocketContext";
-import { motion, AnimatePresence } from "framer-motion";
+import { SoundContext } from "Sounds/Context";
+import { motion, useAnimation, AnimatePresence } from "framer-motion";
 
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
@@ -10,6 +11,7 @@ import Frame from "Components/Frame";
 import Button from "Components/Button";
 import Notifications from "Components/Notifications";
 import ToggleSound from "Components/ToggleSound";
+import NudgeButton from "Components/NudgeButton";
 import LandingStage from "Game/Stages/Landing";
 import ActiveRoomStage from "Game/Stages/ActiveRoom";
 import CreateRoomStage from "Game/Stages/CreateRoom";
@@ -25,6 +27,8 @@ function Game() {
     dispatch,
   } = useContext(StoreContext);
   const socket = useContext(SocketContext);
+  const { playNudge, isNudgePlaying } = useContext(SoundContext);
+  const nudgeControls = useAnimation();
 
   const search = window.location.search;
   const params = new URLSearchParams(search);
@@ -58,7 +62,10 @@ function Game() {
   }, []); // Pass in an empty array to only run on mount.
 
   useEffect(() => {
-    if (game.room.stage === GAME_STAGES.landing && !!roomID) {
+    if (
+      [GAME_STAGES.landing, GAME_STAGES.join].includes(game.room.stage) &&
+      !!roomID
+    ) {
       dispatch({
         type: "NAH_SERVER_RESPONSE",
         payload: {
@@ -73,8 +80,45 @@ function Game() {
     }
   }, [window.location.search]);
 
+  useEffect(() => {
+    if (game.runNudge) {
+      if (isNudgePlaying) {
+        nudgeControls.start({
+          opacity: [0.8, 0.4, 0.9, 1, 1],
+          x: [-8, 20, -12, 25, 0],
+          y: [8, -16, 20, 5, 30, -12, 0],
+          transition: {
+            duration: 0.4,
+            type: "spring",
+            mass: 0.5,
+            restDelta: 0,
+            damping: 300,
+          },
+        });
+        dispatch({
+          type: "NAH_SERVER_RESPONSE",
+          payload: {
+            runNudge: false,
+          },
+        });
+        setTimeout(() => {
+          dispatch({
+            type: "NAH_SERVER_RESPONSE",
+            payload: {
+              isNudgeReady: true,
+            },
+          });
+        }, 3000);
+      } else {
+        playNudge();
+      }
+    }
+  }, [game.runNudge, isNudgePlaying]);
+
   return (
     <StageRenderer
+      isNudgeReady={game.isNudgeReady}
+      nudgeControls={nudgeControls}
       stage={game.room.stage}
       errors={game.errors}
       dispatch={dispatch}
@@ -82,7 +126,13 @@ function Game() {
   );
 }
 
-const StageRenderer = ({ stage, errors, dispatch }) => {
+const StageRenderer = ({
+  stage,
+  isNudgeReady,
+  nudgeControls,
+  errors,
+  dispatch,
+}) => {
   const stagesWithOnlyBody = [GAME_STAGES.active, GAME_STAGES.waiting];
   const showHeaderAndFooter = !stagesWithOnlyBody.includes(stage);
 
@@ -102,14 +152,19 @@ const StageRenderer = ({ stage, errors, dispatch }) => {
         <ErrorBoundary dispatch={dispatch}>
           <Notifications errors={errors} onClose={onClose} />
           <ToggleSound />
-          <AnimatePresence
-            exitBeforeEnter
-            initial="exit"
-            animate="enter"
-            exit="exit"
-          >
-            {renderStage(stage)}
-          </AnimatePresence>
+          {stage === GAME_STAGES.active && (
+            <NudgeButton disabled={!isNudgeReady} />
+          )}
+          <motion.div animate={nudgeControls} css={flexStyle}>
+            <AnimatePresence
+              exitBeforeEnter
+              initial="exit"
+              animate="enter"
+              exit="exit"
+            >
+              {renderStage(stage)}
+            </AnimatePresence>
+          </motion.div>
         </ErrorBoundary>
       </Frame.Body>
       {showHeaderAndFooter && <Frame.Footer />}
@@ -160,6 +215,7 @@ const stageVariants = {
 };
 
 const flexStyle = css({
+  width: "100%",
   display: "flex",
   flex: "1",
   flexDirection: "column",

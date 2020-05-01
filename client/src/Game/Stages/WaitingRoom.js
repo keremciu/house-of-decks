@@ -30,6 +30,7 @@ function WaitingRoom() {
 
   function onLeave() {
     dispatch(changeStageAction(GAME_STAGES.landing));
+    window.history.replaceState("", "", "/");
     socket.emit("leave_room");
   }
 

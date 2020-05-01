@@ -9,7 +9,7 @@ const style = css({
   position: "fixed",
   left: 16,
   bottom: 16,
-  zIndex: 2000,
+  zIndex: 30,
 });
 
 export default () => {

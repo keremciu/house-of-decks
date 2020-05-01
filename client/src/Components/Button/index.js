@@ -34,6 +34,12 @@ const style = (props) =>
           "inset 4px 6px 4px rgba(191, 171, 136, 0.48),inset 14px 14px 36px rgba(191, 171, 136, 0.48)",
       },
     },
+    ...(props.disabled
+      ? {
+          pointerEvents: "none",
+          opacity: "0.4",
+        }
+      : {}),
     ...(props.small
       ? {
           height: 60,
@@ -75,6 +81,7 @@ export default ({ children, wrapperStyle = {}, onClick, ...props }) => {
         type="submit"
         css={style(props)}
         style={props.style}
+        disabled={props.disabled}
         whileHover={{
           boxShadow:
             "rgb(255,255,255) -10px -15px 30px 0px, #cbcaca 10px 15px 20px 0px",

@@ -93,7 +93,7 @@ const Body = ({ children }) => <div css={bodyStyle}>{children}</div>;
 const Header = () => (
   <header css={headerStyle}>
     <h1>
-      NODE AGAINST HUMANITY<span>ALPHA</span>
+      NODE AGAINST HUMANITY<span>BETA</span>
     </h1>
     <p css={heroText}>a party game for horrible people.</p>
   </header>

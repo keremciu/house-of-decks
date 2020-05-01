@@ -35,11 +35,17 @@ function JoinRoom() {
     dispatch(sendFormAction({ errors }));
   }
 
+  function onLeave() {
+    dispatch(changeStageAction(GAME_STAGES.landing));
+    window.history.replaceState("", "", "/");
+  }
+
   return (
     <>
       <Formik
         validateOnChange={false}
         validateOnBlur={false}
+        enableReinitialize
         initialValues={{
           ...initialValues,
           ...serverValues,
@@ -51,7 +57,7 @@ function JoinRoom() {
       </Formik>
       <Button
         small
-        onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
+        onClick={onLeave}
         wrapperStyle={{ marginTop: "auto", marginBottom: 20 }}
       >
         {BackIcon}

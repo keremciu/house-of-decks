@@ -45,6 +45,12 @@ function ActiveRoom() {
     socket.emit("submit_winner", player);
   }
 
+  function onLeave() {
+    dispatch(changeStageAction(GAME_STAGES.landing));
+    window.history.replaceState("", "", "/");
+    socket.emit("leave_room");
+  }
+
   let renderContent = () => (
     <>
       <BlackCard
@@ -82,7 +88,6 @@ function ActiveRoom() {
     );
   }
 
-  // remove back button and put leave
   return (
     <>
       <Scoreboard username={username} czar={room.czar} players={room.players} />
@@ -91,7 +96,7 @@ function ActiveRoom() {
       {renderContent()}
       <Button
         small
-        onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
+        onClick={onLeave}
         wrapperStyle={{ marginTop: "auto", marginBottom: 20 }}
       >
         {BackIcon}

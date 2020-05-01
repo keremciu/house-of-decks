@@ -17,6 +17,7 @@ class RoomService {
     this.socket.on("submit_card", this.handleSubmitCard);
     this.socket.on("submit_winner", this.handleSubmitWinner);
     this.socket.on("leave_room", this.leaveRoom);
+    this.socket.on("nudge_room", this.nudgeRoom);
     this.socket.on("disconnect", this.leaveRoom);
   };
 
@@ -34,6 +35,13 @@ class RoomService {
         errors: [error],
         ...payload,
       },
+    });
+  };
+
+  nudgeRoom = () => {
+    this.sendActionToRoom({
+      runNudge: true,
+      isNudgeReady: false,
     });
   };
 
@@ -71,35 +79,40 @@ class RoomService {
 
   findGame = (roomID) => this._games.get(roomID);
 
-  checkSession = () => {
+  checkSession = (cb) => {
     if (
-      !this.socket.adapter.rooms.hasOwnProperty(this.room) &&
+      !this.socket.adapter.rooms.hasOwnProperty(this.room) ||
       !this._games.has(this.room)
     ) {
       return this.sendError("Session has expired.", {
         room: { stage: GAME_STAGES.landing },
       });
+    } else {
+      cb();
     }
   };
 
   handleStartGame = () => {
-    this.checkSession();
-    if (this.findGame(this.room).players.length < 3) {
-      return this.sendError(
-        "There should be at least 3 players to start game."
-      );
-    }
-    this.findGame(this.room).start();
+    this.checkSession(() => {
+      if (this.findGame(this.room).players.length < 3) {
+        return this.sendError(
+          "There should be at least 3 players to start game."
+        );
+      }
+      this.findGame(this.room).start();
+    });
   };
 
   handleSubmitCard = (card) => {
-    this.checkSession();
-    this.findGame(this.room).submitCard(this.username, card);
+    this.checkSession(() => {
+      this.findGame(this.room).submitCard(this.username, card);
+    });
   };
 
   handleSubmitWinner = (winner) => {
-    this.checkSession();
-    this.findGame(this.room).submitWinner(winner);
+    this.checkSession(() => {
+      this.findGame(this.room).submitWinner(winner);
+    });
   };
 
   leaveRoom = (reason) => {

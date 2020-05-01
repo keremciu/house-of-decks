@@ -70,9 +70,11 @@ const buttonStyle = css({
 
 const notificationListStyle = css({
   position: "fixed",
+  margin: 0,
+  padding: 0,
   bottom: 0,
   right: 0,
-  zIndex: 5,
+  zIndex: 40,
   display: "flex",
   flexDirection: "column",
   listStyle: "none",
