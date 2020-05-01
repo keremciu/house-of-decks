@@ -1,9 +1,12 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
+import useSound from "use-sound";
+
 import SocketContext from "SocketContext";
 import { StoreContext } from "Store";
 import { changeStageAction } from "Game/actions";
 import { GAME_STAGES } from "Game/mappings";
 
+import { SoundContext } from "Sounds/Context";
 import Cards, { WhiteCard, BlackCard } from "Components/Cards";
 import Button, { BackIcon } from "Components/Button";
 
@@ -19,6 +22,13 @@ function ActiveRoom() {
     dispatch,
   } = React.useContext(StoreContext);
   const socket = useContext(SocketContext);
+  const { playCard, playJudge } = useContext(SoundContext);
+
+  useEffect(() => {
+    if (room.isReadyToJudge) {
+      playJudge();
+    }
+  }, [room.isReadyToJudge]);
 
   const { cards, submittedCards, hasSubmitted } = room.players.find(
     (p) => p.username === username
@@ -27,6 +37,7 @@ function ActiveRoom() {
   const blackCard = room.blackCard;
 
   function onSubmitCard(card) {
+    playCard();
     socket.emit("submit_card", card);
   }
 

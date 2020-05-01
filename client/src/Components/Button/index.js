@@ -1,6 +1,8 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { SoundContext } from "Sounds/Context";
 
 const style = (props) =>
   css({
@@ -29,7 +31,7 @@ const style = (props) =>
       "& > span": {
         background: "rgb(236, 232, 227)",
         boxShadow:
-          "inset 0px 6px 4px rgba(191, 171, 136, 0.48),inset 14px 14px 36px rgba(191, 171, 136, 0.48)",
+          "inset 4px 6px 4px rgba(191, 171, 136, 0.48),inset 14px 14px 36px rgba(191, 171, 136, 0.48)",
       },
     },
     ...(props.small
@@ -65,29 +67,35 @@ const innerStyle = css({
   height: "100%",
 });
 
-export default ({ children, wrapperStyle = {}, ...props }) => (
-  <div style={{ padding: 20, borderRadius: 100, ...wrapperStyle }}>
-    <motion.button
-      type="submit"
-      css={style(props)}
-      style={props.style}
-      whileHover={{
-        boxShadow:
-          "rgb(255,255,255) -10px -15px 30px 0px, #cbcaca 10px 15px 20px 0px",
-        scale: 1.1,
-      }}
-      whileTap={{
-        y: "-3",
-        scale: 0.9,
-        boxShadow:
-          "rgb(239, 238, 238) -10px -15px 30px 0px, rgb(239, 238, 238) 10px 15px 20px 0px",
-      }}
-      onClick={props.onClick}
-    >
-      <span css={innerStyle}>{children}</span>
-    </motion.button>
-  </div>
-);
+export default ({ children, wrapperStyle = {}, onClick, ...props }) => {
+  const { playButton } = useContext(SoundContext);
+  return (
+    <div style={{ padding: 20, ...wrapperStyle }}>
+      <motion.button
+        type="submit"
+        css={style(props)}
+        style={props.style}
+        whileHover={{
+          boxShadow:
+            "rgb(255,255,255) -10px -15px 30px 0px, #cbcaca 10px 15px 20px 0px",
+          scale: 1.1,
+        }}
+        whileTap={{
+          y: "-3",
+          scale: 0.9,
+          boxShadow:
+            "rgb(239, 238, 238) -10px -15px 30px 0px, rgb(239, 238, 238) 10px 15px 20px 0px",
+        }}
+        onClick={(e) => {
+          playButton();
+          onClick(e);
+        }}
+      >
+        <span css={innerStyle}>{children}</span>
+      </motion.button>
+    </div>
+  );
+};
 
 export const BackIcon = (
   <svg

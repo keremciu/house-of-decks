@@ -1,6 +1,6 @@
 import React from "react";
 
-function Scoreboard({ czar = "", username, players }) {
+function Scoreboard({ czar = "", username, players = [] }) {
   return (
     <div
       style={{

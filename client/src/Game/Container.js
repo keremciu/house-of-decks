@@ -9,6 +9,7 @@ import { StoreContext } from "Store";
 import Frame from "Components/Frame";
 import Button from "Components/Button";
 import Notifications from "Components/Notifications";
+import ToggleSound from "Components/ToggleSound";
 import LandingStage from "Game/Stages/Landing";
 import ActiveRoomStage from "Game/Stages/ActiveRoom";
 import CreateRoomStage from "Game/Stages/CreateRoom";
@@ -57,7 +58,7 @@ function Game() {
   }, []); // Pass in an empty array to only run on mount.
 
   useEffect(() => {
-    if (!game.roomID && !!roomID) {
+    if (game.room.stage === GAME_STAGES.landing && !!roomID) {
       dispatch({
         type: "NAH_SERVER_RESPONSE",
         payload: {
@@ -100,6 +101,7 @@ const StageRenderer = ({ stage, errors, dispatch }) => {
       <Frame.Body>
         <ErrorBoundary dispatch={dispatch}>
           <Notifications errors={errors} onClose={onClose} />
+          <ToggleSound />
           <AnimatePresence
             exitBeforeEnter
             initial="exit"
