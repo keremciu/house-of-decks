@@ -22,20 +22,15 @@ export const SoundProvider = ({ children }) => {
   const [playButton] = useSound(clickSound, {
     soundEnabled,
   });
-  // change to toggle
-  const [playToggle] = useSound(clickSound, {
-    soundEnabled,
-  });
   const [playCard] = useSound(cardSound, {
     soundEnabled,
   });
   const [playJudge] = useSound(judgeSound, {
     soundEnabled,
   });
-  const [playNudge, exposedData] = useSound(nudgeSound, {
+  const [playNudge] = useSound(nudgeSound, {
     soundEnabled,
   });
-  const isNudgePlaying = exposedData.isPlaying;
 
   useEffect(() => {
     setSoundEnabled(
@@ -54,22 +49,11 @@ export const SoundProvider = ({ children }) => {
       soundEnabled,
       toggleSound,
       playButton,
-      playToggle,
       playCard,
       playJudge,
       playNudge,
-      isNudgePlaying,
     }),
-    [
-      soundEnabled,
-      toggleSound,
-      playButton,
-      playToggle,
-      playCard,
-      playJudge,
-      playNudge,
-      isNudgePlaying,
-    ]
+    [soundEnabled, toggleSound, playButton, playCard, playJudge, playNudge]
   );
 
   return (

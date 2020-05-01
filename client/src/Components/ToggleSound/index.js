@@ -16,7 +16,12 @@ export default () => {
   const { toggleSound, soundEnabled } = useContext(SoundContext);
   return (
     <div css={style}>
-      <Button small onClick={toggleSound} wrapperStyle={{ padding: 0 }}>
+      <Button
+        small
+        onClick={toggleSound}
+        wrapperStyle={{ padding: 0 }}
+        title="Toggle Sound"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

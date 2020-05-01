@@ -27,7 +27,7 @@ function Game() {
     dispatch,
   } = useContext(StoreContext);
   const socket = useContext(SocketContext);
-  const { playNudge, isNudgePlaying } = useContext(SoundContext);
+  const { playNudge } = useContext(SoundContext);
   const nudgeControls = useAnimation();
 
   const search = window.location.search;
@@ -82,38 +82,35 @@ function Game() {
 
   useEffect(() => {
     if (game.runNudge) {
-      if (isNudgePlaying) {
-        nudgeControls.start({
-          opacity: [0.8, 0.4, 0.9, 1, 1],
-          x: [-8, 20, -12, 25, 0],
-          y: [8, -16, 20, 5, 30, -12, 0],
-          transition: {
-            duration: 0.4,
-            type: "spring",
-            mass: 0.5,
-            restDelta: 0,
-            damping: 300,
-          },
-        });
+      playNudge();
+      nudgeControls.start({
+        opacity: [0.8, 0.4, 0.9, 1, 1],
+        x: [-8, 20, -12, 25, 0],
+        y: [8, -16, 20, 5, 30, -12, 0],
+        transition: {
+          duration: 0.4,
+          type: "spring",
+          mass: 0.5,
+          restDelta: 0,
+          damping: 300,
+        },
+      });
+      dispatch({
+        type: "NAH_SERVER_RESPONSE",
+        payload: {
+          runNudge: false,
+        },
+      });
+      setTimeout(() => {
         dispatch({
           type: "NAH_SERVER_RESPONSE",
           payload: {
-            runNudge: false,
+            isNudgeReady: true,
           },
         });
-        setTimeout(() => {
-          dispatch({
-            type: "NAH_SERVER_RESPONSE",
-            payload: {
-              isNudgeReady: true,
-            },
-          });
-        }, 3000);
-      } else {
-        playNudge();
-      }
+      }, 3000);
     }
-  }, [game.runNudge, isNudgePlaying]);
+  }, [game.runNudge]);
 
   return (
     <StageRenderer

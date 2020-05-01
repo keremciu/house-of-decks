@@ -6,6 +6,7 @@ const style = css({
   display: "flex",
   flexDirection: "column",
   minHeight: "100vh",
+  overflow: "hidden",
 });
 
 const headerStyle = css({

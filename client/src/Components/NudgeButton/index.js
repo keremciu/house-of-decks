@@ -22,6 +22,7 @@ export default ({ disabled }) => {
   return (
     <div css={style}>
       <Button
+        title="Buzz your friends!"
         small
         disabled={disabled}
         onClick={nudgePeople}

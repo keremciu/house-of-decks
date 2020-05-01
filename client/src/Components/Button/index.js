@@ -81,6 +81,7 @@ export default ({ children, wrapperStyle = {}, onClick, ...props }) => {
         type="submit"
         css={style(props)}
         style={props.style}
+        title={props.title}
         disabled={props.disabled}
         whileHover={{
           boxShadow:
