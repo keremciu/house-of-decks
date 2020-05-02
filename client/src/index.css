@@ -1,5 +1,6 @@
 :root {
-  --serif-font: "New York Medium", -apple-system-ui-serif, ui-serif, serif;
+  --serif-font: "IBM Plex Serif", "New York Medium", -apple-system-ui-serif,
+    ui-serif, serif;
   --color-lightgray: #b8c9d8;
   --color-gray: #7e92a4;
   --color-black: #3f4a62;
@@ -19,8 +20,8 @@ body,
 input,
 button {
   color: var(--color-black);
-  font-family: "SF Pro Display", "Helvetica Neue", "Fira Sans", "Droid Sans",
-    "Helvetica", "Arial", sans-serif;
+  font-family: "Inter", "SF Pro Display", "Helvetica Neue", "Fira Sans",
+    "Droid Sans", "Helvetica", "Arial", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
