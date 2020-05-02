@@ -66,8 +66,8 @@ const footerStyle = css({
   "@media only screen and (max-width: 600px)": {
     flexDirection: "column",
     alignItems: "center",
-    span: {
-      margin: "4px 0px",
+    "a span": {
+      marginLeft: 0,
     },
     fontSize: 13,
   },
