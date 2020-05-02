@@ -75,8 +75,9 @@ function JoinRoomForm(props) {
   return (
     <Form onSubmit={handleSubmit}>
       <Input
-        label="Your username"
+        label="Username"
         name="username"
+        maxLength={10}
         value={values.username}
         onBlur={handleBlur}
         onChange={handleChange}
@@ -84,12 +85,13 @@ function JoinRoomForm(props) {
       <Input
         label="Room ID"
         name="roomID"
+        maxLength={12}
         value={values.roomID}
         onBlur={handleBlur}
         onChange={handleChange}
       />
       <Button onClick={handleSubmit} type="submit">
-        {isSubmitting ? "Joining the room..." : "Join the room"}
+        {isSubmitting ? "Joining the room..." : "Join the game"}
       </Button>
     </Form>
   );

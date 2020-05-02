@@ -83,8 +83,9 @@ function CreateRoomForm(props) {
   return (
     <Form onSubmit={handleSubmit}>
       <Input
-        label="Your username"
+        label="Username"
         name="username"
+        maxLength={10}
         onBlur={handleBlur}
         onChange={handleChange}
       />
@@ -92,10 +93,10 @@ function CreateRoomForm(props) {
         <DeckSelect handleClose={hide} />
       </Portal>
       <Button secondary onClick={show} wrapperStyle={{ paddingBottom: 0 }}>
-        Customize Cards ►
+        Customize Cards
       </Button>
       <Button onClick={handleSubmit} type="submit">
-        {isSubmitting ? "Starting a room..." : "Start a room"}
+        {isSubmitting ? "Starting a game..." : "Start a game"}
       </Button>
     </Form>
   );

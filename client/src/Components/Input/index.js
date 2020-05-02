@@ -6,34 +6,33 @@ const style = css({
   boxSizing: "border-box",
   appearance: "none",
   display: "block",
-  // height: 80,
-  width: 330,
+  width: 300,
   color: "var(--color-gray)",
   fontSize: 16,
   fontWeight: 500,
   boxShadow:
-    "rgb(220, 207, 207) 3px 6px 10px 0px inset, rgb(239, 238, 238) -3px -3px 7px 0px inset",
-  padding: 0,
+    "rgba(255, 255, 255, 0.2) -8px -8px 20px 0px inset, rgb(209, 217, 230) 8px 8px 20px 0px inset",
+  padding: "16px 0px 16px 0px",
   margin: 0,
   border: "none",
   cursor: "pointer",
   outline: "none",
   borderRadius: 100,
-  background: "linear-gradient(145deg, #e4dcdc, #efeeee)",
+  background: "linear-gradient(145deg, #DEE3EA, #F5F8FC)",
   "& > input": {
     appearance: "none",
     background: "none",
     border: 0,
     marginLeft: 30,
-    height: 40,
+    height: 30,
     width: 270,
     outline: 0,
-    fontSize: 16,
-    fontWeight: 500,
+    fontSize: 20,
+    fontWeight: 900,
   },
   "& > span": {
     display: "block",
-    padding: "16px 0px 0px 30px",
+    paddingLeft: 30,
   },
   "& + label": {
     marginTop: "20px",
@@ -47,7 +46,7 @@ export default (props) => (
     whileHover={{
       y: "-3",
       boxShadow:
-        "rgb(220, 207, 207) 1px 3px 6px 0px inset, rgb(239, 238, 238) 0px 0px 7px 0px inset",
+        "rgba(255, 255, 255, 0.2) -8px -8px 20px 0px inset, rgb(209, 217, 230) 4px 4px 12px 0px inset",
     }}
   >
     <span>{props.label}</span>

@@ -5,6 +5,7 @@ const initialState = {
   room: {
     stage: GAME_STAGES.landing,
   },
+  isNudgeReady: true,
   errors: [],
 };
 

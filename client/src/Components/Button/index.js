@@ -20,8 +20,8 @@ const style = (props) =>
     outline: "none",
     borderRadius: 100,
     boxShadow:
-      "rgb(255,255,255) -20px -20px 40px 0px, #cbcaca 20px 20px 40px 0px",
-    background: "linear-gradient(145deg, #ffffff, #d7d6d6)",
+      "rgb(255,255,255) -20px -20px 40px 0px, #D1D9E6 20px 20px 40px 0px",
+    background: "linear-gradient(145deg, #ffffff, #DAE0E4)",
     "@media (hover: hover)": {
       "&:hover > span": {
         boxShadow: "rgb(255,255,255) inset 2px 2px 0px 0px",
@@ -29,9 +29,8 @@ const style = (props) =>
     },
     "&:active": {
       "& > span": {
-        background: "rgb(236, 232, 227)",
-        boxShadow:
-          "inset 4px 6px 4px rgba(191, 171, 136, 0.48),inset 14px 14px 36px rgba(191, 171, 136, 0.48)",
+        background: "linear-gradient(135deg, #DEE3EA 0%, #F5F8FC 100%)",
+        boxShadow: "inset 3px 3px 7px rgba(136, 165, 191, 0.48)",
       },
     },
     ...(props.disabled
@@ -44,11 +43,11 @@ const style = (props) =>
       ? {
           height: 60,
           width: 60,
-          background: "#efeeee",
+          background: "#ecf0f3",
           color: "var(--color-gray)",
           fontWeight: 500,
           boxShadow:
-            "rgb(245,245,245) -10px -10px 20px 0px, rgb(224, 224, 224) 10px 10px 20px 0px",
+            "rgb(245,245,245) -10px -10px 20px 0px, #D1D9E6 10px 10px 20px 0px",
           "@media (hover: hover)": {
             "&:hover > span ": {
               boxShadow: "none",
@@ -61,11 +60,16 @@ const style = (props) =>
     ...(props.secondary
       ? {
           height: 72,
-          background: "#efeeee",
+          background: "#ecf0f3",
           color: "var(--color-gray)",
           fontSize: 16,
-          boxShadow:
-            "rgb(245,245,245) -10px -10px 20px 0px, rgb(224, 224, 224) 10px 10px 20px 0px",
+          boxShadow: "none !important",
+          "&:active": {
+            "& > span": {
+              background: "#ecf0f3",
+              boxShadow: "none",
+            },
+          },
           "@media (hover: hover)": {
             "&:hover > span ": {
               boxShadow: "none",
@@ -104,7 +108,7 @@ export default ({
         disabled={props.disabled}
         whileHover={{
           boxShadow:
-            "rgb(255,255,255) -10px -15px 30px 0px, #cbcaca 10px 15px 20px 0px",
+            "rgb(255,255,255) -10px -15px 30px 0px, #D1D9E6 10px 15px 20px 0px",
           scale: 1.1,
         }}
         whileTap={{

@@ -1,6 +1,8 @@
 :root {
   --serif-font: "New York Medium", -apple-system-ui-serif, ui-serif, serif;
-  --color-gray: rgba(72, 100, 125, 0.7);
+  --color-lightgray: #b8c9d8;
+  --color-gray: #7e92a4;
+  --color-black: #3f4a62;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -9,18 +11,14 @@ html {
 }
 
 body {
-  background: #efeeee;
+  background: #ecf0f3;
   margin: 0;
-}
-
-h1 {
-  color: black;
 }
 
 body,
 input,
 button {
-  color: #3f4a62;
+  color: var(--color-black);
   font-family: "SF Pro Display", "Helvetica Neue", "Fira Sans", "Droid Sans",
     "Helvetica", "Arial", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -30,4 +28,12 @@ button {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+::-moz-selection {
+  background: #46bfbf;
+  color: white;
+}
+::selection {
+  background: #e6e9ef;
 }
