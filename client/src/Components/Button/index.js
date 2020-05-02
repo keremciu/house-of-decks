@@ -50,9 +50,6 @@ const style = (props) =>
           boxShadow:
             "rgb(245,245,245) -10px -10px 20px 0px, rgb(224, 224, 224) 10px 10px 20px 0px",
           "@media (hover: hover)": {
-            "&:hover": {
-              color: "black",
-            },
             "&:hover > span ": {
               boxShadow: "none",
             },
@@ -70,9 +67,6 @@ const style = (props) =>
           boxShadow:
             "rgb(245,245,245) -10px -10px 20px 0px, rgb(224, 224, 224) 10px 10px 20px 0px",
           "@media (hover: hover)": {
-            "&:hover": {
-              color: "black",
-            },
             "&:hover > span ": {
               boxShadow: "none",
             },
@@ -116,6 +110,7 @@ export default ({
         whileTap={{
           y: "-3",
           scale: 0.9,
+          color: "#3f4a62",
           boxShadow:
             "rgb(239, 238, 238) -10px -15px 30px 0px, rgb(239, 238, 238) 10px 15px 20px 0px",
         }}

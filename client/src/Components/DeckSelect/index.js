@@ -34,7 +34,7 @@ const itemsWrapper = css({
 const itemStyle = css({
   cursor: "pointer",
   width: 300,
-  padding: "20px 0",
+  padding: "10px 0",
   borderBottom: "1px solid #dedede",
   display: "flex",
   alignItems: "center",
@@ -70,10 +70,12 @@ const DeckSelect = ({ items }) => {
 
   return items.map((deck) => (
     <div css={itemStyle} key={deck.key} onClick={() => toggleDeck(deck.key)}>
-      <Tick
-        isChecked={selectedDecks[deck.key]}
-        setIsChecked={() => toggleDeck(deck.key)}
-      />
+      <div style={{ paddingRight: 10 }}>
+        <Tick
+          isChecked={selectedDecks[deck.key]}
+          setIsChecked={() => toggleDeck(deck.key)}
+        />
+      </div>
       {deck.title}
     </div>
   ));

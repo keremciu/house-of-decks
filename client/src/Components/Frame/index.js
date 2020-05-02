@@ -30,13 +30,12 @@ const headerStyle = css({
     height: "100%",
   },
   "@media only screen and (max-width: 600px)": {
-    height: 300,
+    paddingTop: 40,
     h1: {
       flexDirection: "column",
       alignItems: "center",
       span: {
-        marginTop: 6,
-        width: 36,
+        display: "none",
       },
     },
   },

@@ -1,6 +1,6 @@
 :root {
   --serif-font: "New York Medium", -apple-system-ui-serif, ui-serif, serif;
-  --color-gray: #908a84;
+  --color-gray: rgba(72, 100, 125, 0.7);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -13,9 +13,14 @@ body {
   margin: 0;
 }
 
+h1 {
+  color: black;
+}
+
 body,
 input,
 button {
+  color: #3f4a62;
   font-family: "SF Pro Display", "Helvetica Neue", "Fira Sans", "Droid Sans",
     "Helvetica", "Arial", sans-serif;
   -webkit-font-smoothing: antialiased;
