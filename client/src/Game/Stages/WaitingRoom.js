@@ -43,13 +43,13 @@ function WaitingRoom() {
           onClick={setCopied}
           style={{
             cursor: "pointer",
-            fontStyle: "italic",
           }}
         >
           <h1>{room.id}</h1>
           <p
             style={{
-              color: "#707070",
+              color: "var(--color-gray)",
+              fontFamily: "var(--serif-font)",
               marginBottom: 0,
             }}
           >
