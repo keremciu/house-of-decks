@@ -17,7 +17,6 @@ const style = css({
 
 const headerStyle = css({
   paddingTop: 100,
-  paddingBottom: 40,
   height: 260,
   boxSizing: "border-box",
   width: "100%",
