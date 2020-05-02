@@ -6,9 +6,8 @@ function Scoreboard({ czar = "", username, players = [] }) {
       style={{
         position: "fixed",
         top: 10,
-        right: 10,
-        width: 140,
-        paddingRight: 20,
+        right: 20,
+        width: 160,
       }}
     >
       <h4 style={{ margin: 0 }}>Players</h4>
@@ -18,9 +17,11 @@ function Scoreboard({ czar = "", username, players = [] }) {
             <div style={{ gridColumn: 1 }}>
               {czar === player.username && "🧑‍⚖️"}
               {player.username}
-              {username === player.username && <small> (You)</small>}:
+              {username === player.username && <small> (You)</small>}
             </div>
-            <div style={{ gridColumn: 2, fontWeight: "bold" }}>
+            <div
+              style={{ gridColumn: 2, fontWeight: "bold", textAlign: "right" }}
+            >
               {player.score}
             </div>
           </React.Fragment>

@@ -22,6 +22,7 @@ function LastWinnerCard({ lastWinner }) {
             background: "blueviolet",
             borderRadius: "5px",
             padding: "2px 4px",
+            whiteSpace: "nowrap",
           }}
         >
           {lastWinner.player.username} 🥳
