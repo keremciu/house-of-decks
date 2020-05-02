@@ -16,6 +16,17 @@ body {
   margin: 0;
 }
 
+a {
+  color: var(--color-gray);
+}
+a:hover {
+  text-decoration: none;
+}
+
+hr {
+  border: 1px solid #e3eaf1;
+}
+
 body,
 input,
 button {

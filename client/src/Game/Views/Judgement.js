@@ -15,7 +15,7 @@ function Judgement({
       <p>
         {isCardCzar &&
           isReadyToJudge &&
-          "You need to choose the funniest black card"}
+          "You need to choose the funniest combination"}
       </p>
       <Cards>
         {submitters
