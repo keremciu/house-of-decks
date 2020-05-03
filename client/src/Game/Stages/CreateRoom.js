@@ -2,7 +2,6 @@ import React, { useContext, useState, useRef } from "react";
 import { Formik } from "formik";
 import { string, object } from "yup";
 import { motion } from "framer-motion";
-import usePortal from "react-cool-portal";
 
 // relative
 import SocketContext from "SocketContext";
@@ -13,13 +12,9 @@ import validate from "utils/validate";
 
 import Button, { BackIcon } from "Components/Button";
 import Input, { Form } from "Components/Input";
-import DeckSelect from "Components/DeckSelect";
 
 const initialValues = {
   username: "",
-  decks: {
-    base: true,
-  },
 };
 
 function CreateRoom() {
@@ -32,12 +27,8 @@ function CreateRoom() {
   const socket = useContext(SocketContext);
 
   function onSubmit(values, test) {
-    const decks = Object.keys(values.decks).filter(
-      (deck) => values.decks[deck]
-    );
     socket.emit("create_room", {
       username: values.username,
-      decks,
     });
     dispatch(sendFormAction(values));
   }
@@ -60,7 +51,7 @@ function CreateRoom() {
       <Button
         small
         onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
-        wrapperStyle={{ marginTop: "auto" }}
+        wrapperStyle={{ paddingBottom: 16, marginTop: "auto" }}
       >
         {BackIcon}
       </Button>
@@ -76,9 +67,6 @@ function CreateRoomForm(props) {
     handleBlur,
     handleSubmit,
   } = props;
-  const { Portal, show, hide } = usePortal({
-    defaultShow: false,
-  });
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -89,12 +77,6 @@ function CreateRoomForm(props) {
         onBlur={handleBlur}
         onChange={handleChange}
       />
-      <Portal style={{ width: "100%" }}>
-        <DeckSelect handleClose={hide} />
-      </Portal>
-      <Button secondary onClick={show} wrapperStyle={{ paddingBottom: 0 }}>
-        Customize Cards
-      </Button>
       <Button onClick={handleSubmit} type="submit">
         {isSubmitting ? "Starting a game..." : "Start a game"}
       </Button>

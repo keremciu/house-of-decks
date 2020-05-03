@@ -55,7 +55,7 @@ class RoomService {
       this.room = roomID;
       this.username = data.username;
       const host = new Player(this.username);
-      const game = new Game(this, roomID, host, data.decks);
+      const game = new Game(this, roomID, host);
       this._games.set(roomID, game);
     });
   };
@@ -92,14 +92,14 @@ class RoomService {
     }
   };
 
-  handleStartGame = () => {
+  handleStartGame = (data) => {
     this.checkSession(() => {
       if (this.findGame(this.room).players.length < 3) {
         return this.sendError(
           "There should be at least 3 players to start game."
         );
       }
-      this.findGame(this.room).start();
+      this.findGame(this.room).start(data);
     });
   };
 

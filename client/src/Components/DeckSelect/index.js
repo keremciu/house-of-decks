@@ -3,7 +3,6 @@ import { jsx, css } from "@emotion/core";
 import { motion } from "framer-motion";
 import { SoundContext } from "Sounds/Context";
 import { useContext, useState } from "react";
-import { useField } from "formik";
 import Tick from "Components/Tick";
 import Modal from "Components/Modal";
 
@@ -37,12 +36,13 @@ const miniCardStyle = css({
   marginRight: 4,
 });
 
-export default ({ items = decksObject.decks, handleClose }) => {
+export default ({
+  items = decksObject.decks,
+  selectedDecks,
+  setSelectedDecks,
+  handleClose,
+}) => {
   const { playCheck } = useContext(SoundContext);
-  const [field, meta, helpers] = useField("decks");
-
-  const selectedDecks = meta.value;
-  const setSelectedDecks = helpers.setValue;
 
   function toggleDeck(key) {
     if (

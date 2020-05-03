@@ -7,7 +7,7 @@ import Button from "Components/Button";
 
 const style = css({
   position: "fixed",
-  left: 110,
+  left: 96,
   bottom: 16,
   zIndex: 30,
 });

@@ -10,7 +10,7 @@ const style = css({
   marginBottom: 20,
   display: "flex",
   justifyContent: "space-around",
-  "@media only screen and (max-width: 600px)": {
+  "@media only screen and (max-width: 900px)": {
     flexWrap: "wrap",
   },
 });
@@ -24,7 +24,7 @@ const whiteCardStyle = (props) =>
     borderRadius: 4,
     padding: 10,
     width: "10%",
-    "@media only screen and (max-width: 600px)": {
+    "@media only screen and (max-width: 900px)": {
       width: "40%",
       height: "auto",
       marginBottom: 10,
@@ -67,14 +67,14 @@ const blackCardStyle = (props) =>
     borderRadius: 4,
     padding: 10,
     width: "10%",
-    "@media only screen and (max-width: 600px)": {
+    "@media only screen and (max-width: 900px)": {
       width: "40%",
       marginBottom: 10,
     },
     height: 260,
     ...(props.showAlways
       ? {
-          "@media only screen and (max-width: 600px)": {
+          "@media only screen and (max-width: 900px)": {
             position: "sticky",
             top: 0,
             width: "90%",

@@ -2,19 +2,13 @@ import { GAME_STAGES } from "../client/src/Game/mappings.js";
 import cards from "./data.json";
 
 class Game {
-  constructor(service, roomID, host, selectedDecks) {
+  constructor(service, roomID, host) {
     this.service = service;
     this.id = roomID;
     this.host = host.username;
     this.stage = GAME_STAGES.waiting;
     this.players = [host];
     this.isReadyToJudge = false;
-    this.filteredBlackCards = cards.black
-      .filter((card) => selectedDecks.includes(card.deck))
-      .sort(() => Math.random() - 0.5);
-    this.filteredWhiteCards = cards.white
-      .filter((card) => selectedDecks.includes(card.deck))
-      .sort(() => Math.random() - 0.5);
     this.updateClients();
   }
 
@@ -38,7 +32,13 @@ class Game {
 
   findPlayer = (username) => this.players.find((p) => p.username === username);
 
-  start = () => {
+  start = ({ decks }) => {
+    this.filteredBlackCards = cards.black
+      .filter((card) => decks.includes(card.deck))
+      .sort(() => Math.random() - 0.5);
+    this.filteredWhiteCards = cards.white
+      .filter((card) => decks.includes(card.deck))
+      .sort(() => Math.random() - 0.5);
     const czarIndex = Math.floor(Math.random() * this.players.length);
     this.czar = this.players[czarIndex].username;
     this.submitters = this.players.filter((p) => p.username !== this.czar);
