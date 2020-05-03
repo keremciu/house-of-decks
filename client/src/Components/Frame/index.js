@@ -58,7 +58,6 @@ const footerStyle = css({
   fontSize: 15,
   color: "var(--color-gray)",
   fontFamily: "var(--serif-font)",
-  marginBottom: 4,
   a: {
     marginLeft: 4,
     height: 16,
@@ -143,8 +142,16 @@ const Footer = () => {
               </a>
             </p>
             <h2>How to play?</h2>
-            <p>At least there needs to be 3 horrible people to start a game.</p>
+            <p>
+              <strong>Requirement:</strong> At least there needs to be 3
+              horrible people to start a game.
+            </p>
             <img src={firstsvg} width="96%" />
+            <p>
+              <small>
+                <em>FIG. 1. above</em>
+              </small>
+            </p>
             <p>
               In the game, every player starts with{" "}
               <strong>8 white cards</strong>.
@@ -159,10 +166,20 @@ const Footer = () => {
             </p>
             <img src={secondsvg} width="96%" />
             <p>
+              <small>
+                <em>FIG. 2. above</em>
+              </small>
+            </p>
+            <p>
               <strong>JUDGE</strong> reads all the submissions then selects the
               funniest combination.
             </p>
             <img src={thirdsvg} width="96%" />
+            <p>
+              <small>
+                <em>FIG. 3. above</em>
+              </small>
+            </p>
             <p>Winner got the point then new round starts immediately!</p>
             <hr />
             <hr />
@@ -174,7 +191,7 @@ const Footer = () => {
           </div>
         </Modal>
       </Portal>
-      <div style={{ display: "flex", marginBottom: 12 }}>
+      <div style={{ display: "flex", marginBottom: 16 }}>
         Made in Berlin with{" "}
         <span role="img" aria-label="heart">
           <svg
@@ -192,7 +209,7 @@ const Footer = () => {
           Guide
         </a>{" "}
       </div>
-      <div style={{ display: "flex", marginBottom: 12 }}>
+      <div style={{ display: "flex", marginBottom: 16 }}>
         Need someone to play?{" "}
         <a
           href="https://discord.gg/GjPqmtJ"
