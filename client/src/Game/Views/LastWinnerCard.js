@@ -37,7 +37,6 @@ function LastWinnerCard({ lastWinner }) {
           padding: 0,
         }}
         text={lastWinner.blackCard.text}
-        isReadyToJudge={true}
         submittedCards={lastWinner.submittedCards}
       />
     </div>

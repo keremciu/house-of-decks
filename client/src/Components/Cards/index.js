@@ -93,12 +93,7 @@ const blackCardStyle = (props) =>
     },
   });
 
-export const BlackCard = ({
-  text,
-  isReadyToJudge,
-  submittedCards = [],
-  ...props
-}) => {
+export const BlackCard = ({ text, submittedCards = [], ...props }) => {
   let aggregatedText = text.replace(/_/g, "______");
   if (submittedCards.length) {
     if (text.indexOf("_") > -1) {
@@ -107,7 +102,11 @@ export const BlackCard = ({
         return (
           <Fragment key={index}>
             {part}
-            <span>{submittedCards[index]?.text.replace(/\./g, "")}</span>
+            <span>
+              {submittedCards[index] || index === parts.length - 1
+                ? submittedCards[index]?.text.replace(/\./g, "")
+                : "______"}
+            </span>
           </Fragment>
         );
       });
@@ -134,7 +133,7 @@ export const BlackCard = ({
           }
         : {})}
     >
-      {isReadyToJudge ? aggregatedText : "Waiting to play"}
+      {aggregatedText}
     </motion.div>
   );
 };

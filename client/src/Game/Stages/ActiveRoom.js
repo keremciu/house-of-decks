@@ -51,23 +51,21 @@ function ActiveRoom() {
     socket.emit("leave_room");
   }
 
+  const submissionIndex = submittedCards.length + 1;
   let renderContent = () => (
     <>
-      {Array(blackCard.pick)
-        .fill(null)
-        .map((blackCard, submissionIndex) => (
-          <Cards key={submissionIndex}>
-            {submittedCards.length === 1 && submissionIndex === 0
-              ? submittedCards.map((card, index) => (
-                  <WhiteCard key={index}>{card.text}</WhiteCard>
-                ))
-              : cards.map((card, index) => (
-                  <WhiteCard key={index} onClick={() => onSubmitCard(card)}>
-                    {card.text}
-                  </WhiteCard>
-                ))}
-          </Cards>
+      {blackCard.pick > 1 && (
+        <p>
+          {submissionIndex} pick of {blackCard.pick}
+        </p>
+      )}
+      <Cards>
+        {cards.map((card, index) => (
+          <WhiteCard key={index} onClick={() => onSubmitCard(card)}>
+            {card.text}
+          </WhiteCard>
         ))}
+      </Cards>
     </>
   );
 
@@ -91,8 +89,8 @@ function ActiveRoom() {
       {!room.isReadyToJudge && (
         <BlackCard
           showAlways={true}
-          isReadyToJudge={true}
           text={blackCard.text}
+          submittedCards={submittedCards}
         />
       )}
       {renderContent()}
