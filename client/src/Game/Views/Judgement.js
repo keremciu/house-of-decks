@@ -11,12 +11,10 @@ function Judgement({
 }) {
   return (
     <>
-      <h4>Submissions:</h4>
-      <p>
-        {isCardCzar &&
-          isReadyToJudge &&
-          "You need to choose the funniest combination"}
-      </p>
+      <h4>Submissions</h4>
+      {isCardCzar && isReadyToJudge && (
+        <p>Time to choose the funniest combination</p>
+      )}
       <Cards>
         {submitters
           .sort(() => Math.random() - 0.5)

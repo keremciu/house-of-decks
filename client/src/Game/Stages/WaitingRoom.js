@@ -36,7 +36,11 @@ function WaitingRoom() {
 
   return (
     <>
-      <Scoreboard username={username} players={room.players} />
+      <Scoreboard
+        username={username}
+        players={room.players}
+        showScore={false}
+      />
       <div style={{ height: 260 }} />
       <div style={{ textAlign: "center" }}>
         <div

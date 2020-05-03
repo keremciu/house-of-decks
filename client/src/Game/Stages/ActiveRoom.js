@@ -53,11 +53,6 @@ function ActiveRoom() {
 
   let renderContent = () => (
     <>
-      <BlackCard
-        showAlways={true}
-        isReadyToJudge={true}
-        text={blackCard.text}
-      />
       {Array(blackCard.pick)
         .fill(null)
         .map((blackCard, submissionIndex) => (
@@ -93,6 +88,13 @@ function ActiveRoom() {
       <Scoreboard username={username} czar={room.czar} players={room.players} />
       {room.lastWinner && <LastWinnerCard lastWinner={room.lastWinner} />}
       <div style={{ height: 160 }} />
+      {!room.isReadyToJudge && (
+        <BlackCard
+          showAlways={true}
+          isReadyToJudge={true}
+          text={blackCard.text}
+        />
+      )}
       {renderContent()}
       <Button small onClick={onLeave} wrapperStyle={{ marginTop: "auto" }}>
         {BackIcon}

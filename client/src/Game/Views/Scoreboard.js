@@ -1,6 +1,6 @@
 import React from "react";
 
-function Scoreboard({ czar = "", username, players = [] }) {
+function Scoreboard({ czar = "", username, players = [], showScore = true }) {
   return (
     <div
       style={{
@@ -10,7 +10,7 @@ function Scoreboard({ czar = "", username, players = [] }) {
         width: 160,
       }}
     >
-      <h4 style={{ margin: 0 }}>Players</h4>
+      {!showScore && <h4 style={{ margin: 0 }}>Players</h4>}
       <div style={{ display: "grid" }}>
         {players.map((player, index) => (
           <React.Fragment key={index}>
@@ -22,7 +22,7 @@ function Scoreboard({ czar = "", username, players = [] }) {
             <div
               style={{ gridColumn: 2, fontWeight: "bold", textAlign: "right" }}
             >
-              {player.score}
+              {showScore && player.score}
             </div>
           </React.Fragment>
         ))}

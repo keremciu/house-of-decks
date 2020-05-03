@@ -150,8 +150,8 @@ const Footer = () => {
               <strong>8 white cards</strong>.
             </p>
             <p>
-              First <strong>JUDGE</strong> reads the blackcard by outlining it's
-              a question or fill-in-the-blank.
+              First <strong>JUDGE</strong> reads the black card by outlining
+              it's a question or fill-in-the-blank.
             </p>
             <p>
               Players try to make <strong>a funny combination</strong> with the
