@@ -40,6 +40,7 @@ const headerStyle = css({
   "@media only screen and (max-width: 600px)": {
     paddingTop: 40,
     h1: {
+      padding: "0px 16px",
       flexDirection: "column",
       alignItems: "center",
       span: {
