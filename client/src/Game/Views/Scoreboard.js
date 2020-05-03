@@ -10,7 +10,7 @@ function Scoreboard({ czar = "", username, players = [], showScore = true }) {
         width: 160,
       }}
     >
-      {!showScore && <h4 style={{ margin: 0 }}>Players</h4>}
+      {!showScore && <h4 style={{ margin: "0px 0px 8px" }}>Players</h4>}
       <div style={{ display: "grid" }}>
         {players.map((player, index) => (
           <React.Fragment key={index}>
