@@ -82,6 +82,7 @@ function JoinRoomForm(props) {
         label="Username"
         name="username"
         maxLength={10}
+        autoComplete={"off"}
         value={values.username}
         onBlur={handleBlur}
         onChange={handleChange}
@@ -90,6 +91,7 @@ function JoinRoomForm(props) {
         label="Room ID"
         name="roomID"
         maxLength={12}
+        autoComplete={"off"}
         value={values.roomID}
         onBlur={handleBlur}
         onChange={handleChange}

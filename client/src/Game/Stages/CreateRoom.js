@@ -74,6 +74,7 @@ function CreateRoomForm(props) {
         label="Username"
         name="username"
         maxLength={10}
+        autoComplete={"off"}
         onBlur={handleBlur}
         onChange={handleChange}
       />
