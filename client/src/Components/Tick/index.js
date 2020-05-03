@@ -27,8 +27,8 @@ export default ({ isChecked, setIsChecked }) => {
       animate={isChecked ? "checked" : "unchecked"}
       whileHover="hover"
       whileTap="pressed"
-      width="48"
-      height="48"
+      width="28"
+      height="28"
       viewBox="0 0 342 326"
       onClick={setIsChecked}
     >

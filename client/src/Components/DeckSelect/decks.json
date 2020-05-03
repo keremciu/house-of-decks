@@ -1,81 +1,430 @@
 {
   "decks": [
-    { "key": "base", "title": "Base Set" },
-    { "key": "cahe1", "title": "The First Expansion" },
-    { "key": "cahe2", "title": "The Second Expansion" },
-    { "key": "cahe3", "title": "The Third Expansion" },
-    { "key": "cahe4", "title": "The Fourth Expansion" },
-    { "key": "cahe5", "title": "The Fifth Expansion" },
-    { "key": "cahe6", "title": "The Sixth Expansion" },
-    { "key": "greenbox", "title": "Green Box Expansion" },
-    { "key": "90s", "title": "90s Nostalgia Pack" },
-    { "key": "box", "title": "Box Expansion" },
-    { "key": "fantasy", "title": "Fantasy Pack" },
-    { "key": "food", "title": "Food Pack" },
-    { "key": "weed", "title": "Weed Pack" },
-    { "key": "science", "title": "Science Pack" },
-    { "key": "www", "title": "World Wide Web Pack" },
-    { "key": "hillary", "title": "Vote for Hillary Pack" },
-    { "key": "trumpvote", "title": "Vote for Trump Pack" },
-    { "key": "trumpbag", "title": "Trump Survival Pack" },
-    { "key": "xmas2012", "title": "2012 Holiday Pack" },
-    { "key": "xmas2013", "title": "2013 Holiday Pack" },
-    { "key": "paxe2013", "title": "PAX East 2013" },
-    { "key": "paxp2013", "title": "PAX Prime 2013" },
-    { "key": "paxe2014", "title": "PAX East 2014" },
-    { "key": "paxep2014", "title": "PAX East 2014 Panel Pack" },
-    { "key": "period", "title": "Period Pack" },
-    { "key": "paxpp2014", "title": "PAX Prime 2014 Panel Pack" },
-    { "key": "pax2015", "title": "PAX Prime 2015 Food Packs" },
-    { "key": "hocah", "title": "House of Cards Against Humanity" },
-    { "key": "reject", "title": "Reject Pack" },
-    { "key": "reject2", "title": "Reject Pack 2" },
-    { "key": "canadian", "title": "Canadian" },
-    { "key": "misprint", "title": "Misprint Replacement Bonus Cards" },
-    { "key": "baseuk", "title": "Base Set (UK Edition)" },
-    { "key": "c-prtg", "title": "[C] PRTG" },
-    { "key": "apples", "title": "[$] Apples to Apples; Party Pack" },
-    { "key": "crabs", "title": "[$] Crabs Adjust Humidity" },
-    { "key": "matrimony", "title": "[$] Cads About Matrimony" },
-    { "key": "c-tg", "title": "[C] /tg/" },
-    { "key": "c-admin", "title": "[C] Admin's Picks" },
-    { "key": "c-anime", "title": "[C] Anime" },
-    { "key": "c-antisocial", "title": "[C] Antisocial Injustice" },
-    { "key": "c-equinity", "title": "[C] Cards Against Equinity" },
-    { "key": "c-homestuck", "title": "[C] Cards Against Homestuck" },
-    { "key": "c-derps", "title": "[C] Derps Against Humanity" },
-    { "key": "c-doctorwho", "title": "[C] Doctor Who" },
-    { "key": "c-eurovision", "title": "[C] Eurovision Song Contest" },
-    { "key": "c-fim", "title": "[C] FiMFiction.net" },
-    { "key": "c-gamegrumps", "title": "[C] Game Grumps" },
-    { "key": "c-golby", "title": "[C] Golby Fan Club" },
-    { "key": "got", "title": "[C] Game of Thrones (no spoilers)" },
+    {
+      "key": "base",
+      "title": "Base Set",
+      "blackCardCount": 90,
+      "whiteCardCount": 460
+    },
+    {
+      "key": "cahe1",
+      "title": "The First Expansion",
+      "blackCardCount": 20,
+      "whiteCardCount": 80
+    },
+    {
+      "key": "cahe2",
+      "title": "The Second Expansion",
+      "blackCardCount": 25,
+      "whiteCardCount": 75
+    },
+    {
+      "key": "cahe3",
+      "title": "The Third Expansion",
+      "blackCardCount": 25,
+      "whiteCardCount": 75
+    },
+    {
+      "key": "cahe4",
+      "title": "The Fourth Expansion",
+      "blackCardCount": 30,
+      "whiteCardCount": 70
+    },
+    {
+      "key": "cahe5",
+      "title": "The Fifth Expansion",
+      "blackCardCount": 25,
+      "whiteCardCount": 75
+    },
+    {
+      "key": "cahe6",
+      "title": "The Sixth Expansion",
+      "blackCardCount": 25,
+      "whiteCardCount": 75
+    },
+    {
+      "key": "greenbox",
+      "title": "Green Box Expansion",
+      "blackCardCount": 55,
+      "whiteCardCount": 245
+    },
+    {
+      "key": "90s",
+      "title": "90s Nostalgia Pack",
+      "blackCardCount": 7,
+      "whiteCardCount": 23
+    },
+    {
+      "key": "box",
+      "title": "Box Expansion",
+      "blackCardCount": 0,
+      "whiteCardCount": 21
+    },
+    {
+      "key": "fantasy",
+      "title": "Fantasy Pack",
+      "blackCardCount": 6,
+      "whiteCardCount": 26
+    },
+    {
+      "key": "food",
+      "title": "Food Pack",
+      "blackCardCount": 6,
+      "whiteCardCount": 24
+    },
+    {
+      "key": "weed",
+      "title": "Weed Pack",
+      "blackCardCount": 6,
+      "whiteCardCount": 25
+    },
+    {
+      "key": "science",
+      "title": "Science Pack",
+      "blackCardCount": 7,
+      "whiteCardCount": 23
+    },
+    {
+      "key": "www",
+      "title": "World Wide Web Pack",
+      "blackCardCount": 9,
+      "whiteCardCount": 21
+    },
+    {
+      "key": "hillary",
+      "title": "Vote for Hillary Pack",
+      "blackCardCount": 3,
+      "whiteCardCount": 11
+    },
+    {
+      "key": "trumpvote",
+      "title": "Vote for Trump Pack",
+      "blackCardCount": 3,
+      "whiteCardCount": 12
+    },
+    {
+      "key": "trumpbag",
+      "title": "Trump Survival Pack",
+      "blackCardCount": 3,
+      "whiteCardCount": 22
+    },
+    {
+      "key": "xmas2012",
+      "title": "2012 Holiday Pack",
+      "blackCardCount": 7,
+      "whiteCardCount": 23
+    },
+    {
+      "key": "xmas2013",
+      "title": "2013 Holiday Pack",
+      "blackCardCount": 9,
+      "whiteCardCount": 21
+    },
+    {
+      "key": "paxe2013",
+      "title": "PAX East 2013",
+      "blackCardCount": 6,
+      "whiteCardCount": 24
+    },
+    {
+      "key": "paxp2013",
+      "title": "PAX Prime 2013",
+      "blackCardCount": 7,
+      "whiteCardCount": 37
+    },
+    {
+      "key": "paxe2014",
+      "title": "PAX East 2014",
+      "blackCardCount": 5,
+      "whiteCardCount": 22
+    },
+    {
+      "key": "paxep2014",
+      "title": "PAX East 2014 Panel Pack",
+      "blackCardCount": 2,
+      "whiteCardCount": 8
+    },
+    {
+      "key": "period",
+      "title": "Period Pack",
+      "blackCardCount": 6,
+      "whiteCardCount": 24
+    },
+    {
+      "key": "paxpp2014",
+      "title": "PAX Prime 2014 Panel Pack",
+      "blackCardCount": 5,
+      "whiteCardCount": 6
+    },
+    {
+      "key": "pax2015",
+      "title": "PAX Prime 2015 Food Packs",
+      "blackCardCount": 6,
+      "whiteCardCount": 24
+    },
+    {
+      "key": "hocah",
+      "title": "House of Cards Against Humanity",
+      "blackCardCount": 9,
+      "whiteCardCount": 16
+    },
+    {
+      "key": "reject",
+      "title": "Reject Pack",
+      "blackCardCount": 8,
+      "whiteCardCount": 16
+    },
+    {
+      "key": "reject2",
+      "title": "Reject Pack 2",
+      "blackCardCount": 10,
+      "whiteCardCount": 24
+    },
+    {
+      "key": "canadian",
+      "title": "Canadian",
+      "blackCardCount": 5,
+      "whiteCardCount": 21
+    },
+    {
+      "key": "misprint",
+      "title": "Misprint Replacement Bonus Cards",
+      "blackCardCount": 1,
+      "whiteCardCount": 9
+    },
+    {
+      "key": "baseuk",
+      "title": "Base Set (UK Edition)",
+      "blackCardCount": 90,
+      "whiteCardCount": 460
+    },
+    {
+      "key": "c-prtg",
+      "title": "[C] PRTG",
+      "blackCardCount": 20,
+      "whiteCardCount": 99
+    },
+    {
+      "key": "apples",
+      "title": "[$] Apples to Apples; Party Pack",
+      "blackCardCount": 249,
+      "whiteCardCount": 747
+    },
+    {
+      "key": "crabs",
+      "title": "[$] Crabs Adjust Humidity",
+      "blackCardCount": 129,
+      "whiteCardCount": 320
+    },
+    {
+      "key": "matrimony",
+      "title": "[$] Cads About Matrimony",
+      "blackCardCount": 55,
+      "whiteCardCount": 230
+    },
+    {
+      "key": "c-tg",
+      "title": "[C] /tg/",
+      "blackCardCount": 90,
+      "whiteCardCount": 266
+    },
+    {
+      "key": "c-admin",
+      "title": "[C] Admin's Picks",
+      "blackCardCount": 123,
+      "whiteCardCount": 227
+    },
+    {
+      "key": "c-anime",
+      "title": "[C] Anime",
+      "blackCardCount": 151,
+      "whiteCardCount": 525
+    },
+    {
+      "key": "c-antisocial",
+      "title": "[C] Antisocial Injustice",
+      "blackCardCount": 9,
+      "whiteCardCount": 27
+    },
+    {
+      "key": "c-equinity",
+      "title": "[C] Cards Against Equinity",
+      "blackCardCount": 60,
+      "whiteCardCount": 138
+    },
+    {
+      "key": "c-homestuck",
+      "title": "[C] Cards Against Homestuck",
+      "blackCardCount": 67,
+      "whiteCardCount": 340
+    },
+    {
+      "key": "c-derps",
+      "title": "[C] Derps Against Humanity",
+      "blackCardCount": 42,
+      "whiteCardCount": 37
+    },
+    {
+      "key": "c-doctorwho",
+      "title": "[C] Doctor Who",
+      "blackCardCount": 26,
+      "whiteCardCount": 71
+    },
+    {
+      "key": "c-eurovision",
+      "title": "[C] Eurovision Song Contest",
+      "blackCardCount": 20,
+      "whiteCardCount": 20
+    },
+    {
+      "key": "c-fim",
+      "title": "[C] FiMFiction.net",
+      "blackCardCount": 36,
+      "whiteCardCount": 77
+    },
+    {
+      "key": "c-gamegrumps",
+      "title": "[C] Game Grumps",
+      "blackCardCount": 99,
+      "whiteCardCount": 178
+    },
+    {
+      "key": "c-golby",
+      "title": "[C] Golby Fan Club",
+      "blackCardCount": 18,
+      "whiteCardCount": 101
+    },
+    {
+      "key": "got",
+      "title": "[C] Game of Thrones (no spoilers)",
+      "blackCardCount": 20,
+      "whiteCardCount": 80
+    },
     {
       "key": "cahgrognards",
-      "title": "[C] Grognards Against Humanity (RPG fandom pack)"
+      "title": "[C] Grognards Against Humanity (RPG fandom pack)",
+      "blackCardCount": 22,
+      "whiteCardCount": 86
     },
-    { "key": "hack", "title": "[C] Hackers Against Humanity" },
-    { "key": "image1", "title": "[C] Joey Image 1" },
-    { "key": "c-ladies", "title": "[C] Ladies Against Humanity" },
-    { "key": "c-imgur", "title": "[C] Imgur" },
-    { "key": "c-khaos", "title": "[C] Khaos WolfKat" },
-    { "key": "c-mrman", "title": "[C] Mr. Man Collection" },
-    { "key": "c-neindy", "title": "[C] NEIndy" },
-    { "key": "c-nobilis", "title": "[C] Nobilis Reed" },
-    { "key": "nsfh", "title": "[C] Not Safe For Humanity" },
-    { "key": "c-northernlion", "title": "[C] Northernlion" },
+    {
+      "key": "hack",
+      "title": "[C] Hackers Against Humanity",
+      "blackCardCount": 78,
+      "whiteCardCount": 279
+    },
+    {
+      "key": "image1",
+      "title": "[C] Joey Image 1",
+      "blackCardCount": 15,
+      "whiteCardCount": 35
+    },
+    {
+      "key": "c-ladies",
+      "title": "[C] Ladies Against Humanity",
+      "blackCardCount": 25,
+      "whiteCardCount": 88
+    },
+    {
+      "key": "c-imgur",
+      "title": "[C] Imgur",
+      "blackCardCount": 56,
+      "whiteCardCount": 49
+    },
+    {
+      "key": "c-khaos",
+      "title": "[C] Khaos WolfKat",
+      "blackCardCount": 76,
+      "whiteCardCount": 90
+    },
+    {
+      "key": "c-mrman",
+      "title": "[C] Mr. Man Collection",
+      "blackCardCount": 37,
+      "whiteCardCount": 99
+    },
+    {
+      "key": "c-neindy",
+      "title": "[C] NEIndy",
+      "blackCardCount": 16,
+      "whiteCardCount": 30
+    },
+    {
+      "key": "c-nobilis",
+      "title": "[C] Nobilis Reed",
+      "blackCardCount": 10,
+      "whiteCardCount": 24
+    },
+    {
+      "key": "nsfh",
+      "title": "[C] Not Safe For Humanity",
+      "blackCardCount": 32,
+      "whiteCardCount": 99
+    },
+    {
+      "key": "c-northernlion",
+      "title": "[C] Northernlion",
+      "blackCardCount": 101,
+      "whiteCardCount": 171
+    },
     {
       "key": "c-ragingpsyfag",
-      "title": "[C] RagingPsyfag's Pack of Shenanigans"
+      "title": "[C] RagingPsyfag's Pack of Shenanigans",
+      "blackCardCount": 16,
+      "whiteCardCount": 62
     },
-    { "key": "c-stupid", "title": "[C] Ridiculously Stupid" },
-    { "key": "c-rt", "title": "[C] Rooster Teeth" },
-    { "key": "c-rpanons", "title": "[C] RPAnons" },
-    { "key": "c-socialgamer", "title": "[C] SocialGamer" },
-    { "key": "c-sodomydog", "title": "[C] Sodomy Dog's Furry Pack" },
-    { "key": "c-guywglasses", "title": "[C] That Guy With The Glasses" },
-    { "key": "c-vewysewious", "title": "[C] Very Serious" },
-    { "key": "c-vidya", "title": "[C] Vidya" },
-    { "key": "c-xkcd", "title": "[C] xkcd" }
+    {
+      "key": "c-stupid",
+      "title": "[C] Ridiculously Stupid",
+      "blackCardCount": 47,
+      "whiteCardCount": 115
+    },
+    {
+      "key": "c-rt",
+      "title": "[C] Rooster Teeth",
+      "blackCardCount": 69,
+      "whiteCardCount": 155
+    },
+    {
+      "key": "c-rpanons",
+      "title": "[C] RPAnons",
+      "blackCardCount": 69,
+      "whiteCardCount": 163
+    },
+    {
+      "key": "c-socialgamer",
+      "title": "[C] SocialGamer",
+      "blackCardCount": 13,
+      "whiteCardCount": 22
+    },
+    {
+      "key": "c-sodomydog",
+      "title": "[C] Sodomy Dog's Furry Pack",
+      "blackCardCount": 105,
+      "whiteCardCount": 178
+    },
+    {
+      "key": "c-guywglasses",
+      "title": "[C] That Guy With The Glasses",
+      "blackCardCount": 207,
+      "whiteCardCount": 424
+    },
+    {
+      "key": "c-vewysewious",
+      "title": "[C] Very Serious",
+      "blackCardCount": 59,
+      "whiteCardCount": 113
+    },
+    {
+      "key": "c-vidya",
+      "title": "[C] Vidya",
+      "blackCardCount": 107,
+      "whiteCardCount": 215
+    },
+    {
+      "key": "c-xkcd",
+      "title": "[C] xkcd",
+      "blackCardCount": 67,
+      "whiteCardCount": 41
+    }
   ]
 }

@@ -11,12 +11,30 @@ import decksObject from "./decks.json";
 
 const itemStyle = css({
   cursor: "pointer",
-  width: 300,
+  width: 360,
   padding: "20px",
   borderBottom: "2px solid #e3eaf1",
   display: "flex",
   alignItems: "center",
+  fontSize: 15,
   fontWeight: 900,
+});
+
+const miniCardsWrapper = css({
+  display: "flex",
+  marginLeft: "auto",
+  fontSize: 13,
+  width: 106,
+  justifyContent: "space-between",
+});
+
+const miniCardStyle = css({
+  border: "2px solid black",
+  background: "white",
+  width: 14,
+  height: 18,
+  borderRadius: 2,
+  marginRight: 4,
 });
 
 export default ({ items = decksObject.decks, handleClose }) => {
@@ -49,13 +67,28 @@ export default ({ items = decksObject.decks, handleClose }) => {
           key={deck.key}
           onClick={() => toggleDeck(deck.key)}
         >
-          <div style={{ paddingRight: 10 }}>
+          <div style={{ paddingRight: 10, height: 28 }}>
             <Tick
               isChecked={selectedDecks[deck.key]}
               setIsChecked={() => toggleDeck(deck.key)}
             />
           </div>
-          {deck.title}
+          <div style={{ width: 210 }}>{deck.title}</div>
+          <div css={miniCardsWrapper} title="black and white card counts">
+            <div style={{ display: "flex", width: 53, alignItems: "center" }}>
+              <div
+                css={miniCardStyle}
+                style={{
+                  background: "black",
+                }}
+              />
+              {deck.blackCardCount}
+            </div>
+            <div style={{ display: "flex", width: 53, alignItems: "center" }}>
+              <div css={miniCardStyle} />
+              {deck.whiteCardCount}
+            </div>
+          </div>
         </div>
       ))}
     </Modal>

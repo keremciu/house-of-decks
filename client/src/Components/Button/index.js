@@ -71,7 +71,7 @@ const style = (props) =>
             },
           },
           "@media (hover: hover)": {
-            "&:hover > span ": {
+            "&:hover > span": {
               boxShadow: "none",
             },
           },
