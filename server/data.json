@@ -13221,7 +13221,781 @@
     { "deck": "xmas2013", "text": "Being blind and deaf and having no limbs." },
     { "deck": "xmas2013", "text": "Rudolph's bright red balls." },
     { "deck": "xmas2013", "text": "The Grinch's musty, cum-stained pelt." },
-    { "deck": "xmas2013", "text": "Breeding elves for their priceless semen." }
+    { "deck": "xmas2013", "text": "Breeding elves for their priceless semen." },
+    { "text": "Being dead.", "deck": "family" },
+    {
+      "text": "Filling my butt with spaghetti.",
+
+      "deck": "family"
+    },
+    { "text": "Idiots.", "deck": "family" },
+    {
+      "text": "Slowly turning into cheese.",
+
+      "deck": "family"
+    },
+    { "text": "The garbage man.", "deck": "family" },
+    { "text": "Getting married.", "deck": "family" },
+    {
+      "text": "Eating a whole roll of toilet paper.",
+
+      "deck": "family"
+    },
+    { "text": "Peer pressure.", "deck": "family" },
+    {
+      "text": "Using my butt as a microwave.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Crab-walking from the toilet to get more toilet paper.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Mashing a banana into your belly button.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Saving up my boogers for ten years and then building the world's largest booger.",
+
+      "deck": "family"
+    },
+    { "text": "Coffee.", "deck": "family" },
+    { "text": "Diarrhea.", "deck": "family" },
+    { "text": "Falling in love.", "deck": "family" },
+    {
+      "text": "Drinking gasoline to see what it tastes like.",
+
+      "deck": "family"
+    },
+    {
+      "text": "My father, who is a walrus.",
+
+      "deck": "family"
+    },
+    { "text": "Not wearing pants.", "deck": "family" },
+    { "text": "The dentist.", "deck": "family" },
+    { "text": "The baby.", "deck": "family" },
+    {
+      "text": "Old Jim's Steamy Butt Sauce.",
+
+      "deck": "family"
+    },
+    { "text": "Boys.", "deck": "family" },
+    { "text": "Beautiful grandma.", "deck": "family" },
+    { "text": "Running away from home.", "deck": "family" },
+    { "text": "Nunchucks.", "deck": "family" },
+    { "text": "Bench pressing a horse.", "deck": "family" },
+    {
+      "text": "Stuffing my underwear with pancakes.",
+
+      "deck": "family"
+    },
+    { "text": "Mayonnaise.", "deck": "family" },
+    { "text": "Pee-pee.", "deck": "family" },
+    { "text": "Obama.", "deck": "family" },
+    { "text": "BULBASAUR.", "deck": "family" },
+    {
+      "text": "How much wood a woodchuck would chuck if a woodchuck could chuck wood.",
+
+      "deck": "family"
+    },
+    {
+      "text": "The oppressive system of capitalism.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Big butt cheeks filled with poop.",
+
+      "deck": "family"
+    },
+    { "text": "Crying in the bathroom.", "deck": "family" },
+    { "text": "One tough mama.", "deck": "family" },
+    {
+      "text": "Spending my parents' hard-earned money.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Chungo, the talking gorilla.",
+
+      "deck": "family"
+    },
+    { "text": "Biting a rich person.", "deck": "family" },
+    { "text": "Chest hair.", "deck": "family" },
+    { "text": "The bus driver.", "deck": "family" },
+    { "text": "Going bald.", "deck": "family" },
+    { "text": "Putting my butt on stuff.", "deck": "family" },
+    {
+      "text": "Drinking a whole bottle of ranch.",
+
+      "deck": "family"
+    },
+    { "text": "Sacrificing uncle Tim.", "deck": "family" },
+    {
+      "text": "Peeing in the cat's litter box.",
+
+      "deck": "family"
+    },
+    { "text": "Murdering.", "deck": "family" },
+    {
+      "text": "Butts of all shapes and sizes.",
+
+      "deck": "family"
+    },
+    {
+      "text": "A whole thing of cottage cheese.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Freeing a fart from its butt prison.",
+
+      "deck": "family"
+    },
+    { "text": "Butt surgery.", "deck": "family" },
+    {
+      "text": "Getting stuck in the toilet.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Supreme Court Justice Ruth Bader Ginsburg.",
+
+      "deck": "family"
+    },
+    { "text": "The Underground Railroad.", "deck": "family" },
+    { "text": "A doll that pees real pee!", "deck": "family" },
+    { "text": "John Wilkes Booth.", "deck": "family" },
+    { "text": "Love.", "deck": "family" },
+    { "text": "Knives.", "deck": "family" },
+    { "text": "Satan.", "deck": "family" },
+    { "text": "Jesus.", "deck": "family" },
+    {
+      "text": "Putting my brain into the body of a tiger.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Unleashing a hell demon that will destroy our world.",
+
+      "deck": "family"
+    },
+    { "text": "Abraham Lincoln.", "deck": "family" },
+    { "text": "Thick, nasty burps.", "deck": "family" },
+    { "text": "Having a really big head.", "deck": "family" },
+    { "text": "Getting drunk.", "deck": "family" },
+    {
+      "text": "Screaming into a can of Pringles.",
+
+      "deck": "family"
+    },
+    { "text": "Batman.", "deck": "family" },
+    { "text": "Cheeto fingers.", "deck": "family" },
+    { "text": "Elegant party hats.", "deck": "family" },
+    {
+      "text": "Climbing into a cow's butt.",
+      "deck": "family"
+    },
+    { "text": "Whatever dad does at work.", "deck": "family" },
+    { "text": "Sitting on a cake.", "deck": "family" },
+    {
+      "text": "Overthrowing the government.",
+      "deck": "family"
+    },
+    { "text": "Butthole.", "deck": "family" },
+    { "text": "Stuff.", "deck": "family" },
+    { "text": "Pork.", "deck": "family" },
+    { "text": "Shoplifting.", "deck": "family" },
+    {
+      "text": "Gluing my butt cheeks together.",
+      "deck": "family"
+    },
+    {
+      "text": "Respecting personal boundaries.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Barfing into a popcorn bucket.",
+
+      "deck": "family"
+    },
+    { "text": "The huge, stupid moon.", "deck": "family" },
+    { "text": "Dump cake.", "deck": "family" },
+    { "text": "Principal Butthead.", "deck": "family" },
+    {
+      "text": "My girlfriend, who goes to another school.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Drinking out of the toilet and eating garbage.",
+
+      "deck": "family"
+    },
+    { "text": "Farting a lot today.", "deck": "family" },
+    { "text": "SILENCE!", "deck": "family" },
+    { "text": "Getting a skull tattoo.", "deck": "family" },
+    {
+      "text": "Getting shot out of a cannon.",
+
+      "deck": "family"
+    },
+    { "text": "Sharks.", "deck": "family" },
+    { "text": "The Russians.", "deck": "family" },
+    { "text": "Shaving Dad's back.", "deck": "family" },
+    {
+      "text": "A hot air balloon powered by fart gas.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Getting slapped with a fish.",
+
+      "deck": "family"
+    },
+    { "text": "Cigarettes.", "deck": "family" },
+    { "text": "Water.", "deck": "family" },
+    { "text": "Boogers.", "deck": "family" },
+    { "text": "Baby Yoda.", "deck": "family" },
+    { "text": "Dancing with my son.", "deck": "family" },
+    {
+      "text": "A big, and I mean BIG turtle.",
+
+      "deck": "family"
+    },
+    { "text": "Dreaming about boys.", "deck": "family" },
+    { "text": "Mowing the stupid lawn.", "deck": "family" },
+    {
+      "text": "Chugging a gallon of milk and then vomiting a gallon of milk.",
+
+      "deck": "family"
+    },
+    { "text": "Beer.", "deck": "family" },
+    { "text": "Thousands of lasagna.", "deck": "family" },
+    { "text": "Person milk.", "deck": "family" },
+    { "text": "Having many husbands.", "deck": "family" },
+    { "text": "Rated-R stuff.", "deck": "family" },
+    { "text": "Most of a horse.", "deck": "family" },
+    { "text": "The British.", "deck": "family" },
+    {
+      "text": "Tossed salads and scrambled eggs.",
+
+      "deck": "family"
+    },
+    { "text": "Old people.", "deck": "family" },
+    {
+      "text": "Blasting farts in the powder room.",
+
+      "deck": "family"
+    },
+    { "text": "The beautiful potato.", "deck": "family" },
+    {
+      "text": "Dwayne \"The Rock\" Johnson.",
+
+      "deck": "family"
+    },
+    {
+      "text": "A butt that eats underwear.",
+
+      "deck": "family"
+    },
+    { "text": "A dead body.", "deck": "family" },
+    { "text": "Climate change.", "deck": "family" },
+    { "text": "Failure.", "deck": "family" },
+    { "text": "Hogs.", "deck": "family" },
+    {
+      "text": "Throwing up double peace signs with my besties at Starbucks.",
+
+      "deck": "family"
+    },
+    {
+      "text": "An old, dirty cat with bad breath.",
+
+      "deck": "family"
+    },
+    {
+      "text": "The terrible winter of 1609.",
+
+      "deck": "family"
+    },
+    { "text": "The government.", "deck": "family" },
+    { "text": "The way grandpa smells.", "deck": "family" },
+    { "text": "Greta Thunberg.", "deck": "family" },
+    { "text": "Dad's meatloaf.", "deck": "family" },
+    { "text": "Living in the dumpster.", "deck": "family" },
+    { "text": "Feasting upon human flesh.", "deck": "family" },
+    {
+      "text": "A big sad dragon with no friends.",
+
+      "deck": "family"
+    },
+    { "text": "Butt hair.", "deck": "family" },
+    { "text": "Licking a used bandaid.", "deck": "family" },
+    { "text": "Mom's butt.", "deck": "family" },
+    { "text": "Only beans.", "deck": "family" },
+    {
+      "text": "Covering myself with ketchup and mustard because I am hot dog.",
+
+      "deck": "family"
+    },
+    { "text": "Naked people.", "deck": "family" },
+    { "text": "A baby boomer.", "deck": "family" },
+    {
+      "text": "A baby with a full mustache.",
+
+      "deck": "family"
+    },
+    {
+      "text": "The first female President of the United States of America.",
+
+      "deck": "family"
+    },
+    { "text": "Moving to Ohio.", "deck": "family" },
+    { "text": "Fat stacks of cash.", "deck": "family" },
+    { "text": "Mom's new haircut.", "deck": "family" },
+    { "text": "Getting a girlfriend.", "deck": "family" },
+    {
+      "text": "Getting kicked in the nuts.",
+
+      "deck": "family"
+    },
+    { "text": "Voldemort.", "deck": "family" },
+    { "text": "Big, juicy pimples.", "deck": "family" },
+    {
+      "text": "A turd that just won't flush.",
+
+      "deck": "family"
+    },
+    { "text": "Josh.", "deck": "family" },
+    { "text": "Beyonce.", "deck": "family" },
+    { "text": "Questioning authority.", "deck": "family" },
+    { "text": "Using balloons as boobies.", "deck": "family" },
+    {
+      "text": "A bird pooping on the president's head.",
+
+      "deck": "family"
+    },
+    {
+      "text": "14 cheeseburgers, 6 large fries, and a medium Sprite.",
+
+      "deck": "family"
+    },
+    { "text": "This stupid game.", "deck": "family" },
+    { "text": "A scoop of tuna.", "deck": "family" },
+    { "text": "China.", "deck": "family" },
+    { "text": "Swords.", "deck": "family" },
+    { "text": "A poop as big as Mom.", "deck": "family" },
+    { "text": "Punching everyone.", "deck": "family" },
+    { "text": "Burning books.", "deck": "family" },
+    { "text": "Making out in a closet.", "deck": "family" },
+    { "text": "My annoying sister.", "deck": "family" },
+    { "text": "Teeny, tiny turds.", "deck": "family" },
+    { "text": "Illegal drugs.", "deck": "family" },
+    {
+      "text": "Being super serious right now.",
+
+      "deck": "family"
+    },
+    { "text": "The whole family.", "deck": "family" },
+    { "text": "Chunks.", "deck": "family" },
+    { "text": "Grandma panties.", "deck": "family" },
+    { "text": "Many wolves.", "deck": "family" },
+    { "text": "Shutting up.", "deck": "family" },
+    { "text": "Cat pee.", "deck": "family" },
+    { "text": "Having no friends.", "deck": "family" },
+    { "text": "The entire state of Texas.", "deck": "family" },
+    {
+      "text": "Giggling and farting and slurping milkshakes.",
+
+      "deck": "family"
+    },
+    { "text": "Ariana Grande.", "deck": "family" },
+    {
+      "text": "Putting an apple in a little boy's mouth and roasting him for dinner.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Getting sucked into a jet engine.",
+
+      "deck": "family"
+    },
+    { "text": "My parents.", "deck": "family" },
+    { "text": "A dead whale.", "deck": "family" },
+    {
+      "text": "Sitting on the toilet and going poop.",
+
+      "deck": "family"
+    },
+    { "text": "Space lasers.", "deck": "family" },
+    { "text": "Never showering.", "deck": "family" },
+    { "text": "Politics.", "deck": "family" },
+    { "text": "Kevin's mom.", "deck": "family" },
+    {
+      "text": "Getting run over by a train.",
+
+      "deck": "family"
+    },
+    { "text": "Sniffing a dog's butt.", "deck": "family" },
+    {
+      "text": "A fake kid made out of wood.",
+
+      "deck": "family"
+    },
+    { "text": "An owl that hates you.", "deck": "family" },
+    { "text": "My big donkey brother.", "deck": "family" },
+    { "text": "Balls.", "deck": "family" },
+    {
+      "text": "The sweet honking of Karen's bassoon.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Getting scalded in the face with hot beans.",
+
+      "deck": "family"
+    },
+    { "text": "Being French, hoh-hoh-hoh!", "deck": "family" },
+    {
+      "text": "This goat, who is my friend.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Rich people Smelling like onions.",
+
+      "deck": "family"
+    },
+    { "text": "Pooping barf forever.", "deck": "family" },
+    { "text": "Being adopted.", "deck": "family" },
+    {
+      "text": "The old man with the rake who lives down the dark and winding road.",
+
+      "deck": "family"
+    },
+    { "text": "Seymour Butts.", "deck": "family" },
+    { "text": "Boobies.", "deck": "family" },
+    {
+      "text": "Locking Mother in the pantry.",
+
+      "deck": "family"
+    },
+    { "text": "Fortnite.", "deck": "family" },
+    { "text": "Farting and walking away.", "deck": "family" },
+    { "text": "Being famous on YouTube.", "deck": "family" },
+    {
+      "text": "Going around sniffing people's armpits.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Racism, sexism, and homophobia.",
+
+      "deck": "family"
+    },
+    { "text": "Legs.", "deck": "family" },
+    { "text": "Big, slappy hands.", "deck": "family" },
+    { "text": "The gluteus maximus.", "deck": "family" },
+    { "text": "One weird lookin' toe.", "deck": "family" },
+    {
+      "text": "Punching a guy through a wall.",
+
+      "deck": "family"
+    },
+    { "text": "Having a baby.", "deck": "family" },
+    { "text": "Getting naked.", "deck": "family" },
+    {
+      "text": "A planet-devouring space worm named \"Rachel.\".",
+
+      "deck": "family"
+    },
+    { "text": "Evil.", "deck": "family" },
+    {
+      "text": "A super angry cat I found outside.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Forgetting to put on underwear.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Getting my ponytail stuck in my butt.",
+
+      "deck": "family"
+    },
+    { "text": "Poo-poo.", "deck": "family" },
+    {
+      "text": "Becoming taller and stronger than Father.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Teaching a chicken to kill.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Blossoming into a beautiful young man.",
+
+      "deck": "family"
+    },
+    { "text": "Doing karate.", "deck": "family" },
+    { "text": "Twerking.", "deck": "family" },
+    { "text": "Becoming the president.", "deck": "family" },
+    {
+      "text": "Happy daddies with happy sandals.",
+
+      "deck": "family"
+    },
+    { "text": "Hurting people's feelings.", "deck": "family" },
+    { "text": "A Republican.", "deck": "family" },
+    { "text": "JoJo Siwa.", "deck": "family" },
+    {
+      "text": "Blasting my math teacher into the sun.",
+
+      "deck": "family"
+    },
+    {
+      "text": "One long hair growing out of a mole.",
+
+      "deck": "family"
+    },
+    { "text": "A nice, warm glass of pee.", "deck": "family" },
+    { "text": "Bursting into flames.", "deck": "family" },
+    { "text": "The babysitter.", "deck": "family" },
+    { "text": "My future husband.", "deck": "family" },
+    {
+      "text": "My sister's stupid boyfriend.",
+
+      "deck": "family"
+    },
+    { "text": "Coming back from the dead.", "deck": "family" },
+    { "text": "Having to pee so bad.", "deck": "family" },
+    { "text": "Feminism.", "deck": "family" },
+    { "text": "Spider-Man.", "deck": "family" },
+    { "text": "A screaming soccer dad.", "deck": "family" },
+    {
+      "text": "Pooping on the neighbor's lawn.",
+
+      "deck": "family"
+    },
+    { "text": "Big Mississippi boys.", "deck": "family" },
+    { "text": "Mom's friend, Donna.", "deck": "family" },
+    { "text": "Glen's fabulous body.", "deck": "family" },
+    { "text": "Fake news.", "deck": "family" },
+    { "text": "Nothing.", "deck": "family" },
+    { "text": "Your face.", "deck": "family" },
+    { "text": "Uranus.", "deck": "family" },
+    { "text": "Barf.", "deck": "family" },
+    { "text": "Puberty.", "deck": "family" },
+    { "text": "Stank breath.", "deck": "family" },
+    { "text": "Going night night.", "deck": "family" },
+    { "text": "Taking a dump in the pool.", "deck": "family" },
+    {
+      "text": "Building a ladder of hot dogs to the moon.",
+
+      "deck": "family"
+    },
+    { "text": "A bear.", "deck": "family" },
+    { "text": "A Democrat.", "deck": "family" },
+    { "text": "The middle finger.", "deck": "family" },
+    { "text": "A long, hot pee.", "deck": "family" },
+    {
+      "text": "Trying to catch that dang raccoon.",
+
+      "deck": "family"
+    },
+    {
+      "text": "An order of mozzarella sticks.",
+
+      "deck": "family"
+    },
+    {
+      "text": "A naked lady in a painting.",
+
+      "deck": "family"
+    },
+    { "text": "Harry Potter.", "deck": "family" },
+    { "text": "Tongue kissing.", "deck": "family" },
+    {
+      "text": "A bunch of dead squirrels on a trampoline.",
+
+      "deck": "family"
+    },
+    { "text": "Grandpa.", "deck": "family" },
+    { "text": "A flamethrower.", "deck": "family" },
+    { "text": "Blowing up the Moon.", "deck": "family" },
+    { "text": "Girls.", "deck": "family" },
+    { "text": "A hug.", "deck": "family" },
+    { "text": "Lighting stuff on fire.", "deck": "family" },
+    {
+      "text": "The way I feel when I see Kyle.",
+
+      "deck": "family"
+    },
+    { "text": "Having no bones.", "deck": "family" },
+    {
+      "text": "Living in a pineapple under the sea.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Running full speed into a wall.",
+
+      "deck": "family"
+    },
+    { "text": "Kissing mom on the lips.", "deck": "family" },
+    { "text": "Going beast mode.", "deck": "family" },
+    { "text": "Nipples.", "deck": "family" },
+    { "text": "A corn dog.", "deck": "family" },
+    { "text": "Some freakin' privacy.", "deck": "family" },
+    { "text": "Social media.", "deck": "family" },
+    { "text": "Triangles.", "deck": "family" },
+    {
+      "text": "A hundred screaming monkeys.",
+
+      "deck": "family"
+    },
+    { "text": "Big Randy.", "deck": "family" },
+    { "text": "Going to Hell.", "deck": "family" },
+    {
+      "text": "Father's forbidden chocolates.",
+
+      "deck": "family"
+    },
+    { "text": "A black hole.", "deck": "family" },
+    {
+      "text": "The octopus stuck to my face.",
+
+      "deck": "family"
+    },
+    { "text": "Wiping my butt.", "deck": "family" },
+    { "text": "Complaining.", "deck": "family" },
+    { "text": "Soup.", "deck": "family" },
+    { "text": "Garbage.", "deck": "family" },
+    { "text": "Your mom!", "deck": "family" },
+    { "text": "Literally ruining my life.", "deck": "family" },
+    {
+      "text": "Stealing people's money and going to jail.",
+
+      "deck": "family"
+    },
+    { "text": "Turning 40.", "deck": "family" },
+    { "text": "Hot, fresh doodies.", "deck": "family" },
+    { "text": "Death.", "deck": "family" },
+    { "text": "Ham.", "deck": "family" },
+    {
+      "text": "The loose skin at the joint of the elbow known as \"the weenus.\".",
+
+      "deck": "family"
+    },
+    { "text": "Eating a baby.", "deck": "family" },
+    {
+      "text": "Peeing into everyone's mouth.",
+
+      "deck": "family"
+    },
+    { "text": "Bad parenting.", "deck": "family" },
+    { "text": "Trees.", "deck": "family" },
+    { "text": "Lice.", "deck": "family" },
+    { "text": "Pizza.", "deck": "family" },
+    { "text": "Cavities.", "deck": "family" },
+    {
+      "text": "Flushing myself down the toilet.",
+
+      "deck": "family"
+    },
+    {
+      "text": "A gerbil named \"Gerbil.\".",
+
+      "deck": "family"
+    },
+    { "text": "Me, your dad.", "deck": "family" },
+    {
+      "text": "Famous peanut scientist George Washington Carver.",
+
+      "deck": "family"
+    },
+    { "text": "Dad's famous poops.", "deck": "family" },
+    { "text": "A pregnant person.", "deck": "family" },
+    { "text": "Uncle Bob.", "deck": "family" },
+    {
+      "text": "A wise, old woman with no teeth and cloudy eyes.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Screaming and screaming and never waking up.",
+
+      "deck": "family"
+    },
+    { "text": "Finger teeth.", "deck": "family" },
+    { "text": "The divorce.", "deck": "family" },
+    { "text": "Aunt Linda.", "deck": "family" },
+    { "text": "Total crap.", "deck": "family" },
+    { "text": "Huge pants.", "deck": "family" },
+    { "text": "Dying of old age.", "deck": "family" },
+    {
+      "text": "An invisible giant who takes giant, visible poops.",
+
+      "deck": "family"
+    },
+    {
+      "text": "Getting crushed by a piano.",
+
+      "deck": "family"
+    },
+    { "text": "Slapping that butt.", "deck": "family" },
+    { "text": "Eating toenail clippings.", "deck": "family" },
+    { "text": "The police.", "deck": "family" },
+    { "text": "The president.", "deck": "family" },
+    { "text": "Huge, hairy men.", "deck": "family" },
+    { "text": "Horrible allergies.", "deck": "family" },
+    { "text": "My annoying brother.", "deck": "family" },
+    { "text": "Martin Luther King Jr.", "deck": "family" },
+    { "text": "A long, long snake.", "deck": "family" },
+    { "text": "Flamin' Hot Cheetos.", "deck": "family" },
+    { "text": "A killer clown.", "deck": "family" },
+    { "text": "Me.", "deck": "family" },
+    { "text": "You.", "deck": "family" },
+    { "text": "Bleeding.", "deck": "family" },
+    {
+      "text": "A cowboy who is half boy, half cow.",
+
+      "deck": "family"
+    },
+    { "text": "Poseidon, Lord of the Sea.", "deck": "family" },
+    {
+      "text": "Farting, barfing, and passing out.",
+
+      "deck": "family"
+    },
+    { "text": "Shrek.", "deck": "family" },
+    { "text": "Squirty cheese.", "deck": "family" },
+    {
+      "text": "Playing trumpet for the mayor.",
+
+      "deck": "family"
+    },
+    { "text": "Fire farts.", "deck": "family" },
+    {
+      "text": "Floating through the void of space and time.",
+
+      "deck": "family"
+    },
+    { "text": "Screaming the F-word.", "deck": "family" },
+    {
+      "text": "The wettest fart you ever heard.",
+
+      "deck": "family"
+    }
   ],
 
   "black": [
@@ -25022,6 +25796,416 @@
       "pick": 1,
       "deck": "xmas2013",
       "text": "I really hope my grandmother doesn't ask me to explain _ again."
+    },
+    {
+      "text": "Class, pay close attention. I will now demonstrate the physics of _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Coming to theaters this holiday season, \"Star Wars: The Rise of _.\".",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Never fear, Captain _ is here!",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "I don't really know what my mom's job is, but I think it has something to do with _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "What's about to take this school dance to the next level?",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Shut up, Becky! At least I'm not _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Oh, no thank you, Mrs. Lee. I\u2019ve had plenty of _ for now.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "MY NAME CHUNGO. CHUNGO LOVE _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Foolish child! Did you think you could escape from _?",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Beep beep! _ coming through!",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "My favorite book is \"The Amazing Adventures of _.\".",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "We're off to see the wizard, the wonderful wizard of _!",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Boys? No. _? Yes!",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "At school, I'm just Mandy. But at summer camp, I'm \"_ Mandy.\".",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "We're not supposed to go in the attic. My parents keep _ in there.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Outback Steakhouse: No rules. Just _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "I have invented a new sport. I call it \"_ ball.\".",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Bow before me, for I am the Queen of _!",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Guys, stop it! There's nothing funny about _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Thanks for watching! If you want to see more vids of _, smash that subscribe.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Hey, kids. I'm Sensei Todd. Today, I'm gonna teach you how to defend yourself against _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "There's nothing better than a peanut butter and _ sandwich.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "CHUNGO FEEL SICK. CHUNGO NO LIKE _ ANYMORE.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "What killed Old Jim?",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Oh Dark Lord, we show our devotion with a humble offering of _!",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Mom? You have to come pick me up! There's _ at this party.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Run, run, as fast as you can. You can't catch me, I\u2019m _!",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "They call me \"Mr. _.\".",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "New from Mattel! It\u2019s BUNGO: The Game of _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "One nation, under God, indivisible, with liberty and _ for all.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    { "text": "Moms love _.", "deck": "family", "pick": 1 },
+    {
+      "text": "My name is Peter Parker. I was bitten by a radioactive spider, and now I'm _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "The easiest way to tell me and my twin apart is that I have a  freckle on my cheek and she's _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "It's BIG. It's SCARY. It's _!",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "My dad and I enjoy _ together.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Attention students. This is Principal Butthead. Please remember that we do not allow _ in the hallway. Thank you.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Well, look at what we have here! A big fancy man walkin' in like he's _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Did you know that Benjamin Franklin invented _?",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Ladies and gentlemen, I have discovered something amazing. I have discovered _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Coming soon! Batman vs. _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Ew. Grandpa smells like _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Kids, Dad is trying something new this week. It's called \"_\".",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "James Bond will return in \"No Time for _.\".",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "The warm August air was filled with change. Things were different, for Emily was now _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "The aliens are here. They want _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Hey guys. I just want to tell all my followers who are struggling with _: it DOES get better.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Madam President, we've run out of time. The only option is _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Now in bookstores: Nancy Drew and the Mystery of _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Where do babies com from?",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Alright, which one of you little turds is responsible for _?!",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "This is gonna be the best sleepover ever. Once Mom and Dad go to bed, it's time for _!",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "You don't love me, Sam. All you care about is _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Huddle up, Wildcats! They may be bigger. They may be faster. But we've got a secret weapon: _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Come on, Danny. All the cool kids are doin' it. Wanna try _?",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Today we honor St. Mungo, the patron saint of _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Me and my friends don't play with dolls anymore. We're into _ now.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "ENOUGH! I will not let _ tear this family apart!",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "I lost my arm in a _ accident.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Police! Arrest this man! He's _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Time to put on my favorite t-shirt, the one that says \"I heart _ .\".",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "When I pooped, what came out of my butt?",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Before I attend your sleepover, I must inform you: toys bore me, and I don't care for sweets. I prefer _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Isn't this great, honey? Just you, me, the kids, and _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Hey, check out my band! We're called \"Rage Against _.\".",
+      "deck": "family",
+
+      "pick": 1
+    },
+    { "text": "_? No.", "deck": "family", "pick": 1 },
+    {
+      "text": "ME HUNGRY. ME WANT _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Next from J.K. Rowling: Harry Potter and the Chamber of _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Come with me, and I will show you a world of _.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Whoa there, partner! Looks like _ spooked my horse.",
+      "deck": "family",
+
+      "pick": 1
+    },
+    {
+      "text": "Joey, look out behind you! It\u2019s _ !",
+      "deck": "family",
+
+      "pick": 1
     }
   ]
 }
