@@ -14,7 +14,7 @@ function Judgement({
     return (
       <>
         <h4>Submissions</h4>
-        {isCardCzar && <p>Time to choose the funniest combination</p>}
+        {isCardCzar && <p>Time to pick the darkest combination</p>}
         <Cards>
           {submitters
             .sort(() => Math.random() - 0.5)
