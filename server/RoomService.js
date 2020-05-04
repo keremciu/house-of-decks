@@ -18,7 +18,6 @@ class RoomService {
     this.socket.on("submit_winner", this.handleSubmitWinner);
     this.socket.on("leave_room", this.leaveRoom);
     this.socket.on("nudge_room", this.nudgeRoom);
-    this.socket.on("disconnect", this.leaveRoom);
   };
 
   sendActionToRoom = (payload) => {
@@ -52,6 +51,8 @@ class RoomService {
       roomID = Math.random().toString(36).substring(8);
     }
     this.socket.join(roomID, () => {
+      this.socket.handshake.session.roomdata = roomID;
+      this.socket.handshake.session.save();
       this.room = roomID;
       this.username = data.username;
       const host = new Player(this.username);
@@ -81,7 +82,8 @@ class RoomService {
 
   checkSession = (cb) => {
     if (
-      !this.socket.adapter.rooms.hasOwnProperty(this.room) ||
+      (!this.socket.handshake.session.userdata &&
+        !this.socket.adapter.rooms.hasOwnProperty(this.room)) ||
       !this._games.has(this.room)
     ) {
       return this.sendError("Session has expired.", {

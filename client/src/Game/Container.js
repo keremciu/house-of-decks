@@ -36,7 +36,6 @@ function Game() {
 
   useEffect(() => {
     try {
-      socket.open();
       socket.on("game_action", (action) => {
         dispatch(action);
         if (
@@ -51,20 +50,30 @@ function Game() {
           );
         }
       });
+      socket.on("reconnecting", (attemptNumber) => {
+        console.log(attemptNumber);
+        // ...
+      });
+      socket.on("disconnect", (reason) => {
+        console.log(reason);
+        console.log(socket);
+        // socket.reconnect();
+      });
     } catch (error) {
       console.log(error);
     }
     // Return a callback to be run before unmount-ing.
     return () => {
       // think about reconnecting parts here
-      // socket.close();
+      socket.close();
     };
   }, []); // Pass in an empty array to only run on mount.
 
   useEffect(() => {
     if (
       [GAME_STAGES.landing, GAME_STAGES.join].includes(game.room.stage) &&
-      !!roomID
+      !!roomID &&
+      roomID !== "undefined"
     ) {
       dispatch({
         type: "NAH_SERVER_RESPONSE",
