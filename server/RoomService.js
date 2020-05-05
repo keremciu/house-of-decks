@@ -82,8 +82,7 @@ class RoomService {
 
   checkSession = (cb) => {
     if (
-      (!this.socket.handshake.session.userdata &&
-        !this.socket.adapter.rooms.hasOwnProperty(this.room)) ||
+      !this.socket.adapter.rooms.hasOwnProperty(this.room) ||
       !this._games.has(this.room)
     ) {
       return this.sendError("Session has expired.", {
