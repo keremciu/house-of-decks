@@ -100,7 +100,7 @@ const Body = ({ children }) => <div css={bodyStyle}>{children}</div>;
 const Header = () => (
   <header css={headerStyle}>
     <h1>
-      NODE AGAINST HUMANITY<span>BETA</span>
+      THE BIG DECK<span>BETA</span>
     </h1>
     <p css={heroText}>a party game for horrible people.</p>
   </header>
@@ -117,8 +117,8 @@ const Footer = () => {
           <h1>About</h1>
           <div style={{ padding: "0px 10px" }}>
             <p>
-              Node Against Humanity is an online game that you can play with
-              horrible people.
+              THE BIG DECK is an online game that you can play with horrible
+              people.
             </p>
             <p>
               This game is based on{" "}

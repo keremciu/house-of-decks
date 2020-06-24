@@ -1,6 +1,8 @@
-# node against humanity
+# The Big Deck
 
 Made for fun! Online version of [Cards Against Humanity](https://cardsagainsthumanity.com/).
+
+![Image of Project](/client/public/twitter.png)
 
 ### Commands
 

@@ -26,12 +26,25 @@ function WaitingRoom() {
     base: true,
   });
 
-  const [isCopied, setCopied] = useClipboard(
-    `${window.location.origin}/?room=${room.id}`,
-    {
-      successDuration: 1500,
-    }
-  );
+  const { canShare } = navigator;
+  // const canShare = true;
+  const shareURL = `${window.location.origin}/?room=${room.id}`;
+
+  const [isCopied, setCopied] = useClipboard(shareURL, {
+    successDuration: 1500,
+  });
+
+  function share() {
+    navigator
+      .share({
+        title: "It’s time to get be offended! 😎",
+        text:
+          "Let's play this party game and show me your dark sense of humor.",
+        url: shareURL,
+      })
+      .then(() => console.log("Successful share"))
+      .catch((error) => console.log("Error sharing", error));
+  }
 
   function onStart() {
     const decks = Object.keys(selectedDecks).filter(
@@ -57,24 +70,44 @@ function WaitingRoom() {
       />
       <div style={{ height: 180 }} />
       <div style={{ textAlign: "center" }}>
-        <div
-          onClick={setCopied}
-          style={{
-            cursor: "pointer",
-          }}
-        >
-          <h1>{room.id}</h1>
-          <p
+        {canShare ? (
+          <div
+            onClick={share}
             style={{
-              color: "var(--color-gray)",
-              fontFamily: "var(--serif-font)",
-              marginBottom: 0,
+              cursor: "pointer",
             }}
           >
-            Click to copy link and share with your friends.
-          </p>
-          <div style={{ height: 30 }}>{isCopied ? "Copied 👍" : ""}</div>
-        </div>
+            <h1>{room.id}</h1>
+            <p
+              style={{
+                color: "var(--color-gray)",
+                fontFamily: "var(--serif-font)",
+                marginBottom: 0,
+              }}
+            >
+              Click here to invite your friends.
+            </p>
+          </div>
+        ) : (
+          <div
+            onClick={setCopied}
+            style={{
+              cursor: "pointer",
+            }}
+          >
+            <h1>{room.id}</h1>
+            <p
+              style={{
+                color: "var(--color-gray)",
+                fontFamily: "var(--serif-font)",
+                marginBottom: 0,
+              }}
+            >
+              Click to copy link and invite your friends.
+            </p>
+            <div style={{ height: 30 }}>{isCopied ? "Copied 👍" : ""}</div>
+          </div>
+        )}
         <motion.h2
           animate={{
             opacity: [1, 1, 0, 1],

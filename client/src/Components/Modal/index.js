@@ -21,12 +21,13 @@ const wrapper = css({
 
 const body = css({
   overflowY: "auto",
+  overflowX: "hidden",
   width: "100%",
   height: "calc(100vh - 100px)",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  boxShadow: "inset -10px 0px 30px rgba(0,0,0,0.1)",
+  boxShadow: "inset 0px -10px 15px rgba(0,0,0,0.03)",
 });
 
 const footer = css({
