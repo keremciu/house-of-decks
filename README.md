@@ -1,6 +1,6 @@
-# node against humanity
+# BIG DECK
 
-Made for fun! Online version of [Cards Against Humanity](https://cardsagainsthumanity.com/).
+Made for fun! This is an online clone of [Cards Against Humanity](https://cardsagainsthumanity.com/).
 
 ### Commands
 

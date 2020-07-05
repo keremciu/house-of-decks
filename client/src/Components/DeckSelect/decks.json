@@ -43,6 +43,12 @@
       "whiteCardCount": 75
     },
     {
+      "key": "containers",
+      "title": "Cards Against Containers",
+      "blackCardCount": 103,
+      "whiteCardCount": 271
+    },
+    {
       "key": "greenbox",
       "title": "Green Box Expansion",
       "blackCardCount": 55,

@@ -13995,7 +13995,458 @@
       "text": "The wettest fart you ever heard.",
 
       "deck": "family"
-    }
+    },
+    { "deck": "containers", "text": "Jenkins" },
+    { "deck": "containers", "text": "Kubernetes" },
+    { "deck": "containers", "text": "Containers" },
+    { "deck": "containers", "text": "Cloud-Native" },
+    {
+      "deck": "containers",
+      "text": "Terribly written code with questionable internal logic"
+    },
+    { "deck": "containers", "text": "Monolithic applications" },
+    { "deck": "containers", "text": "Ian Coldwater" },
+    { "deck": "containers", "text": "Duffie Cooley" },
+    { "deck": "containers", "text": "Kris Nóva" },
+    { "deck": "containers", "text": "Joe Beda" },
+    { "deck": "containers", "text": "Kelsey Hightower" },
+    { "deck": "containers", "text": "Craig McLuckie" },
+    { "deck": "containers", "text": "Brendan Burns" },
+    { "deck": "containers", "text": "Falco" },
+    { "deck": "containers", "text": "Wireshark" },
+    { "deck": "containers", "text": "eBPF" },
+    {
+      "deck": "containers",
+      "text": "An odd feeling when a build passes first time"
+    },
+    { "deck": "containers", "text": "A complete and utter lack of monitoring" },
+    { "deck": "containers", "text": "Automated penetration testing" },
+    { "deck": "containers", "text": "Load balancers" },
+    { "deck": "containers", "text": "Good old physical storage" },
+    { "deck": "containers", "text": "An impending sense of doom" },
+    { "deck": "containers", "text": "Analysing system calls" },
+    { "deck": "containers", "text": "SQL injection" },
+    { "deck": "containers", "text": "Interpretive dance" },
+    { "deck": "containers", "text": "Friday releases" },
+    { "deck": "containers", "text": "Being on call over a holiday weekend" },
+    { "deck": "containers", "text": "DevSecOps" },
+    {
+      "deck": "containers",
+      "text": "Rushing a release because you really need the bathroom"
+    },
+    { "deck": "containers", "text": "Total lack of comments in code" },
+    { "deck": "containers", "text": "A massive data breach" },
+    { "deck": "containers", "text": "NIST compliance" },
+    { "deck": "containers", "text": "CIS benchmarks" },
+    { "deck": "containers", "text": "YAML formatting" },
+    { "deck": "containers", "text": "JSON" },
+    { "deck": "containers", "text": "Infrastructure-as-Code" },
+    {
+      "deck": "containers",
+      "text": "Lunch at your desk because you have too much work to take a break"
+    },
+    { "deck": "containers", "text": "The front cover of The Register" },
+    { "deck": "containers", "text": "The top article on Hacker News" },
+    {
+      "deck": "containers",
+      "text": "Directly executing GitHub projects without understanding the code"
+    },
+    { "deck": "containers", "text": "NodeJS dependencies" },
+    { "deck": "containers", "text": "Istio" },
+    { "deck": "containers", "text": "PubSubHub" },
+    { "deck": "containers", "text": "Chaos engineering" },
+    { "deck": "containers", "text": "Slack" },
+    { "deck": "containers", "text": "Kubernetes the hard way" },
+    { "deck": "containers", "text": "Machine Learning" },
+    { "deck": "containers", "text": "Artificial Intelligence" },
+    { "deck": "containers", "text": "Robots" },
+    { "deck": "containers", "text": "PowerPoint" },
+    { "deck": "containers", "text": "Quietly crying in the toilet cubicle" },
+    { "deck": "containers", "text": "Updating your CV" },
+    { "deck": "containers", "text": "Access keys in a public Github repo" },
+    { "deck": "containers", "text": "Credentials in plain text" },
+    { "deck": "containers", "text": "Buffer overflows" },
+    { "deck": "containers", "text": "Prometheus" },
+    { "deck": "containers", "text": "Catastrophic failure" },
+    { "deck": "containers", "text": "Dumpster fires" },
+    { "deck": "containers", "text": "Paradigm shift" },
+    { "deck": "containers", "text": "Solving problems with an auto-scaler" },
+    { "deck": "containers", "text": "Accepting PRs when drunk" },
+    { "deck": "containers", "text": "Writing code with a hangover" },
+    { "deck": "containers", "text": "Crippling technical debt" },
+    { "deck": "containers", "text": "Unconditional management incompetence" },
+    {
+      "deck": "containers",
+      "text": "Relationship breakdowns due to merge conflicts"
+    },
+    { "deck": "containers", "text": "Code reviews" },
+    { "deck": "containers", "text": "Pair programming" },
+    { "deck": "containers", "text": "Test-driven development" },
+    { "deck": "containers", "text": "Non-Functional Requirements" },
+    {
+      "deck": "containers",
+      "text": "Listening to a colleagues code problems and desperately trying to pretend to care"
+    },
+    {
+      "deck": "containers",
+      "text": "Unsolicited advice from an online stranger"
+    },
+    { "deck": "containers", "text": "A developer advocate" },
+    { "deck": "containers", "text": "Caffeine" },
+    { "deck": "containers", "text": "Unquestionable stupidity" },
+    { "deck": "containers", "text": "Pretending to know what you're doing" },
+    {
+      "deck": "containers",
+      "text": "Cute fluffy puppies & kittens playing together"
+    },
+    { "deck": "containers", "text": "Pretending to care" },
+    {
+      "deck": "containers",
+      "text": "Agreeing we should document more but not doing it"
+    },
+    {
+      "deck": "containers",
+      "text": "The inevitability that everything fails anyway, Werner Vogels said so"
+    },
+    {
+      "deck": "containers",
+      "text": "Having no clue what a ticket is about but being forced to size it anyway"
+    },
+    { "deck": "containers", "text": "Insecure endpoints" },
+    { "deck": "containers", "text": "Natural selection" },
+    {
+      "deck": "containers",
+      "text": "Missing my family, but it's OK because the boss ordered pizza instead of paying overtime"
+    },
+    { "deck": "containers", "text": "A new CNCF project" },
+    { "deck": "containers", "text": "A vendor sales pitch" },
+    { "deck": "containers", "text": "YAML manifests" },
+    {
+      "deck": "containers",
+      "text": "The uncomplicated lack of authentication"
+    },
+    {
+      "deck": "containers",
+      "text": "Authentication or authorisation, but not both"
+    },
+    { "deck": "containers", "text": "Emergency chocolate supply" },
+    { "deck": "containers", "text": "Meetings that could have been an email" },
+    {
+      "deck": "containers",
+      "text": "Email conversations that should have been a Slack thread"
+    },
+    { "deck": "containers", "text": "@here in #general" },
+    {
+      "deck": "containers",
+      "text": "Only dressing your top half for a video call"
+    },
+    { "deck": "containers", "text": "The miracle of version control" },
+    { "deck": "containers", "text": "Passive-aggressive sticky notes" },
+    { "deck": "containers", "text": "Passive-aggressive posts in #random" },
+    { "deck": "containers", "text": "Stack Overflow points" },
+    { "deck": "containers", "text": "GitHub stars" },
+    {
+      "deck": "containers",
+      "text": "Establishing dominance by questioning everything in a demo"
+    },
+    {
+      "deck": "containers",
+      "text": "Asking questions framed around your achievements during someone else's talk"
+    },
+    { "deck": "containers", "text": "Writing code in native VI" },
+    { "deck": "containers", "text": "Customised EMACS" },
+    {
+      "deck": "containers",
+      "text": "Discussing your relationship breakdown during a daily standup"
+    },
+    { "deck": "containers", "text": "Daily standups" },
+    { "deck": "containers", "text": "A general lack of technical purpose" },
+    {
+      "deck": "containers",
+      "text": "Doing the bare minimum required to keep your job"
+    },
+    {
+      "deck": "containers",
+      "text": "Giving the boring security fixes to the junior member of the team"
+    },
+    {
+      "deck": "containers",
+      "text": "Disabling CORS completely becauses that's unnecessary with microservices"
+    },
+    { "deck": "containers", "text": "A secrets vault" },
+    { "deck": "containers", "text": "Plain text password storage" },
+    { "deck": "containers", "text": "A deep-rooted fear of the security team" },
+    {
+      "deck": "containers",
+      "text": "Seeing real exploits being used in a movie"
+    },
+    {
+      "deck": "containers",
+      "text": "Nodding in agreement, but having no intention of implementing these truly terrible ideas"
+    },
+    { "deck": "containers", "text": "Serverless" },
+    { "deck": "containers", "text": "Outsourcing the problem" },
+    { "deck": "containers", "text": "The root password" },
+    {
+      "deck": "containers",
+      "text": "Doing the quick method, not the best method"
+    },
+    {
+      "deck": "containers",
+      "text": "Seeing if someone has already done it by searching the internet"
+    },
+    { "deck": "containers", "text": "Useless vendor swag" },
+    { "deck": "containers", "text": "Unlimited and unwarranted confidence" },
+    {
+      "deck": "containers",
+      "text": "Deploying 'Artificial Intelligence' by outsourcing to an off-shore team"
+    },
+    {
+      "deck": "containers",
+      "text": "The illusion of choice when being asked to decide on technology"
+    },
+    { "deck": "containers", "text": "Explosions" },
+    { "deck": "containers", "text": "Apathetic procrastination" },
+    { "deck": "containers", "text": "Giving 110%" },
+    {
+      "deck": "containers",
+      "text": "Browsing k8s.af instead of doing actual work"
+    },
+    {
+      "deck": "containers",
+      "text": "Ignoring a pull request because they disagreed with you in a meeting"
+    },
+    { "deck": "containers", "text": "Visual Studio Code Plugins" },
+    {
+      "deck": "containers",
+      "text": "Technical recruitment consultants pretending to be engineers"
+    },
+    { "deck": "containers", "text": "README.md" },
+    { "deck": "containers", "text": "> /dev/null" },
+    {
+      "deck": "containers",
+      "text": "Storing all the log files ... all of them ... forever ... because you might need them one day"
+    },
+    {
+      "deck": "containers",
+      "text": "Creating another golden signals dashboard"
+    },
+    {
+      "deck": "containers",
+      "text": "Your personal AWS account because the official request process is too slow"
+    },
+    { "deck": "containers", "text": "Terraforming everything" },
+    {
+      "deck": "containers",
+      "text": "Fully refactoring the code from last sprint"
+    },
+    {
+      "deck": "containers",
+      "text": "Reading your own code and wondering what suicidal maniac wrote it"
+    },
+    {
+      "deck": "containers",
+      "text": "Scaling out all the things automatically"
+    },
+    { "deck": "containers", "text": "kubectl delete pods --all" },
+    { "deck": "containers", "text": "Hopes and dreams" },
+    {
+      "deck": "containers",
+      "text": "Squirrels chewing through network cables"
+    },
+    { "deck": "containers", "text": "The blockchain" },
+    { "deck": "containers", "text": "Kubernetes network policies" },
+    {
+      "deck": "containers",
+      "text": "Existential crisis for why we even need containers"
+    },
+    { "deck": "containers", "text": "base64 instead of actual encryption" },
+    { "deck": "containers", "text": "Open Policy Agent" },
+    {
+      "deck": "containers",
+      "text": "Running as root because it doesn't work otherwise"
+    },
+    { "deck": "containers", "text": "More sidecars than actual workloads" },
+    {
+      "deck": "containers",
+      "text": "LD_PRELOAD to inject random libraries in production"
+    },
+    {
+      "deck": "containers",
+      "text": "Runtime anomalies that weren't detected in dev"
+    },
+    {
+      "deck": "containers",
+      "text": "Pretending you got exploited instead of admitting it was you cryptomining"
+    },
+    { "deck": "containers", "text": "Privileged: true" },
+    {
+      "deck": "containers",
+      "text": "Doing preemptive upgrades at runtime to fix tomorrow's vulnerabilities"
+    },
+    {
+      "deck": "containers",
+      "text": "Breaking everything at once in a nice automated way"
+    },
+    {
+      "deck": "containers",
+      "text": "Exposing the management interface to the internet so you can access it while traveling"
+    },
+    {
+      "deck": "containers",
+      "text": "Hiding passwords in environmental variables"
+    },
+    { "deck": "containers", "text": "sudo !!" },
+    {
+      "deck": "containers",
+      "text": "2FA defined as both username AND password"
+    },
+    { "deck": "containers", "text": "Pure entertainment value only" },
+    { "deck": "containers", "text": "Deploying yet another firewall" },
+    { "deck": "containers", "text": "Failed builds" },
+    { "deck": "containers", "text": "Container Security" },
+    { "deck": "containers", "text": "Scanning for vulnerabilities" },
+    { "deck": "containers", "text": "LD_PRELOAD" },
+    { "deck": "containers", "text": "Sidecars, lots of them" },
+    { "deck": "containers", "text": "Vulnerabilities" },
+    { "deck": "containers", "text": "Observability" },
+    { "deck": "containers", "text": "Logs" },
+    { "deck": "containers", "text": "Python" },
+    { "deck": "containers", "text": "Golang" },
+    { "deck": "containers", "text": "Java" },
+    { "deck": "containers", "text": "A Wordpress e-commerce site" },
+    { "deck": "containers", "text": "PHP" },
+    { "deck": "containers", "text": "Cobol" },
+    { "deck": "containers", "text": "Linux cgroups" },
+    { "deck": "containers", "text": "PagerDuty" },
+    { "deck": "containers", "text": "DevOps" },
+    { "deck": "containers", "text": "PCI zones" },
+    { "deck": "containers", "text": "Bamboo" },
+    { "deck": "containers", "text": "Jira" },
+    { "deck": "containers", "text": "Confluence" },
+    { "deck": "containers", "text": "GitHub" },
+    { "deck": "containers", "text": "Whatever's trending on Twitter" },
+    { "deck": "containers", "text": "Service mesh" },
+    { "deck": "containers", "text": "Microsoft Teams" },
+    { "deck": "containers", "text": "Refactoring" },
+    { "deck": "containers", "text": "CI/CD pipelines" },
+    { "deck": "containers", "text": "Augmented Reality" },
+    { "deck": "containers", "text": "How to exit VI" },
+    { "deck": "containers", "text": "Nano" },
+    { "deck": "containers", "text": "Windows Notepad" },
+    { "deck": "containers", "text": "'On-premise'" },
+    { "deck": "containers", "text": "Agile" },
+    { "deck": "containers", "text": "Fail-fast" },
+    { "deck": "containers", "text": "ElasticSearch" },
+    { "deck": "containers", "text": "Grafana" },
+    { "deck": "containers", "text": "NGINX" },
+    { "deck": "containers", "text": "Nagios" },
+    { "deck": "containers", "text": "RabbitMQ" },
+    { "deck": "containers", "text": "NATS" },
+    { "deck": "containers", "text": "Scope creep" },
+    { "deck": "containers", "text": "Synergistic management solutions" },
+    { "deck": "containers", "text": "Change management process" },
+    { "deck": "containers", "text": "ITIL" },
+    { "deck": "containers", "text": "Gap analysis" },
+    {
+      "deck": "containers",
+      "text": "The reaction when asking if change management had been followed"
+    },
+    { "deck": "containers", "text": "Noise cancelling headphones" },
+    { "deck": "containers", "text": "Open offices" },
+    { "deck": "containers", "text": "Working from home" },
+    { "deck": "containers", "text": "Espresso" },
+    { "deck": "containers", "text": "Consensus protocols" },
+    { "deck": "containers", "text": "Pizza teams" },
+    { "deck": "containers", "text": "A new OpenSource project" },
+    { "deck": "containers", "text": "TLS everywhere" },
+    { "deck": "containers", "text": "Build pipelines" },
+    { "deck": "containers", "text": "Chaos monkey" },
+    {
+      "deck": "containers",
+      "text": "Farting as you walk past a colleagues desk"
+    },
+    { "deck": "containers", "text": "A balanced diet" },
+    { "deck": "containers", "text": "Being able to talk to developers" },
+    { "deck": "containers", "text": "The security team" },
+    { "deck": "containers", "text": "LinkedIn" },
+    { "deck": "containers", "text": "A ping-pong table" },
+    { "deck": "containers", "text": "A project manager" },
+    { "deck": "containers", "text": "Micromanagement" },
+    { "deck": "containers", "text": "Imposter syndrome" },
+    { "deck": "containers", "text": "32bit pointers" },
+    { "deck": "containers", "text": "Inappropriate yodeling" },
+    { "deck": "containers", "text": "A message bus" },
+    { "deck": "containers", "text": "Stack Overflow" },
+    { "deck": "containers", "text": "Whiteboarding the solution" },
+    {
+      "deck": "containers",
+      "text": "Don't tell security and they can't say no"
+    },
+    { "deck": "containers", "text": "Pod Security Policies" },
+    { "deck": "containers", "text": "ANY:ANY" },
+    { "deck": "containers", "text": "GDPR compliance" },
+    {
+      "deck": "containers",
+      "text": "Just closing the laptop and walking outside"
+    },
+    {
+      "deck": "containers",
+      "text": "Ignoring native features and using another product instead"
+    },
+    { "deck": "containers", "text": "Disabling SE Linux to make it work" },
+    {
+      "deck": "containers",
+      "text": "Disabling AppArmor because it makes things unstable"
+    },
+    { "deck": "containers", "text": "Container Runtime Interface" },
+    { "deck": "containers", "text": "Docker Image Format" },
+    { "deck": "containers", "text": "Configuration Management" },
+    { "deck": "containers", "text": "A 100 lines RUN" },
+    { "deck": "containers", "text": "systemd" },
+    { "deck": "containers", "text": "Multi-arch" },
+    { "deck": "containers", "text": "Helm" },
+    { "deck": "containers", "text": "Go template" },
+    { "deck": "containers", "text": "CI/CD" },
+    { "deck": "containers", "text": "Immutable Infrastructure" },
+    { "deck": "containers", "text": "GitOps" },
+    { "deck": "containers", "text": "DNS" },
+    { "deck": "containers", "text": "Service Dicovery" },
+    { "deck": "containers", "text": "Whatever the hell an Istio might be" },
+    {
+      "deck": "containers",
+      "text": "An AWS service with more syllables than engineers"
+    },
+    { "deck": "containers", "text": "Your résumé" },
+    { "deck": "containers", "text": "Copying and pasting from Stack Overflow" },
+    { "deck": "containers", "text": "A Short Stack Developer" },
+    {
+      "deck": "containers",
+      "text": "A technical preview that only works on Kelsey Hightower's laptop"
+    },
+    { "deck": "containers", "text": "An endless field of service meesh" },
+    { "deck": "containers", "text": "An elaborate prank called the CNCF" },
+    { "deck": "containers", "text": "A conference talk full of lies" },
+    {
+      "deck": "containers",
+      "text": "A vendor named with leftover Scrabble tiles"
+    },
+    {
+      "deck": "containers",
+      "text": "Describing ':wq' as a 'container escape'"
+    },
+    { "deck": "containers", "text": "A new definition of microservice" },
+    {
+      "deck": "containers",
+      "text": "A connection request from someone you don't know on LinkedIn"
+    },
+    { "deck": "containers", "text": "Shooting a Nerf gun at your boss" },
+    { "deck": "containers", "text": "Admin rights" },
+    { "deck": "containers", "text": "ALT + F4" },
+    { "deck": "containers", "text": "646 Chrome Tabs" },
+    { "deck": "containers", "text": "Command + CTRL + Q" },
+    { "deck": "containers", "text": "Teams RAM Usage" },
+    { "deck": "containers", "text": "@everyone in Company-wide Yammer page" }
   ],
 
   "black": [
@@ -26206,6 +26657,489 @@
       "deck": "family",
 
       "pick": 1
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "_ is going to solve all our problems."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "_ is the only way I can work with my colleagues."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "'Everything fails all the time' was referring to _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "50% of digital transformation projects end in _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "75% of disciplinary action was because of _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Being pinged by PagerDuty because of _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Copying code directly from Stack Overflow led to _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Dear boss, I need to go to KubeCon because I want to learn about _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Every deployment has a sidecar for _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "For my next trick, I will containerise _."
+    },
+    { "pick": 1, "deck": "containers", "text": "I drink to forget _." },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "I passed my last tech interview by using mostly _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "I passed the Certified Kubernetes Administrator exam by mostly studying _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "I'm no scrum master, but I'm pretty sure your team is suffering from _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Installing with `curl xxx | sudo bash` often results in _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Introducing a brand new CI/CD platform! It contains _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "It really is for the best if the operations team don't know about _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "It's a pity that computer science graduates these days are all getting involved in _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Just give _ to operations, they can worry about the random failures."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Kubernetes the hard way would be so much better if it featured _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "My favourite book is 'A dummies guide to _'."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "My favourite session at KubeCon was an in-depth discussion on _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Our last crash-loop backoff was caused by _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Our security strategy is underpinned by _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "The best story I read on k8s.af involved _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "The company hackathon was completely ruined by _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "The Gartner magic quadrant for _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "The highlight of this weeks technology demo was _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "The real reason we don't release on Fridays."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "The team are really struggling with _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "They said we were crazy. They said we couldn't containerise  _. They were wrong!"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "This isn't a witch hunt, we just want to know who was stupid enough to implement _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Troubleshooting a Kubernetes deployment using _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We complete all our documentation using _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We created dashboards in _ so now we can visualise all our problems."
+    },
+    { "pick": 1, "deck": "containers", "text": "We have a _ first strategy." },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We implemented _ because it looks great on my CV."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We implemented a service mesh because of _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We remediate vulnerabilities by implementing _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We secretly filmed you working on _, pay us 5 bitcoin or we'll release the recording."
+    },
+    { "pick": 1, "deck": "containers", "text": "We've added _ into DevOps." },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "What idea did you bring back from KubeCon?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "What is a developer's best friend?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "What makes you uncontrollably swear at the computer?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "What makes your job exciting?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "What never fails to liven up a retrospective?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "What would your CISO find disturbing, yet oddly satisfying?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "What's currently sending me 1000 alerts per second?"
+    },
+    { "pick": 1, "deck": "containers", "text": "What's your secret power?" },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "When Google first created Borg, they actually intended it for _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Someone left an endpoint open to the internet, now we have lots of _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We have a _ strategy, it's going to solve all our problems"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "I got 99 problems, but _ ain't one"
+    },
+    { "pick": 1, "deck": "containers", "text": "All I see is _ everywhere" },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Coming to the CNCF this year, _"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Our containers are riddled with bugs so we're going to implement _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We migrated all our applications to _ to solve our problems!"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "The NSA are now deploying _ in order to secure everything."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We finally managed to refactor our old applications into _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "I don't solve problems with _, I just kill the container."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We implemented _ and now we're posting a long story on k8s.af"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Our main tool for passing an impromptu security audit is _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Imagine if the Delorean in Back to the Future had been powered by _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "The banking industry was forever changed when we first introduced them to _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Kubernetes is a slippery slope that leads to _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "What is infrastructures worst enemy?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Instead of coal, Father Christmas now gives bad DevOps teams _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "The security team are currently crying because our project deployed _?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "The DevOps team are crying because the CTO decided we will be exclusively using _?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "I'm sorry, I couldn't complete that piece of work because of _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "My next hit novel will include the exciting drama of how a company implemented _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "The security team is hiding from me because I keep using _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "I never truly understood DevSecOps until I encountered _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Why is your CPU fan constantly at 100%?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "I won't produce any work this week as I'll be focused on _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "As a DevOps team lead, I'm no stranger to _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "A canary release is basically just doing _."
+    },
+    { "pick": 1, "deck": "containers", "text": "We're using a _ framework." },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "When we were at the design stage, the fundamental question we asked was _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "This application is failing because of _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "My favourite part of working from home is  _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "What are you scared to tell your head of security about?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We have a cultural problem, we have too many / too much _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We implemented two-factor authentication by implementing  _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "After troubleshooting an intermittent problem for weeks, we finally discovered the root cause was _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "To support the applications when they move to production, we use _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We don't like image scanning our containers because of _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Instead of doing the long overdue documentation, you're currently working on _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "If you had a university degree in _ you'd be more hireable."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "What is LD_PRELOAD really good for?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "When everything is on fire, I grab _ before running out of the building."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "To improve our security, we decided to store all our sensitive data in _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "The question of 'Will it scale?' was finally answered with _."
+    },
+    { "pick": 1, "deck": "containers", "text": "_ over my dead body." },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "I had to put _ in my container to make it working."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "You missed something if you haven't used the _ operator."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "I'm sure _ will reimplement ________ soon."
+    },
+    { "pick": 1, "deck": "containers", "text": "We deliver _-class products." },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Instead of a firewall, we implemented _."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "We store all the SSH keys in /www/______."
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Can we go-live with ______ by tomorrow?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "Oh yeah, we pushed ______ to production yesterday! Didn't you know?"
+    },
+    {
+      "pick": 1,
+      "deck": "containers",
+      "text": "My Inbox filters ______ emails to Trash."
     }
   ]
 }
