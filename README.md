@@ -2,6 +2,8 @@
 
 Made for fun! This is an online clone of [Cards Against Humanity](https://cardsagainsthumanity.com/).
 
+You can find [WIKI](https://www.notion.so/keremciu/Node-Against-Humanity-Wiki-647566a34f2045bcbd37960c9cb2fdbc) here.
+
 ### Commands
 
 `npm run start`
