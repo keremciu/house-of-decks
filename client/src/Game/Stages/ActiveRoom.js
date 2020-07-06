@@ -30,7 +30,7 @@ function ActiveRoom() {
     }
   }, [room.isReadyToJudge]);
 
-  const { cards, submittedCards, hasSubmitted } = room.players.find(
+  const { cards, submittedCards, hasSubmitted, isWaiting } = room.players.find(
     (p) => p.username === username
   );
   const isCardCzar = room.czar === username;
@@ -69,9 +69,10 @@ function ActiveRoom() {
     </>
   );
 
-  if (isCardCzar || hasSubmitted) {
+  if (isCardCzar || hasSubmitted || isWaiting) {
     renderContent = () => (
       <Judgement
+        isWaiting={isWaiting}
         isCardCzar={isCardCzar}
         isReadyToJudge={room.isReadyToJudge}
         blackCard={blackCard}
