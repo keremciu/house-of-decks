@@ -90,7 +90,7 @@ function Game() {
   }, [window.location.search]);
 
   useEffect(() => {
-    const { hasSubmitted } = room.players.find(
+    const { hasSubmitted } = game.room.players.find(
       (p) => p.username === game.username
     );
     if (game.runNudge && !hasSubmitted) {
