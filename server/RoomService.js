@@ -65,8 +65,6 @@ class RoomService {
     const { username, roomID } = data;
     if (!this.socket.adapter.rooms.hasOwnProperty(roomID)) {
       return this.sendError("There's no room found.");
-    } else if (this.findGame(roomID).stage === GAME_STAGES.active) {
-      return this.sendError("Game is already started in this room.");
     } else if (this.findGame(roomID).findPlayer(username)) {
       return this.sendError("Username is already taken for this room.");
     }
@@ -74,6 +72,9 @@ class RoomService {
       this.room = roomID;
       this.username = username;
       const player = new Player(this.username);
+      if (this.findGame(roomID).stage === GAME_STAGES.active) {
+        player.isWaiting = true;
+      }
       this.findGame(roomID).registerPlayer(player);
     });
   };
