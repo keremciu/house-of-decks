@@ -53,6 +53,10 @@ class Game {
   startNewRound = () => {
     // clear player states
     this.players.forEach((player) => {
+      if (player.isWaiting) {
+        player.cards = this.filteredWhiteCards.splice(-8, 8);
+        player.isWaiting = false;
+      }
       player.submittedCards = [];
       player.hasSubmitted = false;
     });

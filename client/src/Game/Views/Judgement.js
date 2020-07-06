@@ -5,6 +5,7 @@ import Cards, { WhiteCard, BlackCard } from "Components/Cards";
 
 function Judgement({
   isReadyToJudge,
+  isWaiting,
   isCardCzar,
   blackCard,
   submitters,
@@ -14,7 +15,11 @@ function Judgement({
     return (
       <>
         <h4>Submissions</h4>
-        {isCardCzar && <p>Time to pick the darkest combination</p>}
+        {isCardCzar ? (
+          <p>Time to pick the darkest combination</p>
+        ) : (
+          <p>Judge is gonna pick the darkest combination</p>
+        )}
         <Cards>
           {submitters
             .sort(() => Math.random() - 0.5)
@@ -33,6 +38,16 @@ function Judgement({
     );
   }
 
+  let text;
+
+  if (isCardCzar) {
+    text = "Waiting for horrible combinations...";
+  } else if (isWaiting) {
+    text = "Waiting for the next round to play...";
+  } else {
+    text = "Waiting for other horrible ones...";
+  }
+
   return (
     <>
       {isCardCzar && (
@@ -49,12 +64,10 @@ function Judgement({
           duration: 5,
           ease: [0.43, 0.13, 0.23, 0.96],
           loop: Infinity,
-          delay: 5,
+          delay: isWaiting ? 0 : 5,
         }}
       >
-        {isCardCzar
-          ? "Waiting for horrible combinations..."
-          : "Waiting for other horrible ones..."}
+        {text}
       </motion.h2>
     </>
   );
