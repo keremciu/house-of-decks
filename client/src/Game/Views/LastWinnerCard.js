@@ -2,20 +2,6 @@ import React from "react";
 import { BlackCard } from "Components/Cards";
 import { motion } from "framer-motion";
 
-const transition = {
-  duration: 1,
-  ease: [0.43, 0.13, 0.23, 0.96],
-};
-
-const stageVariants = {
-  exit: { x: "50%", opacity: 0, transition },
-  enter: {
-    x: "0%",
-    opacity: 1,
-    transition,
-  },
-};
-
 function LastWinnerCard({ winnerAnimation, lastWinner }) {
   return (
     <div
@@ -37,10 +23,21 @@ function LastWinnerCard({ winnerAnimation, lastWinner }) {
             color: "white",
           }}
         >
-          <h6 style={{ margin: "5px 0px" }}>
-            Last Winner{" "}
+          <h6
+            style={{
+              display: "flex",
+              alignItems: "center",
+              margin: 0,
+              padding: "5px 0px",
+              whiteSpace: "nowrap",
+            }}
+          >
+            <span style={{ fontStyle: "oblique", paddingRight: 6 }}>
+              Last Winner
+            </span>
             <strong
               style={{
+                marginLeft: "auto",
                 background: "blueviolet",
                 borderRadius: "5px",
                 padding: "2px 4px",

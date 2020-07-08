@@ -44,51 +44,50 @@ function ActiveRoom() {
       });
     }
     if (!!room.lastWinner) {
-      confetti({
-        particleCount: 100,
-        angle: 60,
-        spread: 70,
-        origin: { x: 0 },
-      });
-      confetti({
-        particleCount: 100,
-        angle: 120,
-        spread: 70,
-        origin: { x: 1 },
-      });
+      setTimeout(() => {
+        confetti({
+          particleCount: 100,
+          angle: 60,
+          spread: 70,
+          origin: { x: 0 },
+        });
+        confetti({
+          particleCount: 100,
+          angle: 120,
+          spread: 70,
+          origin: { x: 1 },
+        });
+      }, 200);
       async function runWinnerAnimation() {
         await winnerAnimation.start({
-          x: "50%",
-          scale: 1.2,
+          x: "100%",
+          y: "-200%",
+          scale: 2.2,
           transition: {
             duration: 0,
           },
         });
+        await winnerAnimation.start({
+          x: "100%",
+          y: "200%",
+          scale: 2.2,
+          transition: {
+            duration: 0.6,
+          },
+        });
         winnerAnimation.start({
           x: "0%",
+          y: "0%",
           scale: 1,
           transition: {
-            delay: 1,
+            delay: 2.8,
             duration: 0.4,
           },
         });
       }
       runWinnerAnimation();
     }
-
-    // confetti({
-    //   particleCount: 100,
-    //   spread: 70,
-    //   origin: { y: 0.6 },
-    // });
-    // canvas.confetti =
-    //   canvas.confetti || confetti.create(canvas, { resize: true });
-    // const confetti = canvasConfetti.create(winnerCanvas.current, {
-    //   resize: true,
-    //   useWorker: true,
-    // });
-    // setConfetti({ confetti: confetti });
-  }, [room.lastWinner]);
+  }, [room.lastWinner?.blackCard.text]);
 
   const { cards, submittedCards, hasSubmitted, isWaiting } = room.players.find(
     (p) => p.username === username
@@ -142,33 +141,8 @@ function ActiveRoom() {
     );
   }
 
-  function run() {
-    dispatch({
-      type: "NAH_SERVER_RESPONSE",
-      payload: {
-        room: {
-          ...room,
-          lastWinner: {
-            player: {
-              username: "test",
-            },
-            blackCard: {
-              pick: 1,
-              deck: "containers",
-              text: "You missed something if you haven't used the _ operator.",
-            },
-            submittedCards: [
-              { deck: "containers", text: "The Mary Jane Adventures." },
-            ],
-          },
-        },
-      },
-    });
-  }
-
   return (
     <>
-      <button onClick={run}>click mee</button>
       <Canvas ref={winnerCanvas} />
       <Scoreboard username={username} czar={room.czar} players={room.players} />
       {room.lastWinner && (
