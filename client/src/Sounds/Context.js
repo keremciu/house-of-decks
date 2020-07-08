@@ -12,6 +12,7 @@ import clickSound from "./click.mp3";
 import judgeSound from "./judge.mp3";
 import nudgeSound from "./nudge.mp3";
 import checkSound from "./check.mp3";
+import winnerSound from "./winner.mp3";
 
 // copied from here: https://github.com/myagoo/amstangram/blob/4892c7543e04254b463b0a1c95ee416456ea9976/src/contexts/sound.js
 
@@ -27,6 +28,9 @@ export const SoundProvider = ({ children }) => {
     soundEnabled,
   });
   const [playJudge] = useSound(judgeSound, {
+    soundEnabled,
+  });
+  const [playWinner] = useSound(judgeSound, {
     soundEnabled,
   });
   const [playNudge] = useSound(nudgeSound, {
@@ -55,6 +59,7 @@ export const SoundProvider = ({ children }) => {
       playButton,
       playCard,
       playJudge,
+      playWinner,
       playNudge,
       playCheck,
     }),
@@ -64,6 +69,7 @@ export const SoundProvider = ({ children }) => {
       playButton,
       playCard,
       playJudge,
+      playWinner,
       playNudge,
       playCheck,
     ]
