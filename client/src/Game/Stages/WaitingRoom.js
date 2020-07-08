@@ -111,9 +111,7 @@ function WaitingRoom() {
             </svg>{" "}
             Customize Cards
           </Button>
-          {room.players.length > 1 && (
-            <Button onClick={onStart}>Start the Game</Button>
-          )}
+          <Button onClick={onStart}>Start the Game</Button>
         </>
       )}
       <Button

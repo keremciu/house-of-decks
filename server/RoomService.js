@@ -95,11 +95,11 @@ class RoomService {
 
   handleStartGame = (data) => {
     this.checkSession(() => {
-      if (this.findGame(this.room).players.length < 3) {
-        return this.sendError(
-          "There should be at least 3 players to start game."
-        );
-      }
+      // if (this.findGame(this.room).players.length < 3) {
+      //   return this.sendError(
+      //     "There should be at least 3 players to start game."
+      //   );
+      // }
       this.findGame(this.room).start(data);
     });
   };

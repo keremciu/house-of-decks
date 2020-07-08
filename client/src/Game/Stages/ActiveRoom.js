@@ -1,5 +1,7 @@
-import React, { useEffect, useContext } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import useSound from "use-sound";
+import canvasConfetti from "canvas-confetti";
+import { useAnimation } from "framer-motion";
 
 import SocketContext from "SocketContext";
 import { StoreContext } from "Store";
@@ -9,6 +11,7 @@ import { GAME_STAGES } from "Game/mappings";
 import { SoundContext } from "Sounds/Context";
 import Cards, { WhiteCard, BlackCard } from "Components/Cards";
 import Button, { BackIcon } from "Components/Button";
+import Canvas from "Components/Canvas";
 
 import Judgement from "Game/Views/Judgement";
 import Scoreboard from "Game/Views/Scoreboard";
@@ -23,12 +26,69 @@ function ActiveRoom() {
   } = React.useContext(StoreContext);
   const socket = useContext(SocketContext);
   const { playCard, playJudge } = useContext(SoundContext);
+  const winnerCanvas = useRef(null);
+  const winnerAnimation = useAnimation();
+  let confetti;
 
   useEffect(() => {
     if (room.isReadyToJudge) {
       playJudge();
     }
   }, [room.isReadyToJudge]);
+
+  useEffect(() => {
+    if (!confetti) {
+      confetti = canvasConfetti.create(winnerCanvas.current, {
+        resize: true,
+        useWorker: true,
+      });
+    }
+    if (!!room.lastWinner) {
+      confetti({
+        particleCount: 100,
+        angle: 60,
+        spread: 70,
+        origin: { x: 0 },
+      });
+      confetti({
+        particleCount: 100,
+        angle: 120,
+        spread: 70,
+        origin: { x: 1 },
+      });
+      async function runWinnerAnimation() {
+        await winnerAnimation.start({
+          x: "50%",
+          scale: 1.2,
+          transition: {
+            duration: 0,
+          },
+        });
+        winnerAnimation.start({
+          x: "0%",
+          scale: 1,
+          transition: {
+            delay: 1,
+            duration: 0.4,
+          },
+        });
+      }
+      runWinnerAnimation();
+    }
+
+    // confetti({
+    //   particleCount: 100,
+    //   spread: 70,
+    //   origin: { y: 0.6 },
+    // });
+    // canvas.confetti =
+    //   canvas.confetti || confetti.create(canvas, { resize: true });
+    // const confetti = canvasConfetti.create(winnerCanvas.current, {
+    //   resize: true,
+    //   useWorker: true,
+    // });
+    // setConfetti({ confetti: confetti });
+  }, [room.lastWinner]);
 
   const { cards, submittedCards, hasSubmitted, isWaiting } = room.players.find(
     (p) => p.username === username
@@ -82,10 +142,41 @@ function ActiveRoom() {
     );
   }
 
+  function run() {
+    dispatch({
+      type: "NAH_SERVER_RESPONSE",
+      payload: {
+        room: {
+          ...room,
+          lastWinner: {
+            player: {
+              username: "test",
+            },
+            blackCard: {
+              pick: 1,
+              deck: "containers",
+              text: "You missed something if you haven't used the _ operator.",
+            },
+            submittedCards: [
+              { deck: "containers", text: "The Mary Jane Adventures." },
+            ],
+          },
+        },
+      },
+    });
+  }
+
   return (
     <>
+      <button onClick={run}>click mee</button>
+      <Canvas ref={winnerCanvas} />
       <Scoreboard username={username} czar={room.czar} players={room.players} />
-      {room.lastWinner && <LastWinnerCard lastWinner={room.lastWinner} />}
+      {room.lastWinner && (
+        <LastWinnerCard
+          winnerAnimation={winnerAnimation}
+          lastWinner={room.lastWinner}
+        />
+      )}
       <div style={{ height: 160 }} />
       {!room.isReadyToJudge && (
         <BlackCard
