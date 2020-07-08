@@ -30,7 +30,7 @@ export const SoundProvider = ({ children }) => {
   const [playJudge] = useSound(judgeSound, {
     soundEnabled,
   });
-  const [playWinner] = useSound(judgeSound, {
+  const [playWinner] = useSound(winnerSound, {
     soundEnabled,
   });
   const [playNudge] = useSound(nudgeSound, {
