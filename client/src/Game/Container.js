@@ -90,10 +90,8 @@ function Game() {
   }, [window.location.search]);
 
   useEffect(() => {
-    const { hasSubmitted } = game.room.players.find(
-      (p) => p.username === game.username
-    );
-    if (game.runNudge && !hasSubmitted) {
+    const player = game.room.players?.find((p) => p.username === game.username);
+    if (game.runNudge && !player.hasSubmitted) {
       playNudge();
       nudgeControls.start({
         opacity: [0.8, 0.4, 0.9, 1, 1],
