@@ -25,7 +25,7 @@ function ActiveRoom() {
     dispatch,
   } = React.useContext(StoreContext);
   const socket = useContext(SocketContext);
-  const { playCard, playJudge } = useContext(SoundContext);
+  const { playCard, playJudge, playWinner } = useContext(SoundContext);
   const winnerCanvas = useRef(null);
   const winnerAnimation = useAnimation();
   let confetti;
@@ -57,6 +57,7 @@ function ActiveRoom() {
           spread: 70,
           origin: { x: 1 },
         });
+        playWinner();
       }, 200);
       async function runWinnerAnimation() {
         await winnerAnimation.start({
