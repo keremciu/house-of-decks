@@ -101,7 +101,7 @@ const Body = ({ children }) => <div css={bodyStyle}>{children}</div>;
 const Header = () => (
   <header css={headerStyle}>
     <h1>
-      BIG DECK<span>BETA</span>
+      house of decks<span>BETA</span>
     </h1>
     <p css={heroText}>a party game for horrible people.</p>
   </header>
