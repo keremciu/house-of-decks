@@ -118,8 +118,8 @@ const Footer = () => {
           <h1>About</h1>
           <div style={{ padding: "0px 10px" }}>
             <p>
-              Node Against Humanity is an online game that you can play with
-              horrible people.
+              <strong>house of decks</strong> is an online game that you can
+              play with horrible people.
             </p>
             <p>
               This game is based on{" "}
