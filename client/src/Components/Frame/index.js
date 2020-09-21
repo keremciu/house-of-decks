@@ -121,6 +121,7 @@ const Footer = () => {
               <strong>house of decks</strong> is an online game that you can
               play with horrible people.
             </p>
+            <p>Online video call is recommended while playing.</p>
             <p>
               This game is based on{" "}
               <a
@@ -134,9 +135,10 @@ const Footer = () => {
               contribute their creativity.
             </p>
             <p>
-              If you'd like to learn more about this game, there is a{" "}
+              If you'd like to learn more about development of this game, there
+              is a{" "}
               <a
-                href="https://www.notion.so/Node-Against-Humanity-Wiki-647566a34f2045bcbd37960c9cb2fdbc"
+                href="https://www.notion.so/keremciu/house-of-decks-a688fc6e6d8e48bd98984f1bbcfe52fb"
                 target="_blank"
                 rel="noopener noreferrer"
               >
