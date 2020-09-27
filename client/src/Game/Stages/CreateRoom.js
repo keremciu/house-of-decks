@@ -27,7 +27,8 @@ function CreateRoom() {
   const socket = useContext(SocketContext);
 
   function onSubmit(values, test) {
-    socket.emit("create_room", {
+    socket.sendMessage({
+      action: "create_room",
       username: values.username,
     });
     dispatch(sendFormAction(values));

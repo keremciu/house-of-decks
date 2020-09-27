@@ -36,28 +36,36 @@ function Game() {
 
   useEffect(() => {
     try {
-      socket.open();
-      socket.on("game_action", (action) => {
-        dispatch(action);
-        if (
-          game.room.host === game.username &&
-          game.room?.players.length === 1 &&
-          action.payload.room
-        ) {
-          window.history.replaceState(
-            "",
-            "",
-            `?room=${action.payload.room.id}`
-          );
-        }
-      });
+      socket.onopen = function () {
+        console.log("WebSocket connection established");
+      };
+      socket.onerror = function (err) {
+        console.log("WebSocket error", err);
+      };
+      socket.onmessage = function (event) {
+        console.log(event.data);
+      };
+      // socket.on("game_action", (action) => {
+      //   dispatch(action);
+      //   if (
+      //     game.room.host === game.username &&
+      //     game.room?.players.length === 1 &&
+      //     action.payload.room
+      //   ) {
+      //     window.history.replaceState(
+      //       "",
+      //       "",
+      //       `?room=${action.payload.room.id}`
+      //     );
+      //   }
+      // });
     } catch (error) {
       console.log(error);
     }
     // Return a callback to be run before unmount-ing.
     return () => {
       // think about reconnecting parts here
-      // socket.close();
+      socket.close();
     };
   }, []); // Pass in an empty array to only run on mount.
 

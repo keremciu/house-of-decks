@@ -49,7 +49,7 @@ class RoomService {
     // note: we can move room id generation into client not sure about security
     let roomID = Math.random().toString(36).substring(8);
     if (this.socket.adapter.rooms.hasOwnProperty(roomID)) {
-      roomID = Math.random().toString(36).substring(8);
+      roomID = Math.random().toString(36).substring(8); // reiteration of ID
     }
     this.socket.join(roomID, () => {
       this.room = roomID;
