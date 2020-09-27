@@ -2,13 +2,12 @@ import express from "express";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import http from "http";
-import socketio from "socket.io";
-import RoomService from "./RoomService.js";
+// import RoomService from "./RoomService.js";
 
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server);
-io.set("transports", ["websocket"]);
+// const io = socketio(server);
+// io.set("transports", ["websocket"]);
 const port = process.env.PORT || 5000;
 
 // eslint-disable-next-line no-console
@@ -25,9 +24,9 @@ app.get("*", (req, res) => {
 
 server.listen(port, () => {
   const games = new Map();
-  io.on("connect", (socket) => {
-    console.log("a user connected", socket.id);
-    new RoomService(io, socket, games);
-  });
+  // io.on("connect", (socket) => {
+  //   console.log("a user connected", socket.id);
+  //   new RoomService(io, socket, games);
+  // });
   console.log("Server listening at port %d", port);
 });
