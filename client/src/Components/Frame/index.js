@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import React from "react";
 import { jsx, css } from "@emotion/core";
 import usePortal from "react-cool-portal";
 import Modal from "Components/Modal";
@@ -96,9 +97,24 @@ const heroText = css({
   fontWeight: 500,
 });
 
+const flexStyle = css({
+  width: "100%",
+  display: "flex",
+  flex: "1",
+  flexDirection: "column",
+  alignItems: "center",
+  "& > button": {
+    margin: "50px 0",
+  },
+});
+
 // components
 const Wrapper = ({ children }) => <div css={style}>{children}</div>;
-const Body = ({ children }) => <div css={bodyStyle}>{children}</div>;
+const Body = ({ children }) => (
+  <div css={bodyStyle}>
+    <div css={flexStyle}>{children}</div>
+  </div>
+);
 const Header = () => (
   <header css={headerStyle}>
     <h1>
@@ -248,15 +264,18 @@ const Footer = () => {
   );
 };
 
-const Frame = (props) => <Wrapper {...props} />;
+const Frame = (c) => (
+  <Wrapper>
+    <Body>{c}</Body>
+  </Wrapper>
+);
 
-Frame.Header = Header;
-Frame.Header.displayName = "FrameHeader";
-
-Frame.Body = Body;
-Frame.Body.displayName = "FrameBody";
-
-Frame.Footer = Footer;
-Frame.Footer.displayName = "FrameFooter";
+Frame.withHeader = (c) => (
+  <Wrapper>
+    <Header />
+    <Body>{c}</Body>
+    <Footer />
+  </Wrapper>
+);
 
 export default Frame;

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"; // TODO: don't use motion directly
 import { useContext } from "react";
 import { SoundContext } from "Sounds/Context";
 

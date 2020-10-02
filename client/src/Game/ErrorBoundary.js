@@ -1,6 +1,4 @@
 import React from "react";
-import { localStorageKey } from "Store";
-import { GAME_STAGES } from "./mappings";
 
 export default class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -8,17 +6,18 @@ export default class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    localStorage.removeItem(localStorageKey);
+    // localStorage.removeItem(localStorageKey);
     console.log(error, errorInfo);
-    this.props.dispatch({
-      type: "NAH_SERVER_RESPONSE",
-      payload: {
-        room: {
-          stage: GAME_STAGES.landing,
-        },
-        errors: ["Something went wrong"],
-      },
-    });
+    // something went wrong part
+    // this.props.dispatch({
+    //   type: "NAH_SERVER_RESPONSE",
+    //   payload: {
+    //     room: {
+    //       stage: GAME_STAGES.landing,
+    //     },
+    //     errors: ["Something went wrong"],
+    //   },
+    // });
   }
 
   render() {

@@ -2,12 +2,10 @@ import React, { useContext, useState, useRef } from "react";
 import { Formik } from "formik";
 import { string, object } from "yup";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 // relative
 import SocketContext from "SocketContext";
-import { StoreContext } from "Store";
-import { changeStageAction, sendFormAction } from "Game/actions";
-import { GAME_STAGES } from "Game/mappings";
 import validate from "utils/validate";
 
 import Button, { BackIcon } from "Components/Button";
@@ -18,13 +16,9 @@ const initialValues = {
 };
 
 function CreateRoom() {
-  const {
-    state: {
-      game: { errors },
-    },
-    dispatch,
-  } = useContext(StoreContext);
+  const navigate = useNavigate();
   const socket = useContext(SocketContext);
+  const errors = [];
 
   function onSubmit(values, test) {
     socket.sendServer({
@@ -36,7 +30,8 @@ function CreateRoom() {
   }
 
   function setErrors(errors) {
-    dispatch(sendFormAction({ errors }));
+    // catch errors
+    console.log(errors);
   }
 
   return (
@@ -52,7 +47,7 @@ function CreateRoom() {
       </Formik>
       <Button
         small
-        onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
+        onClick={() => navigate("/")}
         wrapperStyle={{ paddingBottom: 16, marginTop: "auto" }}
       >
         {BackIcon}

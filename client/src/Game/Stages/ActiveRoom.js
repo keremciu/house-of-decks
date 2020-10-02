@@ -24,6 +24,9 @@ function ActiveRoom() {
     },
     dispatch,
   } = React.useContext(StoreContext);
+  // {stage === GAME_STAGES.active && (
+  //   <NudgeButton disabled={!isNudgeReady} />
+  // )}
   const socket = useContext(SocketContext);
   const { playCard, playJudge, playWinner } = useContext(SoundContext);
   const winnerCanvas = useRef(null);
