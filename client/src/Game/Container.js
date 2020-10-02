@@ -30,101 +30,48 @@ function Game() {
   const { playNudge } = useContext(SoundContext);
   const nudgeControls = useAnimation();
 
-  const search = window.location.search;
-  const params = new URLSearchParams(search);
-  const roomID = params.get("room");
+  // TODO: change hereeee
+  // socket.player.runNudge = is true or not
+  // playNudge
 
   // useEffect(() => {
-  //   try {
-  //     socket.onopen = function () {
-  //       console.log("WebSocket connection established");
-  //     };
-  //     socket.onerror = function (err) {
-  //       console.log("WebSocket error", err);
-  //     };
-  //     // socket.on("game_action", (action) => {
-  //     //   dispatch(action);
-  //     //   if (
-  //     //     game.room.host === game.username &&
-  //     //     game.room?.players.length === 1 &&
-  //     //     action.payload.room
-  //     //   ) {
-  //     //     window.history.replaceState(
-  //     //       "",
-  //     //       "",
-  //     //       `?room=${action.payload.room.id}`
-  //     //     );
-  //     //   }
-  //     // });
-  //   } catch (error) {
-  //     console.log(error);
+  //   const player = game.room.players?.find((p) => p.username === game.username);
+  //   if (game.runNudge && !player.hasSubmitted) {
+  //     playNudge();
+  //     nudgeControls.start({
+  //       opacity: [0.8, 0.4, 0.9, 1, 1],
+  //       x: [-8, 20, -12, 25, 0],
+  //       y: [8, -16, 20, 5, 30, -12, 0],
+  //       transition: {
+  //         duration: 0.4,
+  //         type: "spring",
+  //         mass: 0.5,
+  //         restDelta: 0,
+  //         damping: 300,
+  //       },
+  //     });
+  //     dispatch({
+  //       type: "NAH_SERVER_RESPONSE",
+  //       payload: {
+  //         runNudge: false,
+  //       },
+  //     });
+  //     setTimeout(() => {
+  //       dispatch({
+  //         type: "NAH_SERVER_RESPONSE",
+  //         payload: {
+  //           isNudgeReady: true,
+  //         },
+  //       });
+  //     }, 3000);
   //   }
-  //   // Return a callback to be run before unmount-ing.
-  //   return () => {
-  //     // think about reconnecting parts here
-  //     socket.close();
-  //   };
-  // }, []); // Pass in an empty array to only run on mount.
-
-  useEffect(() => {
-    if (
-      [GAME_STAGES.landing, GAME_STAGES.join].includes(game.room.stage) &&
-      !!roomID
-    ) {
-      dispatch({
-        type: "NAH_SERVER_RESPONSE",
-        payload: {
-          room: {
-            stage: GAME_STAGES.join,
-          },
-          serverValues: {
-            roomID,
-          },
-        },
-      });
-    }
-  }, [window.location.search]);
-
-  useEffect(() => {
-    const player = game.room.players?.find((p) => p.username === game.username);
-    if (game.runNudge && !player.hasSubmitted) {
-      playNudge();
-      nudgeControls.start({
-        opacity: [0.8, 0.4, 0.9, 1, 1],
-        x: [-8, 20, -12, 25, 0],
-        y: [8, -16, 20, 5, 30, -12, 0],
-        transition: {
-          duration: 0.4,
-          type: "spring",
-          mass: 0.5,
-          restDelta: 0,
-          damping: 300,
-        },
-      });
-      dispatch({
-        type: "NAH_SERVER_RESPONSE",
-        payload: {
-          runNudge: false,
-        },
-      });
-      setTimeout(() => {
-        dispatch({
-          type: "NAH_SERVER_RESPONSE",
-          payload: {
-            isNudgeReady: true,
-          },
-        });
-      }, 3000);
-    }
-  }, [game.runNudge]);
-
-  console.log(socket.data);
-
+  // }, [game.runNudge]);
+  // stage should come from server only
   return (
     <StageRenderer
       isNudgeReady={game.isNudgeReady}
       nudgeControls={nudgeControls}
-      stage={socket.data?.game.stage}
+      stage={socket.data ? socket.data.game.stage : game.room.stage}
       errors={game.errors}
       dispatch={dispatch}
     />

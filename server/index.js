@@ -39,22 +39,23 @@ wss.on("connection", function (ws, request) {
   const username = url.searchParams.get("username");
 
   // if there is data in our RoomService send it to the user
-  if (service.findGame(gameID)) {
-    const game = service.findGame(gameID);
-    ws.send(
-      JSON.stringify({
-        game: game.getData(),
-        player: game.findPlayer(username),
-      })
-    );
-  } else {
-    ws.send(
-      JSON.stringify({
-        action: "removesession",
-      })
-    );
+  if (gameID) {
+    if (service.findGame(gameID)) {
+      const game = service.findGame(gameID);
+      ws.send(
+        JSON.stringify({
+          game: game.getData(),
+          player: game.findPlayer(username),
+        })
+      );
+    } else {
+      ws.send(
+        JSON.stringify({
+          action: "removesession",
+        })
+      );
+    }
   }
-  // ws.send(playerID);
 
   // broadcasting
   const broadcastRoom = (gameID, data) =>

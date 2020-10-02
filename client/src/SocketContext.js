@@ -9,13 +9,14 @@ export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const [data, setData] = useState(null);
 
-  const username = sessionStorage.getItem("username");
-  const gameID = sessionStorage.getItem("gameID");
-
   useEffect(() => {
+    const username = sessionStorage.getItem("username");
+    const gameID = sessionStorage.getItem("gameID");
     const socketURL = new URL(`ws://${location.host}`);
-    socketURL.searchParams.set("username", username);
-    socketURL.searchParams.set("gameID", gameID);
+    if (gameID) {
+      socketURL.searchParams.set("username", username);
+      socketURL.searchParams.set("gameID", gameID);
+    }
 
     setSocket(() => {
       const reconnect = new ReconnectingWebSocket(socketURL.toString());
@@ -29,7 +30,8 @@ export const SocketProvider = ({ children }) => {
         }
 
         setData(data);
-        if (!sessionStorage.getItem("gameID")) {
+        // if there is a new data
+        if (data.game && !sessionStorage.getItem("gameID")) {
           sessionStorage.setItem("gameID", data.game.id);
           sessionStorage.setItem("username", data.player.username);
         }
