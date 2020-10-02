@@ -2,32 +2,30 @@ import { GAME_STAGES } from "../client/src/Game/mappings.js";
 import cards from "./data.json";
 
 class Game {
-  constructor(service, roomID, host) {
-    this.service = service;
+  constructor(roomID, host) {
     this.id = roomID;
     this.host = host.username;
     this.stage = GAME_STAGES.waiting;
     this.players = [host];
     this.isReadyToJudge = false;
-    this.updateClients();
   }
 
-  updateClients = () => {
-    // omit this.service from room object
-    const { service, ...room } = this;
-    service.sendActionToRoom({
-      room,
-    });
-  };
+  getData() {
+    return {
+      id: this.id,
+      players: this.players,
+      host: this.host,
+      stage: this.stage,
+      isReadyToJudge: this.isReadyToJudge,
+    };
+  }
 
   registerPlayer = (player) => {
     this.players.push(player);
-    this.updateClients();
   };
 
   removePlayer = (username) => {
     this.players = this.players.filter((p) => p.username !== username);
-    this.updateClients();
   };
 
   findPlayer = (username) => this.players.find((p) => p.username === username);

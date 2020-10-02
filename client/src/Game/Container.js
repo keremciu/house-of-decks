@@ -34,40 +34,37 @@ function Game() {
   const params = new URLSearchParams(search);
   const roomID = params.get("room");
 
-  useEffect(() => {
-    try {
-      socket.onopen = function () {
-        console.log("WebSocket connection established");
-      };
-      socket.onerror = function (err) {
-        console.log("WebSocket error", err);
-      };
-      socket.onmessage = function (event) {
-        console.log(event.data);
-      };
-      // socket.on("game_action", (action) => {
-      //   dispatch(action);
-      //   if (
-      //     game.room.host === game.username &&
-      //     game.room?.players.length === 1 &&
-      //     action.payload.room
-      //   ) {
-      //     window.history.replaceState(
-      //       "",
-      //       "",
-      //       `?room=${action.payload.room.id}`
-      //     );
-      //   }
-      // });
-    } catch (error) {
-      console.log(error);
-    }
-    // Return a callback to be run before unmount-ing.
-    return () => {
-      // think about reconnecting parts here
-      socket.close();
-    };
-  }, []); // Pass in an empty array to only run on mount.
+  // useEffect(() => {
+  //   try {
+  //     socket.onopen = function () {
+  //       console.log("WebSocket connection established");
+  //     };
+  //     socket.onerror = function (err) {
+  //       console.log("WebSocket error", err);
+  //     };
+  //     // socket.on("game_action", (action) => {
+  //     //   dispatch(action);
+  //     //   if (
+  //     //     game.room.host === game.username &&
+  //     //     game.room?.players.length === 1 &&
+  //     //     action.payload.room
+  //     //   ) {
+  //     //     window.history.replaceState(
+  //     //       "",
+  //     //       "",
+  //     //       `?room=${action.payload.room.id}`
+  //     //     );
+  //     //   }
+  //     // });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   // Return a callback to be run before unmount-ing.
+  //   return () => {
+  //     // think about reconnecting parts here
+  //     socket.close();
+  //   };
+  // }, []); // Pass in an empty array to only run on mount.
 
   useEffect(() => {
     if (
@@ -121,11 +118,13 @@ function Game() {
     }
   }, [game.runNudge]);
 
+  console.log(socket.data);
+
   return (
     <StageRenderer
       isNudgeReady={game.isNudgeReady}
       nudgeControls={nudgeControls}
-      stage={game.room.stage}
+      stage={socket.data?.game.stage}
       errors={game.errors}
       dispatch={dispatch}
     />

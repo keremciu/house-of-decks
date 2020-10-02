@@ -29,9 +29,10 @@ function CreateRoom() {
   function onSubmit(values, test) {
     socket.sendServer({
       action: "create_room",
-      username: values.username,
+      payload: {
+        username: values.username,
+      },
     });
-    dispatch(sendFormAction(values));
   }
 
   function setErrors(errors) {

@@ -3,23 +3,9 @@ import Player from "./Player.js";
 import { GAME_STAGES } from "../client/src/Game/mappings.js";
 
 class RoomService {
-  constructor(io, socket, games) {
-    this.io = io;
-    this.socket = socket;
+  constructor(games) {
     this._games = games;
-    this.registerListeners();
   }
-
-  registerListeners = () => {
-    this.socket.on("create_room", this.createRoom);
-    this.socket.on("join_room", this.joinRoom);
-    this.socket.on("start_game", this.handleStartGame);
-    this.socket.on("submit_card", this.handleSubmitCard);
-    this.socket.on("submit_winner", this.handleSubmitWinner);
-    this.socket.on("leave_room", this.leaveRoom);
-    this.socket.on("nudge_room", this.nudgeRoom);
-    this.socket.on("disconnect", this.leaveRoom);
-  };
 
   sendActionToRoom = (payload) => {
     this.io.in(this.room).emit("game_action", {
@@ -45,24 +31,22 @@ class RoomService {
     });
   };
 
-  createRoom = (data) => {
+  createRoom = (payload) => {
+    const host = new Player(payload.username);
     // note: we can move room id generation into client not sure about security
     let roomID = Math.random().toString(36).substring(8);
-    if (this.socket.adapter.rooms.hasOwnProperty(roomID)) {
-      roomID = Math.random().toString(36).substring(8); // reiteration of ID
+    if (this._games.get(roomID)) {
+      roomID = Math.random().toString(36).substring(8); // TODO: recursive function of ID
     }
-    this.socket.join(roomID, () => {
-      this.room = roomID;
-      this.username = data.username;
-      const host = new Player(this.username);
-      const game = new Game(this, roomID, host);
-      this._games.set(roomID, game);
-    });
+    const game = new Game(roomID, host);
+    this._games.set(roomID, game);
+
+    return game;
   };
 
   joinRoom = (data) => {
     const { username, roomID } = data;
-    if (!this.socket.adapter.rooms.hasOwnProperty(roomID)) {
+    if (!this._games.get(roomID)) {
       return this.sendError("There's no room found.");
     } else if (this.findGame(roomID).findPlayer(username)) {
       return this.sendError("Username is already taken for this room.");

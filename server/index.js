@@ -3,11 +3,11 @@ import path, { dirname, parse } from "path";
 import { fileURLToPath } from "url";
 import http from "http";
 import WebSocket from "ws";
-// import RoomService from "./RoomService.js";
+import RoomService from "./RoomService";
 
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ clientTracking: false, noServer: true });
+const wss = new WebSocket.Server({ noServer: true });
 const port = process.env.PORT || 5000;
 
 // eslint-disable-next-line no-console
@@ -30,23 +30,55 @@ server.on("upgrade", function (request, socket, head) {
   });
 });
 
-const map = new Map();
+const games = new Map();
+const service = new RoomService(games);
 
 wss.on("connection", function (ws, request) {
-  const url = new URL(request.url, "http://localhost:5000");
+  const url = new URL(request.url, "http://localhost:5000"); // this url should come from env variables
   const gameID = url.searchParams.get("gameID");
-  const playerID = url.searchParams.get("playerID");
+  const username = url.searchParams.get("username");
 
-  ws.send(playerID);
+  // if there is data in our RoomService send it to the user
+  if (service.findGame(gameID)) {
+    const game = service.findGame(gameID);
+    ws.send(
+      JSON.stringify({
+        game: game.getData(),
+        player: game.findPlayer(username),
+      })
+    );
+  } else {
+    ws.send(
+      JSON.stringify({
+        action: "removesession",
+      })
+    );
+  }
+  // ws.send(playerID);
+
+  // broadcasting
+  const broadcastRoom = (gameID, data) =>
+    wss.clients.forEach(function each(client) {
+      if (client.readyState === WebSocket.OPEN && gameID === client.gameID) {
+        client.send(data);
+      }
+    });
 
   ws.on("message", function (message) {
     const parsedMessage = JSON.parse(message);
 
     if (parsedMessage.action === "create_room") {
-      // console.log(parsedMessage);
-      // const userId = Math.random().toString(36).substring(8);
+      const game = service.createRoom(parsedMessage.payload);
+      ws.gameID = game.id;
+      ws.username = parsedMessage.payload.username;
+
+      ws.send(
+        JSON.stringify({
+          game: game.getData(),
+          player: game.findPlayer(ws.username),
+        })
+      );
     }
-    console.log(parsedMessage);
     // console.log(`Received message ${parsedMessage} from user ${userId}`);
   });
 
