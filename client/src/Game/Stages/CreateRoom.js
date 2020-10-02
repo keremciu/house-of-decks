@@ -27,7 +27,7 @@ function CreateRoom() {
   const socket = useContext(SocketContext);
 
   function onSubmit(values, test) {
-    socket.sendMessage({
+    socket.sendServer({
       action: "create_room",
       username: values.username,
     });

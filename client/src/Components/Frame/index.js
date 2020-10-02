@@ -35,6 +35,7 @@ const headerStyle = css({
     fontWeight: 700,
     height: "100%",
     width: 36,
+    marginRight: -36,
     textAlign: "center",
     letterSpacing: 1,
   },

@@ -26,7 +26,6 @@
   "dependencies": {
     "esm": "^3.2.25",
     "express": "^4.17.1",
-    "express-session": "^1.17.1",
     "ws": "^7.3.1"
   },
   "devDependencies": {
