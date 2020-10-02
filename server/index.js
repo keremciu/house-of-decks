@@ -25,29 +25,36 @@ app.get("*", (req, res) => {
 server.on("upgrade", function (request, socket, head) {
   console.log("Parsing data from request...");
 
-  // wss.handleUpgrade(request, socket, head, function (ws) {
-  //   wss.emit("connection", ws, request);
-  // });
+  wss.handleUpgrade(request, socket, head, function (ws) {
+    wss.emit("connection", ws, request);
+  });
 });
 
 const map = new Map();
 
 wss.on("connection", function (ws, request) {
+  const url = new URL(request.url, "http://localhost:5000");
+  const gameID = url.searchParams.get("gameID");
+  const playerID = url.searchParams.get("playerID");
+
+  ws.send(playerID);
+
   ws.on("message", function (message) {
     const parsedMessage = JSON.parse(message);
 
     if (parsedMessage.action === "create_room") {
       // console.log(parsedMessage);
-      userId = Math.random().toString(36).substring(8);
+      // const userId = Math.random().toString(36).substring(8);
     }
-    console.log(`Received message ${parsedMessage} from user ${userId}`);
+    console.log(parsedMessage);
+    // console.log(`Received message ${parsedMessage} from user ${userId}`);
   });
 
   ws.on("close", function () {
-    map.delete(userId);
+    // map.delete(userId);
   });
 });
 
 server.listen(port, () => {
-  console.log("Server listening at port %d", port);
+  console.log("Server listening at http://localhost:%d", port);
 });
