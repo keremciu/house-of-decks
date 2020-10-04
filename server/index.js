@@ -42,6 +42,8 @@ wss.on("connection", function (ws, request) {
   if (gameID) {
     if (service.findGame(gameID)) {
       const game = service.findGame(gameID);
+      ws.gameID = game.id;
+      ws.username = username;
       ws.send(
         JSON.stringify({
           game: game.getData(),
@@ -83,6 +85,7 @@ wss.on("connection", function (ws, request) {
             player: game.findPlayer(ws.username),
           })
         );
+        return;
       }
 
       if (parsedMessage.action === "join") {
@@ -90,18 +93,28 @@ wss.on("connection", function (ws, request) {
         ws.gameID = game.id;
         ws.username = parsedMessage.payload.username;
         broadcastRoom(game);
+        return;
       }
 
       if (parsedMessage.action === "start") {
         game = service.findGame(ws.gameID);
         game.start(parsedMessage.payload);
         broadcastRoom(game);
+        return;
       }
 
       if (parsedMessage.action === "submit_card") {
         game = service.findGame(ws.gameID);
         game.submitCard(ws.username, parsedMessage.payload);
         broadcastRoom(game);
+        return;
+      }
+
+      if (parsedMessage.action === "submit_winner") {
+        game = service.findGame(ws.gameID);
+        game.submitWinner(ws.username, parsedMessage.payload);
+        broadcastRoom(game);
+        return;
       }
     } catch (error) {
       ws.send(

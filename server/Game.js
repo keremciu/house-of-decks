@@ -19,6 +19,7 @@ class Game {
       czar: this.czar,
       submitters: this.submitters,
       blackCard: this.blackCard,
+      lastWinner: this.lastWinner,
     };
   }
 
@@ -34,10 +35,9 @@ class Game {
 
   start = ({ decks }) => {
     if (this.players.length < 3) {
-      console.log("logs at least 3");
-      // return this.sendError(
-      //   "There should be at least 3 players to start game."
-      // );
+      if (process.env.NODE_ENV !== "dev") {
+        throw new Error("There should be at least 3 players to start game.");
+      }
     }
     this.filteredBlackCards = cards.black
       .filter((card) => decks.includes(card.deck))
@@ -92,6 +92,7 @@ class Game {
     const player = this.findPlayer(username);
     player.submittedCards.push(card);
     player.hasSubmitted = this.blackCard.pick === player.submittedCards.length;
+
     // remove card
     player.cards = player.cards.filter((c) => c.text !== card.text);
 
@@ -99,7 +100,6 @@ class Game {
 
     // check game state
     this.isReadyToJudge = this.submitters.every((p) => p.hasSubmitted);
-    this.updateClients();
   };
 
   submitWinner = (winner) => {
@@ -112,7 +112,6 @@ class Game {
     player.score++;
 
     this.startNewRound();
-    this.updateClients();
   };
 }
 

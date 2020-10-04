@@ -25,7 +25,7 @@ export const SocketProvider = ({ children }) => {
   const onMessage = (event) => {
     const data = JSON.parse(event.data);
     if (data.errors) {
-      setErrors(data.errors);
+      return setErrors(data.errors);
     }
     if (sessionStorage.getItem("gameID") && !data.game) {
       console.log("removesession", data);

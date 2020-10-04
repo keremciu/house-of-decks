@@ -13,6 +13,7 @@ class RoomService {
       payload,
     });
   };
+
   nudgeRoom = () => {
     this.sendActionToRoom({
       runNudge: true,
@@ -62,12 +63,6 @@ class RoomService {
     } else {
       cb();
     }
-  };
-
-  handleSubmitWinner = (winner) => {
-    this.checkSession(() => {
-      this.findGame(this.room).submitWinner(winner);
-    });
   };
 
   leaveRoom = (reason) => {
