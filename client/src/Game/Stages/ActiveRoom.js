@@ -4,9 +4,6 @@ import canvasConfetti from "canvas-confetti";
 import { useAnimation } from "framer-motion";
 
 import SocketContext from "SocketContext";
-import { StoreContext } from "Store";
-import { changeStageAction } from "Game/actions";
-import { GAME_STAGES } from "Game/mappings";
 
 import { SoundContext } from "Sounds/Context";
 import Cards, { WhiteCard, BlackCard } from "Components/Cards";
@@ -18,15 +15,10 @@ import Scoreboard from "Game/Views/Scoreboard";
 import LastWinnerCard from "Game/Views/LastWinnerCard";
 
 function ActiveRoom() {
-  const {
-    state: {
-      game: { room, username },
-    },
-    dispatch,
-  } = React.useContext(StoreContext);
   // {stage === GAME_STAGES.active && (
   //   <NudgeButton disabled={!isNudgeReady} />
   // )}
+  const navigate = useNavigate();
   const socket = useContext(SocketContext);
   const { playCard, playJudge, playWinner } = useContext(SoundContext);
   const winnerCanvas = useRef(null);
@@ -109,9 +101,10 @@ function ActiveRoom() {
   }
 
   function onLeave() {
-    dispatch(changeStageAction(GAME_STAGES.landing));
-    window.history.replaceState("", "", "/");
-    socket.emit("leave_room");
+    navigate("/");
+    socket.sendServer({
+      action: "leave_room",
+    });
   }
 
   const submissionIndex = submittedCards.length + 1;

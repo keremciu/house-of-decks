@@ -30,6 +30,12 @@ class Game {
   findPlayer = (username) => this.players.find((p) => p.username === username);
 
   start = ({ decks }) => {
+    if (this.players.length < 3) {
+      console.log("logs at least 3");
+      // return this.sendError(
+      //   "There should be at least 3 players to start game."
+      // );
+    }
     this.filteredBlackCards = cards.black
       .filter((card) => decks.includes(card.deck))
       .sort(() => Math.random() - 0.5);
@@ -44,7 +50,6 @@ class Game {
     this.players.forEach((player) => {
       player.cards = this.filteredWhiteCards.splice(-8, 8);
     });
-    this.updateClients();
   };
 
   startNewRound = () => {

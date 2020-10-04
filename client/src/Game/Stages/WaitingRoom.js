@@ -1,33 +1,29 @@
 import React, { useState, useContext } from "react";
 import useClipboard from "react-use-clipboard";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import usePortal from "react-cool-portal";
 
 import SocketContext from "SocketContext";
-import { GAME_STAGES } from "Game/mappings";
 import Button, { BackIcon } from "Components/Button";
 import Scoreboard from "Game/Views/Scoreboard";
 import DeckSelect from "Components/DeckSelect";
 
 function WaitingRoom() {
   const socket = useContext(SocketContext);
-  if (!socket.data) {
-    return null;
-  }
   const {
     data: { game, player },
   } = socket;
   const navigate = useNavigate();
+  const location = useLocation();
   const { Portal, show, hide } = usePortal({
     defaultShow: false,
   });
   const [selectedDecks, setSelectedDecks] = useState({
     base: true,
   });
-
   const [isCopied, setCopied] = useClipboard(
-    `${window.location.origin}/?room=${game.id}`,
+    window.location.origin + location.pathname,
     {
       successDuration: 1500,
     }
@@ -38,7 +34,7 @@ function WaitingRoom() {
       (deck) => selectedDecks[deck]
     );
     socket.sendServer({
-      action: "start_game",
+      action: "start",
       payload: {
         decks,
       },

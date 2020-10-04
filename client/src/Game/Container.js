@@ -5,29 +5,41 @@ import SocketContext from "SocketContext";
 import Landing from "Game/Stages/Landing";
 import CreateRoom from "Game/Stages/CreateRoom";
 import WaitingRoom from "Game/Stages/WaitingRoom";
+import JoinRoom from "Game/Stages/JoinRoom";
+import ActiveRoom from "Game/Stages/ActiveRoom";
+
 import Frame from "Components/Frame";
-// import JoinRoom from "Game/Stages/JoinRoom";
+
+const DataRequired = ({ data }) => {
+  if (!data) return Frame.withHeader(<JoinRoom />);
+  // join room failure when roomid doesnt work
+  if (data.game.hasStarted) {
+    return Frame(<ActiveRoom />);
+  }
+  return Frame(<WaitingRoom />);
+};
 
 function Game() {
   const navigate = useNavigate();
   const { data } = useContext(SocketContext);
 
   useEffect(() => {
-    if (!data) {
-      navigate("/");
-    }
     if (data?.game) {
-      if (!data.game.hasStarted) {
-        navigate("waiting");
-      }
+      navigate(data.game.id);
+      // if (!data.game.hasStarted) {
+      //   navigate(data.game.id);
+      // }
     }
   }, [data]);
 
   let element = useRoutes([
     { path: "/", element: Frame.withHeader(<Landing />) },
     { path: "create", element: Frame.withHeader(<CreateRoom />) },
-    { path: "waiting", element: Frame(<WaitingRoom />) },
-    // { path: "join", element: <JoinRoom /> },
+    { path: "join", element: Frame.withHeader(<JoinRoom />) },
+    {
+      path: ":gameid",
+      element: <DataRequired data={data} />,
+    },
   ]);
 
   return element;

@@ -56,21 +56,26 @@ wss.on("connection", function (ws, request) {
   }
 
   // broadcasting
-  const broadcastRoom = (gameID, data) =>
+  const broadcastRoom = (game) =>
     wss.clients.forEach(function each(client) {
-      if (client.readyState === WebSocket.OPEN && gameID === client.gameID) {
-        client.send(data);
+      if (client.readyState === WebSocket.OPEN && game.id === client.gameID) {
+        client.send(
+          JSON.stringify({
+            game: game.getData(),
+            player: game.findPlayer(client.username),
+          })
+        );
       }
     });
 
   ws.on("message", function (message) {
+    let game;
     const parsedMessage = JSON.parse(message);
 
-    if (parsedMessage.action === "create_room") {
-      const game = service.createRoom(parsedMessage.payload);
+    if (parsedMessage.action === "create") {
+      game = service.createRoom(parsedMessage.payload);
       ws.gameID = game.id;
       ws.username = parsedMessage.payload.username;
-
       ws.send(
         JSON.stringify({
           game: game.getData(),
@@ -78,6 +83,20 @@ wss.on("connection", function (ws, request) {
         })
       );
     }
+
+    if (parsedMessage.action === "join") {
+      game = service.joinRoom(parsedMessage.payload);
+      ws.gameID = game.id;
+      ws.username = parsedMessage.payload.username;
+      broadcastRoom(game);
+    }
+
+    if (parsedMessage.action === "start") {
+      const game = service.findGame(ws.gameID);
+      game.start(parsedMessage.payload);
+      broadcastRoom(game);
+    }
+
     // console.log(`Received message ${parsedMessage} from user ${userId}`);
   });
 

@@ -35,7 +35,7 @@ class RoomService {
     const host = new Player(payload.username);
     // note: we can move room id generation into client not sure about security
     let roomID = Math.random().toString(36).substring(8);
-    if (this._games.get(roomID)) {
+    if (this.findGame(roomID)) {
       roomID = Math.random().toString(36).substring(8); // TODO: recursive function of ID
     }
     const game = new Game(roomID, host);
@@ -44,22 +44,20 @@ class RoomService {
     return game;
   };
 
-  joinRoom = (data) => {
-    const { username, roomID } = data;
+  joinRoom = ({ username, roomID }) => {
     if (!this._games.get(roomID)) {
       return this.sendError("There's no room found.");
     } else if (this.findGame(roomID).findPlayer(username)) {
       return this.sendError("Username is already taken for this room.");
     }
-    this.socket.join(roomID, () => {
-      this.room = roomID;
-      this.username = username;
-      const player = new Player(this.username);
-      if (this.findGame(roomID).stage === GAME_STAGES.active) {
-        player.isWaiting = true;
-      }
-      this.findGame(roomID).registerPlayer(player);
-    });
+    const game = this.findGame(roomID);
+    const player = new Player(username);
+    if (game.hasStarted) {
+      player.isWaiting = true;
+    }
+    game.registerPlayer(player);
+
+    return game;
   };
 
   findGame = (roomID) => this._games.get(roomID);
@@ -75,17 +73,6 @@ class RoomService {
     } else {
       cb();
     }
-  };
-
-  handleStartGame = (data) => {
-    this.checkSession(() => {
-      if (this.findGame(this.room).players.length < 3) {
-        return this.sendError(
-          "There should be at least 3 players to start game."
-        );
-      }
-      this.findGame(this.room).start(data);
-    });
   };
 
   handleSubmitCard = (card) => {

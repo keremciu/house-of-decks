@@ -22,7 +22,7 @@ function CreateRoom() {
 
   function onSubmit(values, test) {
     socket.sendServer({
-      action: "create_room",
+      action: "create",
       payload: {
         username: values.username,
       },

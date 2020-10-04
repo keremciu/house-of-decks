@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import { Formik } from "formik";
 import { string, object } from "yup";
+import { useParams, useNavigate } from "react-router-dom";
 
 // relative
 import SocketContext from "SocketContext";
-import { StoreContext } from "Store";
-import { changeStageAction, sendFormAction } from "Game/actions";
-import { GAME_STAGES } from "Game/mappings";
 import validate from "utils/validate";
 
 import Button, { BackIcon } from "Components/Button";
@@ -18,26 +16,25 @@ const initialValues = {
 };
 
 function JoinRoom() {
-  const {
-    state: {
-      game: { errors, serverValues },
-    },
-    dispatch,
-  } = React.useContext(StoreContext);
   const socket = useContext(SocketContext);
+  const navigate = useNavigate();
+  const { gameid } = useParams();
+  const errors = [];
 
   function onSubmit(values, { setSubmitting, setErrors }) {
-    socket.emit("join_room", values);
-    dispatch(sendFormAction(values));
+    socket.sendServer({
+      action: "join",
+      payload: values,
+    });
     setSubmitting(false);
   }
+
   function setErrors(errors) {
-    dispatch(sendFormAction({ errors }));
+    console.log(errors);
   }
 
   function onLeave() {
-    dispatch(changeStageAction(GAME_STAGES.landing));
-    window.history.replaceState("", "", "/");
+    navigate("/");
   }
 
   return (
@@ -48,7 +45,7 @@ function JoinRoom() {
         enableReinitialize
         initialValues={{
           ...initialValues,
-          ...serverValues,
+          roomID: gameid,
         }}
         validate={validate(getValidationSchema, errors, setErrors)}
         onSubmit={onSubmit}
