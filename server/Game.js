@@ -1,12 +1,11 @@
-import { GAME_STAGES } from "../client/src/Game/mappings.js";
 import cards from "./data.json";
 
 class Game {
   constructor(roomID, host) {
     this.id = roomID;
     this.host = host.username;
-    this.stage = GAME_STAGES.waiting;
     this.players = [host];
+    this.hasStarted = false;
     this.isReadyToJudge = false;
   }
 
@@ -15,7 +14,7 @@ class Game {
       id: this.id,
       players: this.players,
       host: this.host,
-      stage: this.stage,
+      hasStarted: this.hasStarted,
       isReadyToJudge: this.isReadyToJudge,
     };
   }
@@ -40,7 +39,7 @@ class Game {
     const czarIndex = Math.floor(Math.random() * this.players.length);
     this.czar = this.players[czarIndex].username;
     this.submitters = this.players.filter((p) => p.username !== this.czar);
-    this.stage = GAME_STAGES.active;
+    this.hasStarted = true;
     this.blackCard = this.filteredBlackCards.pop();
     this.players.forEach((player) => {
       player.cards = this.filteredWhiteCards.splice(-8, 8);

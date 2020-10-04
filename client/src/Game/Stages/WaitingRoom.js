@@ -1,24 +1,24 @@
 import React, { useState, useContext } from "react";
 import useClipboard from "react-use-clipboard";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import usePortal from "react-cool-portal";
 
 import SocketContext from "SocketContext";
-import { StoreContext } from "Store";
-import { changeStageAction } from "Game/actions";
 import { GAME_STAGES } from "Game/mappings";
 import Button, { BackIcon } from "Components/Button";
 import Scoreboard from "Game/Views/Scoreboard";
 import DeckSelect from "Components/DeckSelect";
 
 function WaitingRoom() {
-  const {
-    state: {
-      game: { username, room },
-    },
-    dispatch,
-  } = React.useContext(StoreContext);
   const socket = useContext(SocketContext);
+  if (!socket.data) {
+    return null;
+  }
+  const {
+    data: { game, player },
+  } = socket;
+  const navigate = useNavigate();
   const { Portal, show, hide } = usePortal({
     defaultShow: false,
   });
@@ -27,7 +27,7 @@ function WaitingRoom() {
   });
 
   const [isCopied, setCopied] = useClipboard(
-    `${window.location.origin}/?room=${room.id}`,
+    `${window.location.origin}/?room=${game.id}`,
     {
       successDuration: 1500,
     }
@@ -37,22 +37,26 @@ function WaitingRoom() {
     const decks = Object.keys(selectedDecks).filter(
       (deck) => selectedDecks[deck]
     );
-    socket.emit("start_game", {
-      decks,
+    socket.sendServer({
+      action: "start_game",
+      payload: {
+        decks,
+      },
     });
   }
 
   function onLeave() {
-    dispatch(changeStageAction(GAME_STAGES.landing));
-    window.history.replaceState("", "", "/");
-    socket.emit("leave_room");
+    navigate("/");
+    socket.sendServer({
+      action: "leave_room",
+    });
   }
 
   return (
     <>
       <Scoreboard
-        username={username}
-        players={room.players}
+        username={player.username}
+        players={game.players}
         showScore={false}
       />
       <div style={{ height: 180 }} />
@@ -63,7 +67,7 @@ function WaitingRoom() {
             cursor: "pointer",
           }}
         >
-          <h1>{room.id}</h1>
+          <h1>{game.id}</h1>
           <p
             style={{
               color: "var(--color-gray)",
@@ -85,7 +89,7 @@ function WaitingRoom() {
             loop: Infinity,
           }}
         >
-          {room.host === username
+          {game.host === player.username
             ? "Waiting for other players..."
             : "Waiting for host..."}
         </motion.h2>
@@ -97,7 +101,7 @@ function WaitingRoom() {
           setSelectedDecks={setSelectedDecks}
         />
       </Portal>
-      {room.host === username && (
+      {game.host === player.username && (
         <>
           <Button secondary onClick={show} wrapperStyle={{ paddingBottom: 0 }}>
             <svg
@@ -111,7 +115,7 @@ function WaitingRoom() {
             </svg>{" "}
             Customize Cards
           </Button>
-          {room.players.length > 1 && (
+          {game.players.length > 1 && (
             <Button onClick={onStart}>Start the Game</Button>
           )}
         </>

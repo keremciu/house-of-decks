@@ -49,12 +49,10 @@ wss.on("connection", function (ws, request) {
         })
       );
     } else {
-      ws.send(
-        JSON.stringify({
-          action: "removesession",
-        })
-      );
+      ws.send(JSON.stringify({}));
     }
+  } else {
+    // ws.send(JSON.stringify({}));
   }
 
   // broadcasting

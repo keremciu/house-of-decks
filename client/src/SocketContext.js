@@ -8,6 +8,7 @@ export default SocketContext;
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const [data, setData] = useState(null);
+  const [connected, setConnected] = useState(false);
 
   useEffect(() => {
     const username = sessionStorage.getItem("username");
@@ -17,37 +18,49 @@ export const SocketProvider = ({ children }) => {
       socketURL.searchParams.set("username", username);
       socketURL.searchParams.set("gameID", gameID);
     }
-
-    setSocket(() => {
-      const reconnect = new ReconnectingWebSocket(socketURL.toString());
-      reconnect.sendServer = (object) => reconnect.send(JSON.stringify(object));
-      reconnect.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        if (data.action === "removesession") {
-          sessionStorage.removeItem("gameID");
-          sessionStorage.removeItem("username");
-          return;
-        }
-
-        setData(data);
-        // if there is a new data
-        if (data.game && !sessionStorage.getItem("gameID")) {
-          sessionStorage.setItem("gameID", data.game.id);
-          sessionStorage.setItem("username", data.player.username);
-        }
-      };
-      return reconnect;
-    });
+    setSocket(new ReconnectingWebSocket(socketURL.toString()));
   }, []);
 
-  if (!socket) {
+  const onMessage = (event) => {
+    const data = JSON.parse(event.data);
+    if (sessionStorage.getItem("gameID") && !data.game) {
+      console.log("removesession", data);
+      sessionStorage.removeItem("gameID");
+      sessionStorage.removeItem("username");
+      return;
+    }
+    setData(data);
+    // if there is a new game data keep in session
+    if (data.game && !sessionStorage.getItem("gameID")) {
+      sessionStorage.setItem("gameID", data.game.id);
+      sessionStorage.setItem("username", data.player.username);
+    }
+  };
+
+  const onOpen = () => setConnected(true);
+  const onClose = () => setConnected(false);
+
+  useEffect(() => {
+    socket?.addEventListener("open", onOpen);
+    socket?.addEventListener("message", onMessage);
+    socket?.addEventListener("close", onClose);
+    return () => {
+      socket?.removeEventListener("open");
+      socket?.removeEventListener("message");
+      socket?.removeEventListener("close");
+    };
+  }, [socket]);
+
+  if (!connected) {
     return <div>reconnecting...</div>;
   }
+  console.log(data);
+  const sendServer = (object) => socket.send(JSON.stringify(object));
 
   return (
     <SocketContext.Provider
       value={{
-        sendServer: socket.sendServer,
+        sendServer,
         data,
       }}
     >

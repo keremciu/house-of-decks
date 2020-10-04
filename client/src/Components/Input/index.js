@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { motion } from "framer-motion";
+import { forwardRef } from "react";
 
 const style = css({
   boxSizing: "border-box",
@@ -39,7 +40,7 @@ const style = css({
   },
 });
 
-export default (props) => (
+export default forwardRef((props, ref) => (
   <motion.label
     css={style}
     htmlFor={props.name}
@@ -50,9 +51,9 @@ export default (props) => (
     }}
   >
     <span>{props.label}</span>
-    <input id={props.name} {...props.field} {...props} />
+    <input id={props.name} ref={ref} {...props.field} {...props} />
   </motion.label>
-);
+));
 
 const formStyle = css({
   display: "flex",

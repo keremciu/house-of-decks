@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useEffect, useContext, useState, useRef } from "react";
 import { Formik } from "formik";
 import { string, object } from "yup";
 import { motion } from "framer-motion";
@@ -65,9 +65,16 @@ function CreateRoomForm(props) {
     handleSubmit,
   } = props;
 
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
+
   return (
     <Form onSubmit={handleSubmit}>
       <Input
+        ref={inputRef}
         label="Username"
         name="username"
         maxLength={10}
