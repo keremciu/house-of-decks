@@ -17,21 +17,15 @@ const initialValues = {
 
 function CreateRoom() {
   const navigate = useNavigate();
-  const socket = useContext(SocketContext);
-  const errors = [];
+  const { sendServer, errors, setErrors } = useContext(SocketContext);
 
   function onSubmit(values, test) {
-    socket.sendServer({
+    sendServer({
       action: "create",
       payload: {
         username: values.username,
       },
     });
-  }
-
-  function setErrors(errors) {
-    // catch errors
-    console.log(errors);
   }
 
   return (

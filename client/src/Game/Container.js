@@ -8,10 +8,14 @@ import WaitingRoom from "Game/Stages/WaitingRoom";
 import JoinRoom from "Game/Stages/JoinRoom";
 import ActiveRoom from "Game/Stages/ActiveRoom";
 
+import Notifications from "Components/Notifications";
+import ToggleSound from "Components/ToggleSound";
 import Frame from "Components/Frame";
 
+import ErrorBoundary from "./ErrorBoundary";
+
 const DataRequired = ({ data }) => {
-  if (!data) return Frame.withHeader(<JoinRoom />);
+  if (!data?.game) return Frame.withHeader(<JoinRoom />);
   // join room failure when roomid doesnt work
   if (data.game.hasStarted) {
     return Frame(<ActiveRoom />);
@@ -21,7 +25,7 @@ const DataRequired = ({ data }) => {
 
 function Game() {
   const navigate = useNavigate();
-  const { data } = useContext(SocketContext);
+  const { data, errors, setErrors } = useContext(SocketContext);
 
   useEffect(() => {
     if (data?.game) {
@@ -42,7 +46,15 @@ function Game() {
     },
   ]);
 
-  return element;
+  const onClose = () => setErrors([]);
+
+  return (
+    <ErrorBoundary>
+      <Notifications errors={errors} onClose={onClose} />
+      <ToggleSound />
+      {element}
+    </ErrorBoundary>
+  );
 }
 
 export default Game;

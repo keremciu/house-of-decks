@@ -8,6 +8,7 @@ export default SocketContext;
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const [data, setData] = useState(null);
+  const [errors, setErrors] = useState([]);
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
@@ -23,6 +24,9 @@ export const SocketProvider = ({ children }) => {
 
   const onMessage = (event) => {
     const data = JSON.parse(event.data);
+    if (data.errors) {
+      setErrors(data.errors);
+    }
     if (sessionStorage.getItem("gameID") && !data.game) {
       console.log("removesession", data);
       sessionStorage.removeItem("gameID");
@@ -37,16 +41,22 @@ export const SocketProvider = ({ children }) => {
     }
   };
 
+  const onError = (error) => {
+    console.log(error);
+  };
+
   const onOpen = () => setConnected(true);
   const onClose = () => setConnected(false);
 
   useEffect(() => {
     socket?.addEventListener("open", onOpen);
     socket?.addEventListener("message", onMessage);
+    socket?.addEventListener("error", onError);
     socket?.addEventListener("close", onClose);
     return () => {
       socket?.removeEventListener("open");
       socket?.removeEventListener("message");
+      socket?.removeEventListener("error");
       socket?.removeEventListener("close");
     };
   }, [socket]);
@@ -62,6 +72,8 @@ export const SocketProvider = ({ children }) => {
       value={{
         sendServer,
         data,
+        errors,
+        setErrors,
       }}
     >
       {children}

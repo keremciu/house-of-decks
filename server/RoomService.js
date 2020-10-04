@@ -13,17 +13,6 @@ class RoomService {
       payload,
     });
   };
-
-  sendError = (error, payload = {}) => {
-    this.socket.emit("game_action", {
-      type: "NAH_SERVER_RESPONSE",
-      payload: {
-        errors: [error],
-        ...payload,
-      },
-    });
-  };
-
   nudgeRoom = () => {
     this.sendActionToRoom({
       runNudge: true,
@@ -46,9 +35,9 @@ class RoomService {
 
   joinRoom = ({ username, roomID }) => {
     if (!this._games.get(roomID)) {
-      return this.sendError("There's no room found.");
+      throw new Error("There is no room found.");
     } else if (this.findGame(roomID).findPlayer(username)) {
-      return this.sendError("Username is already taken for this room.");
+      throw new Error("Username is already taken for this room.");
     }
     const game = this.findGame(roomID);
     const player = new Player(username);
@@ -73,12 +62,6 @@ class RoomService {
     } else {
       cb();
     }
-  };
-
-  handleSubmitCard = (card) => {
-    this.checkSession(() => {
-      this.findGame(this.room).submitCard(this.username, card);
-    });
   };
 
   handleSubmitWinner = (winner) => {

@@ -16,21 +16,16 @@ const initialValues = {
 };
 
 function JoinRoom() {
-  const socket = useContext(SocketContext);
+  const { sendServer, errors, setErrors } = useContext(SocketContext);
   const navigate = useNavigate();
   const { gameid } = useParams();
-  const errors = [];
 
   function onSubmit(values, { setSubmitting, setErrors }) {
-    socket.sendServer({
+    sendServer({
       action: "join",
       payload: values,
     });
     setSubmitting(false);
-  }
-
-  function setErrors(errors) {
-    console.log(errors);
   }
 
   function onLeave() {

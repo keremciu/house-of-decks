@@ -16,6 +16,9 @@ class Game {
       host: this.host,
       hasStarted: this.hasStarted,
       isReadyToJudge: this.isReadyToJudge,
+      czar: this.czar,
+      submitters: this.submitters,
+      blackCard: this.blackCard,
     };
   }
 

@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useContext } from "react";
 import useSound from "use-sound";
 import canvasConfetti from "canvas-confetti";
 import { useAnimation } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 import SocketContext from "SocketContext";
 
@@ -20,16 +21,19 @@ function ActiveRoom() {
   // )}
   const navigate = useNavigate();
   const socket = useContext(SocketContext);
+  const {
+    data: { game, player },
+  } = socket;
   const { playCard, playJudge, playWinner } = useContext(SoundContext);
   const winnerCanvas = useRef(null);
   const winnerAnimation = useAnimation();
   let confetti;
 
   useEffect(() => {
-    if (room.isReadyToJudge) {
+    if (game.isReadyToJudge) {
       playJudge();
     }
-  }, [room.isReadyToJudge]);
+  }, [game.isReadyToJudge]);
 
   useEffect(() => {
     if (!confetti) {
@@ -38,7 +42,7 @@ function ActiveRoom() {
         useWorker: true,
       });
     }
-    if (!!room.lastWinner) {
+    if (!!game.lastWinner) {
       setTimeout(() => {
         confetti({
           particleCount: 100,
@@ -83,21 +87,27 @@ function ActiveRoom() {
       }
       runWinnerAnimation();
     }
-  }, [room.lastWinner?.blackCard.text]);
+  }, [game.lastWinner?.blackCard.text]);
 
-  const { cards, submittedCards, hasSubmitted, isWaiting } = room.players.find(
-    (p) => p.username === username
+  const { cards, submittedCards, hasSubmitted, isWaiting } = game.players.find(
+    (p) => p.username === player.username
   );
-  const isCardCzar = room.czar === username;
-  const blackCard = room.blackCard;
+  const isCardCzar = game.czar === player.username;
+  const blackCard = game.blackCard;
 
   function onSubmitCard(card) {
     playCard();
-    socket.emit("submit_card", card);
+    socket.sendServer({
+      action: "submit_card",
+      payload: card,
+    });
   }
 
-  function onSubmitWinner(player) {
-    socket.emit("submit_winner", player);
+  function onSubmitWinner(winner) {
+    socket.sendServer({
+      action: "submit_winner",
+      payload: winner,
+    });
   }
 
   function onLeave() {
@@ -130,9 +140,9 @@ function ActiveRoom() {
       <Judgement
         isWaiting={isWaiting}
         isCardCzar={isCardCzar}
-        isReadyToJudge={room.isReadyToJudge}
+        isReadyToJudge={game.isReadyToJudge}
         blackCard={blackCard}
-        submitters={room.submitters}
+        submitters={game.submitters}
         onSubmitWinner={onSubmitWinner}
       />
     );
@@ -141,15 +151,19 @@ function ActiveRoom() {
   return (
     <>
       <Canvas ref={winnerCanvas} />
-      <Scoreboard username={username} czar={room.czar} players={room.players} />
-      {room.lastWinner && (
+      <Scoreboard
+        username={player.username}
+        czar={game.czar}
+        players={game.players}
+      />
+      {game.lastWinner && (
         <LastWinnerCard
           winnerAnimation={winnerAnimation}
-          lastWinner={room.lastWinner}
+          lastWinner={game.lastWinner}
         />
       )}
       <div style={{ height: 160 }} />
-      {!room.isReadyToJudge && (
+      {!game.isReadyToJudge && (
         <BlackCard
           showAlways={true}
           text={blackCard.text}

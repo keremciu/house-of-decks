@@ -72,29 +72,43 @@ wss.on("connection", function (ws, request) {
     let game;
     const parsedMessage = JSON.parse(message);
 
-    if (parsedMessage.action === "create") {
-      game = service.createRoom(parsedMessage.payload);
-      ws.gameID = game.id;
-      ws.username = parsedMessage.payload.username;
+    try {
+      if (parsedMessage.action === "create") {
+        game = service.createRoom(parsedMessage.payload);
+        ws.gameID = game.id;
+        ws.username = parsedMessage.payload.username;
+        ws.send(
+          JSON.stringify({
+            game: game.getData(),
+            player: game.findPlayer(ws.username),
+          })
+        );
+      }
+
+      if (parsedMessage.action === "join") {
+        game = service.joinRoom(parsedMessage.payload);
+        ws.gameID = game.id;
+        ws.username = parsedMessage.payload.username;
+        broadcastRoom(game);
+      }
+
+      if (parsedMessage.action === "start") {
+        game = service.findGame(ws.gameID);
+        game.start(parsedMessage.payload);
+        broadcastRoom(game);
+      }
+
+      if (parsedMessage.action === "submit_card") {
+        game = service.findGame(ws.gameID);
+        game.submitCard(ws.username, parsedMessage.payload);
+        broadcastRoom(game);
+      }
+    } catch (error) {
       ws.send(
         JSON.stringify({
-          game: game.getData(),
-          player: game.findPlayer(ws.username),
+          errors: [error.message],
         })
       );
-    }
-
-    if (parsedMessage.action === "join") {
-      game = service.joinRoom(parsedMessage.payload);
-      ws.gameID = game.id;
-      ws.username = parsedMessage.payload.username;
-      broadcastRoom(game);
-    }
-
-    if (parsedMessage.action === "start") {
-      const game = service.findGame(ws.gameID);
-      game.start(parsedMessage.payload);
-      broadcastRoom(game);
     }
 
     // console.log(`Received message ${parsedMessage} from user ${userId}`);
