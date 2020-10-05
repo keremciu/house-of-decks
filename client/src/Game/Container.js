@@ -16,7 +16,6 @@ import ErrorBoundary from "./ErrorBoundary";
 
 const DataRequired = ({ data }) => {
   if (!data?.game) return Frame.withHeader(<JoinRoom />);
-  // join room failure when roomid doesnt work
   if (data.game.hasStarted) {
     return Frame(<ActiveRoom />);
   }
@@ -30,9 +29,6 @@ function Game() {
   useEffect(() => {
     if (data?.game) {
       navigate(data.game.id);
-      // if (!data.game.hasStarted) {
-      //   navigate(data.game.id);
-      // }
     }
   }, [data]);
 

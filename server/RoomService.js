@@ -66,7 +66,7 @@ class RoomService {
   };
 
   leaveRoom = (reason) => {
-    console.log(reason, this.username);
+    // TODO: this function should be updated
     this.socket.leave(this.room);
     if (this._games.has(this.room)) {
       this.findGame(this.room).removePlayer(this.username);

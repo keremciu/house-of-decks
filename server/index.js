@@ -23,8 +23,6 @@ app.get("*", (req, res) => {
 });
 
 server.on("upgrade", function (request, socket, head) {
-  console.log("Parsing data from request...");
-
   wss.handleUpgrade(request, socket, head, function (ws) {
     wss.emit("connection", ws, request);
   });
@@ -123,12 +121,10 @@ wss.on("connection", function (ws, request) {
         })
       );
     }
-
-    // console.log(`Received message ${parsedMessage} from user ${userId}`);
   });
 
   ws.on("close", function () {
-    // map.delete(userId);
+    // find a way to handle not connected websocket issue
   });
 });
 

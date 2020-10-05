@@ -41,22 +41,16 @@ export const SocketProvider = ({ children }) => {
     }
   };
 
-  const onError = (error) => {
-    console.log(error);
-  };
-
   const onOpen = () => setConnected(true);
   const onClose = () => setConnected(false);
 
   useEffect(() => {
     socket?.addEventListener("open", onOpen);
     socket?.addEventListener("message", onMessage);
-    socket?.addEventListener("error", onError);
     socket?.addEventListener("close", onClose);
     return () => {
       socket?.removeEventListener("open");
       socket?.removeEventListener("message");
-      socket?.removeEventListener("error");
       socket?.removeEventListener("close");
     };
   }, [socket]);
@@ -64,7 +58,6 @@ export const SocketProvider = ({ children }) => {
   if (!connected) {
     return <div>reconnecting...</div>;
   }
-  console.log(data);
   const sendServer = (object) => socket.send(JSON.stringify(object));
 
   return (
