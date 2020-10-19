@@ -1,4 +1,3 @@
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";

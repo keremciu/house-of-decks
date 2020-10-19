@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, useRef } from "react";
+import React, { useEffect, useContext, useRef } from "react";
 import { Formik } from "formik";
 import { string, object } from "yup";
 import { motion } from "framer-motion";
@@ -51,13 +51,7 @@ function CreateRoom() {
 }
 
 function CreateRoomForm(props) {
-  const {
-    isSubmitting,
-    errors,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-  } = props;
+  const { isSubmitting, handleChange, handleBlur, handleSubmit } = props;
 
   const inputRef = useRef();
 

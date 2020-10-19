@@ -9,7 +9,6 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.8",
     "canvas-confetti": "^1.3.1",
-    "cra-build-watch": "^3.2.0",
     "formik": "^2.2.0",
     "framer-motion": "^2.9.1",
     "history": "^5.0.0",
@@ -18,21 +17,24 @@
     "react-dom": "^16.14.0",
     "react-responsive": "^8.1.0",
     "react-router-dom": "^6.0.0-beta.0",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^4.0.0-next.98",
     "react-use-clipboard": "^1.0.1",
     "reconnecting-websocket": "^4.4.0",
     "use-sound": "^1.0.2",
     "yup": "^0.29.3"
   },
   "scripts": {
-    "watch": "cra-build-watch",
+    "watch": "node scripts/watch.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -45,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "mock-socket": "^9.0.3"
   }
 }
