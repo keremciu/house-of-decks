@@ -70,7 +70,7 @@ function CreateRoomForm(props) {
         onBlur={handleBlur}
         onChange={handleChange}
       />
-      <Button onClick={handleSubmit} type="submit">
+      <Button type="submit">
         {isSubmitting ? "Starting a game..." : "Start a game"}
       </Button>
     </Form>

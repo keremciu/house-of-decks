@@ -19,6 +19,13 @@ describe("when user click on start game", () => {
     screen.getByLabelText(/Username/gi);
     screen.getByRole("button", { name: /Start a Game/gi });
   });
+
+  test("send create_room request", async () => {
+    userEvent.click(screen.getByRole("button", { name: /Start Game/gi }));
+    userEvent.type(screen.getByLabelText(/Username/gi), "test_user");
+    userEvent.click(screen.getByRole("button", { name: /Start a Game/gi }));
+    await screen.findByText(/Click to copy link and share with your friends/gi);
+  });
 });
 
 describe("when user click on join game", () => {

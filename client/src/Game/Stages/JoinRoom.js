@@ -88,7 +88,7 @@ function JoinRoomForm(props) {
         onBlur={handleBlur}
         onChange={handleChange}
       />
-      <Button onClick={handleSubmit} type="submit">
+      <Button type="submit">
         {isSubmitting ? "Joining the room..." : "Join the game"}
       </Button>
     </Form>

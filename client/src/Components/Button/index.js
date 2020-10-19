@@ -128,7 +128,7 @@ export default ({
           } else {
             playButton();
           }
-          onClick(e);
+          onClick && onClick(e);
         }}
       >
         <span css={innerStyle}>{children}</span>
