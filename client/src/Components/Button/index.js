@@ -1,11 +1,10 @@
-/** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import { motion } from "framer-motion"; // TODO: don't use motion directly
+import styled from "@emotion/styled";
+import { m as motion } from "framer-motion"; // TODO: don't use motion directly
 import { useContext } from "react";
 import { SoundContext } from "Sounds/Context";
 
-const style = (props) =>
-  css({
+const StyledButton = styled(motion.button)(
+  {
     boxSizing: "border-box",
     appearance: "none",
     display: "block",
@@ -33,13 +32,15 @@ const style = (props) =>
         boxShadow: "inset 3px 3px 7px rgba(136, 165, 191, 0.48)",
       },
     },
-    ...(props.disabled
+  },
+  ({ disabled, secondary, small }) => ({
+    ...(disabled
       ? {
           pointerEvents: "none",
           opacity: "0.4",
         }
       : {}),
-    ...(props.small
+    ...(small
       ? {
           height: 60,
           width: 60,
@@ -57,7 +58,7 @@ const style = (props) =>
       : {
           height: 100,
         }),
-    ...(props.secondary
+    ...(secondary
       ? {
           height: 72,
           background: "#ecf0f3",
@@ -77,9 +78,10 @@ const style = (props) =>
           },
         }
       : {}),
-  });
+  })
+);
 
-const innerStyle = css({
+const StyledInnerSpan = styled.span({
   borderRadius: 100,
   display: "flex",
   flex: "1",
@@ -100,9 +102,9 @@ export default ({
   const { playButton, soundEnabled } = useContext(SoundContext);
   return (
     <div style={{ padding: 20, ...wrapperStyle }}>
-      <motion.button
+      <StyledButton
+        {...props}
         type={type}
-        css={style(props)}
         style={props.style}
         title={props.title}
         disabled={props.disabled}
@@ -131,8 +133,8 @@ export default ({
           onClick && onClick(e);
         }}
       >
-        <span css={innerStyle}>{children}</span>
-      </motion.button>
+        <StyledInnerSpan>{children}</StyledInnerSpan>
+      </StyledButton>
     </div>
   );
 };

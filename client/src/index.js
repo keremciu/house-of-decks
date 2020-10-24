@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import { MotionConfig, AnimationFeature, GesturesFeature } from "framer-motion";
 
 import "./index.css";
 import { SocketProvider } from "./SocketContext";
@@ -11,7 +12,9 @@ ReactDOM.render(
   <SocketProvider>
     <SoundProvider>
       <BrowserRouter>
-        <GameContainer />
+        <MotionConfig features={[AnimationFeature, GesturesFeature]}>
+          <GameContainer />
+        </MotionConfig>
       </BrowserRouter>
     </SoundProvider>
   </SocketProvider>,

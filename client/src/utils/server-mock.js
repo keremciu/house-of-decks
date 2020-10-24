@@ -16,6 +16,8 @@ const service = new RoomService(games);
 mockServer.on("connection", (socket) => {
   socket.send(JSON.stringify({}));
   socket.on("message", (message) => {
+    // try to understand how we can merge this mock and real server files.
+    // server should import same base
     let game;
     const parsedMessage = JSON.parse(message);
     if (parsedMessage.action === "create") {

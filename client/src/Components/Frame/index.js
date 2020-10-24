@@ -1,217 +1,38 @@
-/** @jsx jsx */
-import React from "react";
-import { jsx, css } from "@emotion/core";
 import usePortal from "react-cool-portal";
-import Modal from "Components/Modal";
+
 import { GAME_STAGES } from "Game/mappings";
 
-import firstsvg from "./first.svg";
-import secondsvg from "./second.svg";
-import thirdsvg from "./third.svg";
-
-const style = css({
-  display: "flex",
-  flexDirection: "column",
-  minHeight: "100vh",
-  overflow: "hidden",
-});
-
-const headerStyle = css({
-  paddingTop: 100,
-  height: 260,
-  boxSizing: "border-box",
-  width: "100%",
-  textAlign: "center",
-  h1: {
-    fontSize: "2.4rem",
-    display: "flex",
-    justifyContent: "center",
-  },
-  "h1 span": {
-    marginLeft: 10,
-    fontSize: 9,
-    border: "1px solid var(--color-gray)",
-    padding: "2px 0px",
-    color: "var(--color-gray)",
-    fontWeight: 700,
-    height: "100%",
-    width: 36,
-    marginRight: -36,
-    textAlign: "center",
-    letterSpacing: 1,
-  },
-  "@media only screen and (max-width: 600px)": {
-    paddingTop: 40,
-    h1: {
-      padding: "0px 16px",
-      flexDirection: "column",
-      alignItems: "center",
-      span: {
-        display: "none",
-      },
-    },
-  },
-});
-
-const footerStyle = css({
-  width: "100%",
-  display: "flex",
-  justifyContent: "center",
-  alignContent: "center",
-  alignItems: "flex-end",
-  fontSize: 15,
-  color: "var(--color-gray)",
-  fontFamily: "var(--serif-font)",
-  a: {
-    marginLeft: 4,
-    height: 16,
-  },
-  span: {
-    height: 16,
-    margin: "0px 4px",
-  },
-  "@media only screen and (max-width: 600px)": {
-    flexDirection: "column",
-    alignItems: "center",
-    "a span": {
-      marginLeft: 0,
-    },
-    fontSize: 13,
-  },
-});
-
-const bodyStyle = css({
-  height: "100%",
-  width: "100%",
-  display: "flex",
-  flex: "1 1 auto",
-  fontSize: 18,
-  flexDirection: "column",
-  justifyContent: "center",
-});
-
-const heroText = css({
-  fontFamily: "var(--serif-font)",
-  color: "var(--color-gray)",
-  fontSize: 20,
-  fontWeight: 500,
-});
-
-const flexStyle = css({
-  width: "100%",
-  display: "flex",
-  flex: "1",
-  flexDirection: "column",
-  alignItems: "center",
-  "& > button": {
-    margin: "50px 0",
-  },
-});
+import HowToModal from "./HowToModal";
+import {
+  Wrapper,
+  BodyInner,
+  StyledBody,
+  StyledHeader,
+  StyledFooter,
+  HeroText,
+} from "./styled";
 
 // components
-const Wrapper = ({ children }) => <div css={style}>{children}</div>;
 const Body = ({ children }) => (
-  <div css={bodyStyle}>
-    <div css={flexStyle}>{children}</div>
-  </div>
+  <StyledBody>
+    <BodyInner>{children}</BodyInner>
+  </StyledBody>
 );
 const Header = () => (
-  <header css={headerStyle}>
+  <StyledHeader>
     <h1>
       house of decks<span>BETA</span>
     </h1>
-    <p css={heroText}>a party game for horrible people.</p>
-  </header>
+    <HeroText>a party game for horrible people.</HeroText>
+  </StyledHeader>
 );
 const Footer = () => {
   const { Portal, show, hide } = usePortal({
     defaultShow: false,
   });
-
   return (
-    <footer css={footerStyle}>
-      <Portal style={{ width: "100%" }}>
-        <Modal handleClose={hide}>
-          <h1>About</h1>
-          <div style={{ padding: "0px 10px" }}>
-            <p>
-              <strong>house of decks</strong> is an online game that you can
-              play with horrible people.
-            </p>
-            <p>Online video call is recommended while playing.</p>
-            <p>
-              This game is based on{" "}
-              <a
-                href="https://cardsagainsthumanity.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Cards Against Humanity
-              </a>
-              . If you like this game, you can buy printed versions to
-              contribute their creativity.
-            </p>
-            <p>
-              If you'd like to learn more about development of this game, there
-              is a{" "}
-              <a
-                href="https://www.notion.so/keremciu/house-of-decks-a688fc6e6d8e48bd98984f1bbcfe52fb"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WIKI.
-              </a>
-            </p>
-            <h2>How to play?</h2>
-            <p>
-              <strong>Requirement:</strong> At least there needs to be 3
-              horrible people to start a game.
-            </p>
-            <img src={firstsvg} width="96%" />
-            <p>
-              <small>
-                <em>FIG. 1. above</em>
-              </small>
-            </p>
-            <p>
-              In the game, every player starts with{" "}
-              <strong>8 white cards</strong>.
-            </p>
-            <p>
-              First <strong>JUDGE</strong> reads the black card by outlining
-              it's a question or fill-in-the-blank.
-            </p>
-            <p>
-              Players try to make <strong>a funny combination</strong> with the
-              black card by using their white cards.
-            </p>
-            <img src={secondsvg} width="96%" />
-            <p>
-              <small>
-                <em>FIG. 2. above</em>
-              </small>
-            </p>
-            <p>
-              <strong>JUDGE</strong> reads all the submissions then selects the
-              funniest combination.
-            </p>
-            <img src={thirdsvg} width="96%" />
-            <p>
-              <small>
-                <em>FIG. 3. above</em>
-              </small>
-            </p>
-            <p>Winner got the point then new round starts immediately!</p>
-            <hr />
-            <hr />
-            <h2>Last Words</h2>
-            <p>
-              This game is still in BETA version. If you've any problem or
-              feedback please share on Discord.
-            </p>
-          </div>
-        </Modal>
-      </Portal>
+    <StyledFooter>
+      <HowToModal Portal={Portal} hide={hide} />
       <div style={{ display: "flex", marginBottom: 16 }}>
         Made in Berlin with{" "}
         <span role="img" aria-label="heart">
@@ -260,7 +81,7 @@ const Footer = () => {
           </span>
         </a>
       </div>
-    </footer>
+    </StyledFooter>
   );
 };
 

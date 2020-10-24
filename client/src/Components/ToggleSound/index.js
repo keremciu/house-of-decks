@@ -1,11 +1,10 @@
-/** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import { motion } from "framer-motion";
+import styled from "@emotion/styled";
+import { m as motion } from "framer-motion";
 import { useContext } from "react";
 import { SoundContext } from "Sounds/Context";
 import Button from "Components/Button";
 
-const style = css({
+const Wrapper = styled.div({
   position: "fixed",
   left: 16,
   bottom: 16,
@@ -15,7 +14,7 @@ const style = css({
 export default () => {
   const { toggleSound, soundEnabled } = useContext(SoundContext);
   return (
-    <div css={style}>
+    <Wrapper>
       <Button
         small
         invertSounds
@@ -33,7 +32,7 @@ export default () => {
           {soundEnabled ? SoundOn : SoundOff}
         </svg>
       </Button>
-    </div>
+    </Wrapper>
   );
 };
 

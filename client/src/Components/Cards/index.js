@@ -1,10 +1,9 @@
 import React, { Fragment } from "react";
-/** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import { motion } from "framer-motion";
+import styled from "@emotion/styled";
+import { m as motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 
-const style = css({
+const Wrapper = styled.div({
   width: "100%",
   marginTop: 10,
   marginBottom: 20,
@@ -15,33 +14,31 @@ const style = css({
   },
 });
 
-export default ({ children }) => <div css={style}>{children}</div>;
+export default ({ children }) => <Wrapper>{children}</Wrapper>;
 
-const whiteCardStyle = (props) =>
-  css({
-    fontWeight: "bold",
-    background: "white",
-    borderRadius: 4,
-    padding: 10,
-    width: "10%",
-    "@media only screen and (max-width: 900px)": {
-      width: "40%",
-      height: "auto",
-      marginBottom: 10,
-    },
-    height: 260,
-    ...(props.onClick
-      ? {
-          cursor: "pointer",
-        }
-      : {}),
-  });
+const StyledWhiteCard = styled(motion.div)((props) => ({
+  fontWeight: "bold",
+  background: "white",
+  borderRadius: 4,
+  padding: 10,
+  width: "10%",
+  "@media only screen and (max-width: 900px)": {
+    width: "40%",
+    height: "auto",
+    marginBottom: 10,
+  },
+  height: 260,
+  ...(props.onClick
+    ? {
+        cursor: "pointer",
+      }
+    : {}),
+}));
 
 export const WhiteCard = ({ children, ...props }) => {
   const isDesktopOrLaptop = useMediaQuery({ minDeviceWidth: 1224 });
   return (
-    <motion.div
-      css={whiteCardStyle(props)}
+    <StyledWhiteCard
       {...props}
       {...(props.onClick
         ? {
@@ -55,43 +52,42 @@ export const WhiteCard = ({ children, ...props }) => {
         : {})}
     >
       {children}
-    </motion.div>
+    </StyledWhiteCard>
   );
 };
 
-const blackCardStyle = (props) =>
-  css({
-    fontWeight: "bold",
-    background: "black",
-    color: "white",
-    borderRadius: 4,
-    padding: 10,
-    width: "10%",
-    "@media only screen and (max-width: 900px)": {
-      width: "40%",
-      marginBottom: 10,
-    },
-    height: 260,
-    ...(props.showAlways
-      ? {
-          "@media only screen and (max-width: 900px)": {
-            position: "sticky",
-            top: 0,
-            width: "90%",
-            zIndex: 50,
-            height: "auto",
-          },
-        }
-      : {}),
-    ...(props.onClick
-      ? {
-          cursor: "pointer",
-        }
-      : {}),
-    "& span": {
-      textDecoration: "underline",
-    },
-  });
+const StyledBlackCard = styled(motion.div)((props) => ({
+  fontWeight: "bold",
+  background: "black",
+  color: "white",
+  borderRadius: 4,
+  padding: 10,
+  width: "10%",
+  "@media only screen and (max-width: 900px)": {
+    width: "40%",
+    marginBottom: 10,
+  },
+  height: 260,
+  ...(props.showAlways
+    ? {
+        "@media only screen and (max-width: 900px)": {
+          position: "sticky",
+          top: 0,
+          width: "90%",
+          zIndex: 50,
+          height: "auto",
+        },
+      }
+    : {}),
+  ...(props.onClick
+    ? {
+        cursor: "pointer",
+      }
+    : {}),
+  "& span": {
+    textDecoration: "underline",
+  },
+}));
 
 export const BlackCard = ({ text, submittedCards = [], ...props }) => {
   let aggregatedText = text.replace(/_/g, "______");
@@ -121,8 +117,7 @@ export const BlackCard = ({ text, submittedCards = [], ...props }) => {
     }
   }
   return (
-    <motion.div
-      css={blackCardStyle(props)}
+    <StyledBlackCard
       {...props}
       {...(props.onClick
         ? {
@@ -134,6 +129,6 @@ export const BlackCard = ({ text, submittedCards = [], ...props }) => {
         : {})}
     >
       {aggregatedText}
-    </motion.div>
+    </StyledBlackCard>
   );
 };

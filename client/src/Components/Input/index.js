@@ -1,9 +1,8 @@
-/** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import { motion } from "framer-motion";
 import { forwardRef } from "react";
+import styled from "@emotion/styled";
+import { m as motion } from "framer-motion";
 
-const style = css({
+const StyledLabel = styled(motion.label)({
   boxSizing: "border-box",
   appearance: "none",
   display: "block",
@@ -41,8 +40,7 @@ const style = css({
 });
 
 export default forwardRef((props, ref) => (
-  <motion.label
-    css={style}
+  <StyledLabel
     htmlFor={props.name}
     whileHover={{
       y: "-3",
@@ -52,17 +50,15 @@ export default forwardRef((props, ref) => (
   >
     <span>{props.label}</span>
     <input id={props.name} ref={ref} {...props.field} {...props} />
-  </motion.label>
+  </StyledLabel>
 ));
 
-const formStyle = css({
+const StyledForm = styled.form({
   display: "flex",
   alignItems: "center",
   flexDirection: "column",
 });
 
 export const Form = ({ children, onSubmit }) => (
-  <form onSubmit={onSubmit} css={formStyle}>
-    {children}
-  </form>
+  <StyledForm onSubmit={onSubmit}>{children}</StyledForm>
 );

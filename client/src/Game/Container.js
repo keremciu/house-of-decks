@@ -8,7 +8,7 @@ import WaitingRoom from "Game/Stages/WaitingRoom";
 import JoinRoom from "Game/Stages/JoinRoom";
 import ActiveRoom from "Game/Stages/ActiveRoom";
 
-import Notifications from "Components/Notifications";
+import Notifications from "Components/Notifications.js";
 import ToggleSound from "Components/ToggleSound";
 import Frame from "Components/Frame";
 
