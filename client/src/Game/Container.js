@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useRoutes, useNavigate } from "react-router-dom";
 
 import SocketContext from "SocketContext";
@@ -8,7 +8,7 @@ import WaitingRoom from "Game/Stages/WaitingRoom";
 import JoinRoom from "Game/Stages/JoinRoom";
 import ActiveRoom from "Game/Stages/ActiveRoom";
 
-import Notifications from "Components/Notifications.js";
+import Notifications from "Components/Notifications";
 import ToggleSound from "Components/ToggleSound";
 import Frame from "Components/Frame";
 

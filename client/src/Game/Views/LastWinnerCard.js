@@ -1,6 +1,5 @@
-import React from "react";
 import { BlackCard } from "Components/Cards";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 
 function LastWinnerCard({ winnerAnimation, lastWinner }) {
   return (

@@ -1,4 +1,4 @@
-import React from "react";
+import { Fragment } from "react";
 
 function Scoreboard({ czar = "", username, players = [], showScore = true }) {
   return (
@@ -13,7 +13,7 @@ function Scoreboard({ czar = "", username, players = [], showScore = true }) {
       {!showScore && <h4 style={{ margin: "0px 0px 8px" }}>Players</h4>}
       <div style={{ display: "grid" }}>
         {players.map((player, index) => (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             <div style={{ gridColumn: 1 }}>
               {czar === player.username && "🧑‍⚖️"}
               {player.username}
@@ -24,7 +24,7 @@ function Scoreboard({ czar = "", username, players = [], showScore = true }) {
             >
               {showScore && player.score}
             </div>
-          </React.Fragment>
+          </Fragment>
         ))}
       </div>
     </div>

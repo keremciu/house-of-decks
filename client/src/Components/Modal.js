@@ -1,38 +1,11 @@
-import styled from "@emotion/styled";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import Button from "Components/Button";
-
-const StyledModal = styled(motion.div)({
-  position: "fixed",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "100vh",
-  zIndex: 100,
-});
-
-const StyledWrapper = styled.div({
-  background: "#ecf0f3",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-});
-
-const StyledBody = styled.div({
-  overflowY: "auto",
-  width: "100%",
-  height: "calc(100vh - 100px)",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  boxShadow: "inset -10px 0px 30px rgba(0,0,0,0.1)",
-});
-
-const StyledFooter = styled.div({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-});
+import {
+  StyledModal,
+  StyledWrapper,
+  StyledBody,
+  StyledFooter,
+} from "./Modal.styled";
 
 const transition = {
   duration: 0.3,

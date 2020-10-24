@@ -1,5 +1,4 @@
-import React from "react";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import Scoreboard from "Game/Views/Scoreboard";
 import Cards, { WhiteCard, BlackCard } from "Components/Cards";
 
