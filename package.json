@@ -26,7 +26,6 @@
   "dependencies": {
     "esm": "^3.2.25",
     "express": "^4.17.1",
-    "react-scripts": "^4.0.0",
     "ws": "^7.3.1"
   },
   "devDependencies": {
