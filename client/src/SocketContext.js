@@ -14,7 +14,8 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     const username = sessionStorage.getItem("username");
     const gameID = sessionStorage.getItem("gameID");
-    const socketURL = new URL(`ws://${window.location.host}`);
+    // TODO: find a better way for this connection
+    const socketURL = new URL(`ws://${window.location.hostname}:5000`);
     if (gameID) {
       socketURL.searchParams.set("username", username);
       socketURL.searchParams.set("gameID", gameID);

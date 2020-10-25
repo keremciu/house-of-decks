@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node -r esm server/index.js",
-    "dev": "NODE_ENV=dev nodemon -r esm server/index.js & (cd client && npm run watch)",
+    "dev": "NODE_ENV=dev nodemon -r esm server/index.js --watch server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "lint": "eslint server/*.js"

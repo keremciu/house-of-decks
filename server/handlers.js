@@ -26,6 +26,7 @@ const resolveHandlers = ({ ws, broadcastRoom, service, message }) => {
   };
 
   try {
+    // TODO: find better way for this, maybe add parsedMessage.service === 'room'
     if (actions[parsedMessage.action]) {
       actions[parsedMessage.action]();
     } else {

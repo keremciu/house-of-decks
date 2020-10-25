@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useRef } from "react";
 import { Formik } from "formik";
 import { string, object } from "yup";
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 // relative

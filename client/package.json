@@ -25,7 +25,6 @@
     "yup": "^0.29.3"
   },
   "scripts": {
-    "watch": "node scripts/watch.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
