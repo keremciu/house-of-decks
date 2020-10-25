@@ -29,27 +29,15 @@ const service = new RoomService(games);
 
 mockServer.on("connection", (ws) => {
   const broadcastRoom = (game) => {
-    // socket.join(game.id);k
-    // server.to(game.id).emit(
-    //   JSON.stringify({
-    //     game: game.getData(),
-    //     player: game.findPlayer(ws.username),
-    //   })
-    // );
-    // ws.send(
-    //   JSON.stringify({
-    //     game: game.getData(),
-    //     player: game.findPlayer(client.username),
-    //   })
-    // );
-    mockServer.clients().forEach(function each(client) {
+    mockServer.clients().forEach((client) => {
       if (client.readyState === WebSocket.OPEN && game.id === client.gameID) {
-        ws.send(
-          JSON.stringify({
+        client.dispatchEvent({
+          type: "message",
+          data: JSON.stringify({
             game: game.getData(),
             player: game.findPlayer(client.username),
-          })
-        );
+          }),
+        });
       }
     });
   };
