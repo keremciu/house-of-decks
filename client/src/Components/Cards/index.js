@@ -14,7 +14,9 @@ const Wrapper = styled.div({
   },
 });
 
-export default ({ children }) => <Wrapper>{children}</Wrapper>;
+const Cards = ({ children }) => <Wrapper>{children}</Wrapper>;
+
+export default Cards;
 
 const StyledWhiteCard = styled(motion.div)((props) => ({
   fontWeight: "bold",

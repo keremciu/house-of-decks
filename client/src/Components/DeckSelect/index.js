@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { m as motion } from "framer-motion";
 import { SoundContext } from "Sounds/Context";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Tick from "Components/Tick";
 import Modal from "Components/Modal";
 

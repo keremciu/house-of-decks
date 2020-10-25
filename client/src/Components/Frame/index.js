@@ -1,7 +1,5 @@
 import usePortal from "react-cool-portal";
 
-import { GAME_STAGES } from "Game/mappings";
-
 import HowToModal from "./HowToModal";
 import {
   Wrapper,

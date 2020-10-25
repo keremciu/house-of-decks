@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useContext } from "react";
-import useSound from "use-sound";
 import canvasConfetti from "canvas-confetti";
 import { useAnimation } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -27,22 +26,22 @@ function ActiveRoom() {
   const { playCard, playJudge, playWinner } = useContext(SoundContext);
   const winnerCanvas = useRef(null);
   const winnerAnimation = useAnimation();
-  let confetti;
 
   useEffect(() => {
     if (game.isReadyToJudge) {
       playJudge();
     }
-  }, [game.isReadyToJudge]);
+  }, [game.isReadyToJudge, playJudge]);
 
   useEffect(() => {
+    let confetti;
     if (!confetti) {
       confetti = canvasConfetti.create(winnerCanvas.current, {
         resize: true,
         useWorker: true,
       });
     }
-    if (!!game.lastWinner) {
+    if (!!game.lastWinner && game.lastWinner?.blackCard.text) {
       setTimeout(() => {
         confetti({
           particleCount: 100,
@@ -87,7 +86,8 @@ function ActiveRoom() {
       }
       runWinnerAnimation();
     }
-  }, [game.lastWinner?.blackCard.text]);
+  }, [game.lastWinner, playWinner, winnerAnimation]);
+  // }, [game.lastWinner?.blackCard.text]);
 
   const { cards, submittedCards, hasSubmitted, isWaiting } = game.players.find(
     (p) => p.username === player.username

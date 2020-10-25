@@ -4,7 +4,7 @@ import firstsvg from "./first.svg";
 import secondsvg from "./second.svg";
 import thirdsvg from "./third.svg";
 
-export default ({ Portal, hide }) => (
+const HowToModal = ({ Portal, hide }) => (
   <Portal style={{ width: "100%" }}>
     <Modal handleClose={hide}>
       <h1>About</h1>
@@ -41,7 +41,7 @@ export default ({ Portal, hide }) => (
           <strong>Requirement:</strong> At least there needs to be 3 horrible
           people to start a game.
         </p>
-        <img src={firstsvg} width="96%" />
+        <img src={firstsvg} width="96%" alt="First sketch of game intro" />
         <p>
           <small>
             <em>FIG. 1. above</em>
@@ -58,7 +58,7 @@ export default ({ Portal, hide }) => (
           Players try to make <strong>a funny combination</strong> with the
           black card by using their white cards.
         </p>
-        <img src={secondsvg} width="96%" />
+        <img src={secondsvg} width="96%" alt="Second sketch of game intro" />
         <p>
           <small>
             <em>FIG. 2. above</em>
@@ -68,7 +68,7 @@ export default ({ Portal, hide }) => (
           <strong>JUDGE</strong> reads all the submissions then selects the
           funniest combination.
         </p>
-        <img src={thirdsvg} width="96%" />
+        <img src={thirdsvg} width="96%" alt="Third sketch of game intro" />
         <p>
           <small>
             <em>FIG. 3. above</em>
@@ -86,3 +86,5 @@ export default ({ Portal, hide }) => (
     </Modal>
   </Portal>
 );
+
+export default HowToModal;

@@ -61,7 +61,6 @@ function JoinRoom() {
 function JoinRoomForm(props) {
   const {
     isSubmitting,
-    errors,
     handleChange,
     handleBlur,
     handleSubmit,

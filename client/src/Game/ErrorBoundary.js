@@ -1,10 +1,6 @@
-import React from "react";
+import { Component } from "react";
 
-export default class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+export default class ErrorBoundary extends Component {
   componentDidCatch(error, errorInfo) {
     // localStorage.removeItem(localStorageKey);
     console.log(error, errorInfo);

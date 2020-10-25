@@ -15,7 +15,7 @@ const Path = (props) => (
   />
 );
 
-export default ({ errors, onClose }) => (
+const Notifications = ({ errors, onClose }) => (
   <StyledNotificationList>
     <AnimatePresence initial={false}>
       {errors.map((error, index) => (
@@ -32,6 +32,8 @@ export default ({ errors, onClose }) => (
     </AnimatePresence>
   </StyledNotificationList>
 );
+
+export default Notifications;
 
 const Notification = ({ text, close }) => (
   <StyledNotification>

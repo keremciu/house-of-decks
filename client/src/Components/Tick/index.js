@@ -16,7 +16,7 @@ const boxVariants = {
   },
 };
 
-export default ({ isChecked, setIsChecked }) => {
+const Tick = ({ isChecked, setIsChecked }) => {
   const pathLength = useMotionValue(0);
   const opacity = useTransform(pathLength, [0.05, 0.15], [0, 1]);
 
@@ -58,3 +58,5 @@ export default ({ isChecked, setIsChecked }) => {
     </motion.svg>
   );
 };
+
+export default Tick;

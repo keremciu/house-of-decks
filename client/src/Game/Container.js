@@ -30,7 +30,7 @@ function Game() {
     if (data?.game) {
       navigate(data.game.id);
     }
-  }, [data]);
+  }, [data, navigate]);
 
   let element = useRoutes([
     { path: "/", element: Frame.withHeader(<Landing />) },

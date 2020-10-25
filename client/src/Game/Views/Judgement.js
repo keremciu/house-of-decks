@@ -1,6 +1,5 @@
 import { m as motion } from "framer-motion";
-import Scoreboard from "Game/Views/Scoreboard";
-import Cards, { WhiteCard, BlackCard } from "Components/Cards";
+import Cards, { BlackCard } from "Components/Cards";
 
 function Judgement({
   isReadyToJudge,

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { SoundContext } from "Sounds/Context";
 import { StyledButton, StyledInnerSpan } from "./Button.styled";
 
-export default ({
+const Button = ({
   children,
   wrapperStyle = {},
   onClick,
@@ -49,6 +49,8 @@ export default ({
     </div>
   );
 };
+
+export default Button;
 
 export const BackIcon = (
   <svg
