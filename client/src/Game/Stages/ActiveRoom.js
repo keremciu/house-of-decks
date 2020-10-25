@@ -33,6 +33,8 @@ function ActiveRoom() {
     }
   }, [game.isReadyToJudge, playJudge]);
 
+  // winner animation should be part of LastWinner components
+  // TODO: This is buggy right now
   useEffect(() => {
     let confetti;
     if (!confetti) {
@@ -86,8 +88,9 @@ function ActiveRoom() {
       }
       runWinnerAnimation();
     }
-  }, [game.lastWinner, playWinner, winnerAnimation]);
-  // }, [game.lastWinner?.blackCard.text]);
+  }, [game.lastWinner?.blackCard.text]);
+  // }, [game.lastWinner, playWinner, winnerAnimation]);
+  // you need to find a good thing to focus for winnerAnimation
 
   const { cards, submittedCards, hasSubmitted, isWaiting } = game.players.find(
     (p) => p.username === player.username
