@@ -85,3 +85,13 @@ wss.on("connection", function (ws, request) {
 server.listen(port, () => {
   console.log("Server listening at http://localhost:%d", port);
 });
+
+["SIGINT", "SIGTERM"].forEach(function (sig) {
+  process.on(sig, function () {
+    console.log("SIGTERM signal received: closing HTTP server");
+    server.close(() => {
+      console.log("HTTP server closed");
+    });
+    process.exit();
+  });
+});
