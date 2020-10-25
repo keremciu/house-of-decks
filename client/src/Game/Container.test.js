@@ -1,6 +1,6 @@
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import { render, waitForElementToBeRemoved, screen } from "utils/test-utils";
+import { render, screen } from "utils/test-utils";
 import Container from "./Container";
 
 beforeEach(async () => {

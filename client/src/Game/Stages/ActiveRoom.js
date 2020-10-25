@@ -99,7 +99,10 @@ function ActiveRoom() {
     playCard();
     socket.sendServer({
       action: "submit_card",
-      payload: card,
+      payload: {
+        username: player.username,
+        card,
+      },
     });
   }
 

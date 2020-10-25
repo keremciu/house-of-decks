@@ -3,7 +3,8 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ["standard"],
+  extends: ["standard", "prettier"],
+  plugins: ["prettier"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
@@ -12,5 +13,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  rules: {},
+  rules: {
+    "prettier/prettier": ["error"],
+  },
 };

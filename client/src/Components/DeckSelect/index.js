@@ -35,7 +35,7 @@ const StyledMiniCard = styled.div({
   marginRight: 4,
 });
 
-export default ({
+const DeckSelect = ({
   items = decksObject.decks,
   selectedDecks,
   setSelectedDecks,
@@ -88,3 +88,5 @@ export default ({
     </Modal>
   );
 };
+
+export default DeckSelect;

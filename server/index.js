@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import http from "http";
 import WebSocket from "ws";
 import RoomService from "./RoomService";
+import handlers from "./handlers";
 
 const app = express();
 const server = http.createServer(app);
@@ -68,58 +69,12 @@ wss.on("connection", function (ws, request) {
     });
 
   ws.on("message", function (message) {
-    let game;
-    const parsedMessage = JSON.parse(message);
-
-    try {
-      if (parsedMessage.action === "create") {
-        game = service.createRoom(parsedMessage.payload);
-        ws.gameID = game.id;
-        ws.username = parsedMessage.payload.username;
-        ws.send(
-          JSON.stringify({
-            game: game.getData(),
-            player: game.findPlayer(ws.username),
-          })
-        );
-        return;
-      }
-
-      if (parsedMessage.action === "join") {
-        game = service.joinRoom(parsedMessage.payload);
-        ws.gameID = game.id;
-        ws.username = parsedMessage.payload.username;
-        broadcastRoom(game);
-        return;
-      }
-
-      if (parsedMessage.action === "start") {
-        game = service.findGame(ws.gameID);
-        game.start(parsedMessage.payload);
-        broadcastRoom(game);
-        return;
-      }
-
-      if (parsedMessage.action === "submit_card") {
-        game = service.findGame(ws.gameID);
-        game.submitCard(ws.username, parsedMessage.payload);
-        broadcastRoom(game);
-        return;
-      }
-
-      if (parsedMessage.action === "submit_winner") {
-        game = service.findGame(ws.gameID);
-        game.submitWinner(ws.username, parsedMessage.payload);
-        broadcastRoom(game);
-        return;
-      }
-    } catch (error) {
-      ws.send(
-        JSON.stringify({
-          errors: [error.message],
-        })
-      );
-    }
+    handlers({
+      ws,
+      service,
+      broadcastRoom,
+      message,
+    });
   });
 
   ws.on("close", function () {

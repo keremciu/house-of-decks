@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import useClipboard from "react-use-clipboard";
 import { useNavigate, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import usePortal from "react-cool-portal";
 
 import SocketContext from "SocketContext";

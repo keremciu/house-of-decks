@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/keremciu/house-of-decks#readme",
   "dependencies": {
-    "@emotion/styled": "^10.0.27",
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "react-scripts": "^4.0.0",
@@ -32,11 +31,14 @@
   },
   "devDependencies": {
     "eslint": "^7.12.0",
+    "eslint-config-prettier": "^6.14.0",
     "eslint-config-standard": "^15.0.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.2",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "prettier": "^2.1.2"
   }
 }

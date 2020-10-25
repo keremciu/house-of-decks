@@ -88,7 +88,8 @@ class Game {
     this.isReadyToJudge = false;
   };
 
-  submitCard = (username, card) => {
+  submit_card = (payload) => {
+    const { username, card } = payload;
     const player = this.findPlayer(username);
     player.submittedCards.push(card);
     player.hasSubmitted = this.blackCard.pick === player.submittedCards.length;
@@ -100,7 +101,7 @@ class Game {
     this.isReadyToJudge = this.submitters.every((p) => p.hasSubmitted);
   };
 
-  submitWinner = (winner) => {
+  submit_winner = (winner) => {
     const player = this.findPlayer(winner);
     this.lastWinner = {
       blackCard: this.blackCard,
