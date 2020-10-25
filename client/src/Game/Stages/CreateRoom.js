@@ -56,7 +56,7 @@ function CreateRoomForm(props) {
 
   useEffect(() => {
     inputRef.current.focus();
-  });
+  }, [inputRef]);
 
   return (
     <Form onSubmit={handleSubmit}>

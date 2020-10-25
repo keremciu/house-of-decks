@@ -9,8 +9,8 @@ const mockServer = new Server(fakeURL);
  * if you need to stub something else out you can like so:
  */
 window.WebSocket = WebSocket; // Here we stub out the window object
-const socket = new window.WebSocket("ws://localhost:5000");
-socket.send(
+const gameHostSocket = new window.WebSocket("ws://localhost:5000");
+gameHostSocket.send(
   JSON.stringify({
     action: "create",
     payload: {
@@ -20,9 +20,9 @@ socket.send(
 );
 const onMessage = async (event) => {
   const data = JSON.parse(event.data);
-  window.gameID = data.game?.id;
+  window.testGameID = data.game?.id;
 };
-socket?.addEventListener("message", onMessage);
+gameHostSocket?.addEventListener("message", onMessage);
 
 const games = new Map();
 const service = new RoomService(games);

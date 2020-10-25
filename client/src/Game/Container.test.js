@@ -43,10 +43,10 @@ describe("when user clicks join game button", () => {
     await screen.findByText(/house of decks/gi);
     userEvent.click(screen.getByRole("button", { name: /Join Game/gi }));
     userEvent.type(screen.getByLabelText(/Username/gi), "test-user");
-    userEvent.type(screen.getByLabelText(/Room ID/gi), window.gameID);
+    userEvent.type(screen.getByLabelText(/Room ID/gi), window.testGameID);
     userEvent.click(screen.getByRole("button", { name: /Join the Game/gi }));
     await screen.findByText(/Click to copy link and share with your friends/gi);
-    screen.getByRole("heading", { name: window.gameID });
+    screen.getByRole("heading", { name: window.testGameID });
     screen.getByText(/host-user/gi);
     screen.getByText(/test-user/gi);
   });

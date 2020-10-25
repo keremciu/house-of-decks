@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { Formik } from "formik";
 import { string, object } from "yup";
 import { useParams, useNavigate } from "react-router-dom";
@@ -67,9 +67,16 @@ function JoinRoomForm(props) {
     values,
   } = props;
 
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [inputRef]);
+
   return (
     <Form onSubmit={handleSubmit}>
       <Input
+        ref={inputRef}
         label="Username"
         name="username"
         maxLength={10}
