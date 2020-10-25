@@ -31,6 +31,9 @@ const resolveHandlers = ({ ws, broadcastRoom, service, message }) => {
 
   try {
     // TODO: find better way for this, maybe add parsedMessage.service === 'room'
+    // create can use broadcastRoom functionality
+    // basically create and join can be part of something useful
+    // maybe we need to pass `ws` and `broadcastRoom` functions when there is service === 'room'
     if (actions[parsedMessage.action]) {
       actions[parsedMessage.action]();
     } else {

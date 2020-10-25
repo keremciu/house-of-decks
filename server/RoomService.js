@@ -7,16 +7,10 @@ class RoomService {
     this._games = games;
   }
 
-  sendActionToRoom = (payload) => {
-    this.io.in(this.room).emit("game_action", {
-      type: "NAH_SERVER_RESPONSE",
-      payload,
-    });
-  };
-
+  // TODO: nudge functionality doesn't work
   nudgeRoom = () => {
-    this.sendActionToRoom({
-      runNudge: true,
+    this.broadcastRoom({
+      runNudge: true, // triggerNudge
       isNudgeReady: false,
     });
   };
