@@ -52,34 +52,15 @@ class RoomService {
 
   findGame = (roomID) => this._games.get(roomID);
 
-  checkSession = (cb) => {
-    if (
-      !this.socket.adapter.rooms.hasOwnProperty(this.room) ||
-      !this._games.has(this.room)
-    ) {
-      return this.sendError("Session has expired.", {
-        room: { stage: GAME_STAGES.landing },
-      });
-    } else {
-      cb();
-    }
-  };
-
-  leaveRoom = (reason) => {
-    // TODO: this function should be updated
-    this.socket.leave(this.room);
-    if (this._games.has(this.room)) {
-      this.findGame(this.room).removePlayer(this.username);
-      if (this.findGame(this.room).players.length === 0) {
-        this._games.delete(this.room);
-      } else {
-        this.findGame(this.room).updateClients();
+  leaveRoom = ({ username, roomID }) => {
+    if (this._games.has(roomID)) {
+      const game = this.findGame(roomID);
+      game.removePlayer(username);
+      if (game.players.length === 0) {
+        this._games.delete(roomID);
       }
+      return game;
     }
-    this.socket.emit("game_action", {
-      type: "NAH_SERVER_RESPONSE",
-      payload: {},
-    });
   };
 }
 

@@ -20,8 +20,12 @@ const resolveHandlers = ({ ws, broadcastRoom, service, message }) => {
       ws.username = parsedMessage.payload.username;
       broadcastRoom(game);
     },
-    leave: () => {
-      console.log("leaaaving");
+    leave_room: (reason) => {
+      game = service.leaveRoom({ username: ws.username, roomID: ws.gameID });
+      ws.gameID = null;
+      ws.username = null;
+      broadcastRoom(game);
+      console.log("USER IS LEAVING :(", reason);
     },
   };
 
