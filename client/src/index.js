@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { MotionConfig, AnimationFeature, GesturesFeature } from "framer-motion";
 
 import "./index.css";
+import './utils/initYupLocale'
 import { SocketProvider } from "./SocketContext";
 import { SoundProvider } from "./Sounds/Context";
 import { Container as GameContainer } from "./Game";
