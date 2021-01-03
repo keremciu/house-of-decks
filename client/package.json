@@ -4,9 +4,9 @@
   "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
-    "@emotion/core": "^10.0.35",
     "@emotion/eslint-plugin": "^11.0.0",
-    "@emotion/styled": "^10.0.27",
+    "@emotion/react": "^11.1.4",
+    "@emotion/styled": "^11.0.0",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",

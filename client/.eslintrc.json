@@ -1,12 +1,9 @@
 {
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "shared-config"
-    ],
-    "plugins": ["@emotion"],
-    "rules": {
-      "@emotion/pkg-renaming": "error"
-    }
+  "extends": [
+    "react-app"
+  ],
+  "plugins": ["@emotion"],
+  "rules": {
+    "@emotion/pkg-renaming": "error"
   }
 }

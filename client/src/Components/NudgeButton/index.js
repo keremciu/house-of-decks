@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx, css } from '@emotion/react';
 import { useContext } from "react";
 import SocketContext from "SocketContext";
 import Button from "Components/Button";
