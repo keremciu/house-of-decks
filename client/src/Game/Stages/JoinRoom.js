@@ -40,7 +40,7 @@ function JoinRoom() {
         enableReinitialize
         initialValues={{
           ...initialValues,
-          roomID: gameid,
+          roomID: gameid || "",
         }}
         validate={validate(getValidationSchema, errors, setErrors)}
         onSubmit={onSubmit}

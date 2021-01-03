@@ -88,7 +88,7 @@ function ActiveRoom() {
       }
       runWinnerAnimation();
     }
-  }, [game.lastWinner?.blackCard.text]);
+  }, [game.lastWinner?.blackCard.text, playWinner, winnerAnimation, game.lastWinner]);
   // }, [game.lastWinner, playWinner, winnerAnimation]);
   // you need to find a good thing to focus for winnerAnimation
 

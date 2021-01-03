@@ -21,6 +21,9 @@ export const SocketProvider = ({ children }) => {
       socketURL.searchParams.set("gameID", gameID);
     }
     setSocket(new ReconnectingWebSocket(socketURL.toString()));
+    return () => {
+      setSocket(null)
+    }
   }, []);
 
   const onMessage = (event) => {
@@ -42,10 +45,11 @@ export const SocketProvider = ({ children }) => {
     }
   };
 
-  const onOpen = () => setConnected(true);
-  const onClose = () => setConnected(false);
 
   useEffect(() => {
+    const onOpen = () => socket && setConnected(true);
+    const onClose = () => socket && setConnected(false);
+    
     socket?.addEventListener("open", onOpen);
     socket?.addEventListener("message", onMessage);
     socket?.addEventListener("close", onClose);

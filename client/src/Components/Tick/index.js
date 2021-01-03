@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
 const tickVariants = {
-  pressed: (isChecked: boolean) => ({ pathLength: isChecked ? 0.85 : 0.2 }),
+  pressed: (isChecked) => ({ pathLength: isChecked ? 0.85 : 0.2 }),
   checked: { pathLength: 1 },
   unchecked: { pathLength: 0 },
 };

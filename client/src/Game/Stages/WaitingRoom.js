@@ -82,7 +82,7 @@ function WaitingRoom() {
           transition={{
             duration: 3,
             ease: [0.43, 0.13, 0.23, 0.96],
-            loop: Infinity,
+            repeat: Infinity,
           }}
         >
           {game.host === player.username
