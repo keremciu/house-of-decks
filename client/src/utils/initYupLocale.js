@@ -6,10 +6,10 @@ import { setLocale } from 'yup'
  */
 setLocale({
   mixed: {
-    required: ({ path }) => `${path} is required`,
-    min: ({ min, path }) =>
-      `${path} has to be longer than ${min} characters!`,
-    max: ({ min, path }) =>
-      `${path} can't be longer than ${min} characters!`
+    required: ({ label }) => `${label} is required`,
+    min: ({ min, label }) =>
+      `${label} has to be longer than ${min} characters!`,
+    max: ({ min, label }) =>
+      `${label} can't be longer than ${min} characters!`
   },
 })

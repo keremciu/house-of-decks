@@ -104,10 +104,12 @@ function JoinRoomForm(props) {
 function getValidationSchema(values) {
   return object().shape({
     username: string()
+      .label("Username")
       .min(3)
       .max(10)
       .required(),
     roomID: string()
+      .label("Room ID")
       .min(3)
       .required(),
   });

@@ -79,6 +79,7 @@ function CreateRoomForm(props) {
 function getValidationSchema(values) {
   return object().shape({
     username: string()
+      .label("Username")
       .min(3)
       .max(10)
       .required(),
