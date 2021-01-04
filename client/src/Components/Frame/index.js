@@ -21,7 +21,7 @@ const Header = () => (
     <h1>
       house of decks<span>BETA</span>
     </h1>
-    <HeroText>a party game for horrible people.</HeroText>
+    <HeroText>a party game for hilarious people.</HeroText>
   </StyledHeader>
 );
 const Footer = () => {
@@ -45,7 +45,7 @@ const Footer = () => {
           </svg>
         </span>
         How to play?
-        <a href="#" onClick={show} style={{ paddingRight: 4 }}>
+        <a href="#guide" onClick={show} style={{ paddingRight: 4 }}>
           Guide
         </a>{" "}
       </div>

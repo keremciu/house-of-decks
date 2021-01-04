@@ -6,12 +6,12 @@ import thirdsvg from "./third.svg";
 
 const HowToModal = ({ Portal, hide }) => (
   <Portal style={{ width: "100%" }}>
-    <Modal handleClose={hide}>
+    <Modal handleClose={hide} id="guide">
       <h1>About</h1>
-      <div style={{ padding: "0px 10px" }}>
+      <div style={{ padding: "0px 10px 40px" }}>
         <p>
           <strong>house of decks</strong> is an online game that you can play
-          with horrible people.
+          with your funny friends.
         </p>
         <p>Online video call is recommended while playing.</p>
         <p>
@@ -27,7 +27,7 @@ const HowToModal = ({ Portal, hide }) => (
           their creativity.
         </p>
         <p>
-          If you'd like to learn more about development of this game, there is a{" "}
+          Everything about this project is <strong>open and free</strong>. You can find the roadmap, source code etc in this {" "}
           <a
             href="https://www.notion.so/keremciu/house-of-decks-a688fc6e6d8e48bd98984f1bbcfe52fb"
             target="_blank"
@@ -38,8 +38,7 @@ const HowToModal = ({ Portal, hide }) => (
         </p>
         <h2>How to play?</h2>
         <p>
-          <strong>Requirement:</strong> At least there needs to be 3 horrible
-          people to start a game.
+          <strong>Requirements -> At least 3 people are required to start a game.</strong>
         </p>
         <img src={firstsvg} width="96%" alt="First sketch of game intro" />
         <p>
