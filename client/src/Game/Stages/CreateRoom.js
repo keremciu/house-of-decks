@@ -1,13 +1,10 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useEffect, useContext, useRef } from "react";
 import { Formik } from "formik";
 import { string, object } from "yup";
-import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 // relative
 import SocketContext from "SocketContext";
-import { StoreContext } from "Store";
-import { changeStageAction, sendFormAction } from "Game/actions";
-import { GAME_STAGES } from "Game/mappings";
 import validate from "utils/validate";
 
 import Button, { BackIcon } from "Components/Button";
@@ -18,23 +15,16 @@ const initialValues = {
 };
 
 function CreateRoom() {
-  const {
-    state: {
-      game: { errors },
-    },
-    dispatch,
-  } = useContext(StoreContext);
-  const socket = useContext(SocketContext);
+  const navigate = useNavigate();
+  const { sendServer, errors, setErrors } = useContext(SocketContext);
 
   function onSubmit(values, test) {
-    socket.emit("create_room", {
-      username: values.username,
+    sendServer({
+      action: "create",
+      payload: {
+        username: values.username,
+      },
     });
-    dispatch(sendFormAction(values));
-  }
-
-  function setErrors(errors) {
-    dispatch(sendFormAction({ errors }));
   }
 
   return (
@@ -50,7 +40,7 @@ function CreateRoom() {
       </Formik>
       <Button
         small
-        onClick={() => dispatch(changeStageAction(GAME_STAGES.landing))}
+        onClick={() => navigate("/")}
         wrapperStyle={{ paddingBottom: 16, marginTop: "auto" }}
       >
         {BackIcon}
@@ -60,17 +50,18 @@ function CreateRoom() {
 }
 
 function CreateRoomForm(props) {
-  const {
-    isSubmitting,
-    errors,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-  } = props;
+  const { isSubmitting, handleChange, handleBlur, handleSubmit } = props;
+
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [inputRef]);
 
   return (
     <Form onSubmit={handleSubmit}>
       <Input
+        ref={inputRef}
         label="Username"
         name="username"
         maxLength={10}
@@ -78,7 +69,7 @@ function CreateRoomForm(props) {
         onBlur={handleBlur}
         onChange={handleChange}
       />
-      <Button onClick={handleSubmit} type="submit">
+      <Button type="submit">
         {isSubmitting ? "Starting a game..." : "Start a game"}
       </Button>
     </Form>
@@ -88,9 +79,10 @@ function CreateRoomForm(props) {
 function getValidationSchema(values) {
   return object().shape({
     username: string()
-      .min(3, `Username has to be longer than ${3} characters!`)
-      .max(10, `Username can't be longer than ${10} characters!`)
-      .required("Username is required!"),
+      .label("Username")
+      .min(3)
+      .max(10)
+      .required(),
   });
 }
 

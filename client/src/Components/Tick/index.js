@@ -1,8 +1,7 @@
-import React from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
 const tickVariants = {
-  pressed: (isChecked: boolean) => ({ pathLength: isChecked ? 0.85 : 0.2 }),
+  pressed: (isChecked) => ({ pathLength: isChecked ? 0.85 : 0.2 }),
   checked: { pathLength: 1 },
   unchecked: { pathLength: 0 },
 };
@@ -17,7 +16,7 @@ const boxVariants = {
   },
 };
 
-export default ({ isChecked, setIsChecked }) => {
+const Tick = ({ isChecked, setIsChecked }) => {
   const pathLength = useMotionValue(0);
   const opacity = useTransform(pathLength, [0.05, 0.15], [0, 1]);
 
@@ -59,3 +58,5 @@ export default ({ isChecked, setIsChecked }) => {
     </motion.svg>
   );
 };
+
+export default Tick;

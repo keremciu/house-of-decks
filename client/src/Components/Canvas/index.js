@@ -1,8 +1,7 @@
-/** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import React from "react";
+import { forwardRef } from "react";
+import styled from "@emotion/styled";
 
-const style = css({
+const StyledCanvas = styled.canvas({
   position: "absolute",
   top: 0,
   left: 0,
@@ -12,8 +11,8 @@ const style = css({
   pointerEvents: "none",
 });
 
-const Canvas = React.forwardRef((props, ref) => (
-  <canvas css={style} ref={ref} {...props} />
+const Canvas = forwardRef((props, ref) => (
+  <StyledCanvas ref={ref} {...props} />
 ));
 
 export default Canvas;

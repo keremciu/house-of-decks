@@ -1,12 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { Formik } from "formik";
 import { string, object } from "yup";
+import { useParams, useNavigate } from "react-router-dom";
 
 // relative
 import SocketContext from "SocketContext";
-import { StoreContext } from "Store";
-import { changeStageAction, sendFormAction } from "Game/actions";
-import { GAME_STAGES } from "Game/mappings";
 import validate from "utils/validate";
 
 import Button, { BackIcon } from "Components/Button";
@@ -18,26 +16,20 @@ const initialValues = {
 };
 
 function JoinRoom() {
-  const {
-    state: {
-      game: { errors, serverValues },
-    },
-    dispatch,
-  } = React.useContext(StoreContext);
-  const socket = useContext(SocketContext);
+  const { sendServer, errors, setErrors } = useContext(SocketContext);
+  const navigate = useNavigate();
+  const { gameid } = useParams();
 
   function onSubmit(values, { setSubmitting, setErrors }) {
-    socket.emit("join_room", values);
-    dispatch(sendFormAction(values));
+    sendServer({
+      action: "join",
+      payload: values,
+    });
     setSubmitting(false);
-  }
-  function setErrors(errors) {
-    dispatch(sendFormAction({ errors }));
   }
 
   function onLeave() {
-    dispatch(changeStageAction(GAME_STAGES.landing));
-    window.history.replaceState("", "", "/");
+    navigate("/");
   }
 
   return (
@@ -48,7 +40,7 @@ function JoinRoom() {
         enableReinitialize
         initialValues={{
           ...initialValues,
-          ...serverValues,
+          roomID: gameid || "",
         }}
         validate={validate(getValidationSchema, errors, setErrors)}
         onSubmit={onSubmit}
@@ -69,16 +61,22 @@ function JoinRoom() {
 function JoinRoomForm(props) {
   const {
     isSubmitting,
-    errors,
     handleChange,
     handleBlur,
     handleSubmit,
     values,
   } = props;
 
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [inputRef]);
+
   return (
     <Form onSubmit={handleSubmit}>
       <Input
+        ref={inputRef}
         label="Username"
         name="username"
         maxLength={10}
@@ -96,7 +94,7 @@ function JoinRoomForm(props) {
         onBlur={handleBlur}
         onChange={handleChange}
       />
-      <Button onClick={handleSubmit} type="submit">
+      <Button type="submit">
         {isSubmitting ? "Joining the room..." : "Join the game"}
       </Button>
     </Form>
@@ -106,12 +104,14 @@ function JoinRoomForm(props) {
 function getValidationSchema(values) {
   return object().shape({
     username: string()
-      .min(3, `Username has to be longer than ${3} characters!`)
-      .max(10, `Username can't be longer than ${10} characters!`)
-      .required("Username is required!"),
+      .label("Username")
+      .min(3)
+      .max(10)
+      .required(),
     roomID: string()
-      .min(3, `Room ID has to be longer than ${3} characters!`)
-      .required("Room ID is required!"),
+      .label("Room ID")
+      .min(3)
+      .required(),
   });
 }
 

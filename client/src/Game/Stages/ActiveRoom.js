@@ -1,12 +1,9 @@
 import React, { useRef, useEffect, useContext } from "react";
-import useSound from "use-sound";
 import canvasConfetti from "canvas-confetti";
 import { useAnimation } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 import SocketContext from "SocketContext";
-import { StoreContext } from "Store";
-import { changeStageAction } from "Game/actions";
-import { GAME_STAGES } from "Game/mappings";
 
 import { SoundContext } from "Sounds/Context";
 import Cards, { WhiteCard, BlackCard } from "Components/Cards";
@@ -18,32 +15,35 @@ import Scoreboard from "Game/Views/Scoreboard";
 import LastWinnerCard from "Game/Views/LastWinnerCard";
 
 function ActiveRoom() {
-  const {
-    state: {
-      game: { room, username },
-    },
-    dispatch,
-  } = React.useContext(StoreContext);
+  // {stage === GAME_STAGES.active && (
+  //   <NudgeButton disabled={!isNudgeReady} />
+  // )}
+  const navigate = useNavigate();
   const socket = useContext(SocketContext);
+  const {
+    data: { game, player },
+  } = socket;
   const { playCard, playJudge, playWinner } = useContext(SoundContext);
   const winnerCanvas = useRef(null);
   const winnerAnimation = useAnimation();
-  let confetti;
 
   useEffect(() => {
-    if (room.isReadyToJudge) {
+    if (game.isReadyToJudge) {
       playJudge();
     }
-  }, [room.isReadyToJudge]);
+  }, [game.isReadyToJudge, playJudge]);
 
+  // winner animation should be part of LastWinner components
+  // TODO: This is buggy right now
   useEffect(() => {
+    let confetti;
     if (!confetti) {
       confetti = canvasConfetti.create(winnerCanvas.current, {
         resize: true,
         useWorker: true,
       });
     }
-    if (!!room.lastWinner) {
+    if (!!game.lastWinner && game.lastWinner?.blackCard.text) {
       setTimeout(() => {
         confetti({
           particleCount: 100,
@@ -88,27 +88,39 @@ function ActiveRoom() {
       }
       runWinnerAnimation();
     }
-  }, [room.lastWinner?.blackCard.text]);
+  }, [game.lastWinner?.blackCard.text, playWinner, winnerAnimation, game.lastWinner]);
+  // }, [game.lastWinner, playWinner, winnerAnimation]);
+  // you need to find a good thing to focus for winnerAnimation
 
-  const { cards, submittedCards, hasSubmitted, isWaiting } = room.players.find(
-    (p) => p.username === username
+  const { cards, submittedCards, hasSubmitted, isWaiting } = game.players.find(
+    (p) => p.username === player.username
   );
-  const isCardCzar = room.czar === username;
-  const blackCard = room.blackCard;
+  const isCardCzar = game.czar === player.username;
+  const blackCard = game.blackCard;
 
   function onSubmitCard(card) {
     playCard();
-    socket.emit("submit_card", card);
+    socket.sendServer({
+      action: "submit_card",
+      payload: {
+        username: player.username,
+        card,
+      },
+    });
   }
 
-  function onSubmitWinner(player) {
-    socket.emit("submit_winner", player);
+  function onSubmitWinner(winner) {
+    socket.sendServer({
+      action: "submit_winner",
+      payload: winner,
+    });
   }
 
   function onLeave() {
-    dispatch(changeStageAction(GAME_STAGES.landing));
-    window.history.replaceState("", "", "/");
-    socket.emit("leave_room");
+    navigate("/");
+    socket.sendServer({
+      action: "leave_room",
+    });
   }
 
   const submissionIndex = submittedCards.length + 1;
@@ -134,9 +146,9 @@ function ActiveRoom() {
       <Judgement
         isWaiting={isWaiting}
         isCardCzar={isCardCzar}
-        isReadyToJudge={room.isReadyToJudge}
+        isReadyToJudge={game.isReadyToJudge}
         blackCard={blackCard}
-        submitters={room.submitters}
+        submitters={game.submitters}
         onSubmitWinner={onSubmitWinner}
       />
     );
@@ -145,15 +157,19 @@ function ActiveRoom() {
   return (
     <>
       <Canvas ref={winnerCanvas} />
-      <Scoreboard username={username} czar={room.czar} players={room.players} />
-      {room.lastWinner && (
+      <Scoreboard
+        username={player.username}
+        czar={game.czar}
+        players={game.players}
+      />
+      {game.lastWinner && (
         <LastWinnerCard
           winnerAnimation={winnerAnimation}
-          lastWinner={room.lastWinner}
+          lastWinner={game.lastWinner}
         />
       )}
       <div style={{ height: 160 }} />
-      {!room.isReadyToJudge && (
+      {!game.isReadyToJudge && (
         <BlackCard
           showAlways={true}
           text={blackCard.text}

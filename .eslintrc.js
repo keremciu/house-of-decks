@@ -1,16 +1,19 @@
 module.exports = {
   env: {
+    es2021: true,
     node: true,
-    es6: true,
   },
-  extends: ["eslint:recommended", "plugin:node/recommended"],
+  extends: ["standard", "prettier"],
+  plugins: ["prettier"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
   },
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 12,
     sourceType: "module",
   },
-  rules: {},
+  rules: {
+    "prettier/prettier": ["error"],
+  },
 };

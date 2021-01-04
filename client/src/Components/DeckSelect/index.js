@@ -1,14 +1,12 @@
-/** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import { motion } from "framer-motion";
+import styled from "@emotion/styled";
 import { SoundContext } from "Sounds/Context";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Tick from "Components/Tick";
 import Modal from "Components/Modal";
 
 import decksObject from "./decks.json";
 
-const itemStyle = css({
+const StyledItem = styled.div({
   cursor: "pointer",
   width: 360,
   padding: "20px",
@@ -19,7 +17,7 @@ const itemStyle = css({
   fontWeight: 900,
 });
 
-const miniCardsWrapper = css({
+const StyledMiniCards = styled.div({
   display: "flex",
   marginLeft: "auto",
   fontSize: 13,
@@ -27,7 +25,7 @@ const miniCardsWrapper = css({
   justifyContent: "space-between",
 });
 
-const miniCardStyle = css({
+const StyledMiniCard = styled.div({
   border: "2px solid black",
   background: "white",
   width: 14,
@@ -36,7 +34,7 @@ const miniCardStyle = css({
   marginRight: 4,
 });
 
-export default ({
+const DeckSelect = ({
   items = decksObject.decks,
   selectedDecks,
   setSelectedDecks,
@@ -62,11 +60,7 @@ export default ({
   return (
     <Modal handleClose={handleClose}>
       {items.map((deck) => (
-        <div
-          css={itemStyle}
-          key={deck.key}
-          onClick={() => toggleDeck(deck.key)}
-        >
+        <StyledItem key={deck.key} onClick={() => toggleDeck(deck.key)}>
           <div style={{ paddingRight: 10, height: 28 }}>
             <Tick
               isChecked={selectedDecks[deck.key]}
@@ -74,10 +68,9 @@ export default ({
             />
           </div>
           <div style={{ width: 210 }}>{deck.title}</div>
-          <div css={miniCardsWrapper} title="black and white card counts">
+          <StyledMiniCards title="black and white card counts">
             <div style={{ display: "flex", width: 53, alignItems: "center" }}>
-              <div
-                css={miniCardStyle}
+              <StyledMiniCard
                 style={{
                   background: "black",
                 }}
@@ -85,12 +78,14 @@ export default ({
               {deck.blackCardCount}
             </div>
             <div style={{ display: "flex", width: 53, alignItems: "center" }}>
-              <div css={miniCardStyle} />
+              <StyledMiniCard />
               {deck.whiteCardCount}
             </div>
-          </div>
-        </div>
+          </StyledMiniCards>
+        </StyledItem>
       ))}
     </Modal>
   );
 };
+
+export default DeckSelect;

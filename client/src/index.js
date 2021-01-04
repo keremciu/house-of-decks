@@ -1,22 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import * as io from "socket.io-client";
+import { BrowserRouter } from "react-router-dom";
+import { MotionConfig, AnimationFeature, GesturesFeature } from "framer-motion";
 
 import "./index.css";
-import SocketContext from "./SocketContext";
+import './utils/initYupLocale'
+import { SocketProvider } from "./SocketContext";
 import { SoundProvider } from "./Sounds/Context";
-import { StoreProvider } from "./Store";
 import { Container as GameContainer } from "./Game";
 
-const socket = io({ transports: ["websocket"], upgrade: false });
-
 ReactDOM.render(
-  <SocketContext.Provider value={socket}>
+  <SocketProvider>
     <SoundProvider>
-      <StoreProvider>
-        <GameContainer />
-      </StoreProvider>
+      <BrowserRouter>
+        <MotionConfig features={[AnimationFeature, GesturesFeature]}>
+          <GameContainer />
+        </MotionConfig>
+      </BrowserRouter>
     </SoundProvider>
-  </SocketContext.Provider>,
+  </SocketProvider>,
   document.getElementById("root")
 );

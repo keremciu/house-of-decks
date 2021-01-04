@@ -1,22 +1,15 @@
-import React from "react";
-import { StoreContext } from "Store";
-import { changeStageAction } from "Game/actions";
-import { GAME_STAGES } from "Game/mappings";
+import { useNavigate } from "react-router-dom";
 
 import Button from "Components/Button";
 
-function Join() {
-  const { dispatch } = React.useContext(StoreContext);
+function Landing() {
+  const navigate = useNavigate();
   return (
     <>
-      <Button onClick={() => dispatch(changeStageAction(GAME_STAGES.create))}>
-        Start Game
-      </Button>
-      <Button onClick={() => dispatch(changeStageAction(GAME_STAGES.join))}>
-        Join Game
-      </Button>
+      <Button onClick={() => navigate("create")}>Start Game</Button>
+      <Button onClick={() => navigate("join")}>Join Game</Button>
     </>
   );
 }
 
-export default Join;
+export default Landing;

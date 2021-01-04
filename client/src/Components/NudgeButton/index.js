@@ -1,6 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import { motion } from "framer-motion";
+import { jsx, css } from '@emotion/react';
 import { useContext } from "react";
 import SocketContext from "SocketContext";
 import Button from "Components/Button";
@@ -12,7 +11,7 @@ const style = css({
   zIndex: 30,
 });
 
-export default ({ disabled }) => {
+const NudgeButton = ({ disabled }) => {
   const socket = useContext(SocketContext);
 
   const nudgePeople = () => {
@@ -44,3 +43,5 @@ export default ({ disabled }) => {
     </div>
   );
 };
+
+export default NudgeButton;
