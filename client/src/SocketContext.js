@@ -5,6 +5,9 @@ const SocketContext = React.createContext();
 
 export default SocketContext;
 
+// how we consume socket data is important
+// put this performant way to divide components better
+// https://github.com/dai-shi/use-context-selector
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const [data, setData] = useState(null);
@@ -12,8 +15,8 @@ export const SocketProvider = ({ children }) => {
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
-    const username = sessionStorage.getItem("username");
-    const gameID = sessionStorage.getItem("gameID");
+    const username = localStorage.getItem("username");
+    const gameID = localStorage.getItem("gameID");
     // TODO: find a better way for this connection
     const socketURL = new URL(`ws://${window.location.hostname}:5000`);
     if (gameID) {
@@ -31,17 +34,17 @@ export const SocketProvider = ({ children }) => {
     if (data.errors) {
       return setErrors(data.errors);
     }
-    if (sessionStorage.getItem("gameID") && !data.game) {
+    if (localStorage.getItem("gameID") && !data.game) {
       console.log("removesession", data);
-      sessionStorage.removeItem("gameID");
-      sessionStorage.removeItem("username");
+      localStorage.removeItem("gameID");
+      localStorage.removeItem("username");
       return;
     }
     setData(data);
     // if there is a new game data keep in session
-    if (data.game && !sessionStorage.getItem("gameID")) {
-      sessionStorage.setItem("gameID", data.game.id);
-      sessionStorage.setItem("username", data.player.username);
+    if (data.game && !localStorage.getItem("gameID")) {
+      localStorage.setItem("gameID", data.game.id);
+      localStorage.setItem("username", data.player.username);
     }
   };
 

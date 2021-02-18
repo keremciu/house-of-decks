@@ -14,7 +14,7 @@ const Wrapper = styled.div({
   },
 });
 
-const Cards = ({ children }) => <Wrapper>{children}</Wrapper>;
+const Cards = ({ children }) => <Wrapper role="list">{children}</Wrapper>;
 
 export default Cards;
 
@@ -41,6 +41,7 @@ export const WhiteCard = ({ children, ...props }) => {
   const isDesktopOrLaptop = useMediaQuery({ minDeviceWidth: 1224 });
   return (
     <StyledWhiteCard
+      role="listitem"
       {...props}
       {...(props.onClick
         ? {

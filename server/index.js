@@ -77,6 +77,9 @@ wss.on("connection", function (ws, request) {
     });
   });
 
+  // check if process goest
+  console.log(ws.isAlive);
+
   ws.on("close", function () {
     // find a way to handle not connected websocket issue
   });

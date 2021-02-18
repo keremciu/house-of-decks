@@ -133,7 +133,7 @@ function ActiveRoom() {
       )}
       <Cards>
         {cards.map((card, index) => (
-          <WhiteCard key={index} onClick={() => onSubmitCard(card)}>
+          <WhiteCard aria-setsize={cards.length} aria-posinset={index} key={index} onClick={() => onSubmitCard(card)}>
             {card.text}
           </WhiteCard>
         ))}

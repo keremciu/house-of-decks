@@ -15,7 +15,7 @@ function Scoreboard({ czar = "", username, players = [], showScore = true }) {
         {players.map((player, index) => (
           <Fragment key={index}>
             <div style={{ gridColumn: 1 }}>
-              {czar === player.username && "🧑‍⚖️"}
+              {czar === player.username && <span role="img" aria-label="judge">🧑‍⚖️</span>}
               {player.username}
               {username === player.username && <small> (You)</small>}
             </div>
