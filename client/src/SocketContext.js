@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import ReconnectingWebSocket from "reconnecting-websocket";
 
-const SocketContext = React.createContext();
+const SocketContext = createContext();
 
 export default SocketContext;
 
