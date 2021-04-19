@@ -1,6 +1,6 @@
 {
   "name": "house-of-decks-server",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "websocket server for house of decks game",
   "main": "server/index.js",
   "engines": {
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/keremciu/house-of-decks.git"
   },
-  "author": "",
+  "author": "Kerem Sevencan @keremciu",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/keremciu/house-of-decks/issues"
