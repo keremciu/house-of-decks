@@ -1,17 +1,22 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
 import ReconnectingWebSocket from "reconnecting-websocket";
 
-interface ISocket { 
-  sendServer: object, 
-  data: object
+export type DataType = {
+  game?: {
+    id: string
+  },
 }
 
-const SocketContext = createContext({
-  sendServer: (): void => undefined,
+type ContextProps = {
+  sendServer(object: object): void,
+  data: DataType
+};
+
+const SocketContext = createContext<ContextProps>({
+  sendServer: () => undefined,
   data: {
-    game: null 
-  },
-}: ISocket);
+    game: undefined 
+  }} as ContextProps)
 
 export default SocketContext;
 
@@ -20,6 +25,12 @@ interface IProps {
 }
 
 const socketURL = new URL(`ws://${window.location.hostname}:5000`);
+const username: any = localStorage.getItem("username");
+const gameID = localStorage.getItem("gameID");
+if (gameID) {
+  socketURL.searchParams.set("username", username);
+  socketURL.searchParams.set("gameID", gameID);
+}
 const socket = new ReconnectingWebSocket(socketURL.toString())
 
 export const SocketProvider = ({ children }: IProps) => {
