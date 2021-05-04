@@ -39,7 +39,7 @@ const StyledLabel = styled(motion.label)({
   },
 });
 
-export default forwardRef((props, ref) => (
+export default forwardRef(({ label, ...props}, ref) => (
   <StyledLabel
     htmlFor={props.name}
     whileHover={{
@@ -48,7 +48,7 @@ export default forwardRef((props, ref) => (
         "rgba(255, 255, 255, 0.2) -8px -8px 20px 0px inset, rgb(209, 217, 230) 4px 4px 12px 0px inset",
     }}
   >
-    <span>{props.label}</span>
+    <span>{label}</span>
     <input id={props.name} ref={ref} {...props.field} {...props} />
   </StyledLabel>
 ));

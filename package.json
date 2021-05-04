@@ -1,10 +1,10 @@
 {
   "name": "house-of-decks-server",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "websocket server for house of decks game",
   "main": "server/index.js",
   "engines": {
-    "node": "12.16.x"
+    "node": "14.16.x"
   },
   "scripts": {
     "start": "node -r esm server/index.js",
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/keremciu/house-of-decks.git"
   },
-  "author": "",
+  "author": "Kerem Sevencan @keremciu",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/keremciu/house-of-decks/issues"
@@ -26,18 +26,18 @@
   "dependencies": {
     "esm": "^3.2.25",
     "express": "^4.17.1",
-    "ws": "^7.4.2"
+    "ws": "^7.4.4"
   },
   "devDependencies": {
-    "eslint": "^7.17.0",
-    "eslint-config-prettier": "^7.1.0",
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.2.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.3.0",
-    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-standard": "^5.0.0",
-    "nodemon": "^2.0.6",
+    "nodemon": "^2.0.7",
     "prettier": "^2.2.1"
   }
 }
