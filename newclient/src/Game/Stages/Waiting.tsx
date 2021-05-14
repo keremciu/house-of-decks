@@ -3,7 +3,14 @@ import { useContext } from "react";
 import SocketContext from "Contexts/socket";
 
 function Waiting() {
-  const { data } = useContext(SocketContext);
+  const { data, sendServer } = useContext(SocketContext);
+
+  const onStart = () => {
+    sendServer({
+      action: "start",
+      payload: { decks: ["base"] },
+    });
+  };
 
   return (
     <>
@@ -13,7 +20,7 @@ function Waiting() {
           <li key={player.username}>{player.username}</li>
         ))}
       </ul>
-      <button onClick={() => null}>Start Game</button>
+      <button onClick={onStart}>Start Game</button>
     </>
   );
 }

@@ -48,7 +48,6 @@ export const SocketProvider = ({ children }) => {
     }
   };
 
-
   useEffect(() => {
     const onOpen = () => socket && setConnected(true);
     const onClose = () => socket && setConnected(false);

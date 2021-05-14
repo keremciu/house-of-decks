@@ -10,11 +10,13 @@ export type DataType = {
 
 type ContextProps = {
   sendServer(object: object): void;
+  errors: Array<string>;
   data: DataType;
 };
 
 const SocketContext = createContext<ContextProps>({
   sendServer: () => undefined,
+  errors: [],
   data: {
     game: undefined,
   },
@@ -37,12 +39,13 @@ const socket = new ReconnectingWebSocket(socketURL.toString());
 
 export const SocketProvider = ({ children }: IProps) => {
   const [data, setData] = useState({});
+  const [errors, setErrors] = useState([]);
   const [connected, setConnected] = useState(false);
   const onMessage = (event: { data: string }) => {
     const data = JSON.parse(event.data);
     if (data.errors) {
       console.log(data.errors);
-      // return setErrors(data.errors);
+      return setErrors(data.errors);
     }
     if (localStorage.getItem("gameID") && !data.game) {
       console.log("removesession", data);
@@ -100,6 +103,7 @@ export const SocketProvider = ({ children }: IProps) => {
     <SocketContext.Provider
       value={{
         sendServer,
+        errors,
         data,
       }}
     >
