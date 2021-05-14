@@ -3,26 +3,27 @@ import ReconnectingWebSocket from "reconnecting-websocket";
 
 export type DataType = {
   game?: {
-    id: string,
-    players: [{ username: string }]
-  },
-}
+    id: string;
+    players: [{ username: string }];
+  };
+};
 
 type ContextProps = {
-  sendServer(object: object): void,
-  data: DataType
+  sendServer(object: object): void;
+  data: DataType;
 };
 
 const SocketContext = createContext<ContextProps>({
   sendServer: () => undefined,
   data: {
-    game: undefined 
-  }} as ContextProps)
+    game: undefined,
+  },
+} as ContextProps);
 
 export default SocketContext;
 
 interface IProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const socketURL = new URL(`ws://${window.location.hostname}:5000`);
@@ -32,7 +33,7 @@ if (gameID) {
   socketURL.searchParams.set("username", username);
   socketURL.searchParams.set("gameID", gameID);
 }
-const socket = new ReconnectingWebSocket(socketURL.toString())
+const socket = new ReconnectingWebSocket(socketURL.toString());
 
 export const SocketProvider = ({ children }: IProps) => {
   const [data, setData] = useState({});
@@ -40,7 +41,7 @@ export const SocketProvider = ({ children }: IProps) => {
   const onMessage = (event: { data: string }) => {
     const data = JSON.parse(event.data);
     if (data.errors) {
-      console.log(data.errors)
+      console.log(data.errors);
       // return setErrors(data.errors);
     }
     if (localStorage.getItem("gameID") && !data.game) {
@@ -60,7 +61,7 @@ export const SocketProvider = ({ children }: IProps) => {
   useEffect(() => {
     const onOpen = () => socket && setConnected(true);
     const onClose = () => socket && setConnected(false);
-    
+
     socket?.addEventListener("open", onOpen);
     socket?.addEventListener("message", onMessage);
     socket?.addEventListener("close", onClose);
@@ -77,7 +78,7 @@ export const SocketProvider = ({ children }: IProps) => {
   //   // const username = localStorage.getItem("username");
   //   // const gameID = localStorage.getItem("gameID");
   //   // TODO: find a better way for this connection
-    
+
   //   // if (gameID) {
   //   //   socketURL.searchParams.set("username", username);
   //   //   socketURL.searchParams.set("gameID", gameID);
@@ -94,15 +95,15 @@ export const SocketProvider = ({ children }: IProps) => {
   if (!connected) {
     return <div>reconnecting...</div>;
   }
-  
+
   return (
     <SocketContext.Provider
       value={{
         sendServer,
-        data
+        data,
       }}
     >
       {children}
     </SocketContext.Provider>
   );
-}
+};

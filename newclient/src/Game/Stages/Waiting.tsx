@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import SocketContext from 'Contexts/socket'
+import SocketContext from "Contexts/socket";
 
 function Waiting() {
   const { data } = useContext(SocketContext);
@@ -9,9 +9,11 @@ function Waiting() {
     <>
       <h1>{data.game?.id}</h1>
       <ul>
-        {data.game?.players.map((player) => <li>{player.username}</li>)}
+        {data.game?.players.map((player) => (
+          <li key={player.username}>{player.username}</li>
+        ))}
       </ul>
-      <button>Start Game</button>
+      <button onClick={() => null}>Start Game</button>
     </>
   );
 }
