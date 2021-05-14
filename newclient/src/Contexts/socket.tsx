@@ -3,7 +3,8 @@ import ReconnectingWebSocket from "reconnecting-websocket";
 
 export type DataType = {
   game?: {
-    id: string
+    id: string,
+    players: [{ username: string }]
   },
 }
 
@@ -38,9 +39,10 @@ export const SocketProvider = ({ children }: IProps) => {
   const [connected, setConnected] = useState(false);
   const onMessage = (event: { data: string }) => {
     const data = JSON.parse(event.data);
-    // if (data.errors) {
-    //   return setErrors(data.errors);
-    // }
+    if (data.errors) {
+      console.log(data.errors)
+      // return setErrors(data.errors);
+    }
     if (localStorage.getItem("gameID") && !data.game) {
       console.log("removesession", data);
       localStorage.removeItem("gameID");
@@ -88,9 +90,6 @@ export const SocketProvider = ({ children }: IProps) => {
   // }, []);
 
   const sendServer = (object: object) => socket.send(JSON.stringify(object));
-  // const data: object = {}
-  // const errors: Array<string> = []
-  // const setErrors = () => null
 
   if (!connected) {
     return <div>reconnecting...</div>;
