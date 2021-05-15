@@ -1,4 +1,10 @@
-import { createContext, useState, useEffect, ReactNode } from "react";
+import {
+  createContext,
+  useState,
+  useCallback,
+  useEffect,
+  ReactNode,
+} from "react";
 import ReconnectingWebSocket from "reconnecting-websocket";
 
 export type DataType = {
@@ -46,24 +52,24 @@ export const SocketProvider = ({ children }: IProps) => {
   const [data, setData] = useState({});
   const [errors, setErrors] = useState<string[]>([]);
   const [connected, setConnected] = useState(false);
-  const onMessage = (event: { data: string }) => {
-    const data = JSON.parse(event.data);
-    if (data.errors) {
-      return setErrors(data.errors);
+  const onMessage = useCallback((event: { data: string }) => {
+    const serverData = JSON.parse(event.data);
+    if (serverData.errors) {
+      return setErrors(serverData.errors);
     }
-    if (localStorage.getItem("gameID") && !data.game) {
-      console.log("removesession", data);
+    if (localStorage.getItem("gameID") && !serverData.game) {
+      console.log("removesession", serverData);
       localStorage.removeItem("gameID");
       localStorage.removeItem("username");
       return;
     }
-    setData(data);
+    setData(serverData);
     // if there is a new game data keep in session
-    if (data.game && !localStorage.getItem("gameID")) {
-      localStorage.setItem("gameID", data.game.id);
-      localStorage.setItem("username", data.player.username);
+    if (serverData.game && !localStorage.getItem("gameID")) {
+      localStorage.setItem("gameID", serverData.game.id);
+      localStorage.setItem("username", serverData.player.username);
     }
-  };
+  }, []);
 
   useEffect(() => {
     const onOpen = () => socket && setConnected(true);
@@ -77,7 +83,7 @@ export const SocketProvider = ({ children }: IProps) => {
       socket?.removeEventListener("message", onMessage);
       socket?.removeEventListener("close", onClose);
     };
-  }, []);
+  }, [onMessage]);
 
   const sendServer = (object: object) => socket.send(JSON.stringify(object));
 

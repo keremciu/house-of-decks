@@ -3,15 +3,15 @@ import { Switch, Route, useHistory } from "react-router-dom";
 import Landing from "./Stages/Landing";
 import Create from "./Stages/Create";
 import Join from "./Stages/Join";
-// import Active from './Stages/Active'
+import Active from "./Stages/Active";
 import Waiting from "./Stages/Waiting";
 import SocketContext from "Contexts/socket";
 
 const Room = (data: any) => {
   if (!data?.game) return <Join />;
-  // if (data.game.hasStarted) {
-  //   return <Active />);
-  // }
+  if (data.game.hasStarted) {
+    return <Active />;
+  }
   return <Waiting />;
 };
 
