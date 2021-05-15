@@ -7,6 +7,10 @@ import {
 } from "react";
 import ReconnectingWebSocket from "reconnecting-websocket";
 
+type Card = {
+  text: string;
+};
+
 export type DataType = {
   game?:
     | {
@@ -15,10 +19,16 @@ export type DataType = {
         players: {
           username: string;
         }[];
+        blackCard: {
+          text: string;
+          pick: number;
+        };
       }
     | undefined;
   player?: {
     username: string;
+    submittedCards: Card[];
+    cards: Card[];
   };
 };
 

@@ -44,3 +44,35 @@ code {
   border-radius: 4px;
   padding: 16px;
 }
+
+.cardsWrapper {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 10px;
+  height: 260px;
+}
+
+/* @media only screen and (max-width: 900px) {
+  width: "40%",
+  height: "auto",
+  marginBottom: 10,
+} */
+.whiteCard {
+  width: 10%;
+  background-color: white;
+}
+
+.blackCard {
+  margin: 0 auto;
+  width: 200px;
+  background-color: black;
+  color: white;
+}
