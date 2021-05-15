@@ -9,12 +9,14 @@ export type DataType = {
 };
 
 type ContextProps = {
-  sendServer(object: object): void;
-  errors: Array<string>;
   data: DataType;
+  errors: Array<string>;
+  sendServer(object: object): void;
+  setErrors(errors: Array<string>): void;
 };
 
 const SocketContext = createContext<ContextProps>({
+  setErrors: () => undefined,
   sendServer: () => undefined,
   errors: [],
   data: {
@@ -33,18 +35,20 @@ const username: any = localStorage.getItem("username");
 const gameID = localStorage.getItem("gameID");
 if (gameID) {
   socketURL.searchParams.set("username", username);
-  socketURL.searchParams.set("gameID", gameID);
+  // if gameID in URL bar is different than localStorage gameID, don't show
+  if (window.location.pathname.replace("/", "") === gameID) {
+    socketURL.searchParams.set("gameID", gameID);
+  }
 }
 const socket = new ReconnectingWebSocket(socketURL.toString());
 
 export const SocketProvider = ({ children }: IProps) => {
   const [data, setData] = useState({});
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState<string[]>([]);
   const [connected, setConnected] = useState(false);
   const onMessage = (event: { data: string }) => {
     const data = JSON.parse(event.data);
     if (data.errors) {
-      console.log(data.errors);
       return setErrors(data.errors);
     }
     if (localStorage.getItem("gameID") && !data.game) {
@@ -75,24 +79,6 @@ export const SocketProvider = ({ children }: IProps) => {
     };
   }, []);
 
-  // const [socket, setSocket] = useState(null);
-
-  // useEffect(() => {
-  //   // const username = localStorage.getItem("username");
-  //   // const gameID = localStorage.getItem("gameID");
-  //   // TODO: find a better way for this connection
-
-  //   // if (gameID) {
-  //   //   socketURL.searchParams.set("username", username);
-  //   //   socketURL.searchParams.set("gameID", gameID);
-  //   // }
-  //   // const socketInstance = new ReconnectingWebSocket(socketURL.toString())
-  //   setSocket(socketInstance);
-  //   return () => {
-  //     setSocket(null)
-  //   }
-  // }, []);
-
   const sendServer = (object: object) => socket.send(JSON.stringify(object));
 
   if (!connected) {
@@ -102,9 +88,10 @@ export const SocketProvider = ({ children }: IProps) => {
   return (
     <SocketContext.Provider
       value={{
-        sendServer,
-        errors,
         data,
+        errors,
+        sendServer,
+        setErrors,
       }}
     >
       {children}

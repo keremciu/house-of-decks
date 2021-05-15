@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import Game from "./Game/index";
+import Notifications from "Components/Notifications";
 import reportWebVitals from "./reportWebVitals";
 import { SocketProvider } from "./Contexts/socket";
 
@@ -12,6 +13,7 @@ ReactDOM.render(
       <Router>
         <Game />
       </Router>
+      <Notifications />
     </SocketProvider>
   </React.StrictMode>,
   document.getElementById("root")

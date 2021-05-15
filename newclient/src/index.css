@@ -20,3 +20,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.notifications {
+  position: fixed;
+  bottom: 0;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.notifications ul {
+  margin:0;
+  list-style: none;
+}
+
+.notifications ul li {
+  background: #000;
+  color: white;
+  margin: 16px 0px;
+  flex: 0 0 60px;
+  position: relative;
+  border-radius: 4px;
+  padding: 16px;
+}

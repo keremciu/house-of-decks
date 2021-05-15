@@ -1,22 +1,22 @@
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
-import Landing from './Stages/Landing'
-import Create from './Stages/Create'
-import Join from './Stages/Join'
+import Landing from "./Stages/Landing";
+import Create from "./Stages/Create";
+import Join from "./Stages/Join";
 // import Active from './Stages/Active'
-import Waiting from './Stages/Waiting'
-import SocketContext from 'Contexts/socket'
+import Waiting from "./Stages/Waiting";
+import SocketContext from "Contexts/socket";
 
 const Room = (data: any) => {
-  if (!data?.game) return <Join />
+  if (!data?.game) return <Join />;
   // if (data.game.hasStarted) {
   //   return <Active />);
   // }
-  return <Waiting />
+  return <Waiting />;
 };
 
 const Game = () => {
-  const history = useHistory()
+  const history = useHistory();
   const { data } = useContext(SocketContext);
 
   useEffect(() => {
@@ -33,9 +33,7 @@ const Game = () => {
       <Route path="/create">
         <Create />
       </Route>
-      <Route path="/:gameid">
-        {Room(data)}
-      </Route>
+      <Route path="/:gameid">{Room(data)}</Route>
     </Switch>
   );
 };
