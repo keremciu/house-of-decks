@@ -8,9 +8,17 @@ import {
 import ReconnectingWebSocket from "reconnecting-websocket";
 
 export type DataType = {
-  game?: {
-    id: string;
-    players: [{ username: string }];
+  game?:
+    | {
+        id: string;
+        czar: string;
+        players: {
+          username: string;
+        }[];
+      }
+    | undefined;
+  player?: {
+    username: string;
   };
 };
 
@@ -22,12 +30,13 @@ type ContextProps = {
 };
 
 const SocketContext = createContext<ContextProps>({
-  setErrors: () => undefined,
-  sendServer: () => undefined,
-  errors: [],
   data: {
     game: undefined,
+    player: undefined,
   },
+  errors: [],
+  setErrors: () => undefined,
+  sendServer: () => undefined,
 } as ContextProps);
 
 export default SocketContext;
