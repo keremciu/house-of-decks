@@ -145,6 +145,7 @@ function ActiveRoom() {
     renderContent = () => (
       <Judgement
         isWaiting={isWaiting}
+        czar={game.czar}
         isCardCzar={isCardCzar}
         isReadyToJudge={game.isReadyToJudge}
         blackCard={blackCard}

@@ -4,6 +4,7 @@ import Cards, { BlackCard } from "Components/Cards";
 function Judgement({
   isReadyToJudge,
   isWaiting,
+  czar,
   isCardCzar,
   blackCard,
   submitters,
@@ -16,7 +17,7 @@ function Judgement({
         {isCardCzar ? (
           <p>Time to pick the darkest combination</p>
         ) : (
-          <p>Judge is gonna pick the darkest combination</p>
+          <p>Judge({czar}) is gonna pick the darkest combination</p>
         )}
         <Cards>
           {submitters
