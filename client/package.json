@@ -1,28 +1,28 @@
 {
   "name": "house-of-decks-client",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
     "@emotion/eslint-plugin": "^11.2.0",
     "@emotion/react": "^11.1.5",
-    "@emotion/styled": "^11.1.5",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.8.3",
+    "@emotion/styled": "^11.3.0",
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^13.1.5",
     "canvas-confetti": "^1.4.0",
     "formik": "^2.2.6",
-    "framer-motion": "^3.10.4",
+    "framer-motion": "^3.10.6",
     "history": "^5.0.0",
-    "react": "^17.0.1",
-    "react-cool-portal": "^1.0.26",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.2",
+    "react-cool-portal": "^1.1.0",
+    "react-dom": "^17.0.2",
     "react-responsive": "^8.2.0",
     "react-router-dom": "^6.0.0-beta.0",
     "react-scripts": "^4.0.3",
     "react-use-clipboard": "^1.0.7",
     "reconnecting-websocket": "^4.4.0",
-    "use-sound": "^2.0.1",
+    "use-sound": "^2.0.2",
     "yup": "^0.32.9"
   },
   "scripts": {
@@ -52,6 +52,6 @@
   },
   "devDependencies": {
     "mock-socket": "^9.0.3",
-    "playwright": "^1.9.2"
+    "playwright": "^1.10.0"
   }
 }
