@@ -25,7 +25,7 @@
   "homepage": "https://github.com/keremciu/node-against-humanity#readme",
   "dependencies": {
     "esm": "^3.2.25",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "react-cool-portal": "^1.0.6",
     "socket.io": "^2.3.0"
   },
